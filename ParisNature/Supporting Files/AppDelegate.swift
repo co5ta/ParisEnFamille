@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             coordinator?.start()
             self.window = UIWindow(frame: UIScreen.main.bounds)
             self.window?.makeKeyAndVisible()
-            self.window?.rootViewController = ViewController()
+            self.window?.rootViewController = navigationController
             return true
         }
     }

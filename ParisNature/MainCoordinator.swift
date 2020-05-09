@@ -16,7 +16,7 @@ class MainCoordinator: Coordinator {
     }
 
     func start() {
-        navigationController.pushViewController(ViewController(), animated: true)
+        navigationController.pushViewController(MapViewController(), animated: true)
     }
 }
 
