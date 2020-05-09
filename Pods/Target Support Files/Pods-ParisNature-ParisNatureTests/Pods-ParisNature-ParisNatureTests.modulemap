@@ -1,0 +1,6 @@
+framework module Pods_ParisNature_ParisNatureTests {
+  umbrella header "Pods-ParisNature-ParisNatureTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
