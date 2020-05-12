@@ -12,17 +12,35 @@ import UIKit
 class MapViewController: UIViewController {
     
     /// View controller of the map content
-    let mapContentVC = MapContentViewController()
+    let mapContent = MapContentViewController()
+}
+
+// MARK: - Lifecycle
+extension MapViewController {
     
     /// Initializes the instance
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
         setUp()
     }
+}
+ 
+// MARK: - Setup
+extension MapViewController {
     
     /// Sets up the instance
     private func setUp() {
-        add(child: mapContentVC)
+        setUpDefaultProperties()
+        setUpMapContent()
+    }
+    
+    /// Sets up defaults view controller properties
+    private func setUpDefaultProperties() {
+        view.backgroundColor = .blue
+    }
+    
+    /// Sets up defaults map content
+    private func setUpMapContent() {
+        add(child: mapContent)
     }
 }
