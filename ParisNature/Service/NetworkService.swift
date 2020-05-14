@@ -25,8 +25,9 @@ struct NetworkService {
 extension NetworkService {
     
     /// Gets green areas
-    func getGreenAreas(completionHandler: @escaping (Result<GreenAreasResult, NetworkError>) -> Void) {
-        let stringURL = "https://opendata.paris.fr/api/records/1.0/search/?dataset=espaces_verts&refine.type_ev=Promenades+ouvertes&rows=10"
+    func getGreenAreas(area: [String], completionHandler: @escaping (Result<GreenAreasResult, NetworkError>) -> Void) {
+        let stringURL = "https://opendata.paris.fr/api/records/1.0/search/?dataset=espaces_verts&refine.type_ev=Promenades+ouvertes&rows=50&geofilter.distance=\(area.joined(separator: ","))"
+        print(stringURL)
         guard let url = URL(string: stringURL) else { return }
         let task = session.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {

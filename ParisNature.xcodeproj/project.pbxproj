@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		225745B4246705190040BBC8 /* MapContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225745B3246705190040BBC8 /* MapContentViewController.swift */; };
+		225745B4246705190040BBC8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225745B3246705190040BBC8 /* MapViewController.swift */; };
 		225745B724670A790040BBC8 /* UIViewController+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225745B624670A790040BBC8 /* UIViewController+Child.swift */; };
 		225745BA246746400040BBC8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225745B9246746400040BBC8 /* NetworkService.swift */; };
 		22579D6B2467F8B0007470F4 /* GreenArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22579D6A2467F8B0007470F4 /* GreenArea.swift */; };
@@ -15,7 +15,6 @@
 		22579D6F246836EC007470F4 /* GreenAreasResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22579D6E246836EC007470F4 /* GreenAreasResult.swift */; };
 		225BED772465A28100A69076 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225BED762465A28100A69076 /* AppDelegate.swift */; };
 		225BED792465A28100A69076 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225BED782465A28100A69076 /* SceneDelegate.swift */; };
-		225BED7B2465A28100A69076 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225BED7A2465A28100A69076 /* MapViewController.swift */; };
 		225BED802465A28300A69076 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 225BED7F2465A28300A69076 /* Assets.xcassets */; };
 		225BED832465A28300A69076 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 225BED812465A28300A69076 /* LaunchScreen.storyboard */; };
 		225BED8E2465A28400A69076 /* ParisNatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225BED8D2465A28400A69076 /* ParisNatureTests.swift */; };
@@ -37,7 +36,7 @@
 /* Begin PBXFileReference section */
 		0613EFE09D17EDEB9AF0C0B8 /* Pods-ParisNature-ParisNatureTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParisNature-ParisNatureTests.debug.xcconfig"; path = "Target Support Files/Pods-ParisNature-ParisNatureTests/Pods-ParisNature-ParisNatureTests.debug.xcconfig"; sourceTree = "<group>"; };
 		169672DCC3562480FEB7C60B /* Pods_ParisNature_ParisNatureTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParisNature_ParisNatureTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		225745B3246705190040BBC8 /* MapContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapContentViewController.swift; sourceTree = "<group>"; };
+		225745B3246705190040BBC8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		225745B624670A790040BBC8 /* UIViewController+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
 		225745B9246746400040BBC8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		22579D6A2467F8B0007470F4 /* GreenArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenArea.swift; sourceTree = "<group>"; };
@@ -46,7 +45,6 @@
 		225BED732465A28100A69076 /* Paris Nature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paris Nature.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		225BED762465A28100A69076 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		225BED782465A28100A69076 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		225BED7A2465A28100A69076 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		225BED7F2465A28300A69076 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		225BED822465A28300A69076 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		225BED842465A28300A69076 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -133,8 +131,7 @@
 			children = (
 				22579D692467F8A2007470F4 /* Model */,
 				22BB89E12465AE68008740DA /* MainCoordinator.swift */,
-				225BED7A2465A28100A69076 /* MapViewController.swift */,
-				225745B3246705190040BBC8 /* MapContentViewController.swift */,
+				225745B3246705190040BBC8 /* MapViewController.swift */,
 				225745B82467461E0040BBC8 /* Service */,
 				225745B524670A320040BBC8 /* Extensions */,
 				22BB89E02465ACF9008740DA /* Supporting Files */,
@@ -352,11 +349,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				225BED7B2465A28100A69076 /* MapViewController.swift in Sources */,
 				22579D6F246836EC007470F4 /* GreenAreasResult.swift in Sources */,
 				22BB89E22465AE68008740DA /* MainCoordinator.swift in Sources */,
 				225BED772465A28100A69076 /* AppDelegate.swift in Sources */,
-				225745B4246705190040BBC8 /* MapContentViewController.swift in Sources */,
+				225745B4246705190040BBC8 /* MapViewController.swift in Sources */,
 				22579D6B2467F8B0007470F4 /* GreenArea.swift in Sources */,
 				225BED792465A28100A69076 /* SceneDelegate.swift in Sources */,
 				22579D6D2467FDE4007470F4 /* NetworkError.swift in Sources */,
