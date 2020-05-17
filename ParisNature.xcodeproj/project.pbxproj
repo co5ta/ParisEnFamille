@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2254EB2A246FDFCA00BEA2AC /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254EB29246FDFCA00BEA2AC /* PlacesViewController.swift */; };
 		225745B4246705190040BBC8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225745B3246705190040BBC8 /* MapViewController.swift */; };
 		225745B724670A790040BBC8 /* UIViewController+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225745B624670A790040BBC8 /* UIViewController+Child.swift */; };
 		225745BA246746400040BBC8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225745B9246746400040BBC8 /* NetworkService.swift */; };
@@ -19,7 +20,6 @@
 		225BED832465A28300A69076 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 225BED812465A28300A69076 /* LaunchScreen.storyboard */; };
 		225BED8E2465A28400A69076 /* ParisNatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225BED8D2465A28400A69076 /* ParisNatureTests.swift */; };
 		22BB89E22465AE68008740DA /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB89E12465AE68008740DA /* MainCoordinator.swift */; };
-		D340763BB975C20EA331F397 /* Pods_ParisNature_ParisNatureTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 169672DCC3562480FEB7C60B /* Pods_ParisNature_ParisNatureTests.framework */; };
 		FBE7609B00AEDF775C6FEB35 /* Pods_ParisNature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 999EC3A73AB3AEA1BA230D9A /* Pods_ParisNature.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,8 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0613EFE09D17EDEB9AF0C0B8 /* Pods-ParisNature-ParisNatureTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParisNature-ParisNatureTests.debug.xcconfig"; path = "Target Support Files/Pods-ParisNature-ParisNatureTests/Pods-ParisNature-ParisNatureTests.debug.xcconfig"; sourceTree = "<group>"; };
-		169672DCC3562480FEB7C60B /* Pods_ParisNature_ParisNatureTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParisNature_ParisNatureTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2254EB29246FDFCA00BEA2AC /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
 		225745B3246705190040BBC8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		225745B624670A790040BBC8 /* UIViewController+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
 		225745B9246746400040BBC8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -55,7 +54,6 @@
 		547414CDF45259B63D919074 /* Pods-ParisNatureTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParisNatureTests.debug.xcconfig"; path = "Target Support Files/Pods-ParisNatureTests/Pods-ParisNatureTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6AE33546440FEC82DEBA7A44 /* Pods-ParisNature.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParisNature.debug.xcconfig"; path = "Target Support Files/Pods-ParisNature/Pods-ParisNature.debug.xcconfig"; sourceTree = "<group>"; };
 		76F9A0FF988CE777FDDF34D9 /* Pods-ParisNatureTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParisNatureTests.release.xcconfig"; path = "Target Support Files/Pods-ParisNatureTests/Pods-ParisNatureTests.release.xcconfig"; sourceTree = "<group>"; };
-		7DF463D4C4C3B218C1902F0D /* Pods-ParisNature-ParisNatureTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParisNature-ParisNatureTests.release.xcconfig"; path = "Target Support Files/Pods-ParisNature-ParisNatureTests/Pods-ParisNature-ParisNatureTests.release.xcconfig"; sourceTree = "<group>"; };
 		999EC3A73AB3AEA1BA230D9A /* Pods_ParisNature.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParisNature.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDE40669FC29B9335E6A809D /* Pods-ParisNature.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParisNature.release.xcconfig"; path = "Target Support Files/Pods-ParisNature/Pods-ParisNature.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,7 +71,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D340763BB975C20EA331F397 /* Pods_ParisNature_ParisNatureTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +92,22 @@
 				22579D6C2467FDE4007470F4 /* NetworkError.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		22575C232471508D00794EB3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		22575C24247150A000794EB3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				225745B3246705190040BBC8 /* MapViewController.swift */,
+				2254EB29246FDFCA00BEA2AC /* PlacesViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		22579D692467F8A2007470F4 /* Model */ = {
@@ -129,9 +142,10 @@
 		225BED752465A28100A69076 /* ParisNature */ = {
 			isa = PBXGroup;
 			children = (
-				22579D692467F8A2007470F4 /* Model */,
 				22BB89E12465AE68008740DA /* MainCoordinator.swift */,
-				225745B3246705190040BBC8 /* MapViewController.swift */,
+				22579D692467F8A2007470F4 /* Model */,
+				22575C232471508D00794EB3 /* View */,
+				22575C24247150A000794EB3 /* Controller */,
 				225745B82467461E0040BBC8 /* Service */,
 				225745B524670A320040BBC8 /* Extensions */,
 				22BB89E02465ACF9008740DA /* Supporting Files */,
@@ -164,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				999EC3A73AB3AEA1BA230D9A /* Pods_ParisNature.framework */,
-				169672DCC3562480FEB7C60B /* Pods_ParisNature_ParisNatureTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -176,8 +189,6 @@
 				DDE40669FC29B9335E6A809D /* Pods-ParisNature.release.xcconfig */,
 				547414CDF45259B63D919074 /* Pods-ParisNatureTests.debug.xcconfig */,
 				76F9A0FF988CE777FDDF34D9 /* Pods-ParisNatureTests.release.xcconfig */,
-				0613EFE09D17EDEB9AF0C0B8 /* Pods-ParisNature-ParisNatureTests.debug.xcconfig */,
-				7DF463D4C4C3B218C1902F0D /* Pods-ParisNature-ParisNatureTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -194,6 +205,7 @@
 				225BED702465A28100A69076 /* Frameworks */,
 				225BED712465A28100A69076 /* Resources */,
 				228BE7E12466C4C400BDAA02 /* ShellScript */,
+				78F3823DED59196734FC9393 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -208,7 +220,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 225BED952465A28400A69076 /* Build configuration list for PBXNativeTarget "ParisNatureTests" */;
 			buildPhases = (
-				799408D79275D429985B2E72 /* [CP] Check Pods Manifest.lock */,
 				225BED852465A28400A69076 /* Sources */,
 				225BED862465A28400A69076 /* Frameworks */,
 				225BED872465A28400A69076 /* Resources */,
@@ -298,26 +309,21 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
-		799408D79275D429985B2E72 /* [CP] Check Pods Manifest.lock */ = {
+		78F3823DED59196734FC9393 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ParisNature/Pods-ParisNature-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ParisNature-ParisNatureTests-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-ParisNature/Pods-ParisNature-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParisNature/Pods-ParisNature-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C94F853C6EAC91A5A25ACA6A /* [CP] Check Pods Manifest.lock */ = {
@@ -351,6 +357,7 @@
 			files = (
 				22579D6F246836EC007470F4 /* GreenAreasResult.swift in Sources */,
 				22BB89E22465AE68008740DA /* MainCoordinator.swift in Sources */,
+				2254EB2A246FDFCA00BEA2AC /* PlacesViewController.swift in Sources */,
 				225BED772465A28100A69076 /* AppDelegate.swift in Sources */,
 				225745B4246705190040BBC8 /* MapViewController.swift in Sources */,
 				22579D6B2467F8B0007470F4 /* GreenArea.swift in Sources */,
@@ -545,7 +552,6 @@
 		};
 		225BED962465A28400A69076 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0613EFE09D17EDEB9AF0C0B8 /* Pods-ParisNature-ParisNatureTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -568,7 +574,6 @@
 		};
 		225BED972465A28400A69076 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7DF463D4C4C3B218C1902F0D /* Pods-ParisNature-ParisNatureTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

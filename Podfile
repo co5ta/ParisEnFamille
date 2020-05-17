@@ -3,8 +3,5 @@ platform :ios, '12.0'
 target 'ParisNature' do
   use_frameworks!
   pod 'SwiftLint', '~> 0.39'
-
-  target 'ParisNatureTests' do
-  end
-
+  pod 'FloatingPanel'
 end

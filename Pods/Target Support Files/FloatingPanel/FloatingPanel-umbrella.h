@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_ParisNature_ParisNatureTestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_ParisNature_ParisNatureTestsVersionString[];
+FOUNDATION_EXPORT double FloatingPanelVersionNumber;
+FOUNDATION_EXPORT const unsigned char FloatingPanelVersionString[];
 

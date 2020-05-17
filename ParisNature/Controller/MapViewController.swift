@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FloatingPanel
 
 /// View controller of the map 
 class MapViewController: UIViewController {
@@ -19,6 +20,10 @@ class MapViewController: UIViewController {
     let locationManager = CLLocationManager()
     /// Region width and height
     let regionSize: Double = 1500
+    /// Floating panel
+    let fpc = FloatingPanelController()
+    /// Floating panel content
+    let placesVC = PlacesViewController()
 }
 
 // MARK: - Lifecycle
@@ -31,17 +36,26 @@ extension MapViewController {
         setUpViews()
         checkLocationServices()
     }
+    
+    /// Notifies the view controller that its view was added to a view hierarchy.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fpc.addPanel(toParent: self)
+    }
 }
 
-// MARK: - Configuration
+// MARK: - Setup
 extension MapViewController {
     
     /// Sets up the instance
     private func configure() {
         navigationController?.setNavigationBarHidden(true, animated: true)
         locationManager.delegate = self
+//        fpc.delegate = self
+        fpc.set(contentViewController: placesVC)
     }
     
+    /// Sets up the views
     private func setUpViews() {
         setUpMapView()
     }
@@ -67,6 +81,7 @@ extension MapViewController {
 // MARK: - Location
 extension MapViewController {
     
+    /// Checks if the location services are enabled
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
              locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
@@ -77,6 +92,7 @@ extension MapViewController {
         }
     }
     
+    /// Checks location permissions
     func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse, .authorizedAlways:
@@ -97,6 +113,7 @@ extension MapViewController {
         }
     }
     
+    /// Centers the map on the user location
     func centerMapOnUserLocation() {
         guard let coordinate = locationManager.location?.coordinate else { return }
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: regionSize, longitudinalMeters: regionSize)
@@ -109,11 +126,12 @@ extension MapViewController: CLLocationManagerDelegate {
     
     /// Tells the delegate that new location data is available
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionSize, longitudinalMeters: regionSize)
-        mapView.setRegion(region, animated: true)
+//        guard let location = locations.last else { return }
+//        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionSize, longitudinalMeters: regionSize)
+//        mapView.setRegion(region, animated: true)
     }
     
+    /// Tells the delegate its authorization status when the app creates the location manager and when the authorization status changes
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
     }
@@ -139,7 +157,7 @@ extension MapViewController {
     }
     
     /// Adds a mark on the map view
-    func addMark(_ greenArea: GreenArea) {
+    private func addMark(_ greenArea: GreenArea) {
         let geoCoder = CLGeocoder()
         geoCoder.geocodeAddressString(greenArea.address) { [weak self] (placemarks, error) in
             if let error = error {
