@@ -1,5 +1,5 @@
 //
-//  GreenAreasResult.swift
+//  GreenSpacesResult.swift
 //  ParisNature
 //
 //  Created by co5ta on 10/05/2020.
@@ -9,15 +9,15 @@
 import Foundation
 
 /// The type containing the decoded response of green area API
-struct GreenAreasResult {
+struct GreenSpacesResult {
     /// Total number of available green areas
     let total: Int
     /// List of green area founded by the request
-    let list: [GreenArea]
+    let list: [GreenSpace]
 }
 
 // MARK: - Decodable
-extension GreenAreasResult: Decodable {
+extension GreenSpacesResult: Decodable {
     /// Relations between properties and json keys
     enum CodingKeys: String, CodingKey {
         case total = "nhits"

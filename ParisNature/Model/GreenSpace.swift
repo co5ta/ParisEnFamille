@@ -1,5 +1,5 @@
 //
-//  GreenArea.swift
+//  GreenSpace.swift
 //  ParisNature
 //
 //  Created by co5ta on 10/05/2020.
@@ -9,7 +9,7 @@
 import Foundation
 
 /// The type representing a green area
-struct GreenArea {
+struct GreenSpace {
     /// Name
     let name: String
     /// Category
@@ -29,11 +29,11 @@ struct GreenArea {
     /// Address
     var address: String { "\(streetNumber) \(streetType) \(streetName) \(areaCode)" }
     /// List of all green areas
-    static var list: [GreenArea] = []
+    static var list: [GreenSpace] = []
 }
 
 // MARK: - Decodable
-extension GreenArea: Decodable {
+extension GreenSpace: Decodable {
     
     /// Initializes from json data
     init(from decoder: Decoder) throws {

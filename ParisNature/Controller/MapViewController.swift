@@ -51,7 +51,9 @@ extension MapViewController {
     private func configure() {
         navigationController?.setNavigationBarHidden(true, animated: true)
         locationManager.delegate = self
-//        fpc.delegate = self
+        fpc.delegate = self
+        fpc.surfaceView.cornerRadius = 10
+        fpc.surfaceView.backgroundColor = .clear
         fpc.set(contentViewController: placesVC)
     }
     
@@ -99,7 +101,7 @@ extension MapViewController {
             mapView.showsUserLocation = true
             centerMapOnUserLocation()
             locationManager.startUpdatingLocation()
-            getGreenAreas()
+//            getGreenSpaces()
         case .denied:
             // Ask user to activate authorisation
             break
@@ -141,33 +143,43 @@ extension MapViewController: CLLocationManagerDelegate {
 extension MapViewController {
     
     /// Asks  to receive green areas
-    private func getGreenAreas() {
+    private func getGreenSpaces() {
         guard let coordinate = locationManager.location?.coordinate else { return }
         let area = ["\(coordinate.latitude)", "\(coordinate.longitude)", "\(regionSize/2)"]
-        NetworkService.shared.getGreenAreas(area: area) { [weak self] (result) in
+        NetworkService.shared.getGreenSpaces(area: area) { [weak self] (result) in
             switch result {
             case .failure(let error):
                 print(error)
                 print(error.localizedDescription)
-            case .success(let greenAreasResult):
-                print(greenAreasResult.list.count)
-                greenAreasResult.list.forEach { self?.addMark($0) }
+            case .success(let greenspaces):
+                print(greenspaces.list.count)
+                greenspaces.list.forEach { self?.addMark($0) }
             }
         }
     }
     
     /// Adds a mark on the map view
-    private func addMark(_ greenArea: GreenArea) {
+    private func addMark(_ greenspace: GreenSpace) {
         let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(greenArea.address) { [weak self] (placemarks, error) in
+        geoCoder.geocodeAddressString(greenspace.address) { [weak self] (placemarks, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else if let location = placemarks?.first?.location {
                 let annotation = MKPointAnnotation()
-                annotation.title = greenArea.name
+                annotation.title = greenspace.name
                 annotation.coordinate = location.coordinate
                 self?.mapView.addAnnotation(annotation)
             }
         }
+    }
+}
+
+extension MapViewController: FloatingPanelControllerDelegate {
+    // swiftlint:disable identifier_name
+    func floatingPanel(
+        _ vc: FloatingPanelController,
+        layoutFor newCollection: UITraitCollection
+    ) -> FloatingPanelLayout? {
+        return CustomPanelLayout()
     }
 }
