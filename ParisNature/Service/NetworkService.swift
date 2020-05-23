@@ -8,12 +8,13 @@
 
 import Foundation
 
-struct NetworkService {
+class NetworkService {
 
     /// Session of the network
-    let session: URLSession
+    private let session: URLSession
     /// Shared instance of NetworkService
     static let shared = NetworkService()
+    private var task: URLSessionDataTask?
     
     /// Initializes the instance
     init(session: URLSession = URLSession.shared) {
@@ -24,41 +25,55 @@ struct NetworkService {
 // MARK: - Requests
 extension NetworkService {
     
+    func handleResult<T>(_ data: Data?,
+                         _ response: URLResponse?,
+                         _ error: Error?,
+                         _ dataType: T.Type
+    ) -> Result<T, NetworkError> where T: Decodable {
+        /// Checks error
+        if let error = error {
+            return .failure(.client(error))
+        }
+        /// Checks response
+        guard let httpResponse = response as? HTTPURLResponse,
+            (200...299).contains(httpResponse.statusCode)
+            else {
+            return .failure(.server(response))
+        }
+        /// Checks data
+        guard let data = data else {
+            return .failure(.emptyData)
+        }
+        /// Converts data
+        do {
+            let decodedData = try JSONDecoder().decode(dataType, from: data)
+            return .success(decodedData)
+        } catch let error {
+            return .failure(.decoding(error))
+        }
+    }
+    
     /// Gets green areas
-    func getGreenSpaces(area: [String], completionHandler: @escaping (Result<GreenSpacesResult, NetworkError>) -> Void) {
-        let stringURL = "https://opendata.paris.fr/api/records/1.0/search/?dataset=espaces_verts&refine.type_ev=Promenades+ouvertes&rows=50&geofilter.distance=\(area.joined(separator: ","))"
+    func getPlaces<T>(placeType: PlaceType,
+                      dataType: T.Type,
+                      area: [String],
+                      completionHandler: @escaping (Result<T, NetworkError>) -> Void
+    ) where T: Decodable {
+        let stringURL = placeType.apiURL + "&geofilter.distance=\(area.joined(separator: ","))"
         print(stringURL)
         guard let url = URL(string: stringURL) else { return }
-        let task = session.dataTask(with: url) { (data, response, error) in
+        task?.cancel()
+        task = session.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
-                /// Checks error
-                if let error = error {
-                    completionHandler( .failure(.client(error)) )
-                    return
-                }
-                /// Checks response
-                guard
-                    let httpResponse = response as? HTTPURLResponse,
-                    (200...299).contains(httpResponse.statusCode)
-                    else {
-                    completionHandler( .failure(.server(response)) )
-                    return
-                }
-                /// Checks data
-                guard let data = data else {
-                    completionHandler( .failure(.emptyData) )
-                    return
-                }
-                /// Converts data
-                print(data)
-                do {
-                    let decodedData = try JSONDecoder().decode(GreenSpacesResult.self, from: data)
-                    completionHandler( .success(decodedData) )
-                } catch let error {
-                    completionHandler( .failure(.decoding(error)) )
+                let result = self.handleResult(data, response, error, T.self)
+                switch result {
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(let data):
+                    completionHandler(.success(data))
                 }
             }
         }
-        task.resume()
+        task?.resume()
     }
 }

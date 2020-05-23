@@ -20,8 +20,8 @@ class CustomPanelLayout: FloatingPanelLayout {
         switch position {
         case .full: return safeAreaInsets.top
         case .half: return screenSize.height * 0.35
-        case .tip: return (screenSize.height / 6) - safeAreaInsets.bottom
-        default: return nil // Or `case .hidden: return nil`
+        case .tip: return (screenSize.height / 7) - (safeAreaInsets.bottom * 1.5)
+        case .hidden: return nil
         }
     }
 }

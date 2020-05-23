@@ -7,11 +7,15 @@
 //
 
 import Foundation
+import MapKit
 
 /// The type representing a green area
-struct GreenSpace {
+class GreenSpace: NSObject, Place, Decodable {
+    
+    /// Type of place
+    let placeType = PlaceType.greenery
     /// Name
-    let name: String
+    var title: String?
     /// Category
     let category: String
     /// Street number
@@ -28,18 +32,16 @@ struct GreenSpace {
     let isOpen24Hours: Bool?
     /// Address
     var address: String { "\(streetNumber) \(streetType) \(streetName) \(areaCode)" }
+    /// GPS coordinate
+    var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     /// List of all green areas
     static var list: [GreenSpace] = []
-}
-
-// MARK: - Decodable
-extension GreenSpace: Decodable {
     
     /// Initializes from json data
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let fields = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .fields)
-        name = try fields.decode(String.self, forKey: .name)
+        title = try fields.decode(String.self, forKey: .name)
         category = try fields.decode(String.self, forKey: .category)
         streetNumber = try fields.decode(Int.self, forKey: .streetNumber)
         streetType = try fields.decode(String.self, forKey: .streetType)
@@ -48,7 +50,10 @@ extension GreenSpace: Decodable {
         hasFence = try (fields.decodeIfPresent(String.self, forKey: .hasFence) == "Oui") ? true : false
         isOpen24Hours = try (fields.decodeIfPresent(String.self, forKey: .isOpen24Hours) == "Oui") ? true : false
     }
-    
+}
+
+// MARK: - CodingKey
+extension GreenSpace {
     /// Relations between properties and json keys
     enum CodingKeys: String, CodingKey {
         case fields

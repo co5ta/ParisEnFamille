@@ -9,24 +9,36 @@
 enum PlaceType: Int, CaseIterable {
     case greenery
     case event
-    case animal
     case market
+    
+    private var selectedSuffix: String { "Color" }
     
     var imageName: String {
         switch self {
         case .greenery: return "city"
-        case .event: return "event2"
-        case .animal: return "footprint2"
-        case .market: return "market2"
+        case .event: return "event"
+        case .market: return "market"
         }
+    }
+    
+    var imageSelectedName: String {
+        imageName + selectedSuffix
     }
     
     var title: String {
         switch self {
         case .greenery: return "Greenery"
         case .event: return "Events"
-        case .animal: return "Animals"
         case .market: return "Markets"
+        }
+    }
+    
+    var apiURL: String {
+        switch self {
+        case .greenery:
+            return "https://opendata.paris.fr/api/records/1.0/search/?dataset=espaces_verts&refine.type_ev=Promenades+ouvertes&rows=25"
+        case .event: return ""
+        case .market: return ""
         }
     }
 }
