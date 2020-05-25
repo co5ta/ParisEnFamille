@@ -184,38 +184,40 @@ extension MapViewController {
     }
     
     private func handle<T>(_ data: T) {
-        var places = [Place]()
         switch data {
         case is GreenSpacesResult:
-            if let data = data as? GreenSpacesResult { places = data.list }
+            if let data = data as? GreenSpacesResult { add(data.list) }
         case is EventsResult:
-            if let data = data as? EventsResult { places = data.list }
+            if let data = data as? EventsResult { add(data.list) }
         default:
-            break
+            print(#function, "Can't handle this type of data")
         }
-        print(places)
-        places = places.filter { keepOnlyNewPlaces(place: $0 ) }
-        places.forEach { addPlaces(place: $0) }
-        placesVC.state = .ready
-        centerMapOnUserLocation()
     }
     
-    private func keepOnlyNewPlaces(place: Place) -> Bool {
-        print(#function)
-        return placesVC.places.contains { $0.title == place.title } == false
+    private func isNotNew(_ place: Place) -> Bool {
+        return placesVC.places.contains { $0.title == place.title }
     }
     
-    private func addPlaces(place: Place) {
-        CLGeocoder().geocodeAddressString(place.address) { [weak self] (placemarks, error) in
-            guard let location = placemarks?.first?.location else {
-                if let error = error { print(error.localizedDescription)}
-                return
+    private func add(_ places: [Place]) {
+        let lastPlace = places.last
+        for place in places {
+            if isNotNew(place) { continue }
+            CLGeocoder().geocodeAddressString(place.address) { [self] (placemarks, error) in
+                guard let location = placemarks?.first?.location else {
+                    if let error = error { print(#function, error.localizedDescription)}
+                    return
+                }
+                place.coordinate = location.coordinate
+                self.placesVC.places.append(place)
+                self.mapView.addAnnotation(place)
+                if place.title == lastPlace?.title { self.showResult() }
             }
-            place.coordinate = location.coordinate
-            self?.placesVC.places.append(place)
-            print("adding annotation")
-            self?.mapView.addAnnotation(place)
         }
+    }
+    
+    private func showResult() {
+        mapView.showAnnotations(mapView.annotations, animated: true)
+        placesVC.state = .ready
     }
 }
 

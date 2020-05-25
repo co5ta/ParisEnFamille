@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Content of the floating panel
 class PlacesViewController: UIViewController {
     
     var mapVC: MapViewController?
@@ -34,6 +35,7 @@ extension PlacesViewController {
 // MARK: - Setup
 extension PlacesViewController {
     
+    /// Configures the view controller
     private func configure() {
         view.backgroundColor = .clear
         collectionView.dataSource = self
@@ -41,6 +43,7 @@ extension PlacesViewController {
         tableView.dataSource = self
     }
     
+    /// Sets up the views
     private func setUpViews() {
         setUpBackgroundView()
         setUpCollectionView()
@@ -49,6 +52,7 @@ extension PlacesViewController {
         constrainViews()
     }
     
+    /// Sets up the background view
     private func setUpBackgroundView() {
         let blurEffect = UIBlurEffect(style: .extraLight)
         visualEffectView = UIVisualEffectView(effect: blurEffect)
@@ -57,6 +61,7 @@ extension PlacesViewController {
         view.addSubview(visualEffectView)
     }
     
+    /// Sets up the collection view
     private func setUpCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -67,12 +72,14 @@ extension PlacesViewController {
         view.addSubview(collectionView)
     }
     
+    /// Sets up the table view
     private func setUpTableView() {
         tableView.register(PlaceCell.self, forCellReuseIdentifier: PlaceCell.identifier)
         tableView.backgroundColor = .clear
         view.addSubview(tableView)
     }
     
+    /// Sets up the loading view
     private func setUpLoadingView() {
         loadingView.color = .systemGreen
         loadingView.hidesWhenStopped = true
@@ -83,14 +90,15 @@ extension PlacesViewController {
 // MARK: - Constraints
 extension PlacesViewController {
     
+    /// Constrains  views
     private func constrainViews() {
         constrainBackgroundView()
         constrainCollectionView()
-//        constrainSeparator()
         constrainTableView()
         constrainLoadingView()
     }
     
+    /// Constrains background view
     private func constrainBackgroundView() {
         visualEffectView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -101,6 +109,7 @@ extension PlacesViewController {
         ])
     }
     
+    /// Constrains collection view
     private func constrainCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -111,6 +120,7 @@ extension PlacesViewController {
         ])
     }
     
+    /// Constrains table view
     private func constrainTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -121,6 +131,7 @@ extension PlacesViewController {
         ])
     }
     
+    /// Constrains loading view
     private func constrainLoadingView() {
         loadingView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -132,6 +143,8 @@ extension PlacesViewController {
 
 // MARK: - State
 extension PlacesViewController {
+    
+    /// Adjusts the views according to view controller state
     private func adjustViews() {
         switch state {
         case .loading:
@@ -145,18 +158,21 @@ extension PlacesViewController {
         }
     }
     
+    /// Displays loading
     private func displayLoading() {
         mapVC?.floatingPanelController.move(to: .half, animated: true)
         loadingView.startAnimating()
         tableView.isHidden = true
     }
     
+    /// Displays results in table view
     private func displayTableView() {
         mapVC?.floatingPanelController.move(to: .half, animated: true)
         loadingView.stopAnimating()
         tableView.isHidden = false
     }
     
+    /// Displays error message
     private func displayError() {
         mapVC?.floatingPanelController.move(to: .half, animated: true)
         loadingView.stopAnimating()
@@ -167,10 +183,12 @@ extension PlacesViewController {
 // MARK: - UICollectionViewDataSource
 extension PlacesViewController: UICollectionViewDataSource {
     
+    /// Asks your data source object for the number of items in the specified section.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return PlaceType.allCases.count
     }
     
+    /// Asks your data source object for the cell that corresponds to the specified item in the collection view.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: PlaceTypeCell.identifier,
@@ -183,12 +201,12 @@ extension PlacesViewController: UICollectionViewDataSource {
         return cell
     }
     
+    /// Action after a button has been tapped
     @objc
     private func imageButtonTapped(sender: UIButton) {
         guard sender.isSelected == false else { return }
         imagesButton.forEach { $0.isSelected = ($0 != sender) ? false : true }
-        places.removeAll()
-        tableView.reloadData()
+        removePlaces()
         guard let cell = sender.superview?.superview as? PlaceTypeCell, let placeType = cell.placeType else { return }
         switch placeType {
         case .greenery:
@@ -199,11 +217,20 @@ extension PlacesViewController: UICollectionViewDataSource {
             print("Fetch markets")
         }
     }
+    
+    /// Removes the places frome the previous search
+    private func removePlaces() {
+        places.removeAll()
+        tableView.reloadData()
+        guard let mapVC = mapVC else { return }
+        mapVC.mapView.removeAnnotations(mapVC.mapView.annotations)
+    }
 }
 
 // MARK: - UICollectionViewDelegate
 extension PlacesViewController: UICollectionViewDelegateFlowLayout {
     
+    /// Asks the delegate for the size of the specified item’s cell
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -212,6 +239,7 @@ extension PlacesViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: view.frame.width / divisor, height: collectionView.frame.height)
     }
 
+    /// Asks the delegate for the spacing between successive rows or columns of a section
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -219,11 +247,15 @@ extension PlacesViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension PlacesViewController: UITableViewDataSource {
+    
+    /// Tells the data source to return the number of rows in a given section of a table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return places.count
     }
     
+    /// Asks the data source for a cell to insert in a particular location of the table view
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PlaceCell.identifier, for: indexPath) as? PlaceCell
             else { return UITableViewCell() }
@@ -232,10 +264,8 @@ extension PlacesViewController: UITableViewDataSource {
         cell.place = place
         return cell
     }
-}
-
-extension PlacesViewController {
     
+    /// Updates the table view with new row
     private func updateTableView(_ oldValue: [Place]) {
         let numberOfPlaces = places.count
         guard numberOfPlaces > oldValue.count else { return }

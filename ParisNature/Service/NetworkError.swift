@@ -8,7 +8,10 @@
 
 import Foundation
 
+/// Management of possible error in a network request
 enum NetworkError: Error {
+    
+    // List of possible errors
     case url
     case client(Error)
     case server(URLResponse?)
@@ -16,7 +19,10 @@ enum NetworkError: Error {
     case decoding(Error)
 }
 
+// MARK: - LocalizedError
 extension NetworkError: LocalizedError {
+    
+    /// Description of the error 
     var errorDescription: String? {
         switch self {
         case .url:

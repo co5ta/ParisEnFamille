@@ -8,9 +8,15 @@
 
 import Foundation
 
-enum State {
-    case neutral
-    case loading
-    case ready
-    case empty
+
+extension PlacesViewController {
+    
+    /// The available states of the view controller
+    enum State {
+        // List of states
+        case neutral
+        case loading
+        case ready
+        case empty
+    }
 }

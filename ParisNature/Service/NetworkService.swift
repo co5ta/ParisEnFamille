@@ -25,6 +25,7 @@ class NetworkService {
 // MARK: - Requests
 extension NetworkService {
     
+    /// Handles the result of the request
     private func handleResult<T>(_ data: Data?,
                                  _ response: URLResponse?,
                                  _ error: Error?,
@@ -49,13 +50,13 @@ extension NetworkService {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             let decodedData = try decoder.decode(dataType, from: data)
-            print(decodedData)
             return .success(decodedData)
         } catch let error {
             return .failure(.decoding(error))
         }
     }
     
+    /// Converts the URL from String type to URL type
     private func getURL(for placeType: PlaceType, in area: [String]) -> URL? {
         guard var stringURL = placeType.apiURL else { return nil }
         if area.isEmpty == false {
@@ -65,12 +66,13 @@ extension NetworkService {
         return url
     }
     
-    /// Gets places
+    /// Requests the places to the API
     func getPlaces<T>(placeType: PlaceType,
                       dataType: T.Type,
                       area: [String],
                       completionHandler: @escaping (Result<T, NetworkError>) -> Void
     ) where T: Decodable {
+        
         guard let url = getURL(for: placeType, in: area) else {
             completionHandler(.failure(NetworkError.url))
             return

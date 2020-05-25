@@ -6,13 +6,15 @@
 //  Copyright © 2020 Co5ta. All rights reserved.
 //
 
+///
 enum PlaceType: Int, CaseIterable {
+    
+    // List of placetype
     case greenery
     case event
     case market
     
-    private var imageSelectedSuffix: String { "Color" }
-    
+    /// Name of the associated image
     var imageName: String {
         switch self {
         case .greenery: return "city"
@@ -21,10 +23,13 @@ enum PlaceType: Int, CaseIterable {
         }
     }
     
-    var imageSelectedName: String {
-        imageName + imageSelectedSuffix
-    }
+    /// Suffix for an selected image
+    private var imageSelectedSuffix: String { "Color" }
     
+    /// Name of the associates image when selected
+    var imageSelectedName: String { imageName + imageSelectedSuffix }
+    
+    /// Title of the place type
     var title: String {
         switch self {
         case .greenery: return "Greenery"
@@ -33,6 +38,7 @@ enum PlaceType: Int, CaseIterable {
         }
     }
     
+    /// URL to search places from a place type
     var apiURL: String? {
         var url = "https://opendata.paris.fr/api/records/1.0/search/?"
         switch self {

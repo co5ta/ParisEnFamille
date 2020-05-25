@@ -9,11 +9,13 @@
 import Foundation
 import FloatingPanel
 
+/// Configures the floating panel positions
 class CustomPanelLayout: FloatingPanelLayout {
     var initialPosition: FloatingPanelPosition {
         return .tip
     }
     
+    /// Defines the available positions of the floating panel
     func insetFor(position: FloatingPanelPosition) -> CGFloat? {
         let screenSize = UIScreen.main.bounds.size
         guard let safeAreaInsets = UIApplication.shared.keyWindow?.safeAreaInsets else { return nil }
