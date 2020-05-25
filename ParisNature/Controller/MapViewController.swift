@@ -161,12 +161,11 @@ extension MapViewController {
     /// Asks  to receive green areas
     func getPlaces<T>(placeType: PlaceType, dataType: T.Type) where T: Decodable {
         placesVC.state = .loading
-        guard let coordinate = locationManager.location?.coordinate else { return }
-        let area = ["\(coordinate.latitude)", "\(coordinate.longitude)", "\(regionSize/2)"]
+        let area = getAreaLimit(for: placeType)
         NetworkService.shared.getPlaces(placeType: placeType, dataType: dataType.self, area: area) { [weak self] (result) in
             switch result {
             case .failure(let error):
-                print(error)
+                print(#function, error)
                 self?.placesVC.state = .empty
             case .success(let data):
                 self?.handle(data)
@@ -174,11 +173,27 @@ extension MapViewController {
         }
     }
     
+    public func getAreaLimit(for placeType: PlaceType) -> [String] {
+        switch placeType {
+        case .greenery:
+            guard let coordinate = locationManager.location?.coordinate else { return [] }
+            return ["\(coordinate.latitude)", "\(coordinate.longitude)", "\(regionSize/2)"]
+        default:
+            return []
+        }
+    }
+    
     private func handle<T>(_ data: T) {
         var places = [Place]()
-        if let data = data as? GreenSpacesResult {
-            places = data.list
+        switch data {
+        case is GreenSpacesResult:
+            if let data = data as? GreenSpacesResult { places = data.list }
+        case is EventsResult:
+            if let data = data as? EventsResult { places = data.list }
+        default:
+            break
         }
+        print(places)
         places = places.filter { keepOnlyNewPlaces(place: $0 ) }
         places.forEach { addPlaces(place: $0) }
         placesVC.state = .ready
@@ -186,6 +201,7 @@ extension MapViewController {
     }
     
     private func keepOnlyNewPlaces(place: Place) -> Bool {
+        print(#function)
         return placesVC.places.contains { $0.title == place.title } == false
     }
     
@@ -197,6 +213,7 @@ extension MapViewController {
             }
             place.coordinate = location.coordinate
             self?.placesVC.places.append(place)
+            print("adding annotation")
             self?.mapView.addAnnotation(place)
         }
     }

@@ -25,10 +25,10 @@ class NetworkService {
 // MARK: - Requests
 extension NetworkService {
     
-    func handleResult<T>(_ data: Data?,
-                         _ response: URLResponse?,
-                         _ error: Error?,
-                         _ dataType: T.Type
+    private func handleResult<T>(_ data: Data?,
+                                 _ response: URLResponse?,
+                                 _ error: Error?,
+                                 _ dataType: T.Type
     ) -> Result<T, NetworkError> where T: Decodable {
         /// Checks error
         if let error = error {
@@ -46,30 +46,46 @@ extension NetworkService {
         }
         /// Converts data
         do {
-            let decodedData = try JSONDecoder().decode(dataType, from: data)
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            let decodedData = try decoder.decode(dataType, from: data)
+            print(decodedData)
             return .success(decodedData)
         } catch let error {
             return .failure(.decoding(error))
         }
     }
     
-    /// Gets green areas
+    private func getURL(for placeType: PlaceType, in area: [String]) -> URL? {
+        guard var stringURL = placeType.apiURL else { return nil }
+        if area.isEmpty == false {
+            stringURL += "&geofilter.distance=\(area.joined(separator: ","))"
+        }
+        guard let url = URL(string: stringURL) else { return nil }
+        return url
+    }
+    
+    /// Gets places
     func getPlaces<T>(placeType: PlaceType,
                       dataType: T.Type,
                       area: [String],
                       completionHandler: @escaping (Result<T, NetworkError>) -> Void
     ) where T: Decodable {
-        let stringURL = placeType.apiURL + "&geofilter.distance=\(area.joined(separator: ","))"
-        print(stringURL)
-        guard let url = URL(string: stringURL) else { return }
+        guard let url = getURL(for: placeType, in: area) else {
+            completionHandler(.failure(NetworkError.url))
+            return
+        }
+        print(url)
         task?.cancel()
         task = session.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
                 let result = self.handleResult(data, response, error, T.self)
                 switch result {
                 case .failure(let error):
+                    print(#function, error)
                     completionHandler(.failure(error))
                 case .success(let data):
+                    print(#function, "success")
                     completionHandler(.success(data))
                 }
             }

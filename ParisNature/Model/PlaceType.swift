@@ -11,7 +11,7 @@ enum PlaceType: Int, CaseIterable {
     case event
     case market
     
-    private var selectedSuffix: String { "Color" }
+    private var imageSelectedSuffix: String { "Color" }
     
     var imageName: String {
         switch self {
@@ -22,7 +22,7 @@ enum PlaceType: Int, CaseIterable {
     }
     
     var imageSelectedName: String {
-        imageName + selectedSuffix
+        imageName + imageSelectedSuffix
     }
     
     var title: String {
@@ -33,12 +33,15 @@ enum PlaceType: Int, CaseIterable {
         }
     }
     
-    var apiURL: String {
+    var apiURL: String? {
+        var url = "https://opendata.paris.fr/api/records/1.0/search/?"
         switch self {
         case .greenery:
-            return "https://opendata.paris.fr/api/records/1.0/search/?dataset=espaces_verts&refine.type_ev=Promenades+ouvertes&rows=25"
-        case .event: return ""
+            url += "dataset=espaces_verts&refine.type_ev=Promenades+ouvertes&rows=25"
+        case .event:
+            url += "dataset=que-faire-a-paris-&sort=date_start&refine.tags=Végétalisons+Paris"
         case .market: return ""
         }
+        return url.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
     }
 }

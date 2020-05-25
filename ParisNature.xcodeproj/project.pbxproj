@@ -26,6 +26,8 @@
 		225BED802465A28300A69076 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 225BED7F2465A28300A69076 /* Assets.xcassets */; };
 		225BED832465A28300A69076 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 225BED812465A28300A69076 /* LaunchScreen.storyboard */; };
 		225BED8E2465A28400A69076 /* ParisNatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225BED8D2465A28400A69076 /* ParisNatureTests.swift */; };
+		225FC20824797BB0004E7D56 /* EventsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FC20624797BAF004E7D56 /* EventsResult.swift */; };
+		225FC20924797BB0004E7D56 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FC20724797BB0004E7D56 /* Event.swift */; };
 		22BB89E22465AE68008740DA /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB89E12465AE68008740DA /* MainCoordinator.swift */; };
 		FBE7609B00AEDF775C6FEB35 /* Pods_ParisNature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 999EC3A73AB3AEA1BA230D9A /* Pods_ParisNature.framework */; };
 /* End PBXBuildFile section */
@@ -64,6 +66,8 @@
 		225BED892465A28400A69076 /* ParisNatureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParisNatureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		225BED8D2465A28400A69076 /* ParisNatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParisNatureTests.swift; sourceTree = "<group>"; };
 		225BED8F2465A28400A69076 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		225FC20624797BAF004E7D56 /* EventsResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsResult.swift; sourceTree = "<group>"; };
+		225FC20724797BB0004E7D56 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		22BB89E12465AE68008740DA /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		547414CDF45259B63D919074 /* Pods-ParisNatureTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParisNatureTests.debug.xcconfig"; path = "Target Support Files/Pods-ParisNatureTests/Pods-ParisNatureTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6AE33546440FEC82DEBA7A44 /* Pods-ParisNature.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParisNature.debug.xcconfig"; path = "Target Support Files/Pods-ParisNature/Pods-ParisNature.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,10 +143,12 @@
 		22579D692467F8A2007470F4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				225628182474F04700DDEAAB /* Place.swift */,
 				22579D6E246836EC007470F4 /* GreenSpacesResult.swift */,
 				22579D6A2467F8B0007470F4 /* GreenSpace.swift */,
+				225FC20624797BAF004E7D56 /* EventsResult.swift */,
+				225FC20724797BB0004E7D56 /* Event.swift */,
 				22562810247275EC00DDEAAB /* PlaceType.swift */,
-				225628182474F04700DDEAAB /* Place.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -390,6 +396,7 @@
 				2254EB2A246FDFCA00BEA2AC /* PlacesViewController.swift in Sources */,
 				225BED772465A28100A69076 /* AppDelegate.swift in Sources */,
 				225628192474F04700DDEAAB /* Place.swift in Sources */,
+				225FC20924797BB0004E7D56 /* Event.swift in Sources */,
 				225745B4246705190040BBC8 /* MapViewController.swift in Sources */,
 				22579D6B2467F8B0007470F4 /* GreenSpace.swift in Sources */,
 				225BED792465A28100A69076 /* SceneDelegate.swift in Sources */,
@@ -397,6 +404,7 @@
 				225628152474067E00DDEAAB /* CustomPanelLayout.swift in Sources */,
 				2253148A24755AF50059BCFD /* PlaceCell.swift in Sources */,
 				2253148C247574560059BCFD /* PlacesViewController+State.swift in Sources */,
+				225FC20824797BB0004E7D56 /* EventsResult.swift in Sources */,
 				225745B724670A790040BBC8 /* UIViewController+Child.swift in Sources */,
 				22562811247275EC00DDEAAB /* PlaceType.swift in Sources */,
 				22576AAB24767F4600373476 /* PlaceAnnotationView.swift in Sources */,
@@ -489,6 +497,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -542,6 +551,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;

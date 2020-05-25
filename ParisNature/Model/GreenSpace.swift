@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 
 /// The type representing a green area
-class GreenSpace: NSObject, Place, Decodable {
+class GreenSpace: NSObject, Place {
     
     /// Type of place
     let placeType = PlaceType.greenery
@@ -41,14 +41,14 @@ class GreenSpace: NSObject, Place, Decodable {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let fields = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .fields)
-        title = try fields.decode(String.self, forKey: .name)
-        category = try fields.decode(String.self, forKey: .category)
-        streetNumber = try fields.decode(Int.self, forKey: .streetNumber)
-        streetType = try fields.decode(String.self, forKey: .streetType)
-        streetName = try fields.decode(String.self, forKey: .streetName)
-        areaCode = try fields.decode(String.self, forKey: .areaCode)
-        hasFence = try (fields.decodeIfPresent(String.self, forKey: .hasFence) == "Oui") ? true : false
-        isOpen24Hours = try (fields.decodeIfPresent(String.self, forKey: .isOpen24Hours) == "Oui") ? true : false
+        title = try fields.decode(String.self, forKey: .nomEv)
+        category = try fields.decode(String.self, forKey: .categorie)
+        streetNumber = try fields.decode(Int.self, forKey: .adresseNumero)
+        streetType = try fields.decode(String.self, forKey: .adresseTypevoie)
+        streetName = try fields.decode(String.self, forKey: .adresseLibellevoie)
+        areaCode = try fields.decode(String.self, forKey: .adresseCodepostal)
+        hasFence = try (fields.decodeIfPresent(String.self, forKey: .presenseCloture) == "Oui") ? true : false
+        isOpen24Hours = try (fields.decodeIfPresent(String.self, forKey: .ouvertFerme) == "Oui") ? true : false
     }
 }
 
@@ -57,13 +57,13 @@ extension GreenSpace {
     /// Relations between properties and json keys
     enum CodingKeys: String, CodingKey {
         case fields
-        case name = "nom_ev"
-        case category = "categorie"
-        case streetNumber = "adresse_numero"
-        case streetType = "adresse_typevoie"
-        case streetName = "adresse_libellevoie"
-        case areaCode = "adresse_codepostal"
-        case hasFence = "presence_cloture"
-        case isOpen24Hours = "ouvert_ferme"
+        case nomEv
+        case categorie
+        case adresseNumero
+        case adresseTypevoie
+        case adresseLibellevoie
+        case adresseCodepostal
+        case presenseCloture
+        case ouvertFerme
     }
 }

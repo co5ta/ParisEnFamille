@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// The type containing the decoded response of green area API
+/// The type containing the decoded response of green spaces API
 struct GreenSpacesResult {
     /// Total number of available green areas
     let total: Int

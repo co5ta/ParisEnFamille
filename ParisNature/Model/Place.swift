@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-protocol Place: MKAnnotation {
+protocol Place: MKAnnotation, Decodable {
     var placeType: PlaceType { get }
     var title: String? { get }
     var address: String { get }

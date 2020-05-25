@@ -9,6 +9,7 @@
 import Foundation
 
 enum NetworkError: Error {
+    case url
     case client(Error)
     case server(URLResponse?)
     case emptyData
@@ -18,6 +19,8 @@ enum NetworkError: Error {
 extension NetworkError: LocalizedError {
     var errorDescription: String? {
         switch self {
+        case .url:
+            return "The request URL couldn't be generate"
         case .client(let error):
             return error.localizedDescription
         case .server(let response):

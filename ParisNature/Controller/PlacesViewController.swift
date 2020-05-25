@@ -187,12 +187,14 @@ extension PlacesViewController: UICollectionViewDataSource {
     private func imageButtonTapped(sender: UIButton) {
         guard sender.isSelected == false else { return }
         imagesButton.forEach { $0.isSelected = ($0 != sender) ? false : true }
+        places.removeAll()
+        tableView.reloadData()
         guard let cell = sender.superview?.superview as? PlaceTypeCell, let placeType = cell.placeType else { return }
         switch placeType {
         case .greenery:
             mapVC?.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
         case .event:
-            print("Fetch events")
+            mapVC?.getPlaces(placeType: placeType, dataType: EventsResult.self)
         case .market:
             print("Fetch markets")
         }
