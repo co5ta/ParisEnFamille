@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 extension PlacesViewController {
     
     /// The available states of the view controller

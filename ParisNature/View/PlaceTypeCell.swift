@@ -70,7 +70,7 @@ extension PlaceTypeCell {
         imageButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imageButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            imageButton.widthAnchor.constraint(equalToConstant: contentView.frame.width * 0.45),
+            imageButton.widthAnchor.constraint(equalToConstant: contentView.frame.width * 0.5),
             imageButton.heightAnchor.constraint(equalTo: imageButton.widthAnchor),
             imageButton.topAnchor.constraint(equalToSystemSpacingBelow: contentView.topAnchor, multiplier: 1)
         ])

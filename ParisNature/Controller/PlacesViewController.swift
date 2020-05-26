@@ -209,12 +209,14 @@ extension PlacesViewController: UICollectionViewDataSource {
         removePlaces()
         guard let cell = sender.superview?.superview as? PlaceTypeCell, let placeType = cell.placeType else { return }
         switch placeType {
-        case .greenery:
+        case .park:
+            mapVC?.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
+        case .garden:
             mapVC?.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
         case .event:
             mapVC?.getPlaces(placeType: placeType, dataType: EventsResult.self)
-        case .market:
-            print("Fetch markets")
+        case .other:
+            mapVC?.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
         }
     }
     

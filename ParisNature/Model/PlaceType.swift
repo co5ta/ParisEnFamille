@@ -10,16 +10,18 @@
 enum PlaceType: Int, CaseIterable {
     
     // List of placetype
-    case greenery
+    case park
+    case garden
+    case other
     case event
-    case market
     
     /// Name of the associated image
     var imageName: String {
         switch self {
-        case .greenery: return "city"
+        case .park: return "park"
+        case .garden: return "garden"
+        case .other: return "other"
         case .event: return "event"
-        case .market: return "market"
         }
     }
     
@@ -32,9 +34,20 @@ enum PlaceType: Int, CaseIterable {
     /// Title of the place type
     var title: String {
         switch self {
-        case .greenery: return "Greenery"
+        case .park: return "Parks"
+        case .garden: return "Gardens"
+        case .other: return "Others"
         case .event: return "Events"
-        case .market: return "Markets"
+        }
+    }
+    
+    /// Returns true when the search is limited around the user location
+    var limitedAround: Bool {
+        switch self {
+        case .garden:
+            return true
+        default:
+            return false
         }
     }
     
@@ -42,12 +55,19 @@ enum PlaceType: Int, CaseIterable {
     var apiURL: String? {
         var url = "https://opendata.paris.fr/api/records/1.0/search/?"
         switch self {
-        case .greenery:
-            url += "dataset=espaces_verts&refine.type_ev=Promenades+ouvertes&rows=25"
+        case .park:
+            url += "dataset=espaces_verts&refine.type_ev=Promenades+ouvertes&refine.type_ev=Bois"
+            url += "&refine.categorie=Parc&refine.categorie=Bois"
+        case .garden:
+            url += "dataset=espaces_verts&refine.type_ev=Promenades+ouvertes"
+            url += "&refine.categorie=Jardin+d%27immeubles&refine.categorie=Jardin&refine.categorie=Square"
         case .event:
             url += "dataset=que-faire-a-paris-&sort=date_start&refine.tags=Végétalisons+Paris"
-        case .market: return ""
+        case .other:
+            url += "dataset=espaces_verts&refine.type_ev=Promenades+ouvertes"
+            url += "&refine.categorie=Arboretum&refine.categorie=Archipel&refine.categorie=Esplanade&refine.categorie=Ile&refine.categorie=Pelouse&refine.categorie=Terrain+de+boules&refine.categorie=Jardiniere&refine.categorie=Plate-bande"
         }
+        url += "&rows=25"
         return url.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
     }
 }

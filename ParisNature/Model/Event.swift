@@ -57,7 +57,7 @@ class Event: NSObject, Place {
 //
 //    let priceDetail: String
     
-    var address: String { "\(addressName) \(addressStreet) \(addressZipcode)" }
+    var address: String { "\(addressName) \n\(addressStreet) \(addressZipcode)" }
     
     var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     

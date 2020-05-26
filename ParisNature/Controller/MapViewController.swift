@@ -175,7 +175,7 @@ extension MapViewController {
     
     public func getAreaLimit(for placeType: PlaceType) -> [String] {
         switch placeType {
-        case .greenery:
+        case .park:
             guard let coordinate = locationManager.location?.coordinate else { return [] }
             return ["\(coordinate.latitude)", "\(coordinate.longitude)", "\(regionSize/2)"]
         default:

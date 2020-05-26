@@ -13,7 +13,7 @@ import MapKit
 class GreenSpace: NSObject, Place {
     
     /// Type of place
-    let placeType = PlaceType.greenery
+    let placeType = PlaceType.park
     /// Name
     var title: String?
     /// Category
