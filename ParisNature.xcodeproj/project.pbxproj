@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2253148A24755AF50059BCFD /* PlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253148924755AF50059BCFD /* PlaceCell.swift */; };
 		2253148C247574560059BCFD /* PlacesViewController+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253148B247574560059BCFD /* PlacesViewController+State.swift */; };
-		2254EB2A246FDFCA00BEA2AC /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254EB29246FDFCA00BEA2AC /* PlacesViewController.swift */; };
+		2254EB2A246FDFCA00BEA2AC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254EB29246FDFCA00BEA2AC /* ListViewController.swift */; };
 		22562811247275EC00DDEAAB /* PlaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22562810247275EC00DDEAAB /* PlaceType.swift */; };
 		225628132472A07B00DDEAAB /* PlaceTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225628122472A07B00DDEAAB /* PlaceTypeCell.swift */; };
 		225628152474067E00DDEAAB /* CustomPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225628142474067E00DDEAAB /* CustomPanelLayout.swift */; };
@@ -21,6 +21,7 @@
 		22579D6B2467F8B0007470F4 /* GreenSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22579D6A2467F8B0007470F4 /* GreenSpace.swift */; };
 		22579D6D2467FDE4007470F4 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22579D6C2467FDE4007470F4 /* NetworkError.swift */; };
 		22579D6F246836EC007470F4 /* GreenSpacesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22579D6E246836EC007470F4 /* GreenSpacesResult.swift */; };
+		22584832247D5D8500520AD6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22584831247D5D8500520AD6 /* DetailViewController.swift */; };
 		225BED772465A28100A69076 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225BED762465A28100A69076 /* AppDelegate.swift */; };
 		225BED792465A28100A69076 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225BED782465A28100A69076 /* SceneDelegate.swift */; };
 		225BED802465A28300A69076 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 225BED7F2465A28300A69076 /* Assets.xcassets */; };
@@ -45,7 +46,7 @@
 /* Begin PBXFileReference section */
 		2253148924755AF50059BCFD /* PlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCell.swift; sourceTree = "<group>"; };
 		2253148B247574560059BCFD /* PlacesViewController+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesViewController+State.swift"; sourceTree = "<group>"; };
-		2254EB29246FDFCA00BEA2AC /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
+		2254EB29246FDFCA00BEA2AC /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		22562810247275EC00DDEAAB /* PlaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceType.swift; sourceTree = "<group>"; };
 		225628122472A07B00DDEAAB /* PlaceTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTypeCell.swift; sourceTree = "<group>"; };
 		225628142474067E00DDEAAB /* CustomPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPanelLayout.swift; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		22579D6A2467F8B0007470F4 /* GreenSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenSpace.swift; sourceTree = "<group>"; };
 		22579D6C2467FDE4007470F4 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		22579D6E246836EC007470F4 /* GreenSpacesResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenSpacesResult.swift; sourceTree = "<group>"; };
+		22584831247D5D8500520AD6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		225BED732465A28100A69076 /* Paris Nature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paris Nature.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		225BED762465A28100A69076 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		225BED782465A28100A69076 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,7 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				225745B3246705190040BBC8 /* MapViewController.swift */,
-				2254EB29246FDFCA00BEA2AC /* PlacesViewController.swift */,
+				2254EB29246FDFCA00BEA2AC /* ListViewController.swift */,
+				22584831247D5D8500520AD6 /* DetailViewController.swift */,
 				225628142474067E00DDEAAB /* CustomPanelLayout.swift */,
 			);
 			path = Controller;
@@ -393,10 +396,11 @@
 				22579D6F246836EC007470F4 /* GreenSpacesResult.swift in Sources */,
 				22BB89E22465AE68008740DA /* MainCoordinator.swift in Sources */,
 				225628132472A07B00DDEAAB /* PlaceTypeCell.swift in Sources */,
-				2254EB2A246FDFCA00BEA2AC /* PlacesViewController.swift in Sources */,
+				2254EB2A246FDFCA00BEA2AC /* ListViewController.swift in Sources */,
 				225BED772465A28100A69076 /* AppDelegate.swift in Sources */,
 				225628192474F04700DDEAAB /* Place.swift in Sources */,
 				225FC20924797BB0004E7D56 /* Event.swift in Sources */,
+				22584832247D5D8500520AD6 /* DetailViewController.swift in Sources */,
 				225745B4246705190040BBC8 /* MapViewController.swift in Sources */,
 				22579D6B2467F8B0007470F4 /* GreenSpace.swift in Sources */,
 				225BED792465A28100A69076 /* SceneDelegate.swift in Sources */,

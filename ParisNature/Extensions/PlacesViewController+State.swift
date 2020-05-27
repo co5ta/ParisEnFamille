@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension PlacesViewController {
+extension ListViewController {
     
     /// The available states of the view controller
     enum State {

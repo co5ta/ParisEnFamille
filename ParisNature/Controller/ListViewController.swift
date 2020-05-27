@@ -8,8 +8,8 @@
 
 import UIKit
 
-/// Content of the floating panel
-class PlacesViewController: UIViewController {
+/// Manages the display of lists of places
+class ListViewController: UIViewController {
     
     var mapVC: MapViewController?
     var visualEffectView: UIVisualEffectView!
@@ -22,7 +22,7 @@ class PlacesViewController: UIViewController {
 }
 
 // MARK: - Lifecycle
-extension PlacesViewController {
+extension ListViewController {
     
     /// Called after the controller's view is loaded into memory
     override func viewDidLoad() {
@@ -33,7 +33,7 @@ extension PlacesViewController {
 }
 
 // MARK: - Setup
-extension PlacesViewController {
+extension ListViewController {
     
     /// Configures the view controller
     private func configure() {
@@ -41,6 +41,7 @@ extension PlacesViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         tableView.dataSource = self
+        tableView.delegate = self
     }
     
     /// Sets up the views
@@ -88,7 +89,7 @@ extension PlacesViewController {
 }
 
 // MARK: - Constraints
-extension PlacesViewController {
+extension ListViewController {
     
     /// Constrains  views
     private func constrainViews() {
@@ -142,7 +143,7 @@ extension PlacesViewController {
 }
 
 // MARK: - State
-extension PlacesViewController {
+extension ListViewController {
     
     /// Adjusts the views according to view controller state
     private func adjustViews() {
@@ -160,28 +161,28 @@ extension PlacesViewController {
     
     /// Displays loading
     private func displayLoading() {
-        mapVC?.floatingPanelController.move(to: .half, animated: true)
+        mapVC?.listPanelController.move(to: .half, animated: true)
         loadingView.startAnimating()
         tableView.isHidden = true
     }
     
     /// Displays results in table view
     private func displayTableView() {
-        mapVC?.floatingPanelController.move(to: .half, animated: true)
+        mapVC?.listPanelController.move(to: .half, animated: true)
         loadingView.stopAnimating()
         tableView.isHidden = false
     }
     
     /// Displays error message
     private func displayError() {
-        mapVC?.floatingPanelController.move(to: .half, animated: true)
+        mapVC?.listPanelController.move(to: .half, animated: true)
         loadingView.stopAnimating()
         tableView.isHidden = true
     }
 }
 
 // MARK: - UICollectionViewDataSource
-extension PlacesViewController: UICollectionViewDataSource {
+extension ListViewController: UICollectionViewDataSource {
     
     /// Asks your data source object for the number of items in the specified section.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -230,7 +231,7 @@ extension PlacesViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegate
-extension PlacesViewController: UICollectionViewDelegateFlowLayout {
+extension ListViewController: UICollectionViewDelegateFlowLayout {
     
     /// Asks the delegate for the size of the specified item’s cell
     func collectionView(_ collectionView: UICollectionView,
@@ -250,7 +251,7 @@ extension PlacesViewController: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - UITableViewDataSource
-extension PlacesViewController: UITableViewDataSource {
+extension ListViewController: UITableViewDataSource {
     
     /// Tells the data source to return the number of rows in a given section of a table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -272,5 +273,17 @@ extension PlacesViewController: UITableViewDataSource {
         let numberOfPlaces = places.count
         guard numberOfPlaces > oldValue.count else { return }
         tableView.insertRows(at: [IndexPath(item: numberOfPlaces-1, section: 0)], with: .none)
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension ListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? PlaceCell else { return }
+        cell.isSelected = false
+        mapVC?.placeDetailVC.place = cell.place
+        mapVC?.listPanelController.move(to: .half, animated: true)
+        mapVC?.detailPanelController.move(to: .half, animated: true)
     }
 }

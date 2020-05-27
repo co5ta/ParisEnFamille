@@ -56,18 +56,54 @@ enum PlaceType: Int, CaseIterable {
         var url = "https://opendata.paris.fr/api/records/1.0/search/?"
         switch self {
         case .park:
-            url += "dataset=espaces_verts&refine.type_ev=Promenades+ouvertes&refine.type_ev=Bois"
-            url += "&refine.categorie=Parc&refine.categorie=Bois"
+            url += "dataset=espaces_verts"
+            url += filterCategories(notIn: ["Parc", "Bois"])
         case .garden:
-            url += "dataset=espaces_verts&refine.type_ev=Promenades+ouvertes"
-            url += "&refine.categorie=Jardin+d%27immeubles&refine.categorie=Jardin&refine.categorie=Square"
+            url += "dataset=espaces_verts"
+            url += filterCategories(notIn: ["Jardin", "Jardin d'immeubles", "Jardiniere", "Square"])
+        case .other:
+            url += "dataset=espaces_verts"
+            url += filterCategories(notIn: ["Arboretum", "Archipel", "Esplanade", "Ile", "Pelouse", "Terrain de boules"])
         case .event:
             url += "dataset=que-faire-a-paris-&sort=date_start&refine.tags=Végétalisons+Paris"
-        case .other:
-            url += "dataset=espaces_verts&refine.type_ev=Promenades+ouvertes"
-            url += "&refine.categorie=Arboretum&refine.categorie=Archipel&refine.categorie=Esplanade&refine.categorie=Ile&refine.categorie=Pelouse&refine.categorie=Terrain+de+boules&refine.categorie=Jardiniere&refine.categorie=Plate-bande"
         }
         url += "&rows=25"
         return url.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
     }
+    
+    private func filterCategories(notIn categoriesToKeep: [String]) -> String {
+        var filter = ""
+        for categorie in PlaceType.categories {
+            if categoriesToKeep.contains(categorie) == false {
+                filter += "&exclude.categorie=\(categorie)"
+            }
+        }
+        return filter
+    }
+    
+    static let categories = [
+        "Arboretum",
+        "Archipel",
+        "Bois",
+        "Cimetière",
+        "Decoration",
+        "Espace Vert",
+        "Esplanade",
+        "Ile",
+        "Jardin",
+        "Jardin d'immeubles",
+        "Jardin partage",
+        "Jardinet",
+        "Jardiniere",
+        "Mail",
+        "Murs vegetalises",
+        "Parc",
+        "Pelouse",
+        "Plate-bande",
+        "Promenade",
+        "Square",
+        "Talus",
+        "Terrain de boules",
+        "Terre-plein"
+    ]
 }

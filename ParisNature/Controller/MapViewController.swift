@@ -20,10 +20,14 @@ class MapViewController: UIViewController {
     let locationManager = CLLocationManager()
     /// Region width and height
     let regionSize: Double = 1500
-    /// Floating panel
-    let floatingPanelController = FloatingPanelController()
-    /// Content of the floating panel
-    let placesVC = PlacesViewController()
+    /// Floating panel which contains the list of places
+    let listPanelController = FloatingPanelController()
+    /// View controller with the list of places
+    let placesListVC = ListViewController()
+    /// Floating panel which contains the detail of a place
+    let detailPanelController = FloatingPanelController()
+    /// View controller whith the deail of a place
+    let placeDetailVC = DetailViewController()
 }
 
 // MARK: - Lifecycle
@@ -33,6 +37,7 @@ extension MapViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        setUpPanels()
         setUpViews()
         checkLocationServices()
     }
@@ -40,7 +45,8 @@ extension MapViewController {
     /// Notifies the view controller that its view was added to a view hierarchy.
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        floatingPanelController.addPanel(toParent: self)
+        listPanelController.addPanel(toParent: self)
+        detailPanelController.addPanel(toParent: self)
     }
 }
 
@@ -50,19 +56,31 @@ extension MapViewController {
     /// Sets up the instance
     private func configure() {
         navigationController?.setNavigationBarHidden(true, animated: true)
-        placesVC.mapVC = self
+        placesListVC.mapVC = self
         mapView.delegate = self
         locationManager.delegate = self
-        floatingPanelController.delegate = self
-        configureFloatingPanelController()
+        listPanelController.delegate = self
+        detailPanelController.delegate = self
     }
     
-    private func configureFloatingPanelController() {
-        floatingPanelController.surfaceView.cornerRadius = 10
-        floatingPanelController.surfaceView.grabberHandle.isHidden = true
-        floatingPanelController.surfaceView.backgroundColor = .clear
-        floatingPanelController.set(contentViewController: placesVC)
-        floatingPanelController.track(scrollView: placesVC.tableView)
+    private func setUpPanels() {
+        setUpListPanelController()
+        setUpDetailPanelController()
+    }
+    
+    private func setUpListPanelController() {
+        listPanelController.surfaceView.cornerRadius = 10
+//        listPanelController.surfaceView.grabberHandle.isHidden = true
+        listPanelController.surfaceView.backgroundColor = .clear
+        listPanelController.set(contentViewController: placesListVC)
+        listPanelController.track(scrollView: placesListVC.tableView)
+    }
+    
+    private func setUpDetailPanelController() {
+        detailPanelController.surfaceView.cornerRadius = 10
+        detailPanelController.isRemovalInteractionEnabled = true
+        detailPanelController.set(contentViewController: placeDetailVC)
+        detailPanelController.surfaceView.backgroundColor = .clear
     }
     
     /// Sets up the views
@@ -93,7 +111,11 @@ extension MapViewController {
 extension MapViewController: FloatingPanelControllerDelegate {
     // swiftlint:disable identifier_name
     func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
-        return CustomPanelLayout()
+        if vc == detailPanelController {
+            return DetailPanelLayout()
+        } else {
+            return ListPanelLayout()
+        }
     }
 }
 
@@ -160,13 +182,13 @@ extension MapViewController {
     
     /// Asks  to receive green areas
     func getPlaces<T>(placeType: PlaceType, dataType: T.Type) where T: Decodable {
-        placesVC.state = .loading
+        placesListVC.state = .loading
         let area = getAreaLimit(for: placeType)
         NetworkService.shared.getPlaces(placeType: placeType, dataType: dataType.self, area: area) { [weak self] (result) in
             switch result {
             case .failure(let error):
                 print(#function, error)
-                self?.placesVC.state = .empty
+                self?.placesListVC.state = .empty
             case .success(let data):
                 self?.handle(data)
             }
@@ -174,13 +196,9 @@ extension MapViewController {
     }
     
     public func getAreaLimit(for placeType: PlaceType) -> [String] {
-        switch placeType {
-        case .park:
-            guard let coordinate = locationManager.location?.coordinate else { return [] }
-            return ["\(coordinate.latitude)", "\(coordinate.longitude)", "\(regionSize/2)"]
-        default:
-            return []
-        }
+        guard placeType.limitedAround else { return [] }
+        guard let coordinate = locationManager.location?.coordinate else { return [] }
+        return ["\(coordinate.latitude)", "\(coordinate.longitude)", "\(regionSize/2)"]
     }
     
     private func handle<T>(_ data: T) {
@@ -195,7 +213,7 @@ extension MapViewController {
     }
     
     private func isNotNew(_ place: Place) -> Bool {
-        return placesVC.places.contains { $0.title == place.title }
+        return placesListVC.places.contains { $0.title == place.title }
     }
     
     private func add(_ places: [Place]) {
@@ -208,7 +226,7 @@ extension MapViewController {
                     return
                 }
                 place.coordinate = location.coordinate
-                self.placesVC.places.append(place)
+                self.placesListVC.places.append(place)
                 self.mapView.addAnnotation(place)
                 if place.title == lastPlace?.title { self.showResult() }
             }
@@ -217,7 +235,7 @@ extension MapViewController {
     
     private func showResult() {
         mapView.showAnnotations(mapView.annotations, animated: true)
-        placesVC.state = .ready
+        placesListVC.state = .ready
     }
 }
 

@@ -9,8 +9,10 @@
 import Foundation
 import FloatingPanel
 
-/// Configures the floating panel positions
-class CustomPanelLayout: FloatingPanelLayout {
+/// Configures the list floating panel
+class ListPanelLayout: FloatingPanelLayout {
+    
+    /// The initial position of the panel
     var initialPosition: FloatingPanelPosition {
         return .tip
     }
@@ -24,6 +26,31 @@ class CustomPanelLayout: FloatingPanelLayout {
         case .half: return screenSize.height * 0.35
         case .tip: return (screenSize.height / 7) - (safeAreaInsets.bottom * 1.5)
         case .hidden: return nil
+        }
+    }
+}
+
+/// Configures the detail floating panel
+class DetailPanelLayout: FloatingPanelLayout {
+    
+    /// The positions supported by the panel
+    var supportedPositions: Set<FloatingPanelPosition> {
+        return [.full, .half, .hidden]
+    }
+    
+    /// The initial position of the panel
+    var initialPosition: FloatingPanelPosition {
+        return .hidden
+    }
+    
+    /// Defines the available positions of the floating panel
+    func insetFor(position: FloatingPanelPosition) -> CGFloat? {
+        let screenSize = UIScreen.main.bounds.size
+        guard let safeAreaInsets = UIApplication.shared.keyWindow?.safeAreaInsets else { return nil }
+        switch position {
+        case .full: return safeAreaInsets.top
+        case .half: return screenSize.height * 0.35
+        default: return nil
         }
     }
 }
