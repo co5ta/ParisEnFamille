@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2252768A247FB38E00398B87 /* Geom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22527689247FB38E00398B87 /* Geom.swift */; };
 		2253148A24755AF50059BCFD /* PlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253148924755AF50059BCFD /* PlaceCell.swift */; };
 		2253148C247574560059BCFD /* PlacesViewController+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253148B247574560059BCFD /* PlacesViewController+State.swift */; };
 		2254EB2A246FDFCA00BEA2AC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254EB29246FDFCA00BEA2AC /* ListViewController.swift */; };
+		22556445247EC43500C32A3C /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22556444247EC43400C32A3C /* Storage.swift */; };
 		22562811247275EC00DDEAAB /* PlaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22562810247275EC00DDEAAB /* PlaceType.swift */; };
 		225628132472A07B00DDEAAB /* PlaceTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225628122472A07B00DDEAAB /* PlaceTypeCell.swift */; };
 		225628152474067E00DDEAAB /* CustomPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225628142474067E00DDEAAB /* CustomPanelLayout.swift */; };
@@ -44,9 +46,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22527689247FB38E00398B87 /* Geom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geom.swift; sourceTree = "<group>"; };
 		2253148924755AF50059BCFD /* PlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCell.swift; sourceTree = "<group>"; };
 		2253148B247574560059BCFD /* PlacesViewController+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesViewController+State.swift"; sourceTree = "<group>"; };
 		2254EB29246FDFCA00BEA2AC /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		22556444247EC43400C32A3C /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		22562810247275EC00DDEAAB /* PlaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceType.swift; sourceTree = "<group>"; };
 		225628122472A07B00DDEAAB /* PlaceTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTypeCell.swift; sourceTree = "<group>"; };
 		225628142474067E00DDEAAB /* CustomPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPanelLayout.swift; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 				225FC20624797BAF004E7D56 /* EventsResult.swift */,
 				225FC20724797BB0004E7D56 /* Event.swift */,
 				22562810247275EC00DDEAAB /* PlaceType.swift */,
+				22556444247EC43400C32A3C /* Storage.swift */,
+				22527689247FB38E00398B87 /* Geom.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -402,11 +408,13 @@
 				225FC20924797BB0004E7D56 /* Event.swift in Sources */,
 				22584832247D5D8500520AD6 /* DetailViewController.swift in Sources */,
 				225745B4246705190040BBC8 /* MapViewController.swift in Sources */,
+				2252768A247FB38E00398B87 /* Geom.swift in Sources */,
 				22579D6B2467F8B0007470F4 /* GreenSpace.swift in Sources */,
 				225BED792465A28100A69076 /* SceneDelegate.swift in Sources */,
 				22579D6D2467FDE4007470F4 /* NetworkError.swift in Sources */,
 				225628152474067E00DDEAAB /* CustomPanelLayout.swift in Sources */,
 				2253148A24755AF50059BCFD /* PlaceCell.swift in Sources */,
+				22556445247EC43500C32A3C /* Storage.swift in Sources */,
 				2253148C247574560059BCFD /* PlacesViewController+State.swift in Sources */,
 				225FC20824797BB0004E7D56 /* EventsResult.swift in Sources */,
 				225745B724670A790040BBC8 /* UIViewController+Child.swift in Sources */,

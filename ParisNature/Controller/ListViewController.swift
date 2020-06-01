@@ -227,6 +227,7 @@ extension ListViewController: UICollectionViewDataSource {
         tableView.reloadData()
         guard let mapVC = mapVC else { return }
         mapVC.mapView.removeAnnotations(mapVC.mapView.annotations)
+        mapVC.mapView.removeOverlays(mapVC.mapView.overlays)
     }
 }
 

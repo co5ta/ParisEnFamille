@@ -204,44 +204,61 @@ extension MapViewController {
     private func handle<T>(_ data: T) {
         switch data {
         case is GreenSpacesResult:
-            if let data = data as? GreenSpacesResult { add(data.list) }
+            if let data = data as? GreenSpacesResult { add(places: data.list) }
         case is EventsResult:
-            if let data = data as? EventsResult { add(data.list) }
+            if let data = data as? EventsResult { add(places: data.list) }
         default:
             print(#function, "Can't handle this type of data")
         }
     }
     
-    private func isNotNew(_ place: Place) -> Bool {
-        return placesListVC.places.contains { $0.title == place.title }
+    private func isNew(_ place: Place) -> Bool {
+        return placesListVC.places.contains { $0.title == place.title } == false
     }
     
-    private func add(_ places: [Place]) {
-        let lastPlace = places.last
+    private func add(places: [Place]) {
         for place in places {
-            if isNotNew(place) { continue }
-            CLGeocoder().geocodeAddressString(place.address) { [self] (placemarks, error) in
-                guard let location = placemarks?.first?.location else {
-                    if let error = error { print(#function, error.localizedDescription)}
-                    return
-                }
-                place.coordinate = location.coordinate
-                self.placesListVC.places.append(place)
-                self.mapView.addAnnotation(place)
-                if place.title == lastPlace?.title { self.showResult() }
+            guard isNew(place),
+                let green = place as? GreenSpace,
+                let geomType = green.geom.type,
+                let shapes = green.geom.shapes,
+                let firstPolygon = shapes.first
+                else { continue }
+            
+            switch geomType {
+            case .multiPolygon:
+                let othersPolyg = shapes.filter {$0 != firstPolygon}
+                let multiPolyg = MKPolygon(points: firstPolygon.points(), count: firstPolygon.pointCount, interiorPolygons: othersPolyg)
+                mapView.addOverlay(multiPolyg)
+            case .polygon:
+                mapView.addOverlay(firstPolygon)
             }
+            place.coordinate = firstPolygon.coordinate
+            mapView.addAnnotation(place)
+            placesListVC.places.append(place)
         }
-    }
-    
-    private func showResult() {
         mapView.showAnnotations(mapView.annotations, animated: true)
         placesListVC.state = .ready
     }
 }
 
+// MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? Place else { return nil }
         return PlaceAnnotationView(annotation: annotation, reuseIdentifier: PlaceAnnotationView.identifer)
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        print("rendering")
+        guard let overlay = overlay as? MKPolygon else { return MKOverlayRenderer() }
+        let renderer = MKPolygonRenderer(polygon: overlay)
+        
+//        let renderer = MKPolygonRenderer(overlay: overlay)
+        renderer.lineWidth = 2 //Customize as you wish
+        renderer.fillColor = .systemRed
+        renderer.alpha = 0.5
+        renderer.strokeColor = .systemRed
+        return renderer
     }
 }

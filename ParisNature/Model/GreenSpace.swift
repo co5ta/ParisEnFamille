@@ -36,6 +36,8 @@ class GreenSpace: NSObject, Place {
     var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     /// List of all green areas
     static var list: [GreenSpace] = []
+    /// geometry
+    let geom: Geom
     
     /// Initializes from json data
     required init(from decoder: Decoder) throws {
@@ -49,6 +51,7 @@ class GreenSpace: NSObject, Place {
         areaCode = try fields.decode(String.self, forKey: .adresseCodepostal)
         hasFence = try (fields.decodeIfPresent(String.self, forKey: .presenseCloture) == "Oui") ? true : false
         isOpen24Hours = try (fields.decodeIfPresent(String.self, forKey: .ouvertFerme) == "Oui") ? true : false
+        geom = try fields.decode(Geom.self, forKey: .geom)
     }
 }
 
@@ -65,5 +68,6 @@ extension GreenSpace {
         case adresseCodepostal
         case presenseCloture
         case ouvertFerme
+        case geom
     }
 }

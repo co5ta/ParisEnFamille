@@ -36,7 +36,7 @@ enum PlaceType: Int, CaseIterable {
         switch self {
         case .park: return "Parks"
         case .garden: return "Gardens"
-        case .other: return "Others"
+        case .other: return "Walks"
         case .event: return "Events"
         }
     }
@@ -57,17 +57,17 @@ enum PlaceType: Int, CaseIterable {
         switch self {
         case .park:
             url += "dataset=espaces_verts"
-            url += filterCategories(notIn: ["Parc", "Bois"])
+            url += filterCategories(notIn: ["Parc", "Bois", "Pelouse", "Arboretum", "Ile"])
         case .garden:
             url += "dataset=espaces_verts"
-            url += filterCategories(notIn: ["Jardin", "Jardin d'immeubles", "Jardiniere", "Square"])
+            url += filterCategories(notIn: ["Jardin", "Jardin d'immeubles", "Jardiniere", "Square", "Archipel"])
         case .other:
             url += "dataset=espaces_verts"
-            url += filterCategories(notIn: ["Arboretum", "Archipel", "Esplanade", "Ile", "Pelouse", "Terrain de boules"])
+            url += filterCategories(notIn: ["Archipel", "Esplanade", "Ile", "Promenade"])
         case .event:
             url += "dataset=que-faire-a-paris-&sort=date_start&refine.tags=Végétalisons+Paris"
         }
-        url += "&rows=25"
+        url += "&rows=100"
         return url.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
     }
     
