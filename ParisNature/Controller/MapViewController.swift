@@ -63,19 +63,21 @@ extension MapViewController {
         detailPanelController.delegate = self
     }
     
+    /// Sets up the floating panels
     private func setUpPanels() {
         setUpListPanelController()
         setUpDetailPanelController()
     }
     
+    /// Sets up the list floating panel
     private func setUpListPanelController() {
         listPanelController.surfaceView.cornerRadius = 10
-//        listPanelController.surfaceView.grabberHandle.isHidden = true
         listPanelController.surfaceView.backgroundColor = .clear
         listPanelController.set(contentViewController: placesListVC)
         listPanelController.track(scrollView: placesListVC.tableView)
     }
     
+    /// Sets up the detail floating panel
     private func setUpDetailPanelController() {
         detailPanelController.surfaceView.cornerRadius = 10
         detailPanelController.isRemovalInteractionEnabled = true
@@ -109,6 +111,8 @@ extension MapViewController {
 
 // MARK: - FloatingPanelControllerDelegate
 extension MapViewController: FloatingPanelControllerDelegate {
+    
+    /// Defines which floating panel to use
     // swiftlint:disable identifier_name
     func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
         if vc == detailPanelController {
@@ -133,7 +137,7 @@ extension MapViewController {
         }
     }
     
-    /// Checks location permissions
+    /// Checks the location permissions
     func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse, .authorizedAlways:
@@ -195,12 +199,14 @@ extension MapViewController {
         }
     }
     
+    /// Sets a area zone in which the search must be limited
     public func getAreaLimit(for placeType: PlaceType) -> [String] {
         guard placeType.limitedAround else { return [] }
         guard let coordinate = locationManager.location?.coordinate else { return [] }
         return ["\(coordinate.latitude)", "\(coordinate.longitude)", "\(regionSize/2)"]
     }
     
+    /// Handles the result of the request
     private func handle<T>(_ data: T) {
         switch data {
         case is GreenSpacesResult:
@@ -212,30 +218,19 @@ extension MapViewController {
         }
     }
     
+    /// Checks if the place is not already in the list
     private func isNew(_ place: Place) -> Bool {
         return placesListVC.places.contains { $0.title == place.title } == false
     }
     
+    /// Adds places in the map and the table view
     private func add(places: [Place]) {
         for place in places {
-            guard isNew(place),
-                let green = place as? GreenSpace,
-                let geomType = green.geom.type,
-                let shapes = green.geom.shapes,
-                let firstPolygon = shapes.first
-                else { continue }
-            
-            switch geomType {
-            case .multiPolygon:
-                let othersPolyg = shapes.filter {$0 != firstPolygon}
-                let multiPolyg = MKPolygon(points: firstPolygon.points(), count: firstPolygon.pointCount, interiorPolygons: othersPolyg)
-                mapView.addOverlay(multiPolyg)
-            case .polygon:
-                mapView.addOverlay(firstPolygon)
-            }
-            place.coordinate = firstPolygon.coordinate
+            guard isNew(place), place.coordinate.latitude != 0 else { continue }
             mapView.addAnnotation(place)
             placesListVC.places.append(place)
+            guard let greenspace = place as? GreenSpace, let polygon = greenspace.geom.shapes else { continue }
+            mapView.addOverlay(polygon)
         }
         mapView.showAnnotations(mapView.annotations, animated: true)
         placesListVC.state = .ready
@@ -244,18 +239,19 @@ extension MapViewController {
 
 // MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
+
+    /// Returns the view associated with the specified annotation object
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? Place else { return nil }
         return PlaceAnnotationView(annotation: annotation, reuseIdentifier: PlaceAnnotationView.identifer)
     }
     
+    /// Asks the delegate for a renderer object to use when drawing the specified overlay
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         print("rendering")
         guard let overlay = overlay as? MKPolygon else { return MKOverlayRenderer() }
         let renderer = MKPolygonRenderer(polygon: overlay)
-        
-//        let renderer = MKPolygonRenderer(overlay: overlay)
-        renderer.lineWidth = 2 //Customize as you wish
+        renderer.lineWidth = 2
         renderer.fillColor = .systemRed
         renderer.alpha = 0.5
         renderer.strokeColor = .systemRed

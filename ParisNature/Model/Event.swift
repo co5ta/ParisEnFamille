@@ -21,7 +21,7 @@ class Event: NSObject, Place {
     
     let addressZipcode: String
     
-//    let addressCity: String
+    let addressCity: String?
     
 //    let blind: Bool
 //
@@ -57,9 +57,9 @@ class Event: NSObject, Place {
 //
 //    let priceDetail: String
     
-    var address: String { "\(addressName) \n\(addressStreet) \(addressZipcode)" }
+    var address: String { "\(addressName) \n\(addressStreet) \(addressZipcode) \(addressCity ?? "")" }
     
-    var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    var coordinate = CLLocationCoordinate2D()
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -68,9 +68,10 @@ class Event: NSObject, Place {
         addressName = try fields.decode(String.self, forKey: .addressName)
         addressStreet = try fields.decode(String.self, forKey: .addressStreet)
         addressZipcode = try fields.decode(String.self, forKey: .addressZipcode)
-//        addressCity = try fields.decode(String.self, forKey: .addressCity)
-//        let latLong = try fields.decode([Double].self, forKey: .latLon)
-//        coordinate = CLLocationCoordinate2D(latitude: latLong[0], longitude: latLong[1])
+        addressCity = try fields.decodeIfPresent(String.self, forKey: .addressCity)
+        if let latLon = try fields.decodeIfPresent([Double].self, forKey: .latLon), addressCity != nil {
+            coordinate = CLLocationCoordinate2D(latitude: latLon[0], longitude: latLon[1])
+        }
     }
 }
 
@@ -85,6 +86,7 @@ extension Event {
         case addressZipcode
         case addressCity
         case latLon
+        
         case blind
         case pmr
         case deaf

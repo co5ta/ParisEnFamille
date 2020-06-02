@@ -11,7 +11,8 @@ import MapKit
 
 struct Geom: Decodable {
     let type: GeomType?
-    let shapes: [MKPolygon]?
+    let shapes: MKPolygon?
+    let location: CLLocationCoordinate2D?
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -21,19 +22,30 @@ struct Geom: Decodable {
         switch self.type {
         case .polygon:
             let coordinates = try container.decode([[[Double]]].self, forKey: .coordinates)
-            shapes = Geom.getPolygon(with: coordinates)
+            let polygons = Geom.getPolygons(with: coordinates)
+            shapes = polygons.first
+            location = shapes?.coordinate
         case .multiPolygon:
             let coordinates = try container.decode([[[[Double]]]].self, forKey: .coordinates)
-            shapes = coordinates.map { Geom.getPolygon(with: $0) }.reduce([], +)
+            let polygons = coordinates.map { Geom.getPolygons(with: $0) }.reduce([], +)
+            (shapes, location) = Geom.createMultiPolygon(polygons: polygons)
         case .none:
             shapes = nil
+            location = nil
         }
     }
     
-    static func getPolygon(with geomCoordinates: [[[Double]]]) -> [MKPolygon] {
+    static func getPolygons(with geomCoordinates: [[[Double]]]) -> [MKPolygon] {
         let points = geomCoordinates.map { $0.map { CLLocationCoordinate2D(latitude: $0[1], longitude: $0[0]) } }
         let polygons = points.map { MKPolygon(coordinates: $0, count: $0.count) }
         return polygons
+    }
+    
+    static func createMultiPolygon(polygons: [MKPolygon]) -> (MKPolygon?, CLLocationCoordinate2D?) {
+        guard let firstPolygon = polygons.first else { return (nil, nil) }
+        let othersPolygon = polygons.filter({ $0 != firstPolygon })
+        let multiPolygon = MKPolygon(points: firstPolygon.points(), count: firstPolygon.pointCount, interiorPolygons: othersPolygon)
+        return (multiPolygon, firstPolygon.coordinate)
     }
 }
 

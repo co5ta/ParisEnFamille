@@ -19,5 +19,5 @@ protocol Place: MKAnnotation, Decodable {
     /// The address of the place
     var address: String { get }
     /// The  geographic coordinates
-    var coordinate: CLLocationCoordinate2D { get set }
+    var coordinate: CLLocationCoordinate2D { get }
 }

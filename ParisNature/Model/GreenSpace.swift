@@ -15,7 +15,7 @@ class GreenSpace: NSObject, Place {
     /// Type of place
     let placeType = PlaceType.park
     /// Name
-    var title: String?
+    let title: String?
     /// Category
     let category: String
     /// Street number
@@ -30,14 +30,12 @@ class GreenSpace: NSObject, Place {
     let hasFence: Bool?
     /// True if the green area is open 24 hours a day
     let isOpen24Hours: Bool?
-    /// Address
-    var address: String { "\(streetNumber) \(streetType) \(streetName) \(areaCode)" }
-    /// GPS coordinate
-    var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-    /// List of all green areas
-    static var list: [GreenSpace] = []
     /// geometry
     let geom: Geom
+    /// GPS coordinate
+    var coordinate = CLLocationCoordinate2D()
+    /// Address
+    var address: String { "\(streetNumber) \(streetType) \(streetName) \(areaCode)" }
     
     /// Initializes from json data
     required init(from decoder: Decoder) throws {
@@ -52,6 +50,7 @@ class GreenSpace: NSObject, Place {
         hasFence = try (fields.decodeIfPresent(String.self, forKey: .presenseCloture) == "Oui") ? true : false
         isOpen24Hours = try (fields.decodeIfPresent(String.self, forKey: .ouvertFerme) == "Oui") ? true : false
         geom = try fields.decode(Geom.self, forKey: .geom)
+        if let location = geom.location { coordinate = location }
     }
 }
 
