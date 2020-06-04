@@ -46,7 +46,7 @@ extension ListViewController {
     
     /// Sets up the views
     private func setUpViews() {
-        setUpBackgroundView()
+        setUpVisualEffectView()
         setUpCollectionView()
         setUpTableView()
         setUpLoadingView()
@@ -54,11 +54,11 @@ extension ListViewController {
     }
     
     /// Sets up the background view
-    private func setUpBackgroundView() {
+    private func setUpVisualEffectView() {
         let blurEffect = UIBlurEffect(style: .extraLight)
         visualEffectView = UIVisualEffectView(effect: blurEffect)
         visualEffectView.backgroundColor = .white
-        visualEffectView.alpha = 0.75
+        visualEffectView.alpha = 0.8
         view.addSubview(visualEffectView)
     }
     
@@ -82,7 +82,7 @@ extension ListViewController {
     
     /// Sets up the loading view
     private func setUpLoadingView() {
-        loadingView.color = .systemGreen
+//        loadingView.color = .systemGreen
         loadingView.hidesWhenStopped = true
         view.addSubview(loadingView)
     }
@@ -93,14 +93,14 @@ extension ListViewController {
     
     /// Constrains  views
     private func constrainViews() {
-        constrainBackgroundView()
+        constrainVisualEffectView()
         constrainCollectionView()
         constrainTableView()
         constrainLoadingView()
     }
     
     /// Constrains background view
-    private func constrainBackgroundView() {
+    private func constrainVisualEffectView() {
         visualEffectView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             visualEffectView.topAnchor.constraint(equalTo: view.topAnchor),

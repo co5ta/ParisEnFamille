@@ -23,7 +23,7 @@ class ListPanelLayout: FloatingPanelLayout {
         guard let safeAreaInsets = UIApplication.shared.keyWindow?.safeAreaInsets else { return nil }
         switch position {
         case .full: return safeAreaInsets.top
-        case .half: return screenSize.height * 0.35
+        case .half: return screenSize.height * 0.3
         case .tip: return (screenSize.height / 7) - (safeAreaInsets.bottom * 1.5)
         case .hidden: return nil
         }
@@ -49,7 +49,7 @@ class DetailPanelLayout: FloatingPanelLayout {
         guard let safeAreaInsets = UIApplication.shared.keyWindow?.safeAreaInsets else { return nil }
         switch position {
         case .full: return safeAreaInsets.top
-        case .half: return screenSize.height * 0.35
+        case .half: return screenSize.height * 0.3
         default: return nil
         }
     }

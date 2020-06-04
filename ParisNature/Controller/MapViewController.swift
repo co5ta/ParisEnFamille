@@ -218,15 +218,11 @@ extension MapViewController {
         }
     }
     
-    /// Checks if the place is not already in the list
-    private func isNew(_ place: Place) -> Bool {
-        return placesListVC.places.contains { $0.title == place.title } == false
-    }
-    
     /// Adds places in the map and the table view
     private func add(places: [Place]) {
         for place in places {
             guard isNew(place), place.coordinate.latitude != 0 else { continue }
+            place.calculateDistance(from: locationManager.location)
             mapView.addAnnotation(place)
             placesListVC.places.append(place)
             guard let greenspace = place as? GreenSpace, let polygon = greenspace.geom.shapes else { continue }
@@ -234,6 +230,11 @@ extension MapViewController {
         }
         mapView.showAnnotations(mapView.annotations, animated: true)
         placesListVC.state = .ready
+    }
+    
+    /// Checks if the place is not already in the list
+    private func isNew(_ place: Place) -> Bool {
+        return placesListVC.places.contains { $0.title == place.title } == false
     }
 }
 
@@ -248,7 +249,6 @@ extension MapViewController: MKMapViewDelegate {
     
     /// Asks the delegate for a renderer object to use when drawing the specified overlay
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        print("rendering")
         guard let overlay = overlay as? MKPolygon else { return MKOverlayRenderer() }
         let renderer = MKPolygonRenderer(polygon: overlay)
         renderer.lineWidth = 2

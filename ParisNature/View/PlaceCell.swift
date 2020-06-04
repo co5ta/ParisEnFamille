@@ -11,7 +11,7 @@ import UIKit
 class PlaceCell: UITableViewCell {
     var place: Place? { didSet {configure(with: place)} }
     let titleLabel = UILabel()
-    let addressLabel = UILabel()
+    let subheadingLabel = UILabel()
     static let identifier = "PlaceCell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -34,17 +34,17 @@ extension PlaceCell {
     }
     
     private func setUpNameLabel() {
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .title3)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         titleLabel.numberOfLines = 0
         contentView.addSubview(titleLabel)
     }
     
     private func setUpAddressLabel() {
-        addressLabel.font = UIFont.preferredFont(forTextStyle: .callout)
-        addressLabel.textColor = .systemGray
-        addressLabel.numberOfLines = 0
-        contentView.addSubview(addressLabel)
+        subheadingLabel.font = UIFont.preferredFont(forTextStyle: .callout)
+        subheadingLabel.textColor = .systemGray
+        subheadingLabel.numberOfLines = 0
+        contentView.addSubview(subheadingLabel)
     }
     
     private func constrainViews() {
@@ -62,12 +62,13 @@ extension PlaceCell {
     }
     
     private func constrainAddressLabel() {
-        addressLabel.translatesAutoresizingMaskIntoConstraints = false
+        subheadingLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            addressLabel.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 1),
-            addressLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            addressLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalToSystemSpacingBelow: addressLabel.bottomAnchor, multiplier: 2)
+//            subheadingLabel.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 0.1),
+            subheadingLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            subheadingLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            subheadingLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalToSystemSpacingBelow: subheadingLabel.bottomAnchor, multiplier: 2)
         ])
     }
 }
@@ -76,6 +77,6 @@ extension PlaceCell {
     private func configure(with place: Place?) {
         guard let place = place else { return }
         titleLabel.text = place.title
-        addressLabel.text = place.address
+        subheadingLabel.text = place.subheading
     }
 }

@@ -12,12 +12,36 @@ import MapKit
 /// Defines the requirement of a place object
 protocol Place: MKAnnotation, Decodable {
     
-    /// The type of place
-    var placeType: PlaceType { get }
     /// The title of the place
     var title: String? { get }
     /// The address of the place
     var address: String { get }
     /// The  geographic coordinates
     var coordinate: CLLocationCoordinate2D { get }
+    /// The distance between the place and the user location
+    var distance: CLLocationDistance? { get set }
+    ///
+    var subheading: String { get }
+    /// Calculates the distance between the place and the user
+    func calculateDistance(from location: CLLocation?)
+}
+
+extension Place {
+    
+    var subheading: String {
+//        guard let distance = distance else { return placeType.title }
+//        let distanceFormatted = MKDistanceFormatter().string(fromDistance: distance)
+//        return placeType.title + " • \(distanceFormatted)"
+        guard let distance = distance else { return "" }
+        let formatter = MKDistanceFormatter()
+        formatter.units = .metric
+        let distanceFormatted = formatter.string(fromDistance: distance)
+        return distanceFormatted
+    }
+    
+    func calculateDistance(from location: CLLocation?) {
+        guard let location = location else { return }
+        let placeLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        distance = location.distance(from: placeLocation)
+    }
 }

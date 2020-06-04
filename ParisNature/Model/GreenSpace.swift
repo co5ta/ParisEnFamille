@@ -13,44 +13,33 @@ import MapKit
 class GreenSpace: NSObject, Place {
     
     /// Type of place
-    let placeType = PlaceType.park
+    var placeType: PlaceType?
     /// Name
     let title: String?
-    /// Category
-    let category: String
-    /// Street number
-    let streetNumber: Int
-    /// Street type
-    let streetType: String
-    /// Street name
-    let streetName: String
-    /// Area code
-    let areaCode: String
-    /// True if the green area has fence
-    let hasFence: Bool?
-    /// True if the green area is open 24 hours a day
-    let isOpen24Hours: Bool?
     /// geometry
     let geom: Geom
+    /// Address
+    let address: String
     /// GPS coordinate
     var coordinate = CLLocationCoordinate2D()
-    /// Address
-    var address: String { "\(streetNumber) \(streetType) \(streetName) \(areaCode)" }
+    /// Distance between the place and the user location
+    var distance: CLLocationDistance?
+    /// Surface in m2
+    let surface: Float?
     
     /// Initializes from json data
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let fields = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .fields)
         title = try fields.decode(String.self, forKey: .nomEv)
-        category = try fields.decode(String.self, forKey: .categorie)
-        streetNumber = try fields.decode(Int.self, forKey: .adresseNumero)
-        streetType = try fields.decode(String.self, forKey: .adresseTypevoie)
-        streetName = try fields.decode(String.self, forKey: .adresseLibellevoie)
-        areaCode = try fields.decode(String.self, forKey: .adresseCodepostal)
-        hasFence = try (fields.decodeIfPresent(String.self, forKey: .presenseCloture) == "Oui") ? true : false
-        isOpen24Hours = try (fields.decodeIfPresent(String.self, forKey: .ouvertFerme) == "Oui") ? true : false
+        let streetNumber = try fields.decode(Int.self, forKey: .adresseNumero)
+        let streetType = try fields.decode(String.self, forKey: .adresseTypevoie)
+        let streetName = try fields.decode(String.self, forKey: .adresseLibellevoie)
+        let zipCode = try fields.decode(String.self, forKey: .adresseCodepostal)
+        address = "\(streetNumber) \(streetType) \(streetName) \(zipCode)"
         geom = try fields.decode(Geom.self, forKey: .geom)
         if let location = geom.location { coordinate = location }
+        surface = try fields.decodeIfPresent(Float.self, forKey: .surfaceTotaleReelle)
     }
 }
 
@@ -60,7 +49,6 @@ extension GreenSpace {
     enum CodingKeys: String, CodingKey {
         case fields
         case nomEv
-        case categorie
         case adresseNumero
         case adresseTypevoie
         case adresseLibellevoie
@@ -68,5 +56,6 @@ extension GreenSpace {
         case presenseCloture
         case ouvertFerme
         case geom
+        case surfaceTotaleReelle
     }
 }

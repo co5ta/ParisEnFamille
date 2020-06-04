@@ -11,16 +11,17 @@ import MapKit
 
 class Event: NSObject, Place {
     
-    let placeType = PlaceType.event
-    
+    ///
+    let placeType: PlaceType?
+    ///
     let title: String?
-    
+    ///
     let addressName: String
-    
+    ///
     let addressStreet: String
-    
+    ///
     let addressZipcode: String
-    
+    ///
     let addressCity: String?
     
 //    let blind: Bool
@@ -57,11 +58,15 @@ class Event: NSObject, Place {
 //
 //    let priceDetail: String
     
+    ///
     var address: String { "\(addressName) \n\(addressStreet) \(addressZipcode) \(addressCity ?? "")" }
-    
+    ///
     var coordinate = CLLocationCoordinate2D()
+    ///
+    var distance: CLLocationDistance?
     
     required init(from decoder: Decoder) throws {
+        placeType = .event
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let fields = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .fields)
         title = try fields.decode(String.self, forKey: .title)
