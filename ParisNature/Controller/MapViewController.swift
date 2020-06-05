@@ -82,7 +82,6 @@ extension MapViewController {
     /// Sets up the detail floating panel
     private func setUpDetailPanelController() {
         detailPanelController.surfaceView.cornerRadius = 10
-        detailPanelController.isRemovalInteractionEnabled = true
         detailPanelController.set(contentViewController: placeDetailVC)
         detailPanelController.surfaceView.backgroundColor = .clear
         placeDetailVC.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)

@@ -12,6 +12,7 @@ class DetailViewController: UIViewController {
 
     /// The place to manage
     var place: Place? { didSet {setData(for: place)} }
+    var visualEffectView: UIVisualEffectView!
     /// The view which display the place
     let topStackView = TopStackView()
     /// The container of greenspace details
@@ -35,11 +36,21 @@ extension DetailViewController {
     
     /// Sets up the detail view
     private func setUpViews() {
-        view.backgroundColor = .white
+//        view.backgroundColor = .white
+        setUpVisualEffectView()
         view.addSubview(topStackView)
         view.addSubview(greenspaceStackView)
         setUpCancelButton()
         constrainViews()
+    }
+    
+    /// Sets up the background view
+    private func setUpVisualEffectView() {
+        let blurEffect = UIBlurEffect(style: .extraLight)
+        visualEffectView = UIVisualEffectView(effect: blurEffect)
+        visualEffectView.backgroundColor = .white
+        visualEffectView.alpha = 0.8
+        view.addSubview(visualEffectView)
     }
     
     private func setUpCancelButton() {
@@ -53,9 +64,21 @@ extension DetailViewController {
 extension DetailViewController {
     
     private func constrainViews() {
+        constrainVisualEffectView()
         constrainTopStackView()
         constrainGreenSpaceStackView()
         constrainCancelButton()
+    }
+    
+    /// Constrains background view
+    private func constrainVisualEffectView() {
+        visualEffectView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            visualEffectView.topAnchor.constraint(equalTo: view.topAnchor),
+            visualEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            visualEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            visualEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     /// Constrains the detail view
