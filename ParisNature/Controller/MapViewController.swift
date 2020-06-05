@@ -130,6 +130,14 @@ extension MapViewController: FloatingPanelControllerDelegate {
             return ListPanelLayout()
         }
     }
+    
+    /// Shows list panel after the hiding of detail panel with a pan gesture
+    func floatingPanelDidEndDragging(_ vc: FloatingPanelController, withVelocity velocity: CGPoint, targetPosition: FloatingPanelPosition) {
+        if vc == detailPanelController, targetPosition == .hidden {
+            guard let lastPanelPosition = lastPanelPosition else { return }
+            listPanelController.move(to: lastPanelPosition, animated: true)
+        }
+    }
 }
 
 // MARK: - Location
