@@ -12,10 +12,12 @@ class DetailViewController: UIViewController {
 
     /// The place to manage
     var place: Place? { didSet {setData(for: place)} }
-    ///  The view which display the place
+    /// The view which display the place
     let topStackView = TopStackView()
-    ///
+    /// The container of greenspace details
     let greenspaceStackView = GreenSpaceStackView()
+    /// Button to close the floating panel
+    let cancelButton = UIButton()
 }
 
 // MARK: - Lifecycle
@@ -36,7 +38,14 @@ extension DetailViewController {
         view.backgroundColor = .white
         view.addSubview(topStackView)
         view.addSubview(greenspaceStackView)
+        setUpCancelButton()
         constrainViews()
+    }
+    
+    private func setUpCancelButton() {
+        cancelButton.setImage(UIImage(named: "close"), for: .normal)
+        cancelButton.setImage(UIImage(named: "closeSelected"), for: .highlighted)
+        view.addSubview(cancelButton)
     }
 }
 
@@ -46,6 +55,7 @@ extension DetailViewController {
     private func constrainViews() {
         constrainTopStackView()
         constrainGreenSpaceStackView()
+        constrainCancelButton()
     }
     
     /// Constrains the detail view
@@ -64,6 +74,16 @@ extension DetailViewController {
             greenspaceStackView.topAnchor.constraint(equalToSystemSpacingBelow: topStackView.bottomAnchor, multiplier: 1),
             greenspaceStackView.leadingAnchor.constraint(equalTo: topStackView.leadingAnchor),
             greenspaceStackView.trailingAnchor.constraint(equalTo: topStackView.trailingAnchor)
+        ])
+    }
+    
+    private func constrainCancelButton() {
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cancelButton.heightAnchor.constraint(equalToConstant: 25),
+            cancelButton.widthAnchor.constraint(equalTo: cancelButton.heightAnchor),
+            cancelButton.topAnchor.constraint(equalTo: topStackView.topAnchor),
+            cancelButton.trailingAnchor.constraint(equalTo: topStackView.trailingAnchor)
         ])
     }
 }

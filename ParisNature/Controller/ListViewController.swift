@@ -285,7 +285,8 @@ extension ListViewController: UITableViewDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) as? PlaceCell else { return }
         cell.isSelected = false
         mapVC?.placeDetailVC.place = cell.place
-        mapVC?.listPanelController.move(to: .half, animated: true)
         mapVC?.detailPanelController.move(to: .half, animated: true)
+        mapVC?.lastPanelPosition = mapVC?.listPanelController.position
+        mapVC?.listPanelController.move(to: .hidden, animated: true)
     }
 }

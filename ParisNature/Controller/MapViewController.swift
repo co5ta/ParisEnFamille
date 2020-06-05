@@ -28,6 +28,8 @@ class MapViewController: UIViewController {
     let detailPanelController = FloatingPanelController()
     /// View controller whith the deail of a place
     let placeDetailVC = DetailViewController()
+    ///
+    var lastPanelPosition: FloatingPanelPosition?
 }
 
 // MARK: - Lifecycle
@@ -83,6 +85,14 @@ extension MapViewController {
         detailPanelController.isRemovalInteractionEnabled = true
         detailPanelController.set(contentViewController: placeDetailVC)
         detailPanelController.surfaceView.backgroundColor = .clear
+        placeDetailVC.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc
+    private func cancelButtonTapped() {
+        detailPanelController.move(to: .hidden, animated: true)
+        guard let lastPanelPosition = lastPanelPosition else { return }
+        listPanelController.move(to: lastPanelPosition, animated: true)
     }
     
     /// Sets up the views
