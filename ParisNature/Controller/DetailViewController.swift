@@ -86,8 +86,8 @@ extension DetailViewController {
         topStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             topStackView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 2),
-            topStackView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: topStackView.trailingAnchor, multiplier: 1)
+            topStackView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: topStackView.trailingAnchor, multiplier: 2)
         ])
     }
     
