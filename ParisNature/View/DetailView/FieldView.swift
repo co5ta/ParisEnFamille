@@ -49,6 +49,7 @@ extension FieldView {
     
     private func setUpValueLabel() {
         valueLabel.font = .preferredFont(forTextStyle: .subheadline)
+        valueLabel.numberOfLines = 0
         addSubview(valueLabel)
     }
 }
