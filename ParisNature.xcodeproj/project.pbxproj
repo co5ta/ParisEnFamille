@@ -32,6 +32,7 @@
 		225BED8E2465A28400A69076 /* ParisNatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225BED8D2465A28400A69076 /* ParisNatureTests.swift */; };
 		225FC20824797BB0004E7D56 /* EventsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FC20624797BAF004E7D56 /* EventsResult.swift */; };
 		225FC20924797BB0004E7D56 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FC20724797BB0004E7D56 /* Event.swift */; };
+		228C8065248AB256002AB3DE /* EventStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228C8064248AB256002AB3DE /* EventStackView.swift */; };
 		22BB89E22465AE68008740DA /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB89E12465AE68008740DA /* MainCoordinator.swift */; };
 		FBE7609B00AEDF775C6FEB35 /* Pods_ParisNature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 999EC3A73AB3AEA1BA230D9A /* Pods_ParisNature.framework */; };
 /* End PBXBuildFile section */
@@ -76,6 +77,7 @@
 		225BED8F2465A28400A69076 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		225FC20624797BAF004E7D56 /* EventsResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsResult.swift; sourceTree = "<group>"; };
 		225FC20724797BB0004E7D56 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		228C8064248AB256002AB3DE /* EventStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStackView.swift; sourceTree = "<group>"; };
 		22BB89E12465AE68008740DA /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		547414CDF45259B63D919074 /* Pods-ParisNatureTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParisNatureTests.debug.xcconfig"; path = "Target Support Files/Pods-ParisNatureTests/Pods-ParisNatureTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6AE33546440FEC82DEBA7A44 /* Pods-ParisNature.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParisNature.debug.xcconfig"; path = "Target Support Files/Pods-ParisNature/Pods-ParisNature.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			children = (
 				2255ABC82487A366008F33EC /* TopStackView.swift */,
 				2255A98A2488EC4A00196E56 /* GreenSpaceStackView.swift */,
+				228C8064248AB256002AB3DE /* EventStackView.swift */,
 				2255ABCE2487F065008F33EC /* FieldView.swift */,
 			);
 			path = DetailView;
@@ -428,6 +431,7 @@
 				225628152474067E00DDEAAB /* CustomPanelLayout.swift in Sources */,
 				2253148A24755AF50059BCFD /* PlaceCell.swift in Sources */,
 				2253148C247574560059BCFD /* PlacesViewController+State.swift in Sources */,
+				228C8065248AB256002AB3DE /* EventStackView.swift in Sources */,
 				225FC20824797BB0004E7D56 /* EventsResult.swift in Sources */,
 				2255ABCF2487F065008F33EC /* FieldView.swift in Sources */,
 				22562811247275EC00DDEAAB /* PlaceType.swift in Sources */,

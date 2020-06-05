@@ -12,11 +12,14 @@ class DetailViewController: UIViewController {
 
     /// The place to manage
     var place: Place? { didSet {setData(for: place)} }
+    /// A Blur background
     var visualEffectView: UIVisualEffectView!
     /// The view which display the place
     let topStackView = TopStackView()
     /// The container of greenspace details
     let greenspaceStackView = GreenSpaceStackView()
+    /// The container of event details
+    let eventStackView = EventStackView()
     /// Button to close the floating panel
     let cancelButton = UIButton()
 }
@@ -36,10 +39,10 @@ extension DetailViewController {
     
     /// Sets up the detail view
     private func setUpViews() {
-//        view.backgroundColor = .white
         setUpVisualEffectView()
         view.addSubview(topStackView)
         view.addSubview(greenspaceStackView)
+        view.addSubview(eventStackView)
         setUpCancelButton()
         constrainViews()
     }
@@ -67,6 +70,7 @@ extension DetailViewController {
         constrainVisualEffectView()
         constrainTopStackView()
         constrainGreenSpaceStackView()
+        constrainEventStackView()
         constrainCancelButton()
     }
     
@@ -100,6 +104,15 @@ extension DetailViewController {
         ])
     }
     
+    private func constrainEventStackView() {
+        eventStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            eventStackView.topAnchor.constraint(equalToSystemSpacingBelow: topStackView.bottomAnchor, multiplier: 1),
+            eventStackView.leadingAnchor.constraint(equalTo: topStackView.leadingAnchor),
+            eventStackView.trailingAnchor.constraint(equalTo: topStackView.trailingAnchor)
+        ])
+    }
+    
     private func constrainCancelButton() {
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -116,6 +129,21 @@ extension DetailViewController {
     private func setData(for place: Place?) {
         guard let place = place else { return }
         topStackView.place = place
-        greenspaceStackView.place = place
+        
+        switch place {
+        case is GreenSpace:
+            greenspaceStackView.place = place
+            displayDetails(of: place)
+        case is Event:
+            eventStackView.place = place
+            displayDetails(of: place)
+        default:
+            print(#function, "This type of place is not handled")
+        }
+    }
+    
+    private func displayDetails(of place: Place) {
+        greenspaceStackView.isHidden = place is GreenSpace ? false : true
+        eventStackView.isHidden = place is Event ? false : true
     }
 }

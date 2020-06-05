@@ -15,14 +15,6 @@ class Event: NSObject, Place {
     let placeType: PlaceType?
     ///
     let title: String?
-    ///
-    let addressName: String
-    ///
-    let addressStreet: String
-    ///
-    let addressZipcode: String
-    ///
-    let addressCity: String?
     
 //    let blind: Bool
 //
@@ -30,9 +22,9 @@ class Event: NSObject, Place {
 //
 //    let deaf: Bool
 //
-//    let dateStart: String
+    let dateStart: Date
 //
-//    let dateEnd: String
+    let dateEnd: Date
 //
 //    let dateDescription: String
 //
@@ -59,7 +51,7 @@ class Event: NSObject, Place {
 //    let priceDetail: String
     
     ///
-    var address: String { "\(addressName) \n\(addressStreet) \(addressZipcode) \(addressCity ?? "")" }
+    let address: String
     ///
     var coordinate = CLLocationCoordinate2D()
     ///
@@ -70,13 +62,16 @@ class Event: NSObject, Place {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let fields = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .fields)
         title = try fields.decode(String.self, forKey: .title)
-        addressName = try fields.decode(String.self, forKey: .addressName)
-        addressStreet = try fields.decode(String.self, forKey: .addressStreet)
-        addressZipcode = try fields.decode(String.self, forKey: .addressZipcode)
-        addressCity = try fields.decodeIfPresent(String.self, forKey: .addressCity)
+        let addressName = try fields.decode(String.self, forKey: .addressName)
+        let addressStreet = try fields.decode(String.self, forKey: .addressStreet)
+        let addressZipcode = try fields.decode(String.self, forKey: .addressZipcode)
+        let addressCity = try fields.decodeIfPresent(String.self, forKey: .addressCity)
+        address = "\(addressName) \n\(addressStreet) \(addressZipcode) \(addressCity ?? "")"
         if let latLon = try fields.decodeIfPresent([Double].self, forKey: .latLon), addressCity != nil {
             coordinate = CLLocationCoordinate2D(latitude: latLon[0], longitude: latLon[1])
         }
+        dateStart = try fields.decode(Date.self, forKey: .dateStart)
+        dateEnd = try fields.decode(Date.self, forKey: .dateEnd)
     }
 }
 
