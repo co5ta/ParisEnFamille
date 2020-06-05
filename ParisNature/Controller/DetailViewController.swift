@@ -16,6 +16,8 @@ class DetailViewController: UIViewController {
     var visualEffectView: UIVisualEffectView!
     /// The view which display the place
     let topStackView = TopStackView()
+    ///
+    let scrollView = UIScrollView()
     /// The container of greenspace details
     let greenspaceStackView = GreenSpaceStackView()
     /// The container of event details
@@ -41,8 +43,9 @@ extension DetailViewController {
     private func setUpViews() {
         setUpVisualEffectView()
         view.addSubview(topStackView)
-        view.addSubview(greenspaceStackView)
-        view.addSubview(eventStackView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(greenspaceStackView)
+        scrollView.addSubview(eventStackView)
         setUpCancelButton()
         constrainViews()
     }
@@ -69,6 +72,7 @@ extension DetailViewController {
     private func constrainViews() {
         constrainVisualEffectView()
         constrainTopStackView()
+        constrainScrollView()
         constrainGreenSpaceStackView()
         constrainEventStackView()
         constrainCancelButton()
@@ -95,10 +99,20 @@ extension DetailViewController {
         ])
     }
     
+    private func constrainScrollView() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: topStackView.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+    
     private func constrainGreenSpaceStackView() {
         greenspaceStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            greenspaceStackView.topAnchor.constraint(equalToSystemSpacingBelow: topStackView.bottomAnchor, multiplier: 1),
+            greenspaceStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             greenspaceStackView.leadingAnchor.constraint(equalTo: topStackView.leadingAnchor),
             greenspaceStackView.trailingAnchor.constraint(equalTo: topStackView.trailingAnchor)
         ])
@@ -107,9 +121,10 @@ extension DetailViewController {
     private func constrainEventStackView() {
         eventStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            eventStackView.topAnchor.constraint(equalToSystemSpacingBelow: topStackView.bottomAnchor, multiplier: 1),
+            eventStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             eventStackView.leadingAnchor.constraint(equalTo: topStackView.leadingAnchor),
-            eventStackView.trailingAnchor.constraint(equalTo: topStackView.trailingAnchor)
+            eventStackView.trailingAnchor.constraint(equalTo: topStackView.trailingAnchor),
+            eventStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
     

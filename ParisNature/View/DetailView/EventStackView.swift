@@ -13,7 +13,9 @@ class EventStackView: UIStackView {
     var place: Place? { didSet {setUpData(with: place)} }
     let addressFieldView = FieldView()
     let dateFieldView = FieldView()
-
+    let leadTextFieldView = FieldView()
+    let accessFieldView = FieldView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpViews()
@@ -31,6 +33,8 @@ extension EventStackView {
         axis = .vertical
         addArrangedSubview(addressFieldView)
         addArrangedSubview(dateFieldView)
+        addArrangedSubview(leadTextFieldView)
+        addArrangedSubview(accessFieldView)
     }
 }
 
@@ -42,6 +46,12 @@ extension EventStackView {
         
         let date = getDateText(place)
         dateFieldView.setData(title: "Date", value: date)
+        
+        leadTextFieldView.setData(title: "Description", value: place.leadText)
+        
+        if place.access.isEmpty == false {
+            accessFieldView.setData(title: "Access", value: place.access.joined(separator: ", "))
+        }
     }
     
     private func getDateText(_ place: Event) -> String {

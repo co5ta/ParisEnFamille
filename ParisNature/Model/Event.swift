@@ -30,7 +30,8 @@ class Event: NSObject, Place {
 //
 //    let detail: String
 //
-//    let leadText: String
+    let leadText: String
+    
 //
 //    let detailText: String
 //
@@ -44,7 +45,7 @@ class Event: NSObject, Place {
 //
 //    let format: String
 //
-//    let accessType: String
+    var access = [String]()
 //
 //    let free: Bool
 //
@@ -56,6 +57,8 @@ class Event: NSObject, Place {
     var coordinate = CLLocationCoordinate2D()
     ///
     var distance: CLLocationDistance?
+    
+    let accessList = ["gratuit": "free", "payant": "payable", "reservation": "on reservation"]
     
     required init(from decoder: Decoder) throws {
         placeType = .event
@@ -72,6 +75,16 @@ class Event: NSObject, Place {
         }
         dateStart = try fields.decode(Date.self, forKey: .dateStart)
         dateEnd = try fields.decode(Date.self, forKey: .dateEnd)
+        leadText = try fields.decode(String.self, forKey: .leadText)
+        let accessType = try fields.decode(String.self, forKey: .accessType)
+        let priceType = try fields.decode(String.self, forKey: .priceType)
+        if let priceText = accessList[priceType] {
+            access.append(priceText)
+        }
+        if let accessText = accessList[accessType] {
+            access.append(accessText)
+        }
+            
     }
 }
 
@@ -86,15 +99,14 @@ extension Event {
         case addressZipcode
         case addressCity
         case latLon
+        case dateStart
+        case dateEnd
+        case leadText
         
         case blind
         case pmr
         case deaf
-        case dateStart
-        case dateEnd
         case dateDescription
-        case description
-        case leadText
         case contactName
         case contactPhone
         case contactMail
@@ -102,7 +114,7 @@ extension Event {
         case imageURL
         case format
         case accessType
-        case paying
+        case priceType
         case priceDetail
     }
 }
