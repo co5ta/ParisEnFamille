@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SafariServices
+import MessageUI
 
 class DetailViewController: UIViewController {
 
@@ -45,7 +47,7 @@ extension DetailViewController {
         view.addSubview(topStackView)
         view.addSubview(scrollView)
         scrollView.addSubview(greenspaceStackView)
-        scrollView.addSubview(eventStackView)
+        setUpEventStackView()
         setUpCancelButton()
         constrainViews()
     }
@@ -59,10 +61,59 @@ extension DetailViewController {
         view.addSubview(visualEffectView)
     }
     
+    private func setUpEventStackView() {
+        eventStackView.websiteButton.addTarget(self, action: #selector(websiteButtonTapped), for: .touchUpInside)
+        eventStackView.phoneButton.addTarget(self, action: #selector(phoneButtonTapped), for: .touchUpInside)
+        eventStackView.mailButton.addTarget(self, action: #selector(mailButtonTapped), for: .touchUpInside)
+        scrollView.addSubview(eventStackView)
+    }
+    
     private func setUpCancelButton() {
         cancelButton.setImage(UIImage(named: "close"), for: .normal)
         cancelButton.setImage(UIImage(named: "closeSelected"), for: .highlighted)
         view.addSubview(cancelButton)
+    }
+}
+
+// MARK: - Actions
+extension DetailViewController {
+    
+    @objc
+    private func websiteButtonTapped() {
+        guard let place = place as? Event,
+            let contactUrl = place.contactUrl,
+            let url = URL(string: contactUrl)
+            else { return }
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.modalPresentationStyle = .pageSheet
+        present(safariVC, animated: true)
+    }
+    
+    @objc
+    private func phoneButtonTapped() {
+        guard let place = place as? Event,
+        let contactPhone = place.contactPhone,
+        let phoneNumber = URL(string: "tel://\(contactPhone)")
+        else { return }
+        UIApplication.shared.open(phoneNumber)
+    }
+    
+    @objc
+    private func mailButtonTapped() {
+        guard MFMailComposeViewController.canSendMail(),
+        let place = place as? Event,
+        let contactMail = place.contactMail
+        else { return }
+        let mail = MFMailComposeViewController()
+        mail.mailComposeDelegate = self
+        mail.setToRecipients([contactMail])
+        present(mail, animated: true)
+    }
+}
+
+extension DetailViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }
 
@@ -124,7 +175,8 @@ extension DetailViewController {
             eventStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             eventStackView.leadingAnchor.constraint(equalTo: topStackView.leadingAnchor),
             eventStackView.trailingAnchor.constraint(equalTo: topStackView.trailingAnchor),
-            eventStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+//            eventStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            scrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: eventStackView.bottomAnchor, multiplier: 3)
         ])
     }
     
@@ -139,6 +191,7 @@ extension DetailViewController {
     }
 }
 
+// MARK: - Data
 extension DetailViewController {
     
     private func setData(for place: Place?) {

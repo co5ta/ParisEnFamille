@@ -15,12 +15,6 @@ class Event: NSObject, Place {
     let placeType: PlaceType?
     ///
     let title: String?
-    
-//    let blind: Bool
-//
-//    let pmr: Bool
-//
-//    let deaf: Bool
 //
     let dateStart: Date
 //
@@ -28,28 +22,21 @@ class Event: NSObject, Place {
 //
 //    let dateDescription: String
 //
-//    let detail: String
-//
     let leadText: String
-    
-//
-//    let detailText: String
-//
-//    let contactName: String
-//
-//    let contactPhone: String
-//
-//    let contactMail: String
+    ///
+    let contactName: String?
+    ///
+    let contactUrl: String?
+    ///
+    let contactPhone: String?
+    ///
+    let contactMail: String?
 //
 //    let imageURL:  String
 //
 //    let format: String
 //
     var access = [String]()
-//
-//    let free: Bool
-//
-//    let priceDetail: String
     
     ///
     let address: String
@@ -57,8 +44,8 @@ class Event: NSObject, Place {
     var coordinate = CLLocationCoordinate2D()
     ///
     var distance: CLLocationDistance?
-    
-    let accessList = ["gratuit": "free", "payant": "payable", "reservation": "on reservation"]
+    ///
+    let accessList = ["gratuit": "Free", "payant": "Payable", "reservation": "on reservation"]
     
     required init(from decoder: Decoder) throws {
         placeType = .event
@@ -84,7 +71,10 @@ class Event: NSObject, Place {
         if let accessText = accessList[accessType] {
             access.append(accessText)
         }
-            
+        contactName = try fields.decodeIfPresent(String.self, forKey: .contactName)
+        contactUrl = try fields.decodeIfPresent(String.self, forKey: .contactUrl)
+        contactMail = try fields.decodeIfPresent(String.self, forKey: .contactMail)
+        contactPhone = try fields.decodeIfPresent(String.self, forKey: .contactPhone)
     }
 }
 
@@ -102,19 +92,18 @@ extension Event {
         case dateStart
         case dateEnd
         case leadText
+        case accessType
+        case priceType
         
-        case blind
-        case pmr
-        case deaf
-        case dateDescription
         case contactName
+        case contactUrl 
         case contactPhone
         case contactMail
+        
         case cover
         case imageURL
         case format
-        case accessType
-        case priceType
-        case priceDetail
+        case dateDescription
+        
     }
 }
