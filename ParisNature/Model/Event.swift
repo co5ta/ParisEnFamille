@@ -11,44 +11,41 @@ import MapKit
 
 class Event: NSObject, Place {
     
-    ///
-    let placeType: PlaceType?
-    ///
+    /// Title of the event
     let title: String?
-//
+    /// First date of the event
     let dateStart: Date
-//
+    /// Last date of the event
     let dateEnd: Date
-//
-//    let dateDescription: String
-//
+    /// Short description of the event
     let leadText: String
-    ///
+    /// Name of the contact
     let contactName: String?
-    ///
+    /// URL of the website
     let contactUrl: String?
-    ///
+    /// Phone number
     let contactPhone: String?
-    ///
+    /// Mail address
     let contactMail: String?
-//
-//    let imageURL:  String
-//
-//    let format: String
-//
+    /// Array of available access for the place
     var access = [String]()
-    
-    ///
+    /// Address
     let address: String
-    ///
+    /// Coordinate of the place
     var coordinate = CLLocationCoordinate2D()
-    ///
+    /// Distance between the event and the user location
     var distance: CLLocationDistance?
-    ///
+    /// List of access type
     let accessList = ["gratuit": "Free", "payant": "Payable", "reservation": "on reservation"]
+    //
+    //    let imageURL:  String
+    //
+    //    let format: String
+    //
+    //    let dateDescription: String
     
+    /// Creates a new instance by decoding from the given decoder
     required init(from decoder: Decoder) throws {
-        placeType = .event
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let fields = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .fields)
         title = try fields.decode(String.self, forKey: .title)
@@ -80,6 +77,8 @@ class Event: NSObject, Place {
 
 // MARK: - CodingKeys
 extension Event {
+    
+    /// Keys to decode the json
     enum CodingKeys: String, CodingKey {
         
         case fields
@@ -94,7 +93,6 @@ extension Event {
         case leadText
         case accessType
         case priceType
-        
         case contactName
         case contactUrl 
         case contactPhone

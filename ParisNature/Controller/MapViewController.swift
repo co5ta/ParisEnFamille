@@ -82,8 +82,9 @@ extension MapViewController {
     /// Sets up the detail floating panel
     private func setUpDetailPanelController() {
         detailPanelController.surfaceView.cornerRadius = 10
-        detailPanelController.set(contentViewController: placeDetailVC)
         detailPanelController.surfaceView.backgroundColor = .clear
+        detailPanelController.set(contentViewController: placeDetailVC)
+        detailPanelController.track(scrollView: placeDetailVC.scrollView)
         placeDetailVC.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
     }
     

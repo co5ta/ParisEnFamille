@@ -37,7 +37,7 @@ extension FieldView {
     
     /// Sets up separator view
     private func setUpSeparatorView() {
-        separatorView.backgroundColor = .lightGray
+        separatorView.backgroundColor = Config.appGray
         addSubview(separatorView)
     }
     
