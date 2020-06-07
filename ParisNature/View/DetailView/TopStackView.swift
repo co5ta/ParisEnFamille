@@ -16,7 +16,7 @@ class TopStackView: UIView {
     ///
     let titleLabel = UILabel()
     ///
-    let subHeadingLabel = UILabel()
+    let subheadingLabel = UILabel()
     ///
     let directionsButton = UIButton(type: .system)
     
@@ -47,9 +47,9 @@ extension TopStackView {
     }
     
     private func setUpSubTitleLabel() {
-        subHeadingLabel.font = UIFont.preferredFont(forTextStyle: .callout)
-        subHeadingLabel.textColor = .systemGray
-        addSubview(subHeadingLabel)
+        subheadingLabel.font = UIFont.preferredFont(forTextStyle: .callout)
+        subheadingLabel.textColor = .systemGray
+        addSubview(subheadingLabel)
     }
     
     /// Sets up
@@ -79,18 +79,18 @@ extension TopStackView {
     }
     
     private func constrainSubHeadingLabel() {
-        subHeadingLabel.translatesAutoresizingMaskIntoConstraints = false
+        subheadingLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            subHeadingLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            subHeadingLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            subHeadingLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
+            subheadingLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            subheadingLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            subheadingLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
     
     private func constrainDirectionsButton() {
         directionsButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            directionsButton.topAnchor.constraint(equalToSystemSpacingBelow: subHeadingLabel.bottomAnchor, multiplier: 2),
+            directionsButton.topAnchor.constraint(equalToSystemSpacingBelow: subheadingLabel.bottomAnchor, multiplier: 2),
             directionsButton.leadingAnchor.constraint(equalTo: leadingAnchor),
             directionsButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             directionsButton.bottomAnchor.constraint(equalTo: bottomAnchor)
@@ -104,6 +104,6 @@ extension TopStackView {
     private func setData(with place: Place?) {
         guard let place = place else { return }
         titleLabel.text = place.title
-        subHeadingLabel.text = place.subheading
+        subheadingLabel.text = place.subheading
     }
 }

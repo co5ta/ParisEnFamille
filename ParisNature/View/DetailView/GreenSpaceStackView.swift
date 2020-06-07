@@ -13,7 +13,10 @@ class GreenSpaceStackView: UIStackView {
     
     var place: Place? { didSet {setUpData(with: place)} }
     let addressFieldView = FieldView()
-    let surfaceLabel = FieldView()
+    let surfaceFieldView = FieldView()
+    let surfaceHortiFieldView = FieldView()
+    let fenceFieldView = FieldView()
+    let open24hFieldView = FieldView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,7 +34,10 @@ extension GreenSpaceStackView {
     private func setUpViews() {
         axis = .vertical
         addArrangedSubview(addressFieldView)
-        addArrangedSubview(surfaceLabel)
+        addArrangedSubview(surfaceFieldView)
+        addArrangedSubview(surfaceHortiFieldView)
+        addArrangedSubview(fenceFieldView)
+        addArrangedSubview(open24hFieldView)
     }
 }
 
@@ -40,15 +46,9 @@ extension GreenSpaceStackView {
     private func setUpData(with place: Place?) {
         guard let place = place as? GreenSpace else { return }
         addressFieldView.setData(title: "Address", value: place.address, separatorHidden: true)
-        
-        if let surface = place.surface {
-            let formatter = MKDistanceFormatter()
-            formatter.units = .metric
-            let surfaceFormatted = formatter.string(fromDistance: formatter.distance(from: "\(surface) m"))
-            surfaceLabel.setData(title: "Surface", value: "\(surfaceFormatted)²")
-            surfaceLabel.isHidden = false
-        } else {
-            surfaceLabel.isHidden = true
-        }
+        surfaceFieldView.setData(title: "Surface", value: GreenSpace.getFormattedSurface(surface: place.surface))
+        surfaceHortiFieldView.setData(title: "Horticultural surface", value: GreenSpace.getFormattedSurface(surface: place.horticulture))
+        fenceFieldView.setData(title: "Fence", value: place.fence)
+        open24hFieldView.setData(title: "Open 24H a day", value: place.open24h)
     }
 }
