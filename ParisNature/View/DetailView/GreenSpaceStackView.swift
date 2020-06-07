@@ -17,6 +17,7 @@ class GreenSpaceStackView: UIStackView {
     let surfaceHortiFieldView = FieldView()
     let fenceFieldView = FieldView()
     let open24hFieldView = FieldView()
+    let anneeOuvertureFieldView = FieldView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,6 +39,7 @@ extension GreenSpaceStackView {
         addArrangedSubview(surfaceHortiFieldView)
         addArrangedSubview(fenceFieldView)
         addArrangedSubview(open24hFieldView)
+        addArrangedSubview(anneeOuvertureFieldView)
     }
 }
 
@@ -50,5 +52,6 @@ extension GreenSpaceStackView {
         surfaceHortiFieldView.setData(title: "Horticultural surface", value: GreenSpace.getFormattedSurface(surface: place.horticulture))
         fenceFieldView.setData(title: "Fence", value: place.fence)
         open24hFieldView.setData(title: "Open 24H a day", value: place.open24h)
+        anneeOuvertureFieldView.setData(title: "Opening year", value: place.openingYear)
     }
 }

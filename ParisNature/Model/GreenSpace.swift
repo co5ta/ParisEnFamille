@@ -32,6 +32,8 @@ class GreenSpace: NSObject, Place {
     let fence: String
     /// Indicates if the greespance is open 24H a day
     let open24h: String
+    /// Opening year
+    let openingYear: String
     
     /// Initializes from json data
     required init(from decoder: Decoder) throws {
@@ -57,12 +59,16 @@ class GreenSpace: NSObject, Place {
         } else {
             fence = "Not disclosed"
         }
-        
         let ouvertFerme = try fields.decodeIfPresent(String.self, forKey: .ouvertFerme)
         if let ouvertFerme = ouvertFerme {
             open24h = ouvertFerme == "Oui" ? "Yes" : "No"
         } else {
             open24h = "Not disclosed"
+        }
+        if let anneeOuverture = try fields.decodeIfPresent(String.self, forKey: .anneeOuverture) {
+            openingYear = anneeOuverture
+        } else {
+            openingYear = "Not disclosed"
         }
     }
 }
@@ -82,6 +88,7 @@ extension GreenSpace {
         case geom
         case surfaceTotaleReelle
         case surfaceHorticole
+        case anneeOuverture
     }
 }
 
