@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 import SafariServices
 import MessageUI
 
@@ -47,8 +48,9 @@ extension DetailViewController {
         view.addSubview(topStackView)
         view.addSubview(scrollView)
         scrollView.addSubview(greenspaceStackView)
-        setUpEventStackView()
+        scrollView.addSubview(eventStackView)
         setUpCancelButton()
+        setUpActions()
         constrainViews()
     }
     
@@ -61,22 +63,31 @@ extension DetailViewController {
         view.addSubview(visualEffectView)
     }
     
-    private func setUpEventStackView() {
-        eventStackView.websiteButton.addTarget(self, action: #selector(websiteButtonTapped), for: .touchUpInside)
-        eventStackView.phoneButton.addTarget(self, action: #selector(phoneButtonTapped), for: .touchUpInside)
-        eventStackView.mailButton.addTarget(self, action: #selector(mailButtonTapped), for: .touchUpInside)
-        scrollView.addSubview(eventStackView)
-    }
-    
     private func setUpCancelButton() {
         cancelButton.setImage(UIImage(named: "close"), for: .normal)
         cancelButton.setImage(UIImage(named: "closeSelected"), for: .highlighted)
         view.addSubview(cancelButton)
     }
+    
+    private func setUpActions() {
+        topStackView.directionsButton.addTarget(self, action: #selector(directionsButtonTapped), for: .touchUpInside)
+        eventStackView.websiteButton.addTarget(self, action: #selector(websiteButtonTapped), for: .touchUpInside)
+        eventStackView.phoneButton.addTarget(self, action: #selector(phoneButtonTapped), for: .touchUpInside)
+        eventStackView.mailButton.addTarget(self, action: #selector(mailButtonTapped), for: .touchUpInside)
+    }
 }
 
 // MARK: - Actions
 extension DetailViewController {
+    
+    @objc
+    private func directionsButtonTapped() {
+        guard let place = place else { return }
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: place.coordinate))
+        let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        mapItem.name = place.title
+        mapItem.openInMaps(launchOptions: options)
+    }
     
     @objc
     private func websiteButtonTapped() {
