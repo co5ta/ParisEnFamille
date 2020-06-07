@@ -14,6 +14,8 @@ class GreenSpace: NSObject, Place {
     
     /// Name
     let title: String?
+    /// Subtitle
+    let subheading: String = ""
     /// geometry
     let geom: Geom
     /// Address

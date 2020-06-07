@@ -28,17 +28,6 @@ protocol Place: MKAnnotation, Decodable {
 
 extension Place {
     
-    var subheading: String {
-//        guard let distance = distance else { return placeType.title }
-//        let distanceFormatted = MKDistanceFormatter().string(fromDistance: distance)
-//        return placeType.title + " • \(distanceFormatted)"
-        guard let distance = distance else { return "" }
-        let formatter = MKDistanceFormatter()
-        formatter.units = .metric
-        let distanceFormatted = formatter.string(fromDistance: distance)
-        return distanceFormatted
-    }
-    
     func calculateDistance(from location: CLLocation?) {
         guard let location = location else { return }
         let placeLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)

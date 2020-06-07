@@ -42,13 +42,15 @@ extension FieldView {
     }
     
     private func setUpTitleLabel() {
-        titleLabel.font = .preferredFont(forTextStyle: .footnote)
+        titleLabel.font = .preferredFont(forTextStyle: .subheadline)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = true
         titleLabel.textColor = .systemGray
         addSubview(titleLabel)
     }
     
     private func setUpValueLabel() {
-        valueLabel.font = .preferredFont(forTextStyle: .subheadline)
+        valueLabel.font = .preferredFont(forTextStyle: .callout)
+        valueLabel.translatesAutoresizingMaskIntoConstraints = true
         valueLabel.numberOfLines = 0
         addSubview(valueLabel)
     }

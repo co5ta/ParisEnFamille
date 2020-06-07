@@ -13,6 +13,8 @@ class Event: NSObject, Place {
     
     /// Title of the event
     let title: String?
+    /// Category of the event
+    let subheading: String
     /// First date of the event
     let dateStart: Date
     /// Last date of the event
@@ -49,6 +51,8 @@ class Event: NSObject, Place {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let fields = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .fields)
         title = try fields.decode(String.self, forKey: .title)
+        let category = try fields.decode(String.self, forKey: .category)
+        subheading = category.replacingOccurrences(of: "->", with: "•")
         let addressName = try fields.decode(String.self, forKey: .addressName)
         let addressStreet = try fields.decode(String.self, forKey: .addressStreet)
         let addressZipcode = try fields.decode(String.self, forKey: .addressZipcode)
@@ -83,6 +87,7 @@ extension Event {
         
         case fields
         case title
+        case category
         case addressName
         case addressStreet
         case addressZipcode

@@ -41,13 +41,15 @@ extension TopStackView {
     }
     
     private func setUpTitleLabel() {
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .title2).bold()
+        titleLabel.translatesAutoresizingMaskIntoConstraints = true
         titleLabel.numberOfLines = 0
         addSubview(titleLabel)
     }
     
     private func setUpSubTitleLabel() {
         subheadingLabel.font = UIFont.preferredFont(forTextStyle: .callout)
+        subheadingLabel.translatesAutoresizingMaskIntoConstraints = true
         subheadingLabel.textColor = .systemGray
         addSubview(subheadingLabel)
     }
@@ -55,8 +57,9 @@ extension TopStackView {
     /// Sets up
     private func setUpDirectionsButton() {
         directionsButton.setTitle("Directions", for: .normal)
+        directionsButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline).bold()
+        directionsButton.translatesAutoresizingMaskIntoConstraints = true
         directionsButton.tintColor = .white
-        directionsButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .callout)
         directionsButton.backgroundColor = .systemBlue
         directionsButton.layer.cornerRadius = 10
         directionsButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
