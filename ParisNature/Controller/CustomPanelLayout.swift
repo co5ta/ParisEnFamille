@@ -24,7 +24,7 @@ class ListPanelLayout: FloatingPanelLayout {
         switch position {
         case .full: return safeAreaInsets.top
         case .half: return screenSize.height * 0.3
-        case .tip: return (screenSize.height / 7) - (safeAreaInsets.bottom * 1.5)
+        case .tip: return (screenSize.height / 7) - (safeAreaInsets.bottom * 1.25)
         case .hidden: return nil
         }
     }
