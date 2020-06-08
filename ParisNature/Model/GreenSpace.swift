@@ -15,7 +15,7 @@ class GreenSpace: NSObject, Place {
     /// Name
     let title: String?
     /// Subtitle
-    let subheading: String = ""
+    let subheading: String
     /// geometry
     let geom: Geom
     /// Address
@@ -39,10 +39,10 @@ class GreenSpace: NSObject, Place {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let fields = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .fields)
-        title = try fields.decode(String.self, forKey: .nomEv)
+        title = try fields.decode(String.self, forKey: .nomEv).localizedCapitalized
         let streetNumber = try fields.decode(Int.self, forKey: .adresseNumero)
-        let streetType = try fields.decode(String.self, forKey: .adresseTypevoie)
-        let streetName = try fields.decode(String.self, forKey: .adresseLibellevoie)
+        let streetType = try fields.decode(String.self, forKey: .adresseTypevoie).localizedLowercase
+        let streetName = try fields.decode(String.self, forKey: .adresseLibellevoie).localizedCapitalized
         let zipCode = try fields.decode(String.self, forKey: .adresseCodepostal)
         let city = String(zipCode.prefix(2)) == "75" ? "Paris": ""
         address = "\(streetNumber) \(streetType) \(streetName) \n\(zipCode) \(city) "
@@ -53,23 +53,29 @@ class GreenSpace: NSObject, Place {
         surface = try fields.decodeIfPresent(Int.self, forKey: .surfaceTotaleReelle)
         horticulture = try fields.decodeIfPresent(Int.self, forKey: .surfaceHorticole)
         
-        let cloture = try fields.decodeIfPresent(String.self, forKey: .presenceCloture)
-        if let cloture = cloture {
+        if let cloture = try fields.decodeIfPresent(String.self, forKey: .presenceCloture) {
             fence = cloture == "Oui" ? "Yes" : "No"
         } else {
             fence = "Not disclosed"
         }
-        let ouvertFerme = try fields.decodeIfPresent(String.self, forKey: .ouvertFerme)
-        if let ouvertFerme = ouvertFerme {
+        
+        if let ouvertFerme = try fields.decodeIfPresent(String.self, forKey: .ouvertFerme) {
             open24h = ouvertFerme == "Oui" ? "Yes" : "No"
         } else {
             open24h = "Not disclosed"
         }
+        
         if let anneeOuverture = try fields.decodeIfPresent(String.self, forKey: .anneeOuverture) {
             openingYear = anneeOuverture
         } else {
             openingYear = "Not disclosed"
         }
+//        if let surface = surface {
+//            subheading = GreenSpace.getFormattedSurface(surface: surface)
+//        } else {
+//            subheading = ""
+//        }
+        subheading = "\(streetNumber) \(streetType) \(streetName)"
     }
 }
 

@@ -11,35 +11,37 @@ import MapKit
 
 class TopStackView: UIView {
 
-    ///
+    /// Place data
     var place: Place? { didSet {setData(with: place)} }
-    ///
+    /// Place title
     let titleLabel = UILabel()
-    ///
-    let subheadingLabel = UILabel()
-    ///
+    /// Directions button
     let directionsButton = UIButton(type: .system)
     
+    /// Initializes view from code
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpViews()
     }
 
+    /// Initializes view from storyboard
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setUpViews()
     }
 }
 
+// MARK: - Setup
 extension TopStackView {
     
+    /// Sets up the views
     private func setUpViews() {
         setUpTitleLabel()
-        setUpSubTitleLabel()
         setUpDirectionsButton()
         constrainViews()
     }
     
+    /// Sets up the title label
     private func setUpTitleLabel() {
         titleLabel.font = UIFont.preferredFont(forTextStyle: .title2).bold()
         titleLabel.translatesAutoresizingMaskIntoConstraints = true
@@ -47,14 +49,7 @@ extension TopStackView {
         addSubview(titleLabel)
     }
     
-    private func setUpSubTitleLabel() {
-        subheadingLabel.font = UIFont.preferredFont(forTextStyle: .callout)
-        subheadingLabel.translatesAutoresizingMaskIntoConstraints = true
-        subheadingLabel.textColor = .systemGray
-        addSubview(subheadingLabel)
-    }
-    
-    /// Sets up
+    /// Sets up the directions button
     private func setUpDirectionsButton() {
         directionsButton.setTitle("Directions", for: .normal)
         directionsButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline).bold()
@@ -65,13 +60,18 @@ extension TopStackView {
         directionsButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         addSubview(directionsButton)
     }
+}
+
+// MARK: - Constraints
+extension TopStackView {
     
+    /// Constrains the views
     private func constrainViews() {
         constrainTitleLabel()
-        constrainSubHeadingLabel()
         constrainDirectionsButton()
     }
     
+    /// Constrains the title label
     private func constrainTitleLabel() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -81,19 +81,11 @@ extension TopStackView {
         ])
     }
     
-    private func constrainSubHeadingLabel() {
-        subheadingLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            subheadingLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            subheadingLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            subheadingLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
-    }
-    
+    /// Constrains the directions button
     private func constrainDirectionsButton() {
         directionsButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            directionsButton.topAnchor.constraint(equalToSystemSpacingBelow: subheadingLabel.bottomAnchor, multiplier: 2),
+            directionsButton.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 2),
             directionsButton.leadingAnchor.constraint(equalTo: leadingAnchor),
             directionsButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             directionsButton.bottomAnchor.constraint(equalTo: bottomAnchor)
@@ -104,9 +96,9 @@ extension TopStackView {
 // MARK: - Data
 extension TopStackView {
     
+    /// Sets up the data
     private func setData(with place: Place?) {
         guard let place = place else { return }
         titleLabel.text = place.title
-        subheadingLabel.text = place.subheading
     }
 }
