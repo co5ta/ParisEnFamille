@@ -8,17 +8,16 @@
 
 import UIKit
 
-/// Manages the display of lists of places
+/// Manages the display of list of places
 class ListViewController: UIViewController {
     
-    var mapVC: MapViewController?
+    weak var mapVC: MapViewController?
     var visualEffectView: UIVisualEffectView!
     var collectionView: UICollectionView!
     var imagesButton = [UIButton]()
     let tableView = UITableView()
     var places = [Place]() { didSet {updateTableView(oldValue)} }
     var loadingView = UIActivityIndicatorView()
-    var state = State.neutral { didSet {adjustViews()} }
 }
 
 // MARK: - Lifecycle
@@ -142,45 +141,6 @@ extension ListViewController {
     }
 }
 
-// MARK: - State
-extension ListViewController {
-    
-    /// Adjusts the views according to view controller state
-    private func adjustViews() {
-        switch state {
-        case .loading:
-            displayLoading()
-        case .ready:
-            displayTableView()
-        case .empty:
-            displayError()
-        case .neutral:
-            break
-        }
-    }
-    
-    /// Displays loading
-    private func displayLoading() {
-        mapVC?.listPanelController.move(to: .half, animated: true)
-        loadingView.startAnimating()
-        tableView.isHidden = true
-    }
-    
-    /// Displays results in table view
-    private func displayTableView() {
-        mapVC?.listPanelController.move(to: .half, animated: true)
-        loadingView.stopAnimating()
-        tableView.isHidden = false
-    }
-    
-    /// Displays error message
-    private func displayError() {
-        mapVC?.listPanelController.move(to: .half, animated: true)
-        loadingView.stopAnimating()
-        tableView.isHidden = true
-    }
-}
-
 // MARK: - UICollectionViewDataSource
 extension ListViewController: UICollectionViewDataSource {
     
@@ -207,17 +167,21 @@ extension ListViewController: UICollectionViewDataSource {
     private func imageButtonTapped(sender: UIButton) {
         guard sender.isSelected == false else { return }
         imagesButton.forEach { $0.isSelected = ($0 != sender) ? false : true }
+        guard let cell = sender.superview?.superview as? PlaceTypeCell,
+            let placeType = cell.placeType,
+            let mapVC = mapVC
+            else { return }
+        
         removePlaces()
-        guard let cell = sender.superview?.superview as? PlaceTypeCell, let placeType = cell.placeType else { return }
         switch placeType {
         case .park:
-            mapVC?.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
+            mapVC.mapDelegate.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
         case .garden:
-            mapVC?.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
+            mapVC.mapDelegate.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
         case .event:
-            mapVC?.getPlaces(placeType: placeType, dataType: EventsResult.self)
+            mapVC.mapDelegate.getPlaces(placeType: placeType, dataType: EventsResult.self)
         case .other:
-            mapVC?.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
+            mapVC.mapDelegate.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
         }
     }
     
@@ -284,9 +248,9 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? PlaceCell else { return }
         cell.isSelected = false
-        mapVC?.placeDetailVC.place = cell.place
-        mapVC?.detailPanelController.move(to: .half, animated: true)
-        mapVC?.lastPanelPosition = mapVC?.listPanelController.position
-        mapVC?.listPanelController.move(to: .hidden, animated: true)
+        mapVC?.detailVC.place = cell.place
+        mapVC?.detailPanel.move(to: .half, animated: true)
+        mapVC?.panelDelegate.lastPanelPosition = mapVC?.listPanel.position
+        mapVC?.listPanel.move(to: .hidden, animated: true)
     }
 }

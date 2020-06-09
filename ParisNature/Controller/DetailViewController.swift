@@ -11,8 +11,11 @@ import MapKit
 import SafariServices
 import MessageUI
 
+/// Manages the display of place detail
 class DetailViewController: UIViewController {
 
+    /// Map view controller
+    weak var mapVC: MapViewController?
     /// The place to manage
     var place: Place? { didSet {setData(for: place)} }
     /// A Blur background
@@ -66,6 +69,7 @@ extension DetailViewController {
     private func setUpCancelButton() {
         cancelButton.setImage(UIImage(named: "close"), for: .normal)
         cancelButton.setImage(UIImage(named: "closeSelected"), for: .highlighted)
+        cancelButton.addTarget(mapVC, action: #selector(mapVC?.cancelButtonTapped), for: .touchUpInside)
         view.addSubview(cancelButton)
     }
     
