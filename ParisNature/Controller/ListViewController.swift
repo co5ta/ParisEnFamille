@@ -248,9 +248,6 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? PlaceCell else { return }
         cell.isSelected = false
-        mapVC?.detailVC.place = cell.place
-        mapVC?.detailPanel.move(to: .half, animated: true)
-        mapVC?.panelDelegate.lastPanelPosition = mapVC?.listPanel.position
-        mapVC?.listPanel.move(to: .hidden, animated: true)
+        mapVC?.state = .placeDetail(place: cell.place)
     }
 }

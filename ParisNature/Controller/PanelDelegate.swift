@@ -1,5 +1,5 @@
 //
-//  FloatingPanelDelegate.swift
+//  PanelDelegate.swift
 //  ParisNature
 //
 //  Created by co5ta on 08/06/2020.

@@ -138,8 +138,8 @@ extension MapViewController {
             displayLoading()
         case .placesList:
             displayPlacesList()
-        case .placeDetail:
-            displayPlaceDetail()
+        case .placeDetail(let place):
+            displayPlaceDetail(place: place)
         case .empty:
             displayError()
         }
@@ -152,7 +152,7 @@ extension MapViewController {
         listVC.tableView.isHidden = true
     }
     
-    /// Displays results in table view
+    /// Displays the list of places
     private func displayPlacesList() {
         listVC.loadingView.stopAnimating()
         listVC.tableView.isHidden = false
@@ -161,8 +161,12 @@ extension MapViewController {
         listPanel.move(to: position, animated: true)
     }
     
-    private func displayPlaceDetail() {
-        
+    /// Displays the detail of a place
+    private func displayPlaceDetail(place: Place?) {
+        panelDelegate.lastPanelPosition = listPanel.position
+        listPanel.move(to: .hidden, animated: true)
+        detailPanel.move(to: .half, animated: true)
+        detailVC.place = place
     }
     
     /// Displays error message

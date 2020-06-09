@@ -14,7 +14,7 @@ extension MapViewController {
         case neutral
         case loading
         case placesList
-        case placeDetail
+        case placeDetail(place: Place?)
         case empty
     }
 }
