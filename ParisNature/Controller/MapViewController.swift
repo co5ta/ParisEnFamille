@@ -92,23 +92,13 @@ extension MapViewController {
         detailPanel.surfaceView.cornerRadius = 10
         detailPanel.surfaceView.backgroundColor = .clear
         detailPanel.set(contentViewController: detailVC)
-        detailPanel.track(scrollView: detailVC.scrollView)
+        detailPanel.track(scrollView: detailVC.detailView.scrollView)
     }
     
     /// Sets up the map view
     private func setUpMapView() {
         mapView.register(PlaceAnnotationView.self, forAnnotationViewWithReuseIdentifier: PlaceAnnotationView.identifer)
         view.addSubview(mapView)
-    }
-}
-
-// MARK: - Actions
-extension MapViewController {
-    
-    /// Closes the
-    @objc
-    func cancelButtonTapped() {
-        displayPlacesList()
     }
 }
 
