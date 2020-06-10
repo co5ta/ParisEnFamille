@@ -10,6 +10,8 @@
 		2252768A247FB38E00398B87 /* Geom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22527689247FB38E00398B87 /* Geom.swift */; };
 		2253148A24755AF50059BCFD /* PlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253148924755AF50059BCFD /* PlaceCell.swift */; };
 		2253148C247574560059BCFD /* MapViewController+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253148B247574560059BCFD /* MapViewController+State.swift */; };
+		2254268E24915FCA00C217F1 /* PlaceListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254268D24915FCA00C217F1 /* PlaceListDelegate.swift */; };
+		2254269024916EBA00C217F1 /* PlaceTypeListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254268F24916EBA00C217F1 /* PlaceTypeListDelegate.swift */; };
 		2254657D248EC3AE00D082E8 /* PanelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254657C248EC3AE00D082E8 /* PanelDelegate.swift */; };
 		2254657F248EF47C00D082E8 /* MapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254657E248EF47C00D082E8 /* MapDelegate.swift */; };
 		2254EB2A246FDFCA00BEA2AC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254EB29246FDFCA00BEA2AC /* ListViewController.swift */; };
@@ -57,6 +59,8 @@
 		22527689247FB38E00398B87 /* Geom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geom.swift; sourceTree = "<group>"; };
 		2253148924755AF50059BCFD /* PlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCell.swift; sourceTree = "<group>"; };
 		2253148B247574560059BCFD /* MapViewController+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController+State.swift"; sourceTree = "<group>"; };
+		2254268D24915FCA00C217F1 /* PlaceListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListDelegate.swift; sourceTree = "<group>"; };
+		2254268F24916EBA00C217F1 /* PlaceTypeListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTypeListDelegate.swift; sourceTree = "<group>"; };
 		2254657C248EC3AE00D082E8 /* PanelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelDelegate.swift; sourceTree = "<group>"; };
 		2254657E248EF47C00D082E8 /* MapDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDelegate.swift; sourceTree = "<group>"; };
 		2254EB29246FDFCA00BEA2AC /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +176,8 @@
 			children = (
 				225745B3246705190040BBC8 /* MapViewController.swift */,
 				2254EB29246FDFCA00BEA2AC /* ListViewController.swift */,
+				2254268D24915FCA00C217F1 /* PlaceListDelegate.swift */,
+				2254268F24916EBA00C217F1 /* PlaceTypeListDelegate.swift */,
 				22584831247D5D8500520AD6 /* DetailViewController.swift */,
 				2254657E248EF47C00D082E8 /* MapDelegate.swift */,
 				2254657C248EC3AE00D082E8 /* PanelDelegate.swift */,
@@ -440,6 +446,7 @@
 				2254EB2A246FDFCA00BEA2AC /* ListViewController.swift in Sources */,
 				225BED772465A28100A69076 /* AppDelegate.swift in Sources */,
 				2255ABC92487A366008F33EC /* TopStackView.swift in Sources */,
+				2254269024916EBA00C217F1 /* PlaceTypeListDelegate.swift in Sources */,
 				225628192474F04700DDEAAB /* Place.swift in Sources */,
 				225FC20924797BB0004E7D56 /* Event.swift in Sources */,
 				2255A98B2488EC4A00196E56 /* GreenSpaceStackView.swift in Sources */,
@@ -457,6 +464,7 @@
 				228C8065248AB256002AB3DE /* EventStackView.swift in Sources */,
 				225FC20824797BB0004E7D56 /* EventsResult.swift in Sources */,
 				2255DC572490069D000D4D35 /* ErrorView.swift in Sources */,
+				2254268E24915FCA00C217F1 /* PlaceListDelegate.swift in Sources */,
 				2255ABCF2487F065008F33EC /* FieldView.swift in Sources */,
 				22562811247275EC00DDEAAB /* PlaceType.swift in Sources */,
 				22576AAB24767F4600373476 /* PlaceAnnotationView.swift in Sources */,
