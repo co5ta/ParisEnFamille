@@ -147,8 +147,7 @@ extension MapViewController {
             listPanel.move(to: .full, animated: true)
         } else {
             toggleViews(show: listVC.tableView)
-            let position = panelDelegate.lastPanelPosition ?? .half
-            listPanel.move(to: position, animated: true)
+            listPanel.move(to: .half, animated: true)
         }
         detailPanel.move(to: .hidden, animated: true)
     }
@@ -158,7 +157,7 @@ extension MapViewController {
         detailVC.place = place
         panelDelegate.lastPanelPosition = listPanel.position
         listPanel.move(to: .hidden, animated: true)
-        detailPanel.move(to: .full, animated: true)
+        detailPanel.move(to: .half, animated: true)
     }
     
     private func toggleViews(show view: UIView) {
