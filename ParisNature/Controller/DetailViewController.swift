@@ -102,9 +102,9 @@ extension DetailViewController {
     @objc
     private func phoneButtonTapped() {
         guard let place = place as? Event,
-        let contactPhone = place.contactPhone,
-        let phoneNumber = URL(string: "tel://\(contactPhone)")
-        else { return }
+            let contactPhone = place.contactPhone,
+            let phoneNumber = URL(string: "tel://\(contactPhone)")
+            else { return }
         UIApplication.shared.open(phoneNumber)
     }
     

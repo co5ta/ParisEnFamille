@@ -74,7 +74,7 @@ class Event: NSObject, Place {
         contactName = try fields.decodeIfPresent(String.self, forKey: .contactName)
         contactUrl = try fields.decodeIfPresent(String.self, forKey: .contactUrl)
         contactMail = try fields.decodeIfPresent(String.self, forKey: .contactMail)
-        contactPhone = try fields.decodeIfPresent(String.self, forKey: .contactPhone)
+        contactPhone = try fields.decodeIfPresent(String.self, forKey: .contactPhone)?.replacingOccurrences(of: " ", with: "")
         subheading = addressStreet
     }
 }
