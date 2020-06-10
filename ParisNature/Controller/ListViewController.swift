@@ -188,21 +188,16 @@ extension ListViewController: UICollectionViewDataSource {
         guard sender.isSelected == false else { return }
         imagesButton.forEach { $0.isSelected = ($0 != sender) ? false : true }
         guard let cell = sender.superview?.superview as? PlaceTypeCell,
-            let placeType = cell.placeType,
-            let mapVC = mapVC
+            let placeType = cell.placeType
             else { return }
         
         removePlaces()
-        mapVC.panelDelegate.lastPanelPosition = nil
+        mapVC?.panelDelegate.lastPanelPosition = nil
         switch placeType {
-        case .park:
-            mapVC.mapDelegate.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
-        case .garden:
-            mapVC.mapDelegate.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
         case .event:
-            mapVC.mapDelegate.getPlaces(placeType: placeType, dataType: EventsResult.self)
-        case .other:
-            mapVC.mapDelegate.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
+            mapVC?.mapDelegate.getPlaces(placeType: placeType, dataType: EventsResult.self)
+        default:
+            mapVC?.mapDelegate.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
         }
     }
     
