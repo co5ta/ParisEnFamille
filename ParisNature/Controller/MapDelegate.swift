@@ -51,13 +51,6 @@ extension MapDelegate: MKMapViewDelegate {
 // MARK: - CLLocationManagerDelegate
 extension MapDelegate: CLLocationManagerDelegate {
     
-    /// Tells the delegate that new location data is available
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        guard let location = locations.last else { return }
-//        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionSize, longitudinalMeters: regionSize)
-//        mapView.setRegion(region, animated: true)
-    }
-    
     /// Tells the delegate its authorization status when the app creates the location manager and when the authorization status changes
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
@@ -132,8 +125,7 @@ extension MapDelegate {
     
     /// Handles the error from the request
     private func handle(_ error: NetworkError) {
-        print(#function, error)
-        self.mapVC?.state = .empty
+        self.mapVC?.state = .placesList(error: error)
     }
     
     /// Handles the result of the request
@@ -144,27 +136,26 @@ extension MapDelegate {
         case is EventsResult:
             if let data = data as? EventsResult { add(places: data.list) }
         default:
-            print(#function, "Can't handle this type of data")
+            break
         }
     }
     
     /// Adds places in the map and the table view
     private func add(places: [Place]) {
+        if places.isEmpty {
+            mapVC?.state = .placesList(error: .emptyData)
+            return
+        }
+        
         guard let mapVC = mapVC else { return }
         for place in places {
-            guard isNew(place), place.coordinate.latitude != 0 else { continue }
-            place.calculateDistance(from: locationManager.location)
+            guard place.coordinate.latitude != 0 else { continue }
             mapVC.mapView.addAnnotation(place)
             mapVC.listVC.places.append(place)
             guard let greenspace = place as? GreenSpace, let polygon = greenspace.geom.shapes else { continue }
             mapVC.mapView.addOverlay(polygon)
         }
         mapVC.mapView.showAnnotations(mapVC.mapView.annotations, animated: true)
-        mapVC.state = .placesList
-    }
-    
-    /// Checks if the place is not already in the list
-    private func isNew(_ place: Place) -> Bool {
-        return mapVC?.listVC.places.contains { $0.title == place.title } == false
+        mapVC.state = .placesList()
     }
 }

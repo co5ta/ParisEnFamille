@@ -43,7 +43,7 @@ extension NetworkService {
         }
         /// Checks data
         guard let data = data else {
-            return .failure(.emptyData)
+            return .failure(.noData)
         }
         /// Converts data
         do {

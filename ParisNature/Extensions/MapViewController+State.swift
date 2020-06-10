@@ -13,8 +13,7 @@ extension MapViewController {
         // List of states
         case neutral
         case loading
-        case placesList
+        case placesList(error: NetworkError? = nil)
         case placeDetail(place: Place?)
-        case empty
     }
 }

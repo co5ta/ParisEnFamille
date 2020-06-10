@@ -15,8 +15,9 @@ enum NetworkError: Error {
     case url
     case client(Error)
     case server(URLResponse?)
-    case emptyData
+    case noData
     case decoding(Error)
+    case emptyData
 }
 
 // MARK: - LocalizedError
@@ -32,10 +33,21 @@ extension NetworkError: LocalizedError {
         case .server(let response):
             guard let response = response as? HTTPURLResponse else { return "Bad response"}
             return "Bad response: error \(response.statusCode)"
-        case .emptyData:
-            return "The request didn't find any result"
+        case .noData:
+            return "The request didn't return any data"
         case .decoding(let error):
             return "The data decoding failed: \(error.localizedDescription)"
+        case .emptyData:
+            return "No place founded"
+        }
+    }
+    
+    var imageName: String {
+        switch self {
+        case .emptyData:
+            return "empty"
+        default:
+            return "warning"
         }
     }
 }

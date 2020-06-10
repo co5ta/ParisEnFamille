@@ -126,43 +126,44 @@ extension MapViewController {
             break
         case .loading:
             displayLoading()
-        case .placesList:
-            displayPlacesList()
+        case .placesList(let error):
+            displayPlacesList(error)
         case .placeDetail(let place):
-            displayPlaceDetail(place: place)
-        case .empty:
-            displayError()
+            displayDetail(of: place)
         }
     }
     
     /// Displays loading
     private func displayLoading() {
+        toggleViews(show: listVC.loadingView)
         listPanel.move(to: .half, animated: true)
-        listVC.loadingView.startAnimating()
-        listVC.tableView.isHidden = true
     }
     
     /// Displays the list of places
-    private func displayPlacesList() {
-        listVC.loadingView.stopAnimating()
-        listVC.tableView.isHidden = false
+    private func displayPlacesList(_ error: NetworkError?) {
+        if let error = error {
+            listVC.errorView.error = error
+            toggleViews(show: listVC.errorView)
+            listPanel.move(to: .full, animated: true)
+        } else {
+            toggleViews(show: listVC.tableView)
+            let position = panelDelegate.lastPanelPosition ?? .half
+            listPanel.move(to: position, animated: true)
+        }
         detailPanel.move(to: .hidden, animated: true)
-        let position = (panelDelegate.lastPanelPosition == nil) ? .half : panelDelegate.lastPanelPosition!
-        listPanel.move(to: position, animated: true)
     }
     
     /// Displays the detail of a place
-    private func displayPlaceDetail(place: Place?) {
+    private func displayDetail(of place: Place?) {
+        detailVC.place = place
         panelDelegate.lastPanelPosition = listPanel.position
         listPanel.move(to: .hidden, animated: true)
-        detailPanel.move(to: .half, animated: true)
-        detailVC.place = place
+        detailPanel.move(to: .full, animated: true)
     }
     
-    /// Displays error message
-    private func displayError() {
-        listPanel.move(to: .half, animated: true)
-        listVC.loadingView.stopAnimating()
-        listVC.tableView.isHidden = true
+    private func toggleViews(show view: UIView) {
+        [listVC.loadingView, listVC.tableView, listVC.errorView].forEach {
+            $0.isHidden = ($0 == view) ? false : true
+        }
     }
 }

@@ -73,7 +73,7 @@ extension DetailViewController {
     /// Closes the detail view
     @objc
     private func cancelButtonTapped() {
-        mapVC?.state = .placesList
+        mapVC?.state = .placesList()
     }
     
     /// Gets the direction to the place

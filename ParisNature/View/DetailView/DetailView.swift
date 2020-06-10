@@ -79,7 +79,7 @@ extension DetailView {
             eventStackView.place = place
             toggleDetails(of: place)
         default:
-            print(#function, "This type of place is not handled")
+            break
         }
     }
     

@@ -18,6 +18,7 @@ class ListViewController: UIViewController {
     let tableView = UITableView()
     var places = [Place]() { didSet {updateTableView(oldValue)} }
     var loadingView = UIActivityIndicatorView()
+    var errorView = ErrorView()
 }
 
 // MARK: - Lifecycle
@@ -49,6 +50,7 @@ extension ListViewController {
         setUpCollectionView()
         setUpTableView()
         setUpLoadingView()
+        setUpErrorView()
         constrainViews()
     }
     
@@ -81,9 +83,16 @@ extension ListViewController {
     
     /// Sets up the loading view
     private func setUpLoadingView() {
-//        loadingView.color = .systemGreen
-        loadingView.hidesWhenStopped = true
+        loadingView.startAnimating()
+        loadingView.style = .gray
+        loadingView.isHidden = true
         view.addSubview(loadingView)
+    }
+    
+    /// Sets up error view
+    private func setUpErrorView() {
+        errorView.isHidden = true
+        view.addSubview(errorView)
     }
 }
 
@@ -96,6 +105,7 @@ extension ListViewController {
         constrainCollectionView()
         constrainTableView()
         constrainLoadingView()
+        constrainErrorView()
     }
     
     /// Constrains background view
@@ -137,6 +147,16 @@ extension ListViewController {
         NSLayoutConstraint.activate([
             loadingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingView.topAnchor.constraint(equalToSystemSpacingBelow: collectionView.bottomAnchor, multiplier: 5)
+        ])
+    }
+    
+    private func constrainErrorView() {
+        errorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            errorView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
