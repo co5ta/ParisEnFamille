@@ -58,12 +58,13 @@ extension MapViewController {
     /// Sets up the instance
     private func configure() {
         navigationController?.setNavigationBarHidden(true, animated: true)
+        listVC.mapVC = self
+        detailVC.mapVC = self
         mapView.delegate = mapDelegate
         mapDelegate.mapVC = self
         listPanel.delegate = panelDelegate
         detailPanel.delegate = panelDelegate
         panelDelegate.mapVC = self
-        listVC.mapVC = self
     }
     
     /// Sets up the views
