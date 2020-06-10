@@ -147,8 +147,9 @@ extension MapViewController {
             toggleViews(show: listVC.errorView)
             listPanel.move(to: .full, animated: true)
         } else {
+            let position = panelDelegate.lastPanelPosition ?? .half
             toggleViews(show: listVC.tableView)
-            listPanel.move(to: .half, animated: true)
+            listPanel.move(to: position, animated: true)
         }
         detailPanel.move(to: .hidden, animated: true)
     }

@@ -193,6 +193,7 @@ extension ListViewController: UICollectionViewDataSource {
             else { return }
         
         removePlaces()
+        mapVC.panelDelegate.lastPanelPosition = nil
         switch placeType {
         case .park:
             mapVC.mapDelegate.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
