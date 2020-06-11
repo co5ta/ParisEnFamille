@@ -60,6 +60,12 @@ extension TopStackView {
         directionsButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         addSubview(directionsButton)
     }
+    
+    /// Puts data in views
+    private func setData(with place: Place?) {
+        guard let place = place else { return }
+        titleLabel.text = place.title
+    }
 }
 
 // MARK: - Constraints
@@ -90,15 +96,5 @@ extension TopStackView {
             directionsButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             directionsButton.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-    }
-}
-
-// MARK: - Data
-extension TopStackView {
-    
-    /// Sets up the data
-    private func setData(with place: Place?) {
-        guard let place = place else { return }
-        titleLabel.text = place.title
     }
 }

@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2252768A247FB38E00398B87 /* Geom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22527689247FB38E00398B87 /* Geom.swift */; };
-		2253148A24755AF50059BCFD /* PlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253148924755AF50059BCFD /* PlaceCell.swift */; };
+		2253148A24755AF50059BCFD /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253148924755AF50059BCFD /* PlaceTableViewCell.swift */; };
 		2253148C247574560059BCFD /* MapViewController+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253148B247574560059BCFD /* MapViewController+State.swift */; };
-		2254268E24915FCA00C217F1 /* PlaceListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254268D24915FCA00C217F1 /* PlaceListDelegate.swift */; };
-		2254269024916EBA00C217F1 /* PlaceTypeListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254268F24916EBA00C217F1 /* PlaceTypeListDelegate.swift */; };
+		2254268E24915FCA00C217F1 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254268D24915FCA00C217F1 /* TableViewDelegate.swift */; };
+		2254269024916EBA00C217F1 /* CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254268F24916EBA00C217F1 /* CollectionViewDelegate.swift */; };
 		2254657D248EC3AE00D082E8 /* PanelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254657C248EC3AE00D082E8 /* PanelDelegate.swift */; };
 		2254657F248EF47C00D082E8 /* MapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254657E248EF47C00D082E8 /* MapDelegate.swift */; };
 		2254EB2A246FDFCA00BEA2AC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254EB29246FDFCA00BEA2AC /* ListViewController.swift */; };
@@ -22,7 +22,7 @@
 		2255DC55248FDDDE000D4D35 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255DC54248FDDDE000D4D35 /* DetailView.swift */; };
 		2255DC572490069D000D4D35 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255DC562490069D000D4D35 /* ErrorView.swift */; };
 		22562811247275EC00DDEAAB /* PlaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22562810247275EC00DDEAAB /* PlaceType.swift */; };
-		225628132472A07B00DDEAAB /* PlaceTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225628122472A07B00DDEAAB /* PlaceTypeCell.swift */; };
+		225628132472A07B00DDEAAB /* PlaceTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225628122472A07B00DDEAAB /* PlaceTypeCollectionViewCell.swift */; };
 		225628152474067E00DDEAAB /* CustomPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225628142474067E00DDEAAB /* CustomPanelLayout.swift */; };
 		225628192474F04700DDEAAB /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225628182474F04700DDEAAB /* Place.swift */; };
 		225745B4246705190040BBC8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225745B3246705190040BBC8 /* MapViewController.swift */; };
@@ -58,10 +58,10 @@
 
 /* Begin PBXFileReference section */
 		22527689247FB38E00398B87 /* Geom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geom.swift; sourceTree = "<group>"; };
-		2253148924755AF50059BCFD /* PlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCell.swift; sourceTree = "<group>"; };
+		2253148924755AF50059BCFD /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		2253148B247574560059BCFD /* MapViewController+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController+State.swift"; sourceTree = "<group>"; };
-		2254268D24915FCA00C217F1 /* PlaceListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListDelegate.swift; sourceTree = "<group>"; };
-		2254268F24916EBA00C217F1 /* PlaceTypeListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTypeListDelegate.swift; sourceTree = "<group>"; };
+		2254268D24915FCA00C217F1 /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
+		2254268F24916EBA00C217F1 /* CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDelegate.swift; sourceTree = "<group>"; };
 		2254657C248EC3AE00D082E8 /* PanelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelDelegate.swift; sourceTree = "<group>"; };
 		2254657E248EF47C00D082E8 /* MapDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDelegate.swift; sourceTree = "<group>"; };
 		2254EB29246FDFCA00BEA2AC /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		2255DC54248FDDDE000D4D35 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		2255DC562490069D000D4D35 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		22562810247275EC00DDEAAB /* PlaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceType.swift; sourceTree = "<group>"; };
-		225628122472A07B00DDEAAB /* PlaceTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTypeCell.swift; sourceTree = "<group>"; };
+		225628122472A07B00DDEAAB /* PlaceTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		225628142474067E00DDEAAB /* CustomPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPanelLayout.swift; sourceTree = "<group>"; };
 		225628182474F04700DDEAAB /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		225745B3246705190040BBC8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -209,8 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				2254EB29246FDFCA00BEA2AC /* ListViewController.swift */,
-				2254268D24915FCA00C217F1 /* PlaceListDelegate.swift */,
-				2254268F24916EBA00C217F1 /* PlaceTypeListDelegate.swift */,
+				2254268F24916EBA00C217F1 /* CollectionViewDelegate.swift */,
+				2254268D24915FCA00C217F1 /* TableViewDelegate.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -228,8 +228,8 @@
 			isa = PBXGroup;
 			children = (
 				2259AD0E249230BA00018DC3 /* ListView.swift */,
-				225628122472A07B00DDEAAB /* PlaceTypeCell.swift */,
-				2253148924755AF50059BCFD /* PlaceCell.swift */,
+				225628122472A07B00DDEAAB /* PlaceTypeCollectionViewCell.swift */,
+				2253148924755AF50059BCFD /* PlaceTableViewCell.swift */,
 				2255DC562490069D000D4D35 /* ErrorView.swift */,
 			);
 			path = List;
@@ -485,12 +485,12 @@
 				2254657F248EF47C00D082E8 /* MapDelegate.swift in Sources */,
 				2254657D248EC3AE00D082E8 /* PanelDelegate.swift in Sources */,
 				22BB89E22465AE68008740DA /* MainCoordinator.swift in Sources */,
-				225628132472A07B00DDEAAB /* PlaceTypeCell.swift in Sources */,
+				225628132472A07B00DDEAAB /* PlaceTypeCollectionViewCell.swift in Sources */,
 				2254EB2A246FDFCA00BEA2AC /* ListViewController.swift in Sources */,
 				225BED772465A28100A69076 /* AppDelegate.swift in Sources */,
 				2259AD0F249230BA00018DC3 /* ListView.swift in Sources */,
 				2255ABC92487A366008F33EC /* TopStackView.swift in Sources */,
-				2254269024916EBA00C217F1 /* PlaceTypeListDelegate.swift in Sources */,
+				2254269024916EBA00C217F1 /* CollectionViewDelegate.swift in Sources */,
 				225628192474F04700DDEAAB /* Place.swift in Sources */,
 				225FC20924797BB0004E7D56 /* Event.swift in Sources */,
 				2255A98B2488EC4A00196E56 /* GreenSpaceStackView.swift in Sources */,
@@ -503,12 +503,12 @@
 				225BED792465A28100A69076 /* SceneDelegate.swift in Sources */,
 				22579D6D2467FDE4007470F4 /* NetworkError.swift in Sources */,
 				225628152474067E00DDEAAB /* CustomPanelLayout.swift in Sources */,
-				2253148A24755AF50059BCFD /* PlaceCell.swift in Sources */,
+				2253148A24755AF50059BCFD /* PlaceTableViewCell.swift in Sources */,
 				2253148C247574560059BCFD /* MapViewController+State.swift in Sources */,
 				228C8065248AB256002AB3DE /* EventStackView.swift in Sources */,
 				225FC20824797BB0004E7D56 /* EventsResult.swift in Sources */,
 				2255DC572490069D000D4D35 /* ErrorView.swift in Sources */,
-				2254268E24915FCA00C217F1 /* PlaceListDelegate.swift in Sources */,
+				2254268E24915FCA00C217F1 /* TableViewDelegate.swift in Sources */,
 				2255ABCF2487F065008F33EC /* FieldView.swift in Sources */,
 				22562811247275EC00DDEAAB /* PlaceType.swift in Sources */,
 				22576AAB24767F4600373476 /* PlaceAnnotationView.swift in Sources */,

@@ -8,10 +8,9 @@
 
 import UIKit
 
+/// View which displays the detail of a space
 class DetailView: UIView {
 
-    /// The place to manage
-    var place: Place? { didSet {setData(for: place)} }
     /// A Blur background
     var visualEffectView: UIVisualEffectView!
     /// The view which display the place
@@ -24,6 +23,10 @@ class DetailView: UIView {
     let eventStackView = EventStackView()
     /// Button to close the floating panel
     let cancelButton = UIButton()
+    /// The place to manage
+    var place: Place? {
+        didSet { setData(with: place) }
+    }
     
     /// Initializes for the code
     override init(frame: CGRect) {
@@ -61,13 +64,15 @@ extension DetailView {
         addSubview(visualEffectView)
     }
     
+    /// Sets up cancel button
     private func setUpCancelButton() {
         cancelButton.setImage(UIImage(named: "close"), for: .normal)
         cancelButton.setImage(UIImage(named: "closeSelected"), for: .highlighted)
         addSubview(cancelButton)
     }
     
-    private func setData(for place: Place?) {
+    /// Puts data in views
+    private func setData(with place: Place?) {
         guard let place = place else { return }
         topStackView.place = place
         
@@ -83,6 +88,7 @@ extension DetailView {
         }
     }
     
+    /// Displays the proper stack view to switch between greenspace and event details
     private func toggleDetails(of place: Place) {
         greenspaceStackView.isHidden = place is GreenSpace ? false : true
         eventStackView.isHidden = place is Event ? false : true
@@ -92,6 +98,7 @@ extension DetailView {
 // MARK: - Constraints
 extension DetailView {
     
+    /// Constrains the views
     private func constrainViews() {
         constrainVisualEffectView()
         constrainTopStackView()
@@ -122,6 +129,7 @@ extension DetailView {
         ])
     }
     
+    /// Constrains the scroll view
     private func constrainScrollView() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -132,6 +140,7 @@ extension DetailView {
         ])
     }
     
+    /// Constrains the greenspace stack view
     private func constrainGreenSpaceStackView() {
         greenspaceStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -141,17 +150,18 @@ extension DetailView {
         ])
     }
     
+    /// Constrains the event stack view
     private func constrainEventStackView() {
         eventStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             eventStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             eventStackView.leadingAnchor.constraint(equalTo: topStackView.leadingAnchor),
             eventStackView.trailingAnchor.constraint(equalTo: topStackView.trailingAnchor),
-//            eventStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
             scrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: eventStackView.bottomAnchor, multiplier: 3)
         ])
     }
     
+    /// Constrains the cancel button
     private func constrainCancelButton() {
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

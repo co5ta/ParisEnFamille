@@ -8,24 +8,39 @@
 
 import UIKit
 
+/// A stack view which contains the details about an event
 class EventStackView: UIStackView {
 
-    var place: Place? { didSet {setUpData(with: place)} }
+    /// Event address
     let addressFieldView = FieldView()
+    /// Event date
     let dateFieldView = FieldView()
+    /// A short text which describe the event
     let leadTextFieldView = FieldView()
+    /// Indicates if the access is free or paying
     let accessFieldView = FieldView()
+    /// The name of the contact
     let contactFieldView = FieldView()
+    /// Stack view containing the contact informations
     let contactStackView = UIStackView()
+    /// Website button
     let websiteButton = UIButton(type: .system)
+    /// Phone button
     let phoneButton = UIButton(type: .system)
+    /// Mail button
     let mailButton = UIButton(type: .system)
+    /// Data of the event
+    var place: Place? {
+        didSet { setUpData(with: place) }
+    }
     
+    /// Initializes the class from code
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpViews()
     }
 
+    /// Initializes the class from storyboard
     required init(coder: NSCoder) {
         super.init(coder: coder)
         setUpViews()
@@ -35,6 +50,7 @@ class EventStackView: UIStackView {
 // MARK: - Setup
 extension EventStackView {
     
+    /// Sets up the views
     private func setUpViews() {
         axis = .vertical
         addArrangedSubview(addressFieldView)
@@ -43,12 +59,13 @@ extension EventStackView {
         addArrangedSubview(accessFieldView)
         addArrangedSubview(contactFieldView)
         setUpContactStackView()
-        configureContactButton(button: phoneButton, imageName: "phone")
-        configureContactButton(button: websiteButton, imageName: "safari")
-        configureContactButton(button: mailButton, imageName: "mail")
+        setUpContactButton(button: phoneButton, imageName: "phone")
+        setUpContactButton(button: websiteButton, imageName: "safari")
+        setUpContactButton(button: mailButton, imageName: "mail")
         constrainContactButtons()
     }
     
+    /// Sets up the contact stack view
     private func setUpContactStackView() {
         contactStackView.spacing = 10
         contactStackView.distribution = .fillEqually
@@ -56,7 +73,8 @@ extension EventStackView {
         addArrangedSubview(contactStackView)
     }
     
-    private func configureContactButton(button: UIButton, imageName: String) {
+    /// Sets up a contact button
+    private func setUpContactButton(button: UIButton, imageName: String) {
         button.backgroundColor = Config.appGray
         button.setImage(UIImage(named: imageName), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
@@ -64,30 +82,15 @@ extension EventStackView {
         button.layer.cornerRadius = 5
         contactStackView.addArrangedSubview(button)
     }
-}
-
-// MARK: - Constraints
-extension EventStackView {
-    private func constrainContactButtons() {
-        [websiteButton, phoneButton, mailButton].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                $0.heightAnchor.constraint(equalToConstant: 50)
-            ])
-        }
-    }
-}
-
-// MARK: - Data
-extension EventStackView {
     
+    /// Sets up view with data
     private func setUpData(with place: Place?) {
         guard let place = place as? Event else { return }
         addressFieldView.setData(title: "Address", value: place.address, separatorHidden: true)
         dateFieldView.setData(title: "Date", value: getDateText(place))
         leadTextFieldView.setData(title: "Description", value: place.leadText)
         accessFieldView.setData(title: "Access", value: place.access.joined(separator: ", "))
-        toggle(fieldView: contactFieldView, title: "Contact", value: place.contactName)
+        toggleFieldView(contactFieldView, title: "Contact", value: place.contactName)
         toggleContactButtons(place)
     }
     
@@ -99,7 +102,8 @@ extension EventStackView {
         return dateStart != dateEnd ? "From \(dateStart) to \(dateEnd)" : dateStart
     }
     
-    private func toggle(fieldView: FieldView, title: String, value: String?) {
+    /// Toggles display of views
+    private func toggleFieldView(_ fieldView: FieldView, title: String, value: String?) {
         guard let value = value else {
             fieldView.isHidden = true
             return
@@ -108,9 +112,24 @@ extension EventStackView {
         fieldView.isHidden = false
     }
     
+    /// Toggles display of contact buttons
     private func toggleContactButtons(_ place: Event) {
         websiteButton.isHidden = place.contactUrl == nil ? true : false
         phoneButton.isHidden = place.contactPhone == nil ? true : false
         mailButton.isHidden = place.contactMail == nil ? true : false
+    }
+}
+
+// MARK: - Constraints
+extension EventStackView {
+    
+    /// Constrains the contact buttons
+    private func constrainContactButtons() {
+        [websiteButton, phoneButton, mailButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                $0.heightAnchor.constraint(equalToConstant: 50)
+            ])
+        }
     }
 }

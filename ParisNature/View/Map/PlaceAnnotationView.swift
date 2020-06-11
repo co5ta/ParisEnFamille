@@ -9,17 +9,19 @@
 import UIKit
 import MapKit
 
+/// Custom annotation view
 class PlaceAnnotationView: MKMarkerAnnotationView {
-
-//    var place: Place { didSet {configure()} }
-//    let name = String()
+    
+    /// Annotation identifier
     static let identifer = "PlaceAnnotation"
     
+    /// Initializes from code
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         clusteringIdentifier = "Place"
     }
 
+    /// Initializes form storyboard
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

@@ -105,6 +105,7 @@ extension MapViewController {
 
 // MARK: - Constraints
 extension MapViewController {
+    
     /// Adds constraints to map view
     private func constrainViews() {
         mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -166,6 +167,7 @@ extension MapViewController {
         detailPanel.move(to: .half, animated: true)
     }
     
+    /// Toggles the views of the list view controller
     private func toggleViews(show view: UIView) {
         [listVC.listView.loadingView, listVC.listView.tableView, listVC.listView.errorView].forEach {
             $0.isHidden = ($0 == view) ? false : true

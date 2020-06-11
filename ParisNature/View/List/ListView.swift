@@ -56,13 +56,13 @@ extension ListView {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
         collectionView.isScrollEnabled = false
-        collectionView.register(PlaceTypeCell.self, forCellWithReuseIdentifier: PlaceTypeCell.identifier)
+        collectionView.register(PlaceTypeCollectionViewCell.self, forCellWithReuseIdentifier: PlaceTypeCollectionViewCell.identifier)
         addSubview(collectionView)
     }
     
     /// Sets up the table view
     private func setUpTableView() {
-        tableView.register(PlaceCell.self, forCellReuseIdentifier: PlaceCell.identifier)
+        tableView.register(PlaceTableViewCell.self, forCellReuseIdentifier: PlaceTableViewCell.identifier)
         tableView.backgroundColor = .clear
         addSubview(tableView)
     }

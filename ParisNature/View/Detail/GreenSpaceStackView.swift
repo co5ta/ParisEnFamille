@@ -9,29 +9,43 @@
 import UIKit
 import MapKit
 
+/// A stack view which contains the details about a greenspace
 class GreenSpaceStackView: UIStackView {
     
-    var place: Place? { didSet {setUpData(with: place)} }
+    /// Address of the greenspace
     let addressFieldView = FieldView()
+    /// Surface of the greenspace
     let surfaceFieldView = FieldView()
+    /// Horticultural surface of the greenspace
     let surfaceHortiFieldView = FieldView()
+    /// Tells if the greenspace has fence
     let fenceFieldView = FieldView()
+    /// Tells if the greenspace is open 2H hours a day
     let open24hFieldView = FieldView()
+    /// Indicates if the opening year of the greenspace
     let anneeOuvertureFieldView = FieldView()
+    /// Data of the greenspace
+    var place: Place? {
+        didSet { setUpData(with: place) }
+    }
 
+    /// Initializes the class from code
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpViews()
     }
 
+    /// Initializes the class from storyboard
     required init(coder: NSCoder) {
         super.init(coder: coder)
         setUpViews()
     }
 }
 
+// MARK: - Setup
 extension GreenSpaceStackView {
     
+    /// Sets up the views
     private func setUpViews() {
         axis = .vertical
         addArrangedSubview(addressFieldView)
@@ -41,10 +55,8 @@ extension GreenSpaceStackView {
         addArrangedSubview(open24hFieldView)
         addArrangedSubview(anneeOuvertureFieldView)
     }
-}
-
-extension GreenSpaceStackView {
     
+    /// Puts data in views
     private func setUpData(with place: Place?) {
         guard let place = place as? GreenSpace else { return }
         addressFieldView.setData(title: "Address", value: place.address, separatorHidden: true)

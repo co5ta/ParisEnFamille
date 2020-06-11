@@ -9,14 +9,14 @@
 import UIKit
 
 /// Delegate of the collection view  containing the list of place types
-class PlaceTypeListDelegate: NSObject {
+class CollectionViewDelegate: NSObject {
 
     /// View controller of the list of places
     weak var listVC: ListViewController?
 }
 
 // MARK: - UICollectionViewDelegate
-extension PlaceTypeListDelegate: UICollectionViewDelegateFlowLayout {
+extension CollectionViewDelegate: UICollectionViewDelegateFlowLayout {
 
     /// Asks the delegate for the size of the specified item’s cell
     func collectionView(_ collectionView: UICollectionView,
@@ -37,7 +37,7 @@ extension PlaceTypeListDelegate: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - UICollectionViewDataSource
-extension PlaceTypeListDelegate: UICollectionViewDataSource {
+extension CollectionViewDelegate: UICollectionViewDataSource {
 
     /// Asks your data source object for the number of items in the specified section.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -47,8 +47,8 @@ extension PlaceTypeListDelegate: UICollectionViewDataSource {
     /// Asks your data source object for the cell that corresponds to the specified item in the collection view.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: PlaceTypeCell.identifier,
-            for: indexPath) as? PlaceTypeCell,
+            withReuseIdentifier: PlaceTypeCollectionViewCell.identifier,
+            for: indexPath) as? PlaceTypeCollectionViewCell,
             let listVC = listVC
             else { return UICollectionViewCell() }
 
@@ -60,14 +60,14 @@ extension PlaceTypeListDelegate: UICollectionViewDataSource {
 }
 
 // MARK: - Actions
-extension PlaceTypeListDelegate {
+extension CollectionViewDelegate {
 
-    /// Launch the search to get the places asken by the user
+    /// Launchs the search to get the places asken by the user
     @objc
     func imageButtonTapped(sender: UIButton) {
         guard sender.isSelected == false else { return }
         listVC?.listView.imagesButton.forEach { $0.isSelected = ($0 != sender) ? false : true }
-        guard let cell = sender.superview?.superview as? PlaceTypeCell,
+        guard let cell = sender.superview?.superview as? PlaceTypeCollectionViewCell,
             let placeType = cell.placeType
             else { return }
 

@@ -9,14 +9,14 @@
 import UIKit
 
 /// Delegate of the table view which containing the list of places
-class PlaceListDelegate: NSObject {
+class TableViewDelegate: NSObject {
     
     /// View controller of the list of places
     weak var listVC: ListViewController?
 }
 
 // MARK: - UITableViewDataSource
-extension PlaceListDelegate: UITableViewDataSource {
+extension TableViewDelegate: UITableViewDataSource {
     
     /// Tells the data source to return the number of rows in a given section of a table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -25,7 +25,9 @@ extension PlaceListDelegate: UITableViewDataSource {
     
     /// Asks the data source for a cell to insert in a particular location of the table view
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PlaceCell.identifier, for: indexPath) as? PlaceCell
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: PlaceTableViewCell.identifier,
+            for: indexPath) as? PlaceTableViewCell
             else { return UITableViewCell() }
         
         let place = listVC?.places[indexPath.row]
@@ -42,11 +44,11 @@ extension PlaceListDelegate: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension PlaceListDelegate: UITableViewDelegate {
+extension TableViewDelegate: UITableViewDelegate {
     
     /// Tells the delegate that the specified row is now selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? PlaceCell else { return }
+        guard let cell = tableView.cellForRow(at: indexPath) as? PlaceTableViewCell else { return }
         cell.isSelected = false
         listVC?.mapVC?.state = .placeDetail(place: cell.place)
     }

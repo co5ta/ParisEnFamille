@@ -8,18 +8,27 @@
 
 import UIKit
 
+/// A custom view to display a pretty error message
 class ErrorView: UIView {
 
-    var error: NetworkError? { didSet { setData(with: error)} }
+    /// Container of the views
     var stackView = UIStackView()
+    /// Image of the error
     var imageView = UIImageView()
+    /// Message of the error
     var messageLabel = UILabel()
+    /// Data of the error
+    var error: NetworkError? {
+        didSet { setData(with: error) }
+    }
     
+    /// Initializes the class from code
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpViews()
     }
     
+    /// Initializes the class from storyboard
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setUpViews()
@@ -29,14 +38,15 @@ class ErrorView: UIView {
 // MARK: - Setup
 extension ErrorView {
 
+    /// Sets up the views
     private func setUpViews() {
-//        backgroundColor = .blue
         setUpStackView()
         setUpImageView()
         setUpMessageLabel()
         constrainViews()
     }
     
+    /// Sets up the stack view
     private func setUpStackView() {
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -44,10 +54,12 @@ extension ErrorView {
         addSubview(stackView)
     }
     
+    /// Sets up the image view
     private func setUpImageView() {
         stackView.addArrangedSubview(imageView)
     }
     
+    /// Sets up the message label
     private func setUpMessageLabel() {
         messageLabel.font = .preferredFont(forTextStyle: .headline)
         messageLabel.numberOfLines = 0
@@ -56,6 +68,7 @@ extension ErrorView {
         stackView.addArrangedSubview(messageLabel)
     }
     
+    /// Puts data in views
     private func setData(with error: NetworkError?) {
         guard let error = error else { return }
         messageLabel.text = error.errorDescription

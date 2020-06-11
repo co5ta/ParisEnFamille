@@ -11,17 +11,17 @@ import UIKit
 /// Manages the display of list of places
 class ListViewController: UIViewController {
     
+    /// Map view controller
     weak var mapVC: MapViewController?
-    
     /// List of places
     let listView = ListView()
     // swiftlint:disable weak_delegate
-    let placeListDelegate = PlaceListDelegate()
+    let tableViewDelegate = TableViewDelegate()
     // swiftlint:disable weak_delegate
-    let placeTypeListDelegate = PlaceTypeListDelegate()
+    let collectionViewDelegate = CollectionViewDelegate()
     /// List of places founded by the research
     var places = [Place]() {
-        didSet { placeListDelegate.updateTableView(oldValue) }
+        didSet { tableViewDelegate.updateTableView(oldValue) }
     }
 }
 
@@ -41,12 +41,12 @@ extension ListViewController {
     
     /// Configures the view controller
     private func configure() {
-        listView.collectionView.dataSource = placeTypeListDelegate
-        listView.collectionView.delegate = placeTypeListDelegate
-        placeTypeListDelegate.listVC = self
-        listView.tableView.dataSource = placeListDelegate
-        listView.tableView.delegate = placeListDelegate
-        placeListDelegate.listVC = self
+        listView.collectionView.dataSource = collectionViewDelegate
+        listView.collectionView.delegate = collectionViewDelegate
+        collectionViewDelegate.listVC = self
+        listView.tableView.dataSource = tableViewDelegate
+        listView.tableView.delegate = tableViewDelegate
+        tableViewDelegate.listVC = self
     }
     
     /// Sets up the views

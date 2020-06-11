@@ -8,17 +8,23 @@
 
 import UIKit
 
+/// A view which displays an information about the place in a section
 class FieldView: UIView {
 
+    /// A line to separate the informations
     let separatorView = UIView()
+    /// Title of field
     let titleLabel = UILabel()
+    /// Value of the field
     let valueLabel = UILabel()
     
+    /// Initializes from the code
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpViews()
     }
     
+    /// Initializes from the storyboard
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setUpViews()
@@ -28,6 +34,7 @@ class FieldView: UIView {
 // MARK: - Setup
 extension FieldView {
     
+    /// Sets up the views
     private func setUpViews() {
         setUpSeparatorView()
         setUpTitleLabel()
@@ -41,6 +48,7 @@ extension FieldView {
         addSubview(separatorView)
     }
     
+    /// Sets up the title label
     private func setUpTitleLabel() {
         titleLabel.font = .preferredFont(forTextStyle: .subheadline)
         titleLabel.translatesAutoresizingMaskIntoConstraints = true
@@ -48,23 +56,33 @@ extension FieldView {
         addSubview(titleLabel)
     }
     
+    /// Sets up the value label
     private func setUpValueLabel() {
         valueLabel.font = .preferredFont(forTextStyle: .callout)
         valueLabel.translatesAutoresizingMaskIntoConstraints = true
         valueLabel.numberOfLines = 0
         addSubview(valueLabel)
     }
+    
+    /// Puts data in views
+    func setData(title: String, value: String, separatorHidden: Bool = false) {
+        separatorView.isHidden = separatorHidden
+        titleLabel.text = title.capitalized
+        valueLabel.text = value
+    }
 }
 
 // MARK: - Constraints
 extension FieldView {
     
+    /// Constrains the views
     private func constrainViews() {
         constrainSeparatorView()
         constrainTitleLabel()
         constrainValueLabel()
     }
     
+    /// Constrains the separator view
     private func constrainSeparatorView() {
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -75,6 +93,7 @@ extension FieldView {
         ])
     }
     
+    /// Constrains the title label
     private func constrainTitleLabel() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -83,6 +102,7 @@ extension FieldView {
         ])
     }
     
+    /// Constrains the value label
     private func constrainValueLabel() {
         valueLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -91,14 +111,5 @@ extension FieldView {
             valueLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             bottomAnchor.constraint(equalToSystemSpacingBelow: valueLabel.bottomAnchor, multiplier: 1)
         ])
-    }
-}
-
-extension FieldView {
-    
-    func setData(title: String, value: String, separatorHidden: Bool = false) {
-        separatorView.isHidden = separatorHidden
-        titleLabel.text = title.capitalized
-        valueLabel.text = value
     }
 }
