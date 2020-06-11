@@ -37,7 +37,7 @@ extension PlaceListDelegate: UITableViewDataSource {
     func updateTableView(_ oldValue: [Place]) {
         guard let numberOfPlaces = listVC?.places.count else { return }
         guard numberOfPlaces > oldValue.count else { return }
-        listVC?.tableView.insertRows(at: [IndexPath(item: numberOfPlaces-1, section: 0)], with: .none)
+        listVC?.listView.tableView.insertRows(at: [IndexPath(item: numberOfPlaces-1, section: 0)], with: .none)
     }
 }
 

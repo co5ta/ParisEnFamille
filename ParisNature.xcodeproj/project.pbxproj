@@ -32,6 +32,7 @@
 		22579D6D2467FDE4007470F4 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22579D6C2467FDE4007470F4 /* NetworkError.swift */; };
 		22579D6F246836EC007470F4 /* GreenSpacesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22579D6E246836EC007470F4 /* GreenSpacesResult.swift */; };
 		22584832247D5D8500520AD6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22584831247D5D8500520AD6 /* DetailViewController.swift */; };
+		2259AD0F249230BA00018DC3 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2259AD0E249230BA00018DC3 /* ListView.swift */; };
 		225BED772465A28100A69076 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225BED762465A28100A69076 /* AppDelegate.swift */; };
 		225BED792465A28100A69076 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225BED782465A28100A69076 /* SceneDelegate.swift */; };
 		225BED802465A28300A69076 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 225BED7F2465A28300A69076 /* Assets.xcassets */; };
@@ -81,6 +82,7 @@
 		22579D6C2467FDE4007470F4 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		22579D6E246836EC007470F4 /* GreenSpacesResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenSpacesResult.swift; sourceTree = "<group>"; };
 		22584831247D5D8500520AD6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		2259AD0E249230BA00018DC3 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		225BED732465A28100A69076 /* Paris Nature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paris Nature.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		225BED762465A28100A69076 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		225BED782465A28100A69076 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,7 +131,7 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
-		2255A98C2488FC7400196E56 /* DetailView */ = {
+		2255A98C2488FC7400196E56 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
 				2255DC54248FDDDE000D4D35 /* DetailView.swift */,
@@ -138,7 +140,7 @@
 				228C8064248AB256002AB3DE /* EventStackView.swift */,
 				2255ABCE2487F065008F33EC /* FieldView.swift */,
 			);
-			path = DetailView;
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		225745B524670A320040BBC8 /* Extensions */ = {
@@ -162,11 +164,9 @@
 		22575C232471508D00794EB3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				225628122472A07B00DDEAAB /* PlaceTypeCell.swift */,
-				2253148924755AF50059BCFD /* PlaceCell.swift */,
-				22576AAA24767F4600373476 /* PlaceAnnotationView.swift */,
-				2255A98C2488FC7400196E56 /* DetailView */,
-				2255DC562490069D000D4D35 /* ErrorView.swift */,
+				2259AD0D24922A5800018DC3 /* Map */,
+				2259AD0C24922A2B00018DC3 /* List */,
+				2255A98C2488FC7400196E56 /* Detail */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -174,14 +174,9 @@
 		22575C24247150A000794EB3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				225745B3246705190040BBC8 /* MapViewController.swift */,
-				2254EB29246FDFCA00BEA2AC /* ListViewController.swift */,
-				2254268D24915FCA00C217F1 /* PlaceListDelegate.swift */,
-				2254268F24916EBA00C217F1 /* PlaceTypeListDelegate.swift */,
-				22584831247D5D8500520AD6 /* DetailViewController.swift */,
-				2254657E248EF47C00D082E8 /* MapDelegate.swift */,
-				2254657C248EC3AE00D082E8 /* PanelDelegate.swift */,
-				225628142474067E00DDEAAB /* CustomPanelLayout.swift */,
+				2259AD0B249227DF00018DC3 /* Map */,
+				2259AD0A249227BC00018DC3 /* List */,
+				2259AD092492278D00018DC3 /* Detail */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -198,6 +193,54 @@
 				22527689247FB38E00398B87 /* Geom.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2259AD092492278D00018DC3 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				22584831247D5D8500520AD6 /* DetailViewController.swift */,
+				2254657E248EF47C00D082E8 /* MapDelegate.swift */,
+				2254657C248EC3AE00D082E8 /* PanelDelegate.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		2259AD0A249227BC00018DC3 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				2254EB29246FDFCA00BEA2AC /* ListViewController.swift */,
+				2254268D24915FCA00C217F1 /* PlaceListDelegate.swift */,
+				2254268F24916EBA00C217F1 /* PlaceTypeListDelegate.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		2259AD0B249227DF00018DC3 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				225745B3246705190040BBC8 /* MapViewController.swift */,
+				225628142474067E00DDEAAB /* CustomPanelLayout.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		2259AD0C24922A2B00018DC3 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				2259AD0E249230BA00018DC3 /* ListView.swift */,
+				225628122472A07B00DDEAAB /* PlaceTypeCell.swift */,
+				2253148924755AF50059BCFD /* PlaceCell.swift */,
+				2255DC562490069D000D4D35 /* ErrorView.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		2259AD0D24922A5800018DC3 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				22576AAA24767F4600373476 /* PlaceAnnotationView.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		225BED6A2465A28100A69076 = {
@@ -445,6 +488,7 @@
 				225628132472A07B00DDEAAB /* PlaceTypeCell.swift in Sources */,
 				2254EB2A246FDFCA00BEA2AC /* ListViewController.swift in Sources */,
 				225BED772465A28100A69076 /* AppDelegate.swift in Sources */,
+				2259AD0F249230BA00018DC3 /* ListView.swift in Sources */,
 				2255ABC92487A366008F33EC /* TopStackView.swift in Sources */,
 				2254269024916EBA00C217F1 /* PlaceTypeListDelegate.swift in Sources */,
 				225628192474F04700DDEAAB /* Place.swift in Sources */,

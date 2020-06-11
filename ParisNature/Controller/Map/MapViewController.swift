@@ -85,7 +85,7 @@ extension MapViewController {
         listPanel.surfaceView.cornerRadius = 10
         listPanel.surfaceView.backgroundColor = .clear
         listPanel.set(contentViewController: listVC)
-        listPanel.track(scrollView: listVC.tableView)
+        listPanel.track(scrollView: listVC.listView.tableView)
     }
     
     /// Sets up the detail floating panel
@@ -124,7 +124,7 @@ extension MapViewController {
     private func adjustViews() {
         switch state {
         case .neutral:
-            break
+            initDisplay()
         case .loading:
             displayLoading()
         case .placesList(let error):
@@ -134,21 +134,25 @@ extension MapViewController {
         }
     }
     
+    private func initDisplay() {
+//        toggleViews(show: listVC.listView.errorView)
+    }
+    
     /// Displays loading
     private func displayLoading() {
-        toggleViews(show: listVC.loadingView)
+        toggleViews(show: listVC.listView.loadingView)
         listPanel.move(to: .half, animated: true)
     }
     
     /// Displays the list of places
     private func displayPlacesList(_ error: NetworkError?) {
         if let error = error {
-            listVC.errorView.error = error
-            toggleViews(show: listVC.errorView)
+            listVC.listView.errorView.error = error
+            toggleViews(show: listVC.listView.errorView)
             listPanel.move(to: .full, animated: true)
         } else {
             let position = panelDelegate.lastPanelPosition ?? .half
-            toggleViews(show: listVC.tableView)
+            toggleViews(show: listVC.listView.tableView)
             listPanel.move(to: position, animated: true)
         }
         detailPanel.move(to: .hidden, animated: true)
@@ -163,7 +167,7 @@ extension MapViewController {
     }
     
     private func toggleViews(show view: UIView) {
-        [listVC.loadingView, listVC.tableView, listVC.errorView].forEach {
+        [listVC.listView.loadingView, listVC.listView.tableView, listVC.listView.errorView].forEach {
             $0.isHidden = ($0 == view) ? false : true
         }
     }
