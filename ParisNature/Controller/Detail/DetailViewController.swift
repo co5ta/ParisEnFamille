@@ -16,10 +16,12 @@ class DetailViewController: UIViewController {
 
     /// The map view controller
     weak var mapVC: MapViewController?
-    /// The place to manage
-    var place: Place? { didSet {detailView.place = place} }
     /// The detail view
     let detailView = DetailView()
+    /// The place to manage
+    var place: Place? {
+        didSet { detailView.place = place }
+    }
 }
 
 // MARK: - Lifecycle

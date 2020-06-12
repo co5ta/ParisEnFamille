@@ -15,6 +15,8 @@ class MapViewController: UIViewController {
     
     /// Map view
     let mapView = MKMapView()
+    /// Location manager
+    let locationManager = CLLocationManager()
     /// Floating panel which contains the list of places
     let listPanel = FloatingPanelController()
     /// Floating panel which contains the detail of a place
@@ -23,14 +25,19 @@ class MapViewController: UIViewController {
     let listVC = ListViewController()
     /// View controller whith the deail of a place
     let detailVC = DetailViewController()
-    /// View controller state
-    var state = State.neutral { didSet {adjustViews()} }
     /// Map view delegate
     // swiftlint:disable weak_delegate
     let mapDelegate = MapDelegate()
+    /// Location manager delegate
+    // swiftlint:disable weak_delegate
+    let locationManagerDelegate = LocationManagerDelegate()
     /// Floating panels delegate
     // swiftlint:disable weak_delegate
     let panelDelegate = PanelDelegate()
+    /// View controller state
+    var state = State.neutral {
+        didSet { adjustViews() }
+    }
 }
 
 // MARK: - Lifecycle
@@ -41,7 +48,6 @@ extension MapViewController {
         super.viewDidLoad()
         configure()
         setUpViews()
-        mapDelegate.checkLocationServices()
     }
     
     /// Notifies the view controller that its view was added to a view hierarchy.
@@ -62,6 +68,8 @@ extension MapViewController {
         detailVC.mapVC = self
         mapView.delegate = mapDelegate
         mapDelegate.mapVC = self
+        locationManager.delegate = locationManagerDelegate
+        locationManagerDelegate.mapVC = self
         listPanel.delegate = panelDelegate
         detailPanel.delegate = panelDelegate
         panelDelegate.mapVC = self
@@ -141,6 +149,7 @@ extension MapViewController {
     
     /// Displays loading
     private func displayLoading() {
+        mapDelegate.isFollowing = false
         toggleViews(show: listVC.listView.loadingView)
         listPanel.move(to: .half, animated: true)
     }

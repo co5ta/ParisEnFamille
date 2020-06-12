@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../../Xcode/gpx/ParisBastille.gpx">
+   </FileRef>
+   <FileRef
       location = "group:ParisNature.xcodeproj">
    </FileRef>
    <FileRef
