@@ -181,6 +181,7 @@
 				2259AD0B249227DF00018DC3 /* Map */,
 				2259AD0A249227BC00018DC3 /* List */,
 				2259AD092492278D00018DC3 /* Detail */,
+				2259F8362494F0A1000EE3F4 /* Panel */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -223,9 +224,6 @@
 				225745B3246705190040BBC8 /* MapViewController.swift */,
 				2254657E248EF47C00D082E8 /* MapDelegate.swift */,
 				2259FD382493BE3D0088444C /* LocationManagerDelegate.swift */,
-				2254657C248EC3AE00D082E8 /* PanelDelegate.swift */,
-				225628142474067E00DDEAAB /* ListPanelLayout.swift */,
-				2259FD362493BDBD0088444C /* DetailPanelLayout.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -247,6 +245,16 @@
 				22576AAA24767F4600373476 /* PlaceAnnotationView.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		2259F8362494F0A1000EE3F4 /* Panel */ = {
+			isa = PBXGroup;
+			children = (
+				225628142474067E00DDEAAB /* ListPanelLayout.swift */,
+				2259FD362493BDBD0088444C /* DetailPanelLayout.swift */,
+				2254657C248EC3AE00D082E8 /* PanelDelegate.swift */,
+			);
+			path = Panel;
 			sourceTree = "<group>";
 		};
 		225BED6A2465A28100A69076 = {
