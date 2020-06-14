@@ -151,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				2255DC52248FC628000D4D35 /* UIFont+Traits.swift */,
-				2253148B247574560059BCFD /* MapViewController+State.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -222,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				225745B3246705190040BBC8 /* MapViewController.swift */,
+				2253148B247574560059BCFD /* MapViewController+State.swift */,
 				2254657E248EF47C00D082E8 /* MapDelegate.swift */,
 				2259FD382493BE3D0088444C /* LocationManagerDelegate.swift */,
 			);
