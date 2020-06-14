@@ -46,7 +46,7 @@ extension MapDelegate {
     
     /// Handles the error from the request
     private func handleError(_ error: NetworkError) {
-        self.mapVC?.state = .placesList(error: error)
+        self.mapVC?.state = .message(error)
     }
     
     /// Handles the result of the request
@@ -65,7 +65,7 @@ extension MapDelegate {
     private func addPlaces(_ places: [Place]) {
         guard let mapVC = mapVC else { return }
         if places.isEmpty {
-            mapVC.state = .placesList(error: .emptyData)
+            mapVC.state = .message(.emptyData)
             return
         }
         
@@ -77,7 +77,7 @@ extension MapDelegate {
             mapVC.mapView.addOverlay(polygon)
         }
         mapVC.mapView.showAnnotations(mapVC.mapView.annotations, animated: true)
-        mapVC.state = .placesList()
+        mapVC.state = .placesList
     }
 }
 

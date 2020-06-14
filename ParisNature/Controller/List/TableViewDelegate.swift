@@ -50,6 +50,6 @@ extension TableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? PlaceTableViewCell else { return }
         cell.isSelected = false
-        listVC?.mapVC?.state = .placeDetail(place: cell.place)
+        listVC?.mapVC?.state = .placeDetail(cell.place)
     }
 }

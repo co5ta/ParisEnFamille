@@ -15,8 +15,9 @@ extension MapViewController {
         // List of states
         case neutral
         case loading
-        case placesList(error: NetworkError? = nil)
-        case placeDetail(place: Place?)
+        case placesList
+        case placeDetail(_ place: Place?)
+        case message(_ error: NetworkError)
     }
     
     /// Adjusts the views according to view controller state
@@ -26,10 +27,12 @@ extension MapViewController {
             initDisplay()
         case .loading:
             displayLoading()
-        case .placesList(let error):
-            displayPlacesList(error)
+        case .placesList:
+            displayPlacesList()
         case .placeDetail(let place):
             displayDetail(of: place)
+        case .message(let error):
+            displayMessage(error)
         }
     }
     
@@ -45,16 +48,10 @@ extension MapViewController {
     }
     
     /// Displays the list of places
-    private func displayPlacesList(_ error: NetworkError?) {
-        if let error = error {
-            listVC.listView.errorView.error = error
-            toggleViews(show: listVC.listView.errorView)
-            listPanel.move(to: .full, animated: true)
-        } else {
-            let position = panelDelegate.lastPanelPosition ?? .half
-            toggleViews(show: listVC.listView.tableView)
-            listPanel.move(to: position, animated: true)
-        }
+    private func displayPlacesList() {
+        let position = panelDelegate.lastPanelPosition ?? .half
+        toggleViews(show: listVC.listView.tableView)
+        listPanel.move(to: position, animated: true)
         detailPanel.move(to: .hidden, animated: true)
     }
     
@@ -64,6 +61,13 @@ extension MapViewController {
         panelDelegate.lastPanelPosition = listPanel.position
         listPanel.move(to: .hidden, animated: true)
         detailPanel.move(to: .half, animated: true)
+    }
+    
+    private func displayMessage(_ error: NetworkError) {
+        listVC.listView.errorView.error = error
+        toggleViews(show: listVC.listView.errorView)
+        listPanel.move(to: .full, animated: true)
+        detailPanel.move(to: .hidden, animated: true)
     }
     
     /// Toggles the views of the list view controller
