@@ -108,11 +108,12 @@ extension ListView {
     /// Constrains collection view
     private func constrainCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        let height = UIScreen.main.bounds.size.width * 0.25
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 100)
+            collectionView.heightAnchor.constraint(equalToConstant: height)
         ])
     }
     

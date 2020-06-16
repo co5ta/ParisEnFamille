@@ -55,7 +55,8 @@ extension PlaceTypeCollectionViewCell {
     private func setUpTitleLabel() {
         titleLabel.numberOfLines = 0
         titleLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
-        titleLabel.textColor = .black
+        titleLabel.adjustsFontForContentSizeCategory = true
+        titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.textAlignment = .center
         contentView.addSubview(titleLabel)
     }
@@ -107,8 +108,9 @@ extension PlaceTypeCollectionViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: imageButton.bottomAnchor, multiplier: 0.5),
-            titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: contentView.leadingAnchor, multiplier: 1),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: titleLabel.trailingAnchor, multiplier: 1)
+            titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: contentView.leadingAnchor, multiplier: 0),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: titleLabel.trailingAnchor, multiplier: 0),
+            bottomAnchor.constraint(greaterThanOrEqualToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 0.1)
         ])
     }
 }
