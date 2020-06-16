@@ -69,15 +69,17 @@ extension MapDelegate {
             return
         }
         
+        var list = [Place]()
         for place in places {
             guard place.coordinate.latitude != 0 else { continue }
+            list.append(place)
             mapVC.mapView.addAnnotation(place)
-            mapVC.listVC.places.append(place)
             guard let greenspace = place as? GreenSpace, let polygon = greenspace.geom.shapes else { continue }
             mapVC.mapView.addOverlay(polygon)
         }
-        mapVC.mapView.showAnnotations(mapVC.mapView.annotations, animated: true)
+        mapVC.places = list
         mapVC.state = .placesList
+        mapVC.mapView.showAnnotations(mapVC.mapView.annotations, animated: true)
     }
 }
 
@@ -106,5 +108,85 @@ extension MapDelegate: MKMapViewDelegate {
         guard isFollowing else { return }
         let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: regionSize, longitudinalMeters: regionSize)
         mapVC?.mapView.setRegion(region, animated: true)
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let mapVC = mapVC else { return }
+        if let cluster = view.annotation as? MKClusterAnnotation,
+            let places = cluster.memberAnnotations as? [Place] {
+            let annotations = mapVC.places.filter { (place) -> Bool in
+                places.contains { $0 === place } == false
+            }
+            mapView.removeAnnotations(annotations)
+            mapVC.state = .cluster(places)
+        } else if let place = view.annotation as? Place {
+            let annotations = mapView.annotations.filter { $0 !== place }
+            mapView.removeAnnotations(annotations)
+            mapVC.state = .placeDetail(place)
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        guard let mapVC = mapVC else { return }
+        if let cluster = view.annotation as? MKClusterAnnotation,
+            let places = cluster.memberAnnotations as? [Place] {
+            let annotations = mapVC.places.filter { (place) -> Bool in
+                places.contains { $0 === place } == false
+            }
+            mapView.addAnnotations(annotations)
+            mapVC.listVC.places = mapVC.places
+        } else if let place = view.annotation as? Place {
+            let annotations = mapVC.places.filter { $0 !== place }
+            mapView.addAnnotations(annotations)
+            mapVC.state = .placesList
+        }
+    }
+}
+
+// MARK: - Annotations selection
+extension MapDelegate {
+    
+    private func getCluster(annotation: MKAnnotation) -> [MKClusterAnnotation]? {
+        guard let clusters = mapVC?.mapView.annotations.filter({ $0 is MKClusterAnnotation }) as? [MKClusterAnnotation]
+            else { return nil }
+        var result = [MKClusterAnnotation]()
+        for cluster in clusters {
+            if (cluster.memberAnnotations.first(where: { $0 === annotation }) != nil) {
+                result.append(cluster)
+            }
+        }
+        print(#function, result.count)
+        return result.isEmpty ? nil : result
+    }
+    
+    private func getAnnotation(from place: Place) -> MKAnnotation? {
+        let annotation = mapVC?.mapView.annotations.first(where: { $0.title == place.title })
+        return annotation
+    }
+    
+    func selectAnnotation(of place: Place?) {
+        guard let place = place,
+//            let annotation = getAnnotation(from: place),
+            let mapView = mapVC?.mapView
+            else { return }
+//        let cluster = getCluster(annotation: annotation)
+//        mapVC?.mapView.selectAnnotation(cluster ?? annotation, animated: true)
+//        mapVC?.mapView.setCenter(cluster?.coordinate ?? annotation.coordinate, animated: true)
+//        mapVC?.mapView.setCenter(annotation.coordinate, animated: true)
+//        mapVC?.mapView.selectAnnotation(annotation, animated: true)
+//        if let clusters = getCluster(annotation: annotation) {
+//            clusters.forEach {
+//                mapVC?.mapView.selectAnnotation($0, animated: true)
+//                mapVC?.mapView.setCenter(annotation.coordinate, animated: true)
+//            }
+////            mapVC?.mapView.selectAnnotation(clusters, animated: true)
+//        } else {
+//            mapVC?.mapView.selectAnnotation(annotation, animated: true)
+//            mapVC?.mapView.setCenter(annotation.coordinate, animated: true)
+//        }
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.addAnnotation(place)
+        mapView.setCenter(place.coordinate, animated: true)
+        mapView.selectAnnotation(place, animated: true)
     }
 }

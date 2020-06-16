@@ -15,6 +15,8 @@ class PlaceAnnotationView: MKMarkerAnnotationView {
     /// Annotation identifier
     static let identifer = "PlaceAnnotation"
     
+//    override var annotation: MKAnnotation? { didSet { self.displayPriority = .required } }
+    
     /// Initializes from code
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)

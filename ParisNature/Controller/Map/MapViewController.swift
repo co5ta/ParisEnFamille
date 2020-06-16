@@ -38,6 +38,10 @@ class MapViewController: UIViewController {
     var state = State.neutral {
         didSet { adjustViews() }
     }
+    /// List of places
+    var places = [Place]() {
+        didSet { listVC.places = places }
+    }
 }
 
 // MARK: - Lifecycle

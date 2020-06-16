@@ -16,6 +16,7 @@ extension MapViewController {
         case neutral
         case loading
         case placesList
+        case cluster(_ places: [Place])
         case placeDetail(_ place: Place?)
         case message(_ error: NetworkError)
     }
@@ -29,6 +30,8 @@ extension MapViewController {
             displayLoading()
         case .placesList:
             displayPlacesList()
+        case .cluster(let places):
+            displayCluster(of: places)
         case .placeDetail(let place):
             displayDetail(of: place)
         case .message(let error):
@@ -52,6 +55,14 @@ extension MapViewController {
         let position = panelDelegate.lastPanelPosition ?? .half
         toggleViews(show: listVC.listView.tableView)
         listPanel.move(to: position, animated: true)
+        detailPanel.move(to: .hidden, animated: true)
+    }
+    
+    /// DIsplays the places of a cluster
+    private func displayCluster(of places: [Place]) {
+        listVC.places = places
+        toggleViews(show: listVC.listView.tableView)
+        listPanel.move(to: .half, animated: true)
         detailPanel.move(to: .hidden, animated: true)
     }
     

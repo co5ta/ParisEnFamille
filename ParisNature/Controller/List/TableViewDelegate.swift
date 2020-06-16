@@ -34,13 +34,6 @@ extension TableViewDelegate: UITableViewDataSource {
         cell.place = place
         return cell
     }
-    
-    /// Updates the table view with new row
-    func updateTableView(_ oldValue: [Place]) {
-        guard let numberOfPlaces = listVC?.places.count else { return }
-        guard numberOfPlaces > oldValue.count else { return }
-        listVC?.listView.tableView.insertRows(at: [IndexPath(item: numberOfPlaces-1, section: 0)], with: .none)
-    }
 }
 
 // MARK: - UITableViewDelegate
@@ -49,7 +42,8 @@ extension TableViewDelegate: UITableViewDelegate {
     /// Tells the delegate that the specified row is now selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? PlaceTableViewCell else { return }
-        cell.isSelected = false
-        listVC?.mapVC?.state = .placeDetail(cell.place)
+//        cell.isSelected = false
+//        listVC?.mapVC?.state = .placeDetail(cell.place)
+        listVC?.mapVC?.mapDelegate.selectAnnotation(of: cell.place)
     }
 }

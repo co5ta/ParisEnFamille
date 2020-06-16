@@ -21,7 +21,7 @@ class ListViewController: UIViewController {
     let collectionViewDelegate = CollectionViewDelegate()
     /// List of places founded by the research
     var places = [Place]() {
-        didSet { tableViewDelegate.updateTableView(oldValue) }
+        didSet { listView.tableView.reloadData() }
     }
 }
 

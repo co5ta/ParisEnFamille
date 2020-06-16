@@ -75,7 +75,9 @@ extension DetailViewController {
     /// Closes the detail view
     @objc
     private func cancelButtonTapped() {
-        mapVC?.state = .placesList
+        guard let place = place, let mapVC = mapVC else { return }
+//        mapVC.state = .placesList
+        mapVC.mapView.deselectAnnotation(place, animated: true)
     }
     
     /// Gets the direction to the place
