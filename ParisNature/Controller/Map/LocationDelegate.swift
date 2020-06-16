@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class LocationManagerDelegate: NSObject {
+class LocationDelegate: NSObject {
 
     /// Mapview controller
     weak var mapVC: MapViewController? {
@@ -18,7 +18,7 @@ class LocationManagerDelegate: NSObject {
 }
 
 // MARK: - User location
-extension LocationManagerDelegate {
+extension LocationDelegate {
     
     /// Checks if the location services are enabled
     func checkLocationServices() {
@@ -55,7 +55,7 @@ extension LocationManagerDelegate {
 }
 
 // MARK: - CLLocationManagerDelegate
-extension LocationManagerDelegate: CLLocationManagerDelegate {
+extension LocationDelegate: CLLocationManagerDelegate {
     
     /// Tells the delegate its authorization status when the app creates the location manager and when the authorization status changes
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

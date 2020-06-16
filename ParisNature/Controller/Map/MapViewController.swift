@@ -30,7 +30,7 @@ class MapViewController: UIViewController {
     let mapDelegate = MapDelegate()
     /// Location manager delegate
     // swiftlint:disable weak_delegate
-    let locationManagerDelegate = LocationManagerDelegate()
+    let locationDelegate = LocationDelegate()
     /// Floating panels delegate
     // swiftlint:disable weak_delegate
     let panelDelegate = PanelDelegate()
@@ -72,8 +72,8 @@ extension MapViewController {
         detailVC.mapVC = self
         mapView.delegate = mapDelegate
         mapDelegate.mapVC = self
-        locationManager.delegate = locationManagerDelegate
-        locationManagerDelegate.mapVC = self
+        locationManager.delegate = locationDelegate
+        locationDelegate.mapVC = self
         listPanel.delegate = panelDelegate
         detailPanel.delegate = panelDelegate
         panelDelegate.mapVC = self
