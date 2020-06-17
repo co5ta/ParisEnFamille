@@ -13,6 +13,7 @@ class ListView: UIView {
     var visualEffectView: UIVisualEffectView!
     var collectionView: UICollectionView!
     let clusterTitleLabel = UILabel()
+    let separatorView = UIView()
     let tableView = UITableView()
     var loadingView = UIActivityIndicatorView()
     var errorView = ErrorView()
@@ -36,6 +37,7 @@ extension ListView {
         setUpVisualEffectView()
         setUpCollectionView()
         setUpClusterTitleLabel()
+        setUpSeparatorView()
         setUpTableView()
         setUpLoadingView()
         setUpErrorView()
@@ -68,6 +70,11 @@ extension ListView {
         clusterTitleLabel.adjustsFontForContentSizeCategory = true
         clusterTitleLabel.adjustsFontSizeToFitWidth = true
         addSubview(clusterTitleLabel)
+    }
+
+    private func setUpSeparatorView() {
+        separatorView.backgroundColor = .black
+        addSubview(separatorView)
     }
     
     /// Sets up the table view
@@ -105,6 +112,7 @@ extension ListView {
         constrainVisualEffectView()
         constrainCollectionView()
         constrainClusterTitleLabel()
+        constrainSeparatorView()
         constrainTableView()
         constrainLoadingView()
         constrainErrorView()
@@ -125,7 +133,7 @@ extension ListView {
     /// Constrains collection view
     private func constrainCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        let height = UIScreen.main.bounds.size.width * 0.27
+        let height = Config.screenSize.width * 0.25
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -138,8 +146,18 @@ extension ListView {
     private func constrainClusterTitleLabel() {
         clusterTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            clusterTitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 3),
+            clusterTitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 4),
             clusterTitleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2)
+        ])
+    }
+
+    private func constrainSeparatorView() {
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            separatorView.heightAnchor.constraint(equalToConstant: 3),
+            separatorView.topAnchor.constraint(equalTo: clusterTitleLabel.bottomAnchor),
+            separatorView.leadingAnchor.constraint(equalTo: clusterTitleLabel.leadingAnchor),
+            separatorView.trailingAnchor.constraint(equalTo: clusterTitleLabel.trailingAnchor)
         ])
     }
     
