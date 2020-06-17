@@ -52,27 +52,8 @@ extension DetailViewController {
         detailView.eventStackView.mailButton.addTarget(self, action: #selector(mailButtonTapped), for: .touchUpInside)
         view.addSubview(detailView)
     }
-}
-
-// MARK: - Constraints
-extension DetailViewController {
     
-    /// Constrains the view
-    private func constrainViews() {
-        detailView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            detailView.topAnchor.constraint(equalTo: view.topAnchor),
-            detailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            detailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            detailView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
-}
-
-// MARK: - Actions
-extension DetailViewController {
-    
-    /// Closes the detail view
+/// Closes the detail view
     @objc
     private func cancelButtonTapped() {
         guard let place = place, let mapVC = mapVC else { return }
@@ -123,6 +104,21 @@ extension DetailViewController {
         mail.mailComposeDelegate = self
         mail.setToRecipients([contactMail])
         present(mail, animated: true)
+    }
+}
+
+// MARK: - Constraints
+extension DetailViewController {
+    
+    /// Constrains the view
+    private func constrainViews() {
+        detailView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            detailView.topAnchor.constraint(equalTo: view.topAnchor),
+            detailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            detailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            detailView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 }
 

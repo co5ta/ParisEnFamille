@@ -12,10 +12,11 @@ class ListView: UIView {
 
     var visualEffectView: UIVisualEffectView!
     var collectionView: UICollectionView!
-    var imagesButton = [UIButton]()
+    let clusterTitleLabel = UILabel()
     let tableView = UITableView()
     var loadingView = UIActivityIndicatorView()
     var errorView = ErrorView()
+    let cancelButton = CancelButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,9 +35,11 @@ extension ListView {
     private func setUpViews() {
         setUpVisualEffectView()
         setUpCollectionView()
+        setUpClusterTitleLabel()
         setUpTableView()
         setUpLoadingView()
         setUpErrorView()
+        setUpCancelButton()
         constrainViews()
     }
     
@@ -59,6 +62,13 @@ extension ListView {
         collectionView.register(PlaceTypeCollectionViewCell.self, forCellWithReuseIdentifier: PlaceTypeCollectionViewCell.identifier)
         addSubview(collectionView)
     }
+
+    private func setUpClusterTitleLabel() {
+        clusterTitleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle).bold()
+        clusterTitleLabel.adjustsFontForContentSizeCategory = true
+        clusterTitleLabel.adjustsFontSizeToFitWidth = true
+        addSubview(clusterTitleLabel)
+    }
     
     /// Sets up the table view
     private func setUpTableView() {
@@ -80,6 +90,11 @@ extension ListView {
         errorView.isHidden = true
         addSubview(errorView)
     }
+    
+    private func setUpCancelButton() {
+        cancelButton.isHidden = true
+        addSubview(cancelButton)
+    }
 }
 
 // MARK: - Constraints
@@ -89,9 +104,11 @@ extension ListView {
     private func constrainViews() {
         constrainVisualEffectView()
         constrainCollectionView()
+        constrainClusterTitleLabel()
         constrainTableView()
         constrainLoadingView()
         constrainErrorView()
+        constrainCancelButton()
     }
     
     /// Constrains background view
@@ -108,12 +125,21 @@ extension ListView {
     /// Constrains collection view
     private func constrainCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        let height = UIScreen.main.bounds.size.width * 0.25
+        let height = UIScreen.main.bounds.size.width * 0.27
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: height)
+        ])
+    }
+
+    /// Constrains cluster title label
+    private func constrainClusterTitleLabel() {
+        clusterTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            clusterTitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 3),
+            clusterTitleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2)
         ])
     }
     
@@ -144,6 +170,16 @@ extension ListView {
             errorView.leadingAnchor.constraint(equalTo: leadingAnchor),
             errorView.trailingAnchor.constraint(equalTo: trailingAnchor),
             errorView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    /// Constrains the cancel button
+    private func constrainCancelButton() {
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cancelButton.heightAnchor.constraint(equalToConstant: 25),
+            cancelButton.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 2),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: cancelButton.trailingAnchor, multiplier: 2)
         ])
     }
 }

@@ -11,7 +11,8 @@ import UIKit
 extension MapViewController {
     
     /// The available states of the view controller
-    enum State {
+    enum State: Equatable {
+        
         // List of states
         case neutral
         case loading
@@ -19,6 +20,19 @@ extension MapViewController {
         case cluster(_ places: [Place])
         case placeDetail(_ place: Place?)
         case message(_ error: NetworkError)
+        
+        /// Custom Equatable
+        static func == (lhs: MapViewController.State, rhs: MapViewController.State) -> Bool {
+            switch(lhs, rhs) {
+            case (.neutral, .neutral): return true
+            case (.loading, .loading): return true
+            case (.placesList, .placesList): return true
+            case (.cluster, .cluster): return true
+            case (.placeDetail, .placeDetail): return true
+            case (.message, .message): return true
+            default: return false
+            }
+        }
     }
     
     /// Adjusts the views according to view controller state
@@ -69,7 +83,6 @@ extension MapViewController {
     /// Displays the detail of a place
     private func displayDetail(of place: Place?) {
         detailVC.place = place
-        panelDelegate.lastPanelPosition = listPanel.position
         listPanel.move(to: .hidden, animated: true)
         detailPanel.move(to: .half, animated: true)
     }

@@ -22,7 +22,7 @@ class DetailView: UIView {
     /// The container of event details
     let eventStackView = EventStackView()
     /// Button to close the floating panel
-    let cancelButton = UIButton()
+    let cancelButton = CancelButton()
     /// The place to manage
     var place: Place? {
         didSet { setData(with: place) }
@@ -48,10 +48,10 @@ extension DetailView {
     private func setUpViews() {
         setUpVisualEffectView()
         addSubview(topStackView)
+        addSubview(cancelButton)
         addSubview(scrollView)
         scrollView.addSubview(greenspaceStackView)
         scrollView.addSubview(eventStackView)
-        setUpCancelButton()
         constrainViews()
     }
     
@@ -62,13 +62,6 @@ extension DetailView {
         visualEffectView.backgroundColor = .white
         visualEffectView.alpha = 0.8
         addSubview(visualEffectView)
-    }
-    
-    /// Sets up cancel button
-    private func setUpCancelButton() {
-        cancelButton.setImage(UIImage(named: "close"), for: .normal)
-        cancelButton.setImage(UIImage(named: "closeSelected"), for: .highlighted)
-        addSubview(cancelButton)
     }
     
     /// Puts data in views
@@ -166,7 +159,6 @@ extension DetailView {
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cancelButton.heightAnchor.constraint(equalToConstant: 25),
-            cancelButton.widthAnchor.constraint(equalTo: cancelButton.heightAnchor),
             cancelButton.topAnchor.constraint(equalTo: topStackView.topAnchor),
             cancelButton.trailingAnchor.constraint(equalTo: topStackView.trailingAnchor)
         ])

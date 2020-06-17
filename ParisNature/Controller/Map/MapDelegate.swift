@@ -119,6 +119,11 @@ extension MapDelegate: MKMapViewDelegate {
             }
             mapView.removeAnnotations(annotations)
             mapVC.state = .cluster(places)
+
+            let title = places.count > 1 ? "places" : "place"
+            mapVC.listVC.listView.clusterTitleLabel.text = "\(places.count) \(title)"
+            mapVC.listVC.listView.cancelButton.isHidden = false
+            mapVC.listVC.listView.collectionView.isHidden = true
         } else if let place = view.annotation as? Place {
             let annotations = mapView.annotations.filter { $0 !== place }
             mapView.removeAnnotations(annotations)
@@ -135,6 +140,9 @@ extension MapDelegate: MKMapViewDelegate {
             }
             mapView.addAnnotations(annotations)
             mapVC.listVC.places = mapVC.places
+            mapVC.listVC.listView.clusterTitleLabel.text = ""
+            mapVC.listVC.listView.cancelButton.isHidden = true
+            mapVC.listVC.listView.collectionView.isHidden = false
         } else if let place = view.annotation as? Place {
             let annotations = mapVC.places.filter { $0 !== place }
             mapView.addAnnotations(annotations)

@@ -41,9 +41,11 @@ extension TableViewDelegate: UITableViewDelegate {
     
     /// Tells the delegate that the specified row is now selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? PlaceTableViewCell else { return }
-//        cell.isSelected = false
-//        listVC?.mapVC?.state = .placeDetail(cell.place)
-        listVC?.mapVC?.mapDelegate.selectAnnotation(of: cell.place)
+        guard let cell = tableView.cellForRow(at: indexPath) as? PlaceTableViewCell,
+            let mapVC = listVC?.mapVC else { return }
+        if mapVC.state == .placesList {
+            mapVC.panelDelegate.lastPanelPosition = mapVC.listPanel.position
+        }
+        mapVC.mapDelegate.selectAnnotation(of: cell.place)
     }
 }

@@ -51,8 +51,18 @@ extension ListViewController {
     
     /// Sets up the views
     private func setUpViews() {
+        listView.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         view.addSubview(listView)
         constrainViews()
+    }
+    
+    /// Deselects the cluster
+    @objc
+    private func cancelButtonTapped() {
+        guard let mapView = mapVC?.mapView else { return }
+        mapView.selectedAnnotations.forEach {
+            mapView.deselectAnnotation($0, animated: true)
+        }
     }
 }
 

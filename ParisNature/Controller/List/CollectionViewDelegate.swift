@@ -13,6 +13,8 @@ class CollectionViewDelegate: NSObject {
 
     /// View controller of the list of places
     weak var listVC: ListViewController?
+    /// List of all place type buttons
+    var placeTypeButtons = [UIButton]()
 }
 
 // MARK: - UICollectionViewDelegate
@@ -48,13 +50,12 @@ extension CollectionViewDelegate: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: PlaceTypeCollectionViewCell.identifier,
-            for: indexPath) as? PlaceTypeCollectionViewCell,
-            let listVC = listVC
+            for: indexPath) as? PlaceTypeCollectionViewCell
             else { return UICollectionViewCell() }
 
         cell.placeType = PlaceType.allCases[indexPath.row]
         cell.imageButton.addTarget(self, action: #selector(imageButtonTapped(sender:)), for: .touchUpInside)
-        listVC.listView.imagesButton.append(cell.imageButton)
+        placeTypeButtons.append(cell.imageButton)
         return cell
     }
 }
@@ -66,7 +67,7 @@ extension CollectionViewDelegate {
     @objc
     func imageButtonTapped(sender: UIButton) {
         guard sender.isSelected == false else { return }
-        listVC?.listView.imagesButton.forEach { $0.isSelected = ($0 != sender) ? false : true }
+        placeTypeButtons.forEach { $0.isSelected = ($0 != sender) ? false : true }
         guard let cell = sender.superview?.superview as? PlaceTypeCollectionViewCell,
             let placeType = cell.placeType
             else { return }
