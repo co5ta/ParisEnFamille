@@ -52,11 +52,11 @@ class Event: NSObject, Place {
         let fields = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .fields)
         title = try fields.decode(String.self, forKey: .title)
 //        let category = try fields.decode(String.self, forKey: .category)
-        let addressName = try fields.decode(String.self, forKey: .addressName)
+        let addressName = try fields.decodeIfPresent(String.self, forKey: .addressName)
         let addressStreet = try fields.decode(String.self, forKey: .addressStreet)
         let addressZipcode = try fields.decode(String.self, forKey: .addressZipcode)
         let addressCity = try fields.decodeIfPresent(String.self, forKey: .addressCity)
-        address = "\(addressName) \n\(addressStreet) \n\(addressZipcode) \(addressCity ?? "")"
+        address = "\(addressName ?? "") \n\(addressStreet) \n\(addressZipcode) \(addressCity ?? "")"
         if let latLon = try fields.decodeIfPresent([Double].self, forKey: .latLon), addressCity != nil {
             coordinate = CLLocationCoordinate2D(latitude: latLon[0], longitude: latLon[1])
         }
