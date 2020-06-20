@@ -11,7 +11,7 @@ import UIKit
 /// Delegate of the table view which containing the list of places
 class TableViewDelegate: NSObject {
     
-    /// View controller of the list of places
+    /// View controller of the places list
     weak var listVC: ListViewController?
 }
 
@@ -25,9 +25,8 @@ extension TableViewDelegate: UITableViewDataSource {
     
     /// Asks the data source for a cell to insert in a particular location of the table view
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: PlaceTableViewCell.identifier,
-            for: indexPath) as? PlaceTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PlaceTableViewCell.identifier,
+                                                      for: indexPath) as? PlaceTableViewCell
             else { return UITableViewCell() }
         
         let place = listVC?.places[indexPath.row]
@@ -42,7 +41,9 @@ extension TableViewDelegate: UITableViewDelegate {
     /// Tells the delegate that the specified row is now selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? PlaceTableViewCell,
-            let mapVC = listVC?.mapVC else { return }
+            let mapVC = listVC?.mapVC
+            else { return }
+        
         if mapVC.state == .placesList {
             mapVC.panelDelegate.lastPanelPosition = mapVC.listPanel.position
         }

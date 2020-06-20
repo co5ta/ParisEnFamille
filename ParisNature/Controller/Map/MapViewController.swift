@@ -94,6 +94,7 @@ extension MapViewController {
     
     /// Sets up the list floating panel
     private func setUpListPanel() {
+        listPanel.contentMode = .fitToBounds
         listPanel.surfaceView.cornerRadius = 10
         listPanel.surfaceView.backgroundColor = .clear
         listPanel.set(contentViewController: listVC)
@@ -102,10 +103,10 @@ extension MapViewController {
     
     /// Sets up the detail floating panel
     private func setUpDetailPanel() {
+//        detailPanel.contentMode = .fitToBounds
         detailPanel.surfaceView.cornerRadius = 10
         detailPanel.surfaceView.backgroundColor = .clear
         detailPanel.set(contentViewController: detailVC)
-        detailPanel.track(scrollView: detailVC.detailView.scrollView)
     }
     
     /// Sets up the map view

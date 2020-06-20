@@ -23,12 +23,10 @@ extension PanelDelegate: FloatingPanelControllerDelegate {
     
     /// Defines which floating panel to use
     // swiftlint:disable identifier_name
-    func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
-        if vc == mapVC?.detailPanel {
-            return DetailPanelLayout()
-        } else {
-            return ListPanelLayout()
-        }
+    func floatingPanel(_ vc: FloatingPanelController,
+                       layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
+        
+        return vc == (mapVC?.detailPanel) ? DetailPanelLayout() : ListPanelLayout()
     }
     
     /// Shows list panel after the hiding of detail panel with a pan gesture

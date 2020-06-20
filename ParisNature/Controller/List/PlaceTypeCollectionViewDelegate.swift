@@ -11,7 +11,7 @@ import UIKit
 /// Delegate of the collection view  containing the list of place types
 class CollectionViewDelegate: NSObject {
 
-    /// View controller of the list of places
+    /// View controller of the places list
     weak var listVC: ListViewController?
     /// List of all place type buttons
     var placeTypeButtons = [UIButton]()
@@ -26,7 +26,7 @@ extension CollectionViewDelegate: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         guard let listVC = listVC else { return CGSize(width: 0, height: 0) }
-        let divisor = CGFloat(integerLiteral: PlaceType.allCases.count)
+        let divisor = CGFloat(integerLiteral: PlaceType.parents.count)
         return CGSize(width: listVC.view.frame.width / divisor, height: collectionView.frame.height)
     }
 
@@ -43,17 +43,17 @@ extension CollectionViewDelegate: UICollectionViewDataSource {
 
     /// Asks your data source object for the number of items in the specified section.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PlaceType.allCases.count
+        return PlaceType.parents.count
     }
 
     /// Asks your data source object for the cell that corresponds to the specified item in the collection view.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: PlaceTypeCollectionViewCell.identifier,
-            for: indexPath) as? PlaceTypeCollectionViewCell
+            withReuseIdentifier: PlaceTypeCell.identifier,
+            for: indexPath) as? PlaceTypeCell
             else { return UICollectionViewCell() }
 
-        cell.placeType = PlaceType.allCases[indexPath.row]
+        cell.placeType = PlaceType.parents[indexPath.row]
         cell.imageButton.addTarget(self, action: #selector(imageButtonTapped(sender:)), for: .touchUpInside)
         placeTypeButtons.append(cell.imageButton)
         return cell
@@ -68,11 +68,12 @@ extension CollectionViewDelegate {
     func imageButtonTapped(sender: UIButton) {
         guard sender.isSelected == false else { return }
         placeTypeButtons.forEach { $0.isSelected = ($0 != sender) ? false : true }
-        guard let cell = sender.superview?.superview as? PlaceTypeCollectionViewCell,
+        guard let cell = sender.superview?.superview as? PlaceTypeCell,
             let placeType = cell.placeType
             else { return }
 
         removePlaces()
+        listVC?.placeType = placeType
         listVC?.mapVC?.panelDelegate.lastPanelPosition = nil
         switch placeType {
         case .event:

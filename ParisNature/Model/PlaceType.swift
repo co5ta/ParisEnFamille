@@ -14,6 +14,18 @@ enum PlaceType: Int, CaseIterable {
     case garden
     case other
     case event
+    case animations
+    
+    static let children: [PlaceType: [String]] = [
+        .park: ["truc", "mushe", "chose", "machin", "landsval"],
+        .garden: ["culbuto", "tartampion", "colonel", "tapion"],
+        .other: ["bebeto", "le bandeau", "berizzo", "diego", "armando", "bogard"],
+        .event: ["amidele", "champion", "lopez", "diaz", "tete de brique"]
+    ]
+    
+    static let parents: [PlaceType] = [
+        .park, .garden, .other, .event
+    ]
     
     /// Name of the associated image
     var imageName: String {
@@ -22,6 +34,7 @@ enum PlaceType: Int, CaseIterable {
         case .garden: return "garden"
         case .other: return "other"
         case .event: return "event"
+        default: return ""
         }
     }
     
@@ -38,6 +51,7 @@ enum PlaceType: Int, CaseIterable {
         case .garden: return "Gardens"
         case .other: return "Walks"
         case .event: return "Events"
+        case .animations: return "Animations"
         }
     }
     
@@ -66,6 +80,8 @@ enum PlaceType: Int, CaseIterable {
             url += filterCategories(notIn: ["Archipel", "Esplanade", "Ile", "Promenade"])
         case .event:
             url += "dataset=que-faire-a-paris-&sort=date_start&refine.tags=Végétalisons+Paris"
+        default:
+            break
         }
         url += "&rows=100"
         return url.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)

@@ -1,5 +1,5 @@
 //
-//  PlaceTypeCollectionViewCell.swift
+//  PlaceTypeCell.swift
 //  ParisNature
 //
 //  Created by co5ta on 18/05/2020.
@@ -9,14 +9,14 @@
 import UIKit
 
 /// A custom collection view cell to display all the place types available
-class PlaceTypeCollectionViewCell: UICollectionViewCell {
+class PlaceTypeCell: UICollectionViewCell {
     
+    /// Cell identifer
+    static let identifier = "PlaceType"
     /// The image of the place in a button
     let imageButton = UIButton()
     /// The title of the place
     let titleLabel = UILabel()
-    /// Cell identifer
-    static let identifier = "PlaceType"
     /// The data of the place type
     var placeType: PlaceType? {
         didSet { setData(with: placeType) }
@@ -36,7 +36,7 @@ class PlaceTypeCollectionViewCell: UICollectionViewCell {
 }
 
 // MARK: - Setup
-extension PlaceTypeCollectionViewCell {
+extension PlaceTypeCell {
     
     /// Sets up the views
     private func setUpViews() {
@@ -84,7 +84,7 @@ extension PlaceTypeCollectionViewCell {
 }
 
 // MARK: - Constraints
-extension PlaceTypeCollectionViewCell {
+extension PlaceTypeCell {
     
     /// Contrains the views
     private func constrainViews() {

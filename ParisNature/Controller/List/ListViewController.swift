@@ -19,6 +19,14 @@ class ListViewController: UIViewController {
     let tableViewDelegate = TableViewDelegate()
     // swiftlint:disable weak_delegate
     let collectionViewDelegate = CollectionViewDelegate()
+    // swiftlint:disable weak_delegate
+    let subTypeCollectionViewDelegate = SubTypeCollectionViewDelegate()
+    /// Place type selected
+    var placeType: PlaceType? {
+        didSet { subTypeCollectionViewDelegate.update() }
+    }
+    /// Subtype place selected
+    var placeSubtype: PlaceType?
     /// List of places founded by the research
     var places = [Place]() {
         didSet { listView.tableView.reloadData() }
@@ -44,6 +52,9 @@ extension ListViewController {
         listView.collectionView.dataSource = collectionViewDelegate
         listView.collectionView.delegate = collectionViewDelegate
         collectionViewDelegate.listVC = self
+        listView.subTypeCollectionView.dataSource = subTypeCollectionViewDelegate
+        listView.subTypeCollectionView.delegate = subTypeCollectionViewDelegate
+        subTypeCollectionViewDelegate.listVC = self
         listView.tableView.dataSource = tableViewDelegate
         listView.tableView.delegate = tableViewDelegate
         tableViewDelegate.listVC = self
@@ -56,7 +67,7 @@ extension ListViewController {
         constrainViews()
     }
     
-    /// Deselects the cluster
+    /// Deselects a cluster
     @objc
     private func cancelButtonTapped() {
         guard let mapView = mapVC?.mapView else { return }

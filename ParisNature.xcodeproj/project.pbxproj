@@ -11,7 +11,7 @@
 		2253148A24755AF50059BCFD /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253148924755AF50059BCFD /* PlaceTableViewCell.swift */; };
 		2253148C247574560059BCFD /* MapViewController+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253148B247574560059BCFD /* MapViewController+State.swift */; };
 		2254268E24915FCA00C217F1 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254268D24915FCA00C217F1 /* TableViewDelegate.swift */; };
-		2254269024916EBA00C217F1 /* CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254268F24916EBA00C217F1 /* CollectionViewDelegate.swift */; };
+		2254269024916EBA00C217F1 /* PlaceTypeCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254268F24916EBA00C217F1 /* PlaceTypeCollectionViewDelegate.swift */; };
 		2254657D248EC3AE00D082E8 /* PanelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254657C248EC3AE00D082E8 /* PanelDelegate.swift */; };
 		2254657F248EF47C00D082E8 /* MapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254657E248EF47C00D082E8 /* MapDelegate.swift */; };
 		2254EB2A246FDFCA00BEA2AC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254EB29246FDFCA00BEA2AC /* ListViewController.swift */; };
@@ -22,7 +22,7 @@
 		2255DC55248FDDDE000D4D35 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255DC54248FDDDE000D4D35 /* DetailView.swift */; };
 		2255DC572490069D000D4D35 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255DC562490069D000D4D35 /* ErrorView.swift */; };
 		22562811247275EC00DDEAAB /* PlaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22562810247275EC00DDEAAB /* PlaceType.swift */; };
-		225628132472A07B00DDEAAB /* PlaceTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225628122472A07B00DDEAAB /* PlaceTypeCollectionViewCell.swift */; };
+		225628132472A07B00DDEAAB /* PlaceTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225628122472A07B00DDEAAB /* PlaceTypeCell.swift */; };
 		225628152474067E00DDEAAB /* ListPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225628142474067E00DDEAAB /* ListPanelLayout.swift */; };
 		225628192474F04700DDEAAB /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225628182474F04700DDEAAB /* Place.swift */; };
 		2256484A249957530085B99A /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22564849249957530085B99A /* CancelButton.swift */; };
@@ -32,6 +32,8 @@
 		22579D6B2467F8B0007470F4 /* GreenSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22579D6A2467F8B0007470F4 /* GreenSpace.swift */; };
 		22579D6D2467FDE4007470F4 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22579D6C2467FDE4007470F4 /* NetworkError.swift */; };
 		22579D6F246836EC007470F4 /* GreenSpacesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22579D6E246836EC007470F4 /* GreenSpacesResult.swift */; };
+		2257B0FD249B8DAC00B639A6 /* SubTypeCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257B0FC249B8DAC00B639A6 /* SubTypeCollectionViewDelegate.swift */; };
+		2257B0FF249BE1C600B639A6 /* SubTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257B0FE249BE1C600B639A6 /* SubTypeCell.swift */; };
 		22584832247D5D8500520AD6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22584831247D5D8500520AD6 /* DetailViewController.swift */; };
 		2259AD0F249230BA00018DC3 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2259AD0E249230BA00018DC3 /* ListView.swift */; };
 		2259FD372493BDBD0088444C /* DetailPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2259FD362493BDBD0088444C /* DetailPanelLayout.swift */; };
@@ -64,7 +66,7 @@
 		2253148924755AF50059BCFD /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		2253148B247574560059BCFD /* MapViewController+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController+State.swift"; sourceTree = "<group>"; };
 		2254268D24915FCA00C217F1 /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
-		2254268F24916EBA00C217F1 /* CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDelegate.swift; sourceTree = "<group>"; };
+		2254268F24916EBA00C217F1 /* PlaceTypeCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTypeCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		2254657C248EC3AE00D082E8 /* PanelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelDelegate.swift; sourceTree = "<group>"; };
 		2254657E248EF47C00D082E8 /* MapDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDelegate.swift; sourceTree = "<group>"; };
 		2254EB29246FDFCA00BEA2AC /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -75,7 +77,7 @@
 		2255DC54248FDDDE000D4D35 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		2255DC562490069D000D4D35 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		22562810247275EC00DDEAAB /* PlaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceType.swift; sourceTree = "<group>"; };
-		225628122472A07B00DDEAAB /* PlaceTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTypeCollectionViewCell.swift; sourceTree = "<group>"; };
+		225628122472A07B00DDEAAB /* PlaceTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTypeCell.swift; sourceTree = "<group>"; };
 		225628142474067E00DDEAAB /* ListPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPanelLayout.swift; sourceTree = "<group>"; };
 		225628182474F04700DDEAAB /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		22564849249957530085B99A /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
@@ -85,6 +87,8 @@
 		22579D6A2467F8B0007470F4 /* GreenSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenSpace.swift; sourceTree = "<group>"; };
 		22579D6C2467FDE4007470F4 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		22579D6E246836EC007470F4 /* GreenSpacesResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenSpacesResult.swift; sourceTree = "<group>"; };
+		2257B0FC249B8DAC00B639A6 /* SubTypeCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTypeCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		2257B0FE249BE1C600B639A6 /* SubTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTypeCell.swift; sourceTree = "<group>"; };
 		22584831247D5D8500520AD6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		2259AD0E249230BA00018DC3 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		2259FD362493BDBD0088444C /* DetailPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPanelLayout.swift; sourceTree = "<group>"; };
@@ -188,10 +192,10 @@
 		22575C24247150A000794EB3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2259F8362494F0A1000EE3F4 /* Panel */,
 				2259AD0B249227DF00018DC3 /* Map */,
 				2259AD0A249227BC00018DC3 /* List */,
 				2259AD092492278D00018DC3 /* Detail */,
-				2259F8362494F0A1000EE3F4 /* Panel */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -222,7 +226,8 @@
 			isa = PBXGroup;
 			children = (
 				2254EB29246FDFCA00BEA2AC /* ListViewController.swift */,
-				2254268F24916EBA00C217F1 /* CollectionViewDelegate.swift */,
+				2254268F24916EBA00C217F1 /* PlaceTypeCollectionViewDelegate.swift */,
+				2257B0FC249B8DAC00B639A6 /* SubTypeCollectionViewDelegate.swift */,
 				2254268D24915FCA00C217F1 /* TableViewDelegate.swift */,
 			);
 			path = List;
@@ -243,7 +248,8 @@
 			isa = PBXGroup;
 			children = (
 				2259AD0E249230BA00018DC3 /* ListView.swift */,
-				225628122472A07B00DDEAAB /* PlaceTypeCollectionViewCell.swift */,
+				225628122472A07B00DDEAAB /* PlaceTypeCell.swift */,
+				2257B0FE249BE1C600B639A6 /* SubTypeCell.swift */,
 				2253148924755AF50059BCFD /* PlaceTableViewCell.swift */,
 				2255DC562490069D000D4D35 /* ErrorView.swift */,
 			);
@@ -510,15 +516,16 @@
 				2254657F248EF47C00D082E8 /* MapDelegate.swift in Sources */,
 				2254657D248EC3AE00D082E8 /* PanelDelegate.swift in Sources */,
 				22BB89E22465AE68008740DA /* MainCoordinator.swift in Sources */,
-				225628132472A07B00DDEAAB /* PlaceTypeCollectionViewCell.swift in Sources */,
+				225628132472A07B00DDEAAB /* PlaceTypeCell.swift in Sources */,
 				2254EB2A246FDFCA00BEA2AC /* ListViewController.swift in Sources */,
 				225BED772465A28100A69076 /* AppDelegate.swift in Sources */,
 				2259AD0F249230BA00018DC3 /* ListView.swift in Sources */,
 				2255ABC92487A366008F33EC /* TopStackView.swift in Sources */,
-				2254269024916EBA00C217F1 /* CollectionViewDelegate.swift in Sources */,
+				2254269024916EBA00C217F1 /* PlaceTypeCollectionViewDelegate.swift in Sources */,
 				2256484A249957530085B99A /* CancelButton.swift in Sources */,
 				225628192474F04700DDEAAB /* Place.swift in Sources */,
 				225FC20924797BB0004E7D56 /* Event.swift in Sources */,
+				2257B0FD249B8DAC00B639A6 /* SubTypeCollectionViewDelegate.swift in Sources */,
 				2255A98B2488EC4A00196E56 /* GreenSpaceStackView.swift in Sources */,
 				22584832247D5D8500520AD6 /* DetailViewController.swift in Sources */,
 				225745B4246705190040BBC8 /* MapViewController.swift in Sources */,
@@ -533,6 +540,7 @@
 				2253148C247574560059BCFD /* MapViewController+State.swift in Sources */,
 				228C8065248AB256002AB3DE /* EventStackView.swift in Sources */,
 				2259FD392493BE3D0088444C /* LocationDelegate.swift in Sources */,
+				2257B0FF249BE1C600B639A6 /* SubTypeCell.swift in Sources */,
 				225FC20824797BB0004E7D56 /* EventsResult.swift in Sources */,
 				2255DC572490069D000D4D35 /* ErrorView.swift in Sources */,
 				2254268E24915FCA00C217F1 /* TableViewDelegate.swift in Sources */,
