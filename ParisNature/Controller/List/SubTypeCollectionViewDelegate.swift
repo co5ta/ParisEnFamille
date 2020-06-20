@@ -15,6 +15,8 @@ class SubTypeCollectionViewDelegate: NSObject {
     weak var listVC: ListViewController?
     /// Subtypes place of the selected place type
     var subTypes: [String]?
+    /// List of all title buttons
+    var titleButtons = [UIButton]()
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -50,6 +52,8 @@ extension SubTypeCollectionViewDelegate: UICollectionViewDataSource {
                                                             for: indexPath) as? SubTypeCell
             else { return UICollectionViewCell() }
         cell.subType = subTypes?[indexPath.row]
+        titleButtons.append(cell.titleButton)
+        cell.titleButton.addTarget(self, action: #selector(titleButtonTapped(button:)), for: .touchUpInside)
         return cell
     }
     
@@ -58,5 +62,18 @@ extension SubTypeCollectionViewDelegate: UICollectionViewDataSource {
         guard let placeType = listVC?.placeType else { return }
         subTypes = PlaceType.children[placeType]
         listVC?.listView.subTypeCollectionView.reloadData()
+    }
+}
+
+// MARK: - Action
+extension SubTypeCollectionViewDelegate {
+    
+    /// Triggered when a title button is tapped
+    @objc
+    private func titleButtonTapped(button: UIButton) {
+        titleButtons.forEach {
+            $0.isSelected = (button == $0) ? true : false
+            $0.backgroundColor = (button == $0) ? .systemGray : .clear
+        }
     }
 }

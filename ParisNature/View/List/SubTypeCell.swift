@@ -14,7 +14,7 @@ class SubTypeCell: UICollectionViewCell {
     /// Cell identifier
     static let identifier = "SubType"
     /// Button of the subType
-    let titleButton = UIButton(type: .system)
+    var titleButton = UIButton()
     /// SubType data
     var subType: String? {
         didSet { setData(with: subType) }
@@ -40,10 +40,13 @@ extension SubTypeCell {
     private func setUp() {
         titleButton.titleLabel?.font = .preferredFont(forTextStyle: .callout)
         titleButton.titleLabel?.adjustsFontForContentSizeCategory = true
-        titleButton.tintColor = .systemGray
+        titleButton.setTitleColor(.systemGray, for: .normal)
+        titleButton.setTitleColor(Config.appGray, for: .highlighted)
+        titleButton.setTitleColor(.white, for: .selected)
+        titleButton.backgroundColor = .clear
         titleButton.layer.cornerRadius = 15
-        titleButton.layer.borderColor = Config.appGray.cgColor
         titleButton.layer.borderWidth = 1
+        titleButton.layer.borderColor = Config.appGray.cgColor
         addSubview(titleButton)
         constrain()
     }
