@@ -27,7 +27,7 @@ class DetailPanelLayout: FloatingPanelLayout {
         guard let safeAreaInsets = UIApplication.shared.keyWindow?.safeAreaInsets else { return nil }
         switch position {
         case .full: return safeAreaInsets.top
-        case .half: return screenSize.height * 0.3
+        case .half: return screenSize.height * 0.35
         default: return nil
         }
     }

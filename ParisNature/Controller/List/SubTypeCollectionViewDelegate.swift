@@ -71,19 +71,17 @@ extension SubTypeCollectionViewDelegate {
     /// Triggered when a title button is tapped
     @objc
     private func titleButtonTapped(button: UIButton) {
-        guard button.isSelected == false else { return }
-        select(button)
+        guard button.isSelected == false, let listVC = listVC else { return }
+        titleButtons.forEach { setState(selected: (button == $0) ? true: false, on: $0) }
         guard let cell = button.superview as? SubTypeCell,
             let subType = cell.subType
             else { return }
-        listVC?.removePlaces()
-        listVC?.getPlaces(placeType: subType)
+        listVC.removePlaces()
+        listVC.getPlaces(placeType: subType)
     }
     
-    private func select(_ button: UIButton) {
-        titleButtons.forEach {
-            $0.isSelected = (button == $0) ? true : false
-            $0.backgroundColor = (button == $0) ? .systemGray : .clear
-        }
+    func setState(selected: Bool, on button: UIButton) {
+        button.isSelected = selected
+        button.backgroundColor = selected ? .systemGray : .clear
     }
 }

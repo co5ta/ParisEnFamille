@@ -52,7 +52,7 @@ extension CollectionViewDelegate: UICollectionViewDataSource {
                                                             for: indexPath) as? PlaceTypeCell
         else { return UICollectionViewCell() }
         cell.placeType = PlaceType.parents[indexPath.row]
-        cell.imageButton.addTarget(self, action: #selector(imageButtonTapped(sender:)), for: .touchUpInside)
+        cell.imageButton.addTarget(self, action: #selector(imageButtonTapped(button:)), for: .touchUpInside)
         placeTypeButtons.append(cell.imageButton)
         return cell
     }
@@ -63,16 +63,19 @@ extension CollectionViewDelegate {
 
     /// Launchs the search to get the places asken by the user
     @objc
-    func imageButtonTapped(sender: UIButton) {
-        print("🟢 image button tapped")
-        guard sender.isSelected == false else { return }
-        placeTypeButtons.forEach { $0.isSelected = ($0 != sender) ? false : true }
-        guard let cell = sender.superview?.superview as? PlaceTypeCell,
+    func imageButtonTapped(button: UIButton) {
+        guard button.isSelected == false, let listVC = listVC else { return }
+        placeTypeButtons.forEach { $0.isSelected = ($0 != button) ? false : true }
+        listVC.subTypeCollectionViewDelegate.titleButtons.forEach {
+            listVC.subTypeCollectionViewDelegate.setState(selected: false, on: $0)
+        }
+        
+        guard let cell = button.superview?.superview as? PlaceTypeCell,
             let placeType = cell.placeType
             else { return }
-        listVC?.removePlaces()
-        listVC?.placeType = placeType
-        listVC?.mapVC?.panelDelegate.lastPanelPosition = nil
-        listVC?.getPlaces(placeType: placeType)
+        listVC.removePlaces()
+        listVC.placeType = placeType
+        listVC.mapVC?.panelDelegate.lastPanelPosition = nil
+        listVC.getPlaces(placeType: placeType)
     }
 }
