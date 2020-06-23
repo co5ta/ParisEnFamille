@@ -58,23 +58,18 @@ extension NetworkService {
     }
     
     /// Converts the URL from String type to URL type
-    private func getURL(for placeType: PlaceType, in area: [String]) -> URL? {
-        guard var stringURL = placeType.apiURL else { return nil }
-        if area.isEmpty == false {
-            stringURL += "&geofilter.distance=\(area.joined(separator: ","))"
-        }
-        guard let url = URL(string: stringURL) else { return nil }
+    private func getURL(for placeType: PlaceType) -> URL? {
+        guard let stringURL = placeType.apiURL, let url = URL(string: stringURL) else { return nil }
         return url
     }
     
     /// Requests the places to the API
     func getPlaces<T>(placeType: PlaceType,
                       dataType: T.Type,
-                      area: [String],
                       completionHandler: @escaping (Result<T, NetworkError>) -> Void
     ) where T: Decodable {
         
-        guard let url = getURL(for: placeType, in: area) else {
+        guard let url = getURL(for: placeType) else {
             completionHandler(.failure(NetworkError.url))
             return
         }

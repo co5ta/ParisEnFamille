@@ -16,7 +16,7 @@ class SubTypeCell: UICollectionViewCell {
     /// Button of the subType
     var titleButton = UIButton()
     /// SubType data
-    var subType: String? {
+    var subType: PlaceType? {
         didSet { setData(with: subType) }
     }
     
@@ -52,9 +52,9 @@ extension SubTypeCell {
     }
     
     /// Configures with data
-    private func setData(with subType: String?) {
+    private func setData(with subType: PlaceType?) {
         guard let subType = subType else { return }
-        titleButton.setTitle("     \(subType)     ", for: .normal)
+        titleButton.setTitle("     \(subType.title)     ", for: .normal)
     }
 }
 

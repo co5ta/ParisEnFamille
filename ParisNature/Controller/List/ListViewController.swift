@@ -52,9 +52,9 @@ extension ListViewController {
         listView.collectionView.dataSource = collectionViewDelegate
         listView.collectionView.delegate = collectionViewDelegate
         collectionViewDelegate.listVC = self
-        listView.subTypeCollectionView.dataSource = subTypeCollectionViewDelegate
-        listView.subTypeCollectionView.delegate = subTypeCollectionViewDelegate
-        subTypeCollectionViewDelegate.listVC = self
+//        listView.subTypeCollectionView.dataSource = subTypeCollectionViewDelegate
+//        listView.subTypeCollectionView.delegate = subTypeCollectionViewDelegate
+//        subTypeCollectionViewDelegate.listVC = self
         listView.tableView.dataSource = tableViewDelegate
         listView.tableView.delegate = tableViewDelegate
         tableViewDelegate.listVC = self
@@ -74,6 +74,24 @@ extension ListViewController {
         mapView.selectedAnnotations.forEach {
             mapView.deselectAnnotation($0, animated: true)
         }
+    }
+    
+    func getPlaces(placeType: PlaceType) {
+        switch placeType {
+        case .park, .garden, .promenade:
+            mapVC?.mapDelegate.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
+        default:
+            mapVC?.mapDelegate.getPlaces(placeType: placeType, dataType: EventsResult.self)
+        }
+    }
+    
+    /// Removes the places frome the previous search
+    func removePlaces() {
+        places.removeAll()
+        listView.tableView.reloadData()
+        guard let mapVC = mapVC else { return }
+        mapVC.mapView.removeAnnotations(mapVC.mapView.annotations)
+        mapVC.mapView.removeOverlays(mapVC.mapView.overlays)
     }
 }
 

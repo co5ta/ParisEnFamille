@@ -14,7 +14,7 @@ class SubTypeCollectionViewDelegate: NSObject {
     /// View controller of the places list
     weak var listVC: ListViewController?
     /// Subtypes place of the selected place type
-    var subTypes: [String]?
+    var subTypes: [PlaceType]?
     /// List of all title buttons
     var titleButtons = [UIButton]()
 }
@@ -50,7 +50,7 @@ extension SubTypeCollectionViewDelegate: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SubTypeCell.identifier,
                                                             for: indexPath) as? SubTypeCell
-            else { return UICollectionViewCell() }
+        else { return UICollectionViewCell() }
         cell.subType = subTypes?[indexPath.row]
         titleButtons.append(cell.titleButton)
         cell.titleButton.addTarget(self, action: #selector(titleButtonTapped(button:)), for: .touchUpInside)
@@ -71,6 +71,16 @@ extension SubTypeCollectionViewDelegate {
     /// Triggered when a title button is tapped
     @objc
     private func titleButtonTapped(button: UIButton) {
+        guard button.isSelected == false else { return }
+        select(button)
+        guard let cell = button.superview as? SubTypeCell,
+            let subType = cell.subType
+            else { return }
+        listVC?.removePlaces()
+        listVC?.getPlaces(placeType: subType)
+    }
+    
+    private func select(_ button: UIButton) {
         titleButtons.forEach {
             $0.isSelected = (button == $0) ? true : false
             $0.backgroundColor = (button == $0) ? .systemGray : .clear

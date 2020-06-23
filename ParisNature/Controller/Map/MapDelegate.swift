@@ -26,8 +26,7 @@ extension MapDelegate {
     /// Asks  to receive green areas
     func getPlaces<T>(placeType: PlaceType, dataType: T.Type) where T: Decodable {
         mapVC?.state = .loading
-        let area = getAreaLimit(for: placeType)
-        NetworkService.shared.getPlaces(placeType: placeType, dataType: dataType.self, area: area) { [self] (result) in
+        NetworkService.shared.getPlaces(placeType: placeType, dataType: dataType.self) { [self] (result) in
             switch result {
             case .failure(let error):
                 self.handleError(error)
@@ -35,13 +34,6 @@ extension MapDelegate {
                 self.handleResult(data)
             }
         }
-    }
-    
-    /// Sets a area zone in which the search must be limited
-    private func getAreaLimit(for placeType: PlaceType) -> [String] {
-        guard placeType.limitedAround else { return [] }
-        guard let coordinate = mapVC?.locationManager.location?.coordinate else { return [] }
-        return ["\(coordinate.latitude)", "\(coordinate.longitude)", "\(regionSize/2)"]
     }
     
     /// Handles the error from the request
@@ -173,25 +165,7 @@ extension MapDelegate {
     }
     
     func selectAnnotation(of place: Place?) {
-        guard let place = place,
-//            let annotation = getAnnotation(from: place),
-            let mapView = mapVC?.mapView
-            else { return }
-//        let cluster = getCluster(annotation: annotation)
-//        mapVC?.mapView.selectAnnotation(cluster ?? annotation, animated: true)
-//        mapVC?.mapView.setCenter(cluster?.coordinate ?? annotation.coordinate, animated: true)
-//        mapVC?.mapView.setCenter(annotation.coordinate, animated: true)
-//        mapVC?.mapView.selectAnnotation(annotation, animated: true)
-//        if let clusters = getCluster(annotation: annotation) {
-//            clusters.forEach {
-//                mapVC?.mapView.selectAnnotation($0, animated: true)
-//                mapVC?.mapView.setCenter(annotation.coordinate, animated: true)
-//            }
-////            mapVC?.mapView.selectAnnotation(clusters, animated: true)
-//        } else {
-//            mapVC?.mapView.selectAnnotation(annotation, animated: true)
-//            mapVC?.mapView.setCenter(annotation.coordinate, animated: true)
-//        }
+        guard let place = place, let mapView = mapVC?.mapView else { return }
         mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotation(place)
         mapView.setCenter(place.coordinate, animated: true)

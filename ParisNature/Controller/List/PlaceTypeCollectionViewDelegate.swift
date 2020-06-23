@@ -48,11 +48,9 @@ extension CollectionViewDelegate: UICollectionViewDataSource {
 
     /// Asks your data source object for the cell that corresponds to the specified item in the collection view.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: PlaceTypeCell.identifier,
-            for: indexPath) as? PlaceTypeCell
-            else { return UICollectionViewCell() }
-
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlaceTypeCell.identifier,
+                                                            for: indexPath) as? PlaceTypeCell
+        else { return UICollectionViewCell() }
         cell.placeType = PlaceType.parents[indexPath.row]
         cell.imageButton.addTarget(self, action: #selector(imageButtonTapped(sender:)), for: .touchUpInside)
         placeTypeButtons.append(cell.imageButton)
@@ -66,29 +64,15 @@ extension CollectionViewDelegate {
     /// Launchs the search to get the places asken by the user
     @objc
     func imageButtonTapped(sender: UIButton) {
+        print("🟢 image button tapped")
         guard sender.isSelected == false else { return }
         placeTypeButtons.forEach { $0.isSelected = ($0 != sender) ? false : true }
         guard let cell = sender.superview?.superview as? PlaceTypeCell,
             let placeType = cell.placeType
             else { return }
-
-        removePlaces()
+        listVC?.removePlaces()
         listVC?.placeType = placeType
         listVC?.mapVC?.panelDelegate.lastPanelPosition = nil
-        switch placeType {
-        case .event:
-            listVC?.mapVC?.mapDelegate.getPlaces(placeType: placeType, dataType: EventsResult.self)
-        default:
-            listVC?.mapVC?.mapDelegate.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
-        }
-    }
-
-    /// Removes the places frome the previous search
-    private func removePlaces() {
-        listVC?.places.removeAll()
-        listVC?.listView.tableView.reloadData()
-        guard let mapVC = listVC?.mapVC else { return }
-        mapVC.mapView.removeAnnotations(mapVC.mapView.annotations)
-        mapVC.mapView.removeOverlays(mapVC.mapView.overlays)
+        listVC?.getPlaces(placeType: placeType)
     }
 }
