@@ -56,7 +56,7 @@ extension ListView {
         setUpLoadingView()
         setUpErrorView()
         setUpCancelButton()
-//        setUpSubTypeCollectionView()
+        setUpSubTypeCollectionView()
         constrainViews()
     }
     
@@ -148,7 +148,7 @@ extension ListView {
         constrainLoadingView()
         constrainErrorView()
         constrainCancelButton()
-//        constrainSubTypeCollectionView()
+        constrainSubTypeCollectionView()
     }
     
     /// Constrains background view
@@ -201,8 +201,7 @@ extension ListView {
             tableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
-//            tableView.bottomAnchor.constraint(equalTo: subTypeCollectionView.topAnchor)
+            tableView.bottomAnchor.constraint(equalTo: subTypeCollectionView.topAnchor)
             
         ])
     }

@@ -103,7 +103,6 @@ extension MapViewController {
     
     /// Sets up the detail floating panel
     private func setUpDetailPanel() {
-//        detailPanel.contentMode = .fitToBounds
         detailPanel.surfaceView.cornerRadius = 10
         detailPanel.surfaceView.backgroundColor = .clear
         detailPanel.set(contentViewController: detailVC)

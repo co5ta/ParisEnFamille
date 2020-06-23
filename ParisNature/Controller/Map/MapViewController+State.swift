@@ -68,6 +68,7 @@ extension MapViewController {
     private func displayPlacesList() {
         let position = panelDelegate.lastPanelPosition ?? .half
         toggleViews(show: listVC.listView.tableView)
+//        listVC.listView.isHidden = false
         listPanel.move(to: position, animated: true)
         detailPanel.move(to: .hidden, animated: true)
     }
@@ -83,8 +84,9 @@ extension MapViewController {
     /// Displays the detail of a place
     private func displayDetail(of place: Place?) {
         detailVC.place = place
-        listPanel.move(to: .hidden, animated: true)
+        listPanel.move(to: .tip, animated: true)
         detailPanel.move(to: .half, animated: true)
+//        listVC.listView.isHidden = true
     }
     
     private func displayMessage(_ error: NetworkError) {

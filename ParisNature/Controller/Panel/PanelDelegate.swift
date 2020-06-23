@@ -29,7 +29,16 @@ extension PanelDelegate: FloatingPanelControllerDelegate {
         return vc == (mapVC?.detailPanel) ? DetailPanelLayout() : ListPanelLayout()
     }
     
-    /// Shows list panel after the hiding of detail panel with a pan gesture
+    /// Actions to execute before a panel will move to a new position
+    // swiftlint:disable identifier_name
+    func floatingPanelWillBeginDragging(_ vc: FloatingPanelController) {
+        if vc == mapVC?.listPanel, mapVC?.listPanel.position == FloatingPanelPosition.hidden {
+            mapVC?.listVC.listView.isHidden = false
+        }
+    }
+    
+    /// Actions to execute after a panel reach a new position
+    // swiftlint:disable identifier_name
     func floatingPanelDidEndDragging(_ vc: FloatingPanelController,
                                      withVelocity velocity: CGPoint,
                                      targetPosition: FloatingPanelPosition) {
@@ -37,6 +46,8 @@ extension PanelDelegate: FloatingPanelControllerDelegate {
         if vc == mapVC?.detailPanel, targetPosition == .hidden {
             guard let lastPanelPosition = lastPanelPosition else { return }
             mapVC?.listPanel.move(to: lastPanelPosition, animated: true)
+        } else if vc == mapVC?.listPanel, targetPosition == .hidden {
+            mapVC?.listVC.listView.isHidden = true
         }
     }
 }

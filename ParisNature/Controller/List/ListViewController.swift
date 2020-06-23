@@ -52,9 +52,9 @@ extension ListViewController {
         listView.collectionView.dataSource = collectionViewDelegate
         listView.collectionView.delegate = collectionViewDelegate
         collectionViewDelegate.listVC = self
-//        listView.subTypeCollectionView.dataSource = subTypeCollectionViewDelegate
-//        listView.subTypeCollectionView.delegate = subTypeCollectionViewDelegate
-//        subTypeCollectionViewDelegate.listVC = self
+        listView.subTypeCollectionView.dataSource = subTypeCollectionViewDelegate
+        listView.subTypeCollectionView.delegate = subTypeCollectionViewDelegate
+        subTypeCollectionViewDelegate.listVC = self
         listView.tableView.dataSource = tableViewDelegate
         listView.tableView.delegate = tableViewDelegate
         tableViewDelegate.listVC = self
