@@ -79,9 +79,9 @@ extension ListViewController {
     func getPlaces(placeType: PlaceType) {
         switch placeType {
         case .park, .garden, .promenade:
-            mapVC?.mapDelegate.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
+            mapVC?.mapViewDelegate.getPlaces(placeType: placeType, dataType: GreenSpacesResult.self)
         default:
-            mapVC?.mapDelegate.getPlaces(placeType: placeType, dataType: EventsResult.self)
+            mapVC?.mapViewDelegate.getPlaces(placeType: placeType, dataType: EventsResult.self)
         }
     }
     

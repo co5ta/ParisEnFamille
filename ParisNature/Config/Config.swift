@@ -12,4 +12,5 @@ enum Config {
 
     static let appGray = UIColor(red: 0.819, green: 0.819, blue: 0.84, alpha: 1)
     static let screenSize = UIScreen.main.bounds.size
+    static let departments = ["75", "92", "93", "94"]
 }

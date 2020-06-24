@@ -1,5 +1,5 @@
 //
-//  MapDelegate.swift
+//  MapViewDelegate.swift
 //  ParisNature
 //
 //  Created by co5ta on 08/06/2020.
@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 /// Delegate of the map view
-class MapDelegate: NSObject {
+class MapViewDelegate: NSObject {
     
     /// Mapview controller
     weak var mapVC: MapViewController?
@@ -21,7 +21,7 @@ class MapDelegate: NSObject {
 }
 
 // MARK: - Data
-extension MapDelegate {
+extension MapViewDelegate {
     
     /// Asks  to receive green areas
     func getPlaces<T>(placeType: PlaceType, dataType: T.Type) where T: Decodable {
@@ -56,27 +56,29 @@ extension MapDelegate {
     /// Adds places in the map and the table view
     private func addPlaces(_ places: [Place]) {
         guard let mapVC = mapVC else { return }
-        if places.isEmpty {
-            mapVC.state = .message(.emptyData)
-            return
-        }
+        guard places.isEmpty == false else { mapVC.state = .message(.emptyData); return }
         
         var list = [Place]()
+        var mapRect = MKMapRect.null
         for place in places {
-            guard place.coordinate.latitude != 0 else { continue }
+            guard place.coordinate.latitude != 0, Config.departments.contains(place.department) else { continue }
             list.append(place)
             mapVC.mapView.addAnnotation(place)
+            let point = MKMapPoint(place.coordinate)
+            let rect = MKMapRect(x: point.x, y: point.y, width: 1, height: 1)
+            mapRect = mapRect.union(rect)
             guard let greenspace = place as? GreenSpace, let polygon = greenspace.geom.shapes else { continue }
             mapVC.mapView.addOverlay(polygon)
         }
         mapVC.places = list
         mapVC.state = .placesList
-        mapVC.mapView.showAnnotations(mapVC.mapView.annotations, animated: true)
+        let edgeInsets = UIEdgeInsets(top: 30, left: 30, bottom: Config.screenSize.height * 0.4, right: 30)
+        mapVC.mapView.setVisibleMapRect(mapRect, edgePadding: edgeInsets, animated: true)
     }
 }
 
 // MARK: - MKMapViewDelegate
-extension MapDelegate: MKMapViewDelegate {
+extension MapViewDelegate: MKMapViewDelegate {
 
     /// Returns the view associated with the specified annotation object
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -144,7 +146,7 @@ extension MapDelegate: MKMapViewDelegate {
 }
 
 // MARK: - Annotations selection
-extension MapDelegate {
+extension MapViewDelegate {
     
     private func getCluster(annotation: MKAnnotation) -> [MKClusterAnnotation]? {
         guard let clusters = mapVC?.mapView.annotations.filter({ $0 is MKClusterAnnotation }) as? [MKClusterAnnotation]

@@ -13,7 +13,7 @@
 		2254268E24915FCA00C217F1 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254268D24915FCA00C217F1 /* TableViewDelegate.swift */; };
 		2254269024916EBA00C217F1 /* PlaceTypeCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254268F24916EBA00C217F1 /* PlaceTypeCollectionViewDelegate.swift */; };
 		2254657D248EC3AE00D082E8 /* PanelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254657C248EC3AE00D082E8 /* PanelDelegate.swift */; };
-		2254657F248EF47C00D082E8 /* MapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254657E248EF47C00D082E8 /* MapDelegate.swift */; };
+		2254657F248EF47C00D082E8 /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254657E248EF47C00D082E8 /* MapViewDelegate.swift */; };
 		2254EB2A246FDFCA00BEA2AC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254EB29246FDFCA00BEA2AC /* ListViewController.swift */; };
 		2255A98B2488EC4A00196E56 /* GreenSpaceStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255A98A2488EC4A00196E56 /* GreenSpaceStackView.swift */; };
 		2255ABC92487A366008F33EC /* TopStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255ABC82487A366008F33EC /* TopStackView.swift */; };
@@ -68,7 +68,7 @@
 		2254268D24915FCA00C217F1 /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
 		2254268F24916EBA00C217F1 /* PlaceTypeCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTypeCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		2254657C248EC3AE00D082E8 /* PanelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelDelegate.swift; sourceTree = "<group>"; };
-		2254657E248EF47C00D082E8 /* MapDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDelegate.swift; sourceTree = "<group>"; };
+		2254657E248EF47C00D082E8 /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		2254EB29246FDFCA00BEA2AC /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		2255A98A2488EC4A00196E56 /* GreenSpaceStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenSpaceStackView.swift; sourceTree = "<group>"; };
 		2255ABC82487A366008F33EC /* TopStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStackView.swift; sourceTree = "<group>"; };
@@ -238,7 +238,7 @@
 			children = (
 				225745B3246705190040BBC8 /* MapViewController.swift */,
 				2253148B247574560059BCFD /* MapViewController+State.swift */,
-				2254657E248EF47C00D082E8 /* MapDelegate.swift */,
+				2254657E248EF47C00D082E8 /* MapViewDelegate.swift */,
 				2259FD382493BE3D0088444C /* LocationDelegate.swift */,
 			);
 			path = Map;
@@ -513,7 +513,7 @@
 			files = (
 				22579D6F246836EC007470F4 /* GreenSpacesResult.swift in Sources */,
 				2255DC53248FC628000D4D35 /* UIFont+Traits.swift in Sources */,
-				2254657F248EF47C00D082E8 /* MapDelegate.swift in Sources */,
+				2254657F248EF47C00D082E8 /* MapViewDelegate.swift in Sources */,
 				2254657D248EC3AE00D082E8 /* PanelDelegate.swift in Sources */,
 				22BB89E22465AE68008740DA /* MainCoordinator.swift in Sources */,
 				225628132472A07B00DDEAAB /* PlaceTypeCell.swift in Sources */,

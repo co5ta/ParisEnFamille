@@ -16,6 +16,8 @@ protocol Place: MKAnnotation, Decodable {
     var title: String? { get }
     /// The address of the place
     var address: String { get }
+    /// Department of the place
+    var department: String { get }
     /// The  geographic coordinates
     var coordinate: CLLocationCoordinate2D { get }
     /// The distance between the place and the user location

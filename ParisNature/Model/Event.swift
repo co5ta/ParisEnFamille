@@ -33,18 +33,14 @@ class Event: NSObject, Place {
     var access = [String]()
     /// Address
     let address: String
+    /// Department
+    let department: String
     /// Coordinate of the place
     var coordinate = CLLocationCoordinate2D()
     /// Distance between the event and the user location
     var distance: CLLocationDistance?
     /// List of access type
     let accessList = ["gratuit": "Free", "payant": "Payable", "reservation": "on reservation"]
-    //
-    //    let imageURL:  String
-    //
-    //    let format: String
-    //
-    //    let dateDescription: String
     
     /// Creates a new instance by decoding from the given decoder
     required init(from decoder: Decoder) throws {
@@ -55,6 +51,7 @@ class Event: NSObject, Place {
         let addressName = try fields.decodeIfPresent(String.self, forKey: .addressName)
         let addressStreet = try fields.decode(String.self, forKey: .addressStreet)
         let addressZipcode = try fields.decode(String.self, forKey: .addressZipcode)
+        department = String(addressZipcode.prefix(2))
         let addressCity = try fields.decodeIfPresent(String.self, forKey: .addressCity)
         address = "\(addressName ?? "") \n\(addressStreet) \n\(addressZipcode) \(addressCity ?? "")"
         if let latLon = try fields.decodeIfPresent([Double].self, forKey: .latLon), addressCity != nil {
@@ -102,11 +99,5 @@ extension Event {
         case contactUrl 
         case contactPhone
         case contactMail
-        
-        case cover
-        case imageURL
-        case format
-        case dateDescription
-        
     }
 }

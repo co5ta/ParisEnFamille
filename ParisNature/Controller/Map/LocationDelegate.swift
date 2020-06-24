@@ -37,9 +37,6 @@ extension LocationDelegate {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse, .authorizedAlways:
             mapVC.mapView.showsUserLocation = true
-//            mapVC.mapDelegate.centerMapOnUserLocation()
-//            mapVC.locationManager.startUpdatingLocation()
-//            mapVC.locationManager.requestLocation()
         case .denied:
             // Ask user to activate authorisation
             break

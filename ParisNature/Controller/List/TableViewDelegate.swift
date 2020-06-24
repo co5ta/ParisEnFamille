@@ -47,6 +47,6 @@ extension TableViewDelegate: UITableViewDelegate {
         if mapVC.state == .placesList {
             mapVC.panelDelegate.lastPanelPosition = mapVC.listPanel.position
         }
-        mapVC.mapDelegate.selectAnnotation(of: cell.place)
+        mapVC.mapViewDelegate.selectAnnotation(of: cell.place)
     }
 }

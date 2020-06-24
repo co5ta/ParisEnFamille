@@ -18,12 +18,11 @@ class ListPanelLayout: FloatingPanelLayout {
     
     /// Defines the available positions of the floating panel
     func insetFor(position: FloatingPanelPosition) -> CGFloat? {
-        let screenSize = UIScreen.main.bounds.size
         guard let safeAreaInsets = UIApplication.shared.keyWindow?.safeAreaInsets else { return nil }
         switch position {
         case .full: return safeAreaInsets.top
-        case .half: return screenSize.height * 0.35
-        case .tip: return (screenSize.height / 7) - (safeAreaInsets.bottom * 1.25)
+        case .half: return Config.screenSize.height * 0.35
+        case .tip: return (Config.screenSize.height / 7) - (safeAreaInsets.bottom * 1.25)
         case .hidden: return nil
         }
     }

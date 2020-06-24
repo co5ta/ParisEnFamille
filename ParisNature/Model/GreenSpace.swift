@@ -20,6 +20,8 @@ class GreenSpace: NSObject, Place {
     let geom: Geom
     /// Address
     let address: String
+    /// Department
+    let department: String
     /// GPS coordinate
     var coordinate = CLLocationCoordinate2D()
     /// Distance between the place and the user location
@@ -44,7 +46,8 @@ class GreenSpace: NSObject, Place {
         let streetType = try fields.decode(String.self, forKey: .adresseTypevoie).localizedLowercase
         let streetName = try fields.decode(String.self, forKey: .adresseLibellevoie).localizedCapitalized
         let zipCode = try fields.decode(String.self, forKey: .adresseCodepostal)
-        let city = String(zipCode.prefix(2)) == "75" ? "Paris": ""
+        department = String(zipCode.prefix(2))
+        let city = department == "75" ? "Paris": ""
         address = "\(streetNumber) \(streetType) \(streetName) \n\(zipCode) \(city) "
         geom = try fields.decode(Geom.self, forKey: .geom)
         if let location = geom.location {

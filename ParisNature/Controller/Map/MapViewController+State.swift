@@ -59,7 +59,7 @@ extension MapViewController {
     
     /// Displays loading
     private func displayLoading() {
-        mapDelegate.isFollowing = false
+        mapViewDelegate.isFollowing = false
         toggleViews(show: listVC.listView.loadingView)
         listPanel.move(to: .half, animated: true)
     }

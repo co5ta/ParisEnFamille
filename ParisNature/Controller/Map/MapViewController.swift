@@ -27,7 +27,7 @@ class MapViewController: UIViewController {
     let detailVC = DetailViewController()
     /// Map view delegate
     // swiftlint:disable weak_delegate
-    let mapDelegate = MapDelegate()
+    let mapViewDelegate = MapViewDelegate()
     /// Location manager delegate
     // swiftlint:disable weak_delegate
     let locationDelegate = LocationDelegate()
@@ -70,8 +70,8 @@ extension MapViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         listVC.mapVC = self
         detailVC.mapVC = self
-        mapView.delegate = mapDelegate
-        mapDelegate.mapVC = self
+        mapView.delegate = mapViewDelegate
+        mapViewDelegate.mapVC = self
         locationManager.delegate = locationDelegate
         locationDelegate.mapVC = self
         listPanel.delegate = panelDelegate
