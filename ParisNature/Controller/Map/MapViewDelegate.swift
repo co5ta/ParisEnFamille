@@ -58,10 +58,16 @@ extension MapViewDelegate {
         guard let mapVC = mapVC else { return }
         guard places.isEmpty == false else { mapVC.state = .message(.emptyData); return }
         
+        let calendar = Calendar.current
+        let now = Date()
         var list = [Place]()
         var mapRect = MKMapRect.null
-        for place in places {
+        for place in places.reversed() {
             guard place.coordinate.latitude != 0, Config.departments.contains(place.department) else { continue }
+            if let event = place as? Event {
+                let interval = calendar.dateComponents([.month], from: now, to: event.dateEnd)
+                if let month = interval.month, month > 2 { continue }
+            }
             list.append(place)
             mapVC.mapView.addAnnotation(place)
             let point = MKMapPoint(place.coordinate)

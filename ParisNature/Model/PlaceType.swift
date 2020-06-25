@@ -82,7 +82,7 @@ enum PlaceType: String, CaseIterable {
     var apiURL: String? {
         var url = "https://opendata.paris.fr/api/records/1.0/search/"
         let greenspaceDataSet = "?dataset=espaces_verts"
-        let eventDataSet = "?dataset=que-faire-a-paris-&sort=date_start"
+        let eventDataSet = "?dataset=que-faire-a-paris-&sort=date_end"
         
         switch self {
         // Animation
