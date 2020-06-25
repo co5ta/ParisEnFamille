@@ -106,6 +106,7 @@ extension MapViewController {
         detailPanel.surfaceView.cornerRadius = 10
         detailPanel.surfaceView.backgroundColor = .clear
         detailPanel.set(contentViewController: detailVC)
+        detailPanel.track(scrollView: detailVC.detailView.scrollView)
     }
     
     /// Sets up the map view
