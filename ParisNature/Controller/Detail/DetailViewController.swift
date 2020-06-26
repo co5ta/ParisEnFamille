@@ -75,7 +75,7 @@ extension DetailViewController {
     @objc
     private func websiteButtonTapped() {
         guard let place = place as? Event,
-            let contactUrl = place.contactUrl,
+            let contactUrl = place.accessLink,
             let url = URL(string: contactUrl)
             else { return }
         let safariVC = SFSafariViewController(url: url)

@@ -24,13 +24,15 @@ class Event: NSObject, Place {
     /// Name of the contact
     let contactName: String?
     /// URL of the website
-    let contactUrl: String?
+    let accessLink: String?
     /// Phone number
     let contactPhone: String?
     /// Mail address
     let contactMail: String?
     /// Array of available access for the place
     var access = [String]()
+    /// Detail about price
+    let priceDetail: String?
     /// Address
     let address: String
     /// Department
@@ -62,14 +64,11 @@ class Event: NSObject, Place {
         leadText = try fields.decode(String.self, forKey: .leadText)
         let accessType = try fields.decode(String.self, forKey: .accessType)
         let priceType = try fields.decode(String.self, forKey: .priceType)
-        if let priceText = accessList[priceType] {
-            access.append(priceText)
-        }
-        if let accessText = accessList[accessType] {
-            access.append(accessText)
-        }
+        if let priceText = accessList[priceType] { access.append(priceText) }
+        if let accessText = accessList[accessType] { access.append(accessText) }
+        priceDetail = try fields.decodeIfPresent(String.self, forKey: .priceDetail)
         contactName = try fields.decodeIfPresent(String.self, forKey: .contactName)
-        contactUrl = try fields.decodeIfPresent(String.self, forKey: .contactUrl)
+        accessLink = try fields.decodeIfPresent(String.self, forKey: .accessLink)
         contactMail = try fields.decodeIfPresent(String.self, forKey: .contactMail)
         contactPhone = try fields.decodeIfPresent(String.self, forKey: .contactPhone)?.replacingOccurrences(of: " ", with: "")
         subheading = addressStreet
@@ -95,8 +94,9 @@ extension Event {
         case leadText
         case accessType
         case priceType
+        case priceDetail
         case contactName
-        case contactUrl 
+        case accessLink 
         case contactPhone
         case contactMail
     }

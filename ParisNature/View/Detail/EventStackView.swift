@@ -89,7 +89,9 @@ extension EventStackView {
         addressFieldView.setData(title: "Address", value: place.address, separatorHidden: true)
         dateFieldView.setData(title: "Date", value: getDateText(place))
         leadTextFieldView.setData(title: "Description", value: place.leadText)
-        accessFieldView.setData(title: "Access", value: place.access.joined(separator: ", "))
+        var access = place.access.joined(separator: ", ")
+        if let priceDetail = place.priceDetail { access += ":\n\(priceDetail)"}
+        accessFieldView.setData(title: "Access", value: access)
         toggleFieldView(contactFieldView, title: "Contact", value: place.contactName)
         toggleContactButtons(place)
     }
@@ -114,7 +116,7 @@ extension EventStackView {
     
     /// Toggles display of contact buttons
     private func toggleContactButtons(_ place: Event) {
-        websiteButton.isHidden = place.contactUrl == nil ? true : false
+        websiteButton.isHidden = place.accessLink == nil ? true : false
         phoneButton.isHidden = place.contactPhone == nil ? true : false
         mailButton.isHidden = place.contactMail == nil ? true : false
     }
