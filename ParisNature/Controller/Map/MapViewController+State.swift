@@ -71,6 +71,7 @@ extension MapViewController {
         listPanel.move(to: position, animated: true)
         detailPanel.move(to: .hidden, animated: true)
         listPanel.contentMode = .fitToBounds
+        panelDelegate.lastPanelPosition = nil
     }
     
     /// DIsplays the places of a cluster
@@ -87,7 +88,7 @@ extension MapViewController {
         listPanel.contentMode = .static
         listPanel.move(to: .hidden, animated: true)
         detailPanel.move(to: .half, animated: true)
-        detailVC.detailView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        detailVC.detailView.scrollView.contentOffset = CGPoint.zero
     }
     
     private func displayMessage(_ error: NetworkError) {
