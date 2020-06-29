@@ -57,7 +57,6 @@ extension DetailViewController {
     @objc
     private func cancelButtonTapped() {
         guard let place = place, let mapVC = mapVC else { return }
-//        mapVC.state = .placesList
         mapVC.mapView.deselectAnnotation(place, animated: true)
     }
     
@@ -74,10 +73,9 @@ extension DetailViewController {
     /// Opens the website of the place
     @objc
     private func websiteButtonTapped() {
-        guard let place = place as? Event,
-            let contactUrl = place.accessLink,
-            let url = URL(string: contactUrl)
-            else { return }
+        guard let place = place as? Event else { return }
+        let websiteUrl: String = place.accessLink ?? place.contactUrl ?? ""
+        guard websiteUrl.isEmpty == false, let url = URL(string: websiteUrl) else { return }
         let safariVC = SFSafariViewController(url: url)
         safariVC.modalPresentationStyle = .pageSheet
         present(safariVC, animated: true)

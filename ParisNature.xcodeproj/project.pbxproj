@@ -18,7 +18,6 @@
 		2255A98B2488EC4A00196E56 /* GreenSpaceStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255A98A2488EC4A00196E56 /* GreenSpaceStackView.swift */; };
 		2255ABC92487A366008F33EC /* TopStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255ABC82487A366008F33EC /* TopStackView.swift */; };
 		2255ABCF2487F065008F33EC /* FieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255ABCE2487F065008F33EC /* FieldView.swift */; };
-		2255DC53248FC628000D4D35 /* UIFont+Traits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255DC52248FC628000D4D35 /* UIFont+Traits.swift */; };
 		2255DC55248FDDDE000D4D35 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255DC54248FDDDE000D4D35 /* DetailView.swift */; };
 		2255DC572490069D000D4D35 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255DC562490069D000D4D35 /* ErrorView.swift */; };
 		22562811247275EC00DDEAAB /* PlaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22562810247275EC00DDEAAB /* PlaceType.swift */; };
@@ -45,6 +44,8 @@
 		225BED8E2465A28400A69076 /* ParisNatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225BED8D2465A28400A69076 /* ParisNatureTests.swift */; };
 		225FC20824797BB0004E7D56 /* EventsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FC20624797BAF004E7D56 /* EventsResult.swift */; };
 		225FC20924797BB0004E7D56 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FC20724797BB0004E7D56 /* Event.swift */; };
+		2260CD3A24A7A3EC00A10E8F /* String+Html.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2260CD3924A7A3EC00A10E8F /* String+Html.swift */; };
+		2260CD3C24A7A40800A10E8F /* UIFont+Traits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2260CD3B24A7A40700A10E8F /* UIFont+Traits.swift */; };
 		228C8065248AB256002AB3DE /* EventStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228C8064248AB256002AB3DE /* EventStackView.swift */; };
 		22BB89E22465AE68008740DA /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB89E12465AE68008740DA /* MainCoordinator.swift */; };
 		22F14729248C23CA00523A64 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F14728248C23CA00523A64 /* Config.swift */; };
@@ -73,7 +74,6 @@
 		2255A98A2488EC4A00196E56 /* GreenSpaceStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenSpaceStackView.swift; sourceTree = "<group>"; };
 		2255ABC82487A366008F33EC /* TopStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStackView.swift; sourceTree = "<group>"; };
 		2255ABCE2487F065008F33EC /* FieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldView.swift; sourceTree = "<group>"; };
-		2255DC52248FC628000D4D35 /* UIFont+Traits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Traits.swift"; sourceTree = "<group>"; };
 		2255DC54248FDDDE000D4D35 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		2255DC562490069D000D4D35 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		22562810247275EC00DDEAAB /* PlaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceType.swift; sourceTree = "<group>"; };
@@ -104,6 +104,8 @@
 		225BED8F2465A28400A69076 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		225FC20624797BAF004E7D56 /* EventsResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsResult.swift; sourceTree = "<group>"; };
 		225FC20724797BB0004E7D56 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		2260CD3924A7A3EC00A10E8F /* String+Html.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Html.swift"; sourceTree = "<group>"; };
+		2260CD3B24A7A40700A10E8F /* UIFont+Traits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Traits.swift"; sourceTree = "<group>"; };
 		228C8064248AB256002AB3DE /* EventStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStackView.swift; sourceTree = "<group>"; };
 		22BB89E12465AE68008740DA /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		22F14728248C23CA00523A64 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -164,7 +166,8 @@
 		225745B524670A320040BBC8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2255DC52248FC628000D4D35 /* UIFont+Traits.swift */,
+				2260CD3B24A7A40700A10E8F /* UIFont+Traits.swift */,
+				2260CD3924A7A3EC00A10E8F /* String+Html.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -512,9 +515,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				22579D6F246836EC007470F4 /* GreenSpacesResult.swift in Sources */,
-				2255DC53248FC628000D4D35 /* UIFont+Traits.swift in Sources */,
 				2254657F248EF47C00D082E8 /* MapViewDelegate.swift in Sources */,
 				2254657D248EC3AE00D082E8 /* PanelDelegate.swift in Sources */,
+				2260CD3A24A7A3EC00A10E8F /* String+Html.swift in Sources */,
 				22BB89E22465AE68008740DA /* MainCoordinator.swift in Sources */,
 				225628132472A07B00DDEAAB /* PlaceTypeCell.swift in Sources */,
 				2254EB2A246FDFCA00BEA2AC /* ListViewController.swift in Sources */,
@@ -547,6 +550,7 @@
 				2255ABCF2487F065008F33EC /* FieldView.swift in Sources */,
 				22562811247275EC00DDEAAB /* PlaceType.swift in Sources */,
 				2259FD372493BDBD0088444C /* DetailPanelLayout.swift in Sources */,
+				2260CD3C24A7A40800A10E8F /* UIFont+Traits.swift in Sources */,
 				22576AAB24767F4600373476 /* PlaceAnnotationView.swift in Sources */,
 				225745BA246746400040BBC8 /* NetworkService.swift in Sources */,
 			);

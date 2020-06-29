@@ -19,12 +19,18 @@ class Event: NSObject, Place {
     let dateStart: Date
     /// Last date of the event
     let dateEnd: Date
+    /// Dates of the event
+    let dateDescription: String
     /// Short description of the event
     let leadText: String
+    /// Longer description of the event
+    let descriptionText: String
     /// Name of the contact
     let contactName: String?
-    /// URL of the website
+    /// URL of the reservation
     let accessLink: String?
+    /// URL of the website
+    let contactUrl: String?
     /// Phone number
     let contactPhone: String?
     /// Mail address
@@ -61,7 +67,9 @@ class Event: NSObject, Place {
         }
         dateStart = try fields.decode(Date.self, forKey: .dateStart)
         dateEnd = try fields.decode(Date.self, forKey: .dateEnd)
+        dateDescription = try fields.decode(String.self, forKey: .dateDescription)
         leadText = try fields.decode(String.self, forKey: .leadText)
+        descriptionText = try fields.decode(String.self, forKey: .description)
         let accessType = try fields.decode(String.self, forKey: .accessType)
         let priceType = try fields.decode(String.self, forKey: .priceType)
         if let priceText = accessList[priceType] { access.append(priceText) }
@@ -69,6 +77,7 @@ class Event: NSObject, Place {
         priceDetail = try fields.decodeIfPresent(String.self, forKey: .priceDetail)
         contactName = try fields.decodeIfPresent(String.self, forKey: .contactName)
         accessLink = try fields.decodeIfPresent(String.self, forKey: .accessLink)
+        contactUrl = try fields.decodeIfPresent(String.self, forKey: .contactUrl)
         contactMail = try fields.decodeIfPresent(String.self, forKey: .contactMail)
         contactPhone = try fields.decodeIfPresent(String.self, forKey: .contactPhone)?.replacingOccurrences(of: " ", with: "")
         subheading = addressStreet
@@ -91,12 +100,15 @@ extension Event {
         case latLon
         case dateStart
         case dateEnd
+        case dateDescription
         case leadText
+        case description
         case accessType
         case priceType
         case priceDetail
         case contactName
-        case accessLink 
+        case accessLink
+        case contactUrl
         case contactPhone
         case contactMail
     }

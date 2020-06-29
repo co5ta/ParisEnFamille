@@ -94,7 +94,8 @@ extension TopStackView {
             directionsButton.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 2),
             directionsButton.leadingAnchor.constraint(equalTo: leadingAnchor),
             directionsButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-            directionsButton.bottomAnchor.constraint(equalTo: bottomAnchor)
+            bottomAnchor.constraint(equalToSystemSpacingBelow: directionsButton.bottomAnchor, multiplier: 1)
+//            directionsButton.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }
