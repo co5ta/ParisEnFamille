@@ -69,6 +69,7 @@ extension PlaceTypeCell {
         imageButton.layer.cornerRadius = imageButton.frame.width * 0.5
         imageButton.layer.borderColor = UIColor.black.cgColor
         imageButton.layer.borderWidth = 1
+        imageButton.contentEdgeInsets = UIEdgeInsets(top: 7, left: 2.5, bottom: 0, right: 2.5)
     }
     
     /// Configures the cell with data

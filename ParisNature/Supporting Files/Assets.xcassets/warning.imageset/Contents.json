@@ -1,17 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "warning.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "warning.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {

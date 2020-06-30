@@ -20,7 +20,10 @@ enum PlaceType: String, CaseIterable {
     
     /// List of parent place types
     static let parents: [PlaceType] = [
-        .animation, .exhibit, .education, .ramble
+        .ramble,
+        .exhibit,
+        .education,
+        .animation
     ]
     
     /// List of chilf place types
@@ -34,10 +37,10 @@ enum PlaceType: String, CaseIterable {
     /// Name of the associated image
     var imageName: String {
         switch self {
-        case .animation: return "park"
-        case .exhibit: return "garden"
-        case .education: return "other"
-        case .ramble: return "event"
+        case .animation: return "event"
+        case .education: return "teach"
+        case .exhibit: return "museum"
+        case .ramble: return "backpacker"
         default: return ""
         }
     }
@@ -53,13 +56,13 @@ enum PlaceType: String, CaseIterable {
         case .conference: return "Conference"
         case .reading: return "Reading"
         case .games: return "Games"
-        case .otherAnimation: return "Other"
+        case .otherAnimation: return "Others"
         // Education
         case .education: return "Education"
         case .workshop: return "Workshop"
         case .practicum: return "Practicum"
         // Exhibit
-        case .exhibit: return "Exhibit"
+        case .exhibit: return "Exhibits"
         case .contemporary: return "Contemporary"
         case .fineArts: return "Fine Arts"
         case .design: return "Design"
@@ -68,9 +71,9 @@ enum PlaceType: String, CaseIterable {
         case .photography: return "Photography"
         case .science: return "Science"
         case .streetArt: return "Street-art"
-        case .otherExhibit: return "Other"
+        case .otherExhibit: return "Others"
         // Ramble
-        case .ramble: return "Ramble"
+        case .ramble: return "Rambles"
         case .visit: return "Visit"
         case .park: return "Park"
         case .garden: return "Garden"
