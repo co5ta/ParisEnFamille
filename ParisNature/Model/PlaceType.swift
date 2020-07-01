@@ -10,7 +10,7 @@
 enum PlaceType: String, CaseIterable {
     
     /// Animation place type
-    case animation, conference, reading, games, otherAnimation
+    case activity, conference, reading, games, otherAnimation
     /// Education place type
     case education, workshop, practicum
     /// Exhibit place type
@@ -20,15 +20,15 @@ enum PlaceType: String, CaseIterable {
     
     /// List of parent place types
     static let parents: [PlaceType] = [
-        .ramble,
-        .exhibit,
         .education,
-        .animation
+        .exhibit,
+        .ramble,
+        .activity
     ]
     
     /// List of chilf place types
     static let children: [PlaceType: [PlaceType]] = [
-        .animation: [.conference, .reading, .games, .otherAnimation],
+        .activity: [.conference, .reading, .games, .otherAnimation],
         .education: [workshop, practicum],
         .exhibit: [.contemporary, .fineArts, .design, .history, .illustration, .photography, .science, .streetArt, .otherExhibit],
         .ramble: [.visit, .park, .garden, promenade]
@@ -37,7 +37,7 @@ enum PlaceType: String, CaseIterable {
     /// Name of the associated image
     var imageName: String {
         switch self {
-        case .animation: return "event"
+        case .activity: return "event"
         case .education: return "teach"
         case .exhibit: return "museum"
         case .ramble: return "backpacker"
@@ -52,17 +52,17 @@ enum PlaceType: String, CaseIterable {
     var title: String {
         switch self {
         // Animation
-        case .animation: return "Animations"
+        case .activity: return "Activity"
         case .conference: return "Conference"
         case .reading: return "Reading"
         case .games: return "Games"
         case .otherAnimation: return "Others"
         // Education
-        case .education: return "Education"
+        case .education: return "Learning"
         case .workshop: return "Workshop"
         case .practicum: return "Practicum"
         // Exhibit
-        case .exhibit: return "Exhibits"
+        case .exhibit: return "Exhibit"
         case .contemporary: return "Contemporary"
         case .fineArts: return "Fine Arts"
         case .design: return "Design"
@@ -73,7 +73,7 @@ enum PlaceType: String, CaseIterable {
         case .streetArt: return "Street-art"
         case .otherExhibit: return "Others"
         // Ramble
-        case .ramble: return "Rambles"
+        case .ramble: return "Ramble"
         case .visit: return "Visit"
         case .park: return "Park"
         case .garden: return "Garden"
@@ -89,7 +89,7 @@ enum PlaceType: String, CaseIterable {
         
         switch self {
         // Animation
-        case .animation:
+        case .activity:
             url += eventDataSet
             url += excludeCategories(from: PlaceType.eventCategories,
                                      notIn: ["Animations -> Conférence / Débat",

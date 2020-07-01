@@ -96,9 +96,9 @@ extension ListView {
     
     /// Sets up the table view
     private func setUpTableView() {
+        addSubview(tableView)
         tableView.register(PlaceTableViewCell.self, forCellReuseIdentifier: PlaceTableViewCell.identifier)
         tableView.backgroundColor = .clear
-        addSubview(tableView)
     }
     
     /// Sets up the loading view
@@ -125,13 +125,16 @@ extension ListView {
     private func setUpSubTypeCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-//        layout.estimatedItemSize = CGSize(width: 1, height: 1)
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         subTypeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         subTypeCollectionView.backgroundColor = .clear
         subTypeCollectionView.register(SubTypeCell.self, forCellWithReuseIdentifier: SubTypeCell.identifier)
         subTypeCollectionView.showsHorizontalScrollIndicator = false
         addSubview(subTypeCollectionView)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        subTypeCollectionView.collectionViewLayout.invalidateLayout()
     }
 }
 
@@ -178,7 +181,7 @@ extension ListView {
     private func constrainClusterTitleLabel() {
         clusterTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            clusterTitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 4),
+            clusterTitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1.5),
             clusterTitleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2)
         ])
     }

@@ -38,8 +38,10 @@ extension SubTypeCell {
     
     /// Sets up the views
     private func setUp() {
+        addSubview(titleButton)
         titleButton.titleLabel?.font = .preferredFont(forTextStyle: .callout)
         titleButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        titleButton.titleLabel?.adjustsFontSizeToFitWidth = true
         titleButton.setTitleColor(.systemGray, for: .normal)
         titleButton.setTitleColor(Config.appGray, for: .highlighted)
         titleButton.setTitleColor(.white, for: .selected)
@@ -47,14 +49,13 @@ extension SubTypeCell {
         titleButton.layer.cornerRadius = 15
         titleButton.layer.borderWidth = 1
         titleButton.layer.borderColor = Config.appGray.cgColor
-        addSubview(titleButton)
         constrain()
     }
     
     /// Configures with data
     private func setData(with subType: PlaceType?) {
         guard let subType = subType else { return }
-        titleButton.setTitle("     \(subType.title)     ", for: .normal)
+        titleButton.setTitle("   \(subType.title)   ", for: .normal)
     }
 }
 
@@ -82,6 +83,7 @@ extension SubTypeCell {
     private func constrainTitleButton() {
         titleButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            titleButton.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 0.58),
             titleButton.topAnchor.constraint(equalToSystemSpacingBelow: contentView.topAnchor, multiplier: 0.5),
             titleButton.leadingAnchor.constraint(equalToSystemSpacingAfter: contentView.leadingAnchor, multiplier: 1),
             contentView.trailingAnchor.constraint(equalToSystemSpacingAfter: titleButton.trailingAnchor, multiplier: 1),

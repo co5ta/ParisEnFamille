@@ -43,17 +43,18 @@ extension TopStackView {
     
     /// Sets up the title label
     private func setUpTitleLabel() {
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .title2).bold()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = true
-        titleLabel.numberOfLines = 0
         addSubview(titleLabel)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .title2).bold()
+        titleLabel.adjustsFontForContentSizeCategory = true
+        titleLabel.numberOfLines = 0
     }
     
     /// Sets up the directions button
     private func setUpDirectionsButton() {
         directionsButton.setTitle("Directions", for: .normal)
         directionsButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline).bold()
-        directionsButton.translatesAutoresizingMaskIntoConstraints = true
+        directionsButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        directionsButton.titleLabel?.adjustsFontSizeToFitWidth = true
         directionsButton.tintColor = .white
         directionsButton.backgroundColor = .systemBlue
         directionsButton.layer.cornerRadius = 10
@@ -95,7 +96,6 @@ extension TopStackView {
             directionsButton.leadingAnchor.constraint(equalTo: leadingAnchor),
             directionsButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             bottomAnchor.constraint(equalToSystemSpacingBelow: directionsButton.bottomAnchor, multiplier: 1)
-//            directionsButton.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

@@ -51,8 +51,7 @@ extension FieldView {
     /// Sets up the title label
     private func setUpTitleLabel() {
         titleLabel.font = .preferredFont(forTextStyle: .subheadline)
-        
-        titleLabel.translatesAutoresizingMaskIntoConstraints = true
+        titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.textColor = .systemGray
         addSubview(titleLabel)
     }
@@ -60,6 +59,7 @@ extension FieldView {
     /// Sets up the value label
     private func setUpValueTextView() {
         valueTextView.font = .preferredFont(forTextStyle: .callout)
+        valueTextView.adjustsFontForContentSizeCategory = true
         valueTextView.numberOfLines = 0
         addSubview(valueTextView)
     }

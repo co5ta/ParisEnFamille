@@ -60,7 +60,7 @@ extension EventStackView {
         addArrangedSubview(addressFieldView)
         addArrangedSubview(dateFieldView)
         addArrangedSubview(accessFieldView)
-        setUpPriceDetail()
+        setUpPriceDetailLabel()
         addArrangedSubview(leadTextFieldView)
         setUpDescriptionLabel()
         addArrangedSubview(contactFieldView)
@@ -82,19 +82,20 @@ extension EventStackView {
     }
     
     /// Sets up price detail
-    private func setUpPriceDetail() {
+    private func setUpPriceDetailLabel() {
         addArrangedSubview(priceDetailLabel)
-        priceDetailLabel.numberOfLines = 0
-        priceDetailLabel.font = .preferredFont(forTextStyle: .callout)
         setCustomSpacing(10, after: priceDetailLabel)
+        priceDetailLabel.font = .preferredFont(forTextStyle: .callout)
+        priceDetailLabel.adjustsFontForContentSizeCategory = true
+        priceDetailLabel.numberOfLines = 0
     }
     
     /// Sets up the contact stack view
     private func setUpContactStackView() {
+        addArrangedSubview(contactStackView)
+        setCustomSpacing(10, after: contactFieldView)
         contactStackView.spacing = 10
         contactStackView.distribution = .fillEqually
-        setCustomSpacing(10, after: contactFieldView)
-        addArrangedSubview(contactStackView)
     }
     
     /// Sets up a contact button
@@ -115,7 +116,6 @@ extension EventStackView {
         leadTextFieldView.setData(title: "Description", value: place.leadText)
         let description = place.descriptionText + "<style>img {width: \(frame.width)px}</style>"
         descriptionTextView.attributedText = description.htmlToAttributedString
-//        descriptionTextView.text = place.descriptionText
         accessFieldView.setData(title: "Access", value: place.access.joined(separator: ", "))
         priceDetailLabel.text = place.priceDetail
         toggleFieldView(contactFieldView, title: "Contact", value: place.contactName)
