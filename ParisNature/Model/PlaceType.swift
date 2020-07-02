@@ -6,7 +6,7 @@
 //  Copyright © 2020 Co5ta. All rights reserved.
 //
 
-///
+/// Gathers informations about the place types
 enum PlaceType: String, CaseIterable {
     
     /// Animation place type
@@ -19,19 +19,14 @@ enum PlaceType: String, CaseIterable {
     case ramble, visit, park, garden, promenade
     
     /// List of parent place types
-    static let parents: [PlaceType] = [
-        .education,
-        .exhibit,
-        .ramble,
-        .activity
-    ]
+    static let parents: [PlaceType] = [.education, .exhibit, .ramble, .activity]
     
     /// List of chilf place types
-    static let children: [PlaceType: [PlaceType]] = [
+    static let hierarchy: [PlaceType: [PlaceType]] = [
         .activity: [.conference, .reading, .games, .otherAnimation],
-        .education: [workshop, practicum],
+        .education: [.workshop, .practicum],
         .exhibit: [.contemporary, .fineArts, .design, .history, .illustration, .photography, .science, .streetArt, .otherExhibit],
-        .ramble: [.visit, .park, .garden, promenade]
+        .ramble: [.visit, .park, .garden, .promenade]
     ]
     
     /// Name of the associated image
@@ -46,7 +41,9 @@ enum PlaceType: String, CaseIterable {
     }
     
     /// Name of the associates image when selected
-    var imageSelectedName: String { "\(imageName)Color"}
+    var imageSelectedName: String {
+        imageName + "Color"
+    }
     
     /// Title of the place type
     var title: String {
@@ -63,8 +60,8 @@ enum PlaceType: String, CaseIterable {
         case .practicum: return "Practicum"
         // Exhibit
         case .exhibit: return "Exhibit"
-        case .contemporary: return "Contemporary"
-        case .fineArts: return "Fine Arts"
+        case .contemporary: return "Contemporary art"
+        case .fineArts: return "Fine arts"
         case .design: return "Design"
         case .history: return "History"
         case .illustration: return "Illustration"
@@ -80,12 +77,15 @@ enum PlaceType: String, CaseIterable {
         case .promenade: return "Promenade"
         }
     }
-    
+}
+
+// MARK: - Endpoints
+extension PlaceType {
     /// URL to search places from a place type
     var apiURL: String? {
-        var url = "https://opendata.paris.fr/api/records/1.0/search/"
-        let greenspaceDataSet = "?dataset=espaces_verts"
-        let eventDataSet = "?dataset=que-faire-a-paris-&sort=date_end"
+        var url = "https://opendata.paris.fr/api/records/1.0/search/?"
+        let greenspaceDataSet = "dataset=espaces_verts"
+        let eventDataSet = "dataset=que-faire-a-paris-&sort=date_end"
         
         switch self {
         // Animation
@@ -120,7 +120,7 @@ enum PlaceType: String, CaseIterable {
         case .exhibit:
             url += eventDataSet + includeCategory("Expositions+")
         case .contemporary:
-            url += eventDataSet + includeCategory("Expositions -> Design / Mode")
+            url += eventDataSet + includeCategory("Expositions -> Art Contemporain")
         case .fineArts:
             url += eventDataSet + includeCategory("Expositions -> Beaux-Arts")
         case .design:
@@ -129,6 +129,12 @@ enum PlaceType: String, CaseIterable {
             url += eventDataSet + includeCategory("Expositions -> Histoire / Civilisations")
         case .illustration:
             url += eventDataSet + includeCategory("Expositions -> Illustration / BD")
+        case .photography:
+            url += eventDataSet + includeCategory("Expositions -> Photographie")
+        case .science:
+            url += eventDataSet + includeCategory("Expositions -> Sciences / Techniques")
+        case .streetArt:
+            url += eventDataSet + includeCategory("Expositions -> Street-art")
         case .otherExhibit:
             url += eventDataSet + includeCategory("Expositions -> Autre expo")
         
@@ -150,9 +156,6 @@ enum PlaceType: String, CaseIterable {
             url += greenspaceDataSet
             url += excludeCategories(from: PlaceType.greenspaceCategories,
                                      notIn: ["Esplanade", "Promenade"])
-            
-        // Nil value
-        default: break
         }
         
         url += "&rows=200"
@@ -163,22 +166,19 @@ enum PlaceType: String, CaseIterable {
 // MARK: - API Categories
 extension PlaceType {
     
+    /// The category to include in the search
     private func includeCategory(_ categorie: String) -> String {
         return "&refine.category=\(categorie)"
     }
     
+    /// The categories to exclude from the search
     private func excludeCategories(from list: [String], notIn categoriesToKeep: [String]) -> String {
         let keyword = (list == PlaceType.eventCategories) ? "category" : "categorie"
-        var categories = ""
-        for categorie in list {
-            if categoriesToKeep.contains(categorie) == false {
-                categories += "&exclude.\(keyword)=\(categorie)"
-            }
-        }
-//        let test = list.map { !categoriesToKeep.contains($0) ? "&exclude.categorie=\($0)" : ""}.joined()
+        let categories = list.map { categoriesToKeep.contains($0) == false ? "&exclude.\(keyword)=\($0)" : ""}.joined()
         return categories
     }
     
+    /// List of event categories
     static let eventCategories = [
         // Animations
         "Animations -> Atelier / Cours",
@@ -205,6 +205,7 @@ extension PlaceType {
         "Spectacles+"
     ]
     
+    /// List of green space categories
     static let greenspaceCategories = [
         "Arboretum",
         "Archipel",

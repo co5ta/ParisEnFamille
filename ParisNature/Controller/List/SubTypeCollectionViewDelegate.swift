@@ -60,7 +60,7 @@ extension SubTypeCollectionViewDelegate: UICollectionViewDataSource {
     /// Reloads Data
     func update() {
         guard let placeType = listVC?.placeType else { return }
-        subTypes = PlaceType.children[placeType]
+        subTypes = PlaceType.hierarchy[placeType]
         listVC?.listView.subTypeCollectionView.reloadData()
     }
 }
