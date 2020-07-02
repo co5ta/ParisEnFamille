@@ -9,7 +9,7 @@
 import UIKit
 
 /// A custom table view cell to display all the place founded after a research
-class PlaceTableViewCell: UITableViewCell {
+class PlaceCell: UITableViewCell {
     
     /// Title of the place
     let titleLabel = UILabel()
@@ -36,7 +36,7 @@ class PlaceTableViewCell: UITableViewCell {
 }
 
 // MARK: - Setup
-extension PlaceTableViewCell {
+extension PlaceCell {
     
     /// Sets up the views
     private func setUpViews() {
@@ -49,7 +49,7 @@ extension PlaceTableViewCell {
     /// Sets up the title label
     private func setUpTitleLabel() {
         titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
-        titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        titleLabel.textColor = Style.label
         titleLabel.numberOfLines = 0
         contentView.addSubview(titleLabel)
     }
@@ -57,7 +57,7 @@ extension PlaceTableViewCell {
     /// Sets up the subheading label
     private func setUpSubheadingLabel() {
         subheadingLabel.font = UIFont.preferredFont(forTextStyle: .callout)
-        subheadingLabel.textColor = .systemGray
+        subheadingLabel.textColor = Style.secondarylabel
         subheadingLabel.numberOfLines = 0
         contentView.addSubview(subheadingLabel)
     }
@@ -71,7 +71,7 @@ extension PlaceTableViewCell {
 }
 
 // MARK: - Constrains
-extension PlaceTableViewCell {
+extension PlaceCell {
     
     /// Constrains the subheading label
     private func constrainViews() {

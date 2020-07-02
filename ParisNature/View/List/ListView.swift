@@ -12,7 +12,7 @@ import UIKit
 class ListView: UIView {
 
     /// Blur background
-    var visualEffectView: UIVisualEffectView!
+    var visualEffectView = BlurView()
     /// Collection view of place types
     var collectionView: UICollectionView!
     /// Cluster title
@@ -48,7 +48,8 @@ extension ListView {
     
     /// Sets up the views
     private func setUpViews() {
-        setUpVisualEffectView()
+//        setUpVisualEffectView()
+        addSubview(visualEffectView)
         setUpCollectionView()
         setUpClusterTitleLabel()
         setUpUnderlineView()
@@ -60,29 +61,21 @@ extension ListView {
         constrainViews()
     }
     
-    /// Sets up the background view
-    private func setUpVisualEffectView() {
-        let blurEffect = UIBlurEffect(style: .extraLight)
-        visualEffectView = UIVisualEffectView(effect: blurEffect)
-        visualEffectView.backgroundColor = .white
-        visualEffectView.alpha = 0.8
-        addSubview(visualEffectView)
-    }
-    
     /// Sets up the collection view
     private func setUpCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(PlaceTypeCell.self, forCellWithReuseIdentifier: PlaceTypeCell.identifier)
         collectionView.backgroundColor = .clear
         collectionView.isScrollEnabled = false
-        collectionView.register(PlaceTypeCell.self, forCellWithReuseIdentifier: PlaceTypeCell.identifier)
         addSubview(collectionView)
     }
 
     /// Sets up the cluster title label
     private func setUpClusterTitleLabel() {
         clusterTitleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle).bold()
+        clusterTitleLabel.textColor = Style.label
         clusterTitleLabel.adjustsFontForContentSizeCategory = true
         clusterTitleLabel.adjustsFontSizeToFitWidth = true
         addSubview(clusterTitleLabel)
@@ -90,21 +83,21 @@ extension ListView {
 
     /// Sets up the underline view
     private func setUpUnderlineView() {
-        underlineView.backgroundColor = .black
+        underlineView.backgroundColor = Style.label
         addSubview(underlineView)
     }
     
     /// Sets up the table view
     private func setUpTableView() {
         addSubview(tableView)
-        tableView.register(PlaceTableViewCell.self, forCellReuseIdentifier: PlaceTableViewCell.identifier)
+        tableView.register(PlaceCell.self, forCellReuseIdentifier: PlaceCell.identifier)
         tableView.backgroundColor = .clear
     }
     
     /// Sets up the loading view
     private func setUpLoadingView() {
         loadingView.startAnimating()
-        loadingView.style = .gray
+        loadingView.color = Style.secondarylabel
         loadingView.isHidden = true
         addSubview(loadingView)
     }
@@ -118,6 +111,7 @@ extension ListView {
     /// Sets up the cancel button
     private func setUpCancelButton() {
         cancelButton.isHidden = true
+        cancelButton.tintColor = Style.label
         addSubview(cancelButton)
     }
     
@@ -225,7 +219,7 @@ extension ListView {
             errorView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
             errorView.leadingAnchor.constraint(equalTo: leadingAnchor),
             errorView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            errorView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            errorView.bottomAnchor.constraint(equalTo: subTypeCollectionView.topAnchor)
         ])
     }
     

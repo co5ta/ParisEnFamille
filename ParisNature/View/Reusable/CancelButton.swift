@@ -8,27 +8,30 @@
 
 import UIKit
 
+/// A button to trigger a cancel action
 class CancelButton: UIButton {
 
+    /// init form the code
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
+        setup()
     }
     
+    /// Init from the storyboard
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupView()
+        setup()
     }
     
-    private func setupView() {
+    /// Sets up the view
+    private func setup() {
         setImage(UIImage(named: "close"), for: .normal)
         setImage(UIImage(named: "closeSelected"), for: .highlighted)
         constrainView()
     }
     
+    /// Constrains the view
     private func constrainView() {
-        NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalTo: heightAnchor)
-        ])
+        widthAnchor.constraint(equalTo: heightAnchor).isActive = true
     }
 }

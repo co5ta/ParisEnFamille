@@ -43,12 +43,12 @@ extension SubTypeCell {
         titleButton.titleLabel?.adjustsFontForContentSizeCategory = true
         titleButton.titleLabel?.adjustsFontSizeToFitWidth = true
         titleButton.setTitleColor(.systemGray, for: .normal)
-        titleButton.setTitleColor(Config.appGray, for: .highlighted)
+        titleButton.setTitleColor(Style.appGray, for: .highlighted)
         titleButton.setTitleColor(.white, for: .selected)
         titleButton.backgroundColor = .clear
         titleButton.layer.cornerRadius = 15
         titleButton.layer.borderWidth = 1
-        titleButton.layer.borderColor = Config.appGray.cgColor
+        titleButton.layer.borderColor = Style.appGray.cgColor
         constrain()
     }
     

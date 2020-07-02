@@ -9,15 +9,16 @@
 import UIKit
 
 extension String {
+    /// HTML content converted to NSMutableAttributedString
     var htmlToAttributedString: NSMutableAttributedString? {
         guard let data = data(using: .utf8),
             let string = try? NSMutableAttributedString(
                 data: data,
-                options: [.documentType: NSAttributedString.DocumentType.html,
-                          .characterEncoding: String.Encoding.utf8.rawValue],
+                options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue],
                 documentAttributes: nil)
             else { return nil }
-        string.addAttribute(.font, value: UIFont.preferredFont(forTextStyle: .callout), range: NSRange(0..<string.length))
+        string.addAttributes([.font: UIFont.preferredFont(forTextStyle: .callout), .foregroundColor: Style.label],
+                             range: NSRange(0..<string.length))
         return string
     }
 }

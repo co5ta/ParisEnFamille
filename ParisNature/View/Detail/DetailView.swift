@@ -12,7 +12,7 @@ import UIKit
 class DetailView: UIView {
 
     /// A Blur background
-    var visualEffectView: UIVisualEffectView!
+    var visualEffectView = BlurView()
     /// The view which display the place
     let topStackView = TopStackView()
     /// The container of place detail
@@ -46,22 +46,19 @@ extension DetailView {
     
     /// Sets up the detail view
     private func setUpViews() {
-        setUpVisualEffectView()
+        addSubview(visualEffectView)
         addSubview(topStackView)
-        addSubview(cancelButton)
+        setUpCancelButton()
         addSubview(scrollView)
         scrollView.addSubview(greenspaceStackView)
         scrollView.addSubview(eventStackView)
         constrainViews()
     }
     
-    /// Sets up the background view
-    private func setUpVisualEffectView() {
-        let blurEffect = UIBlurEffect(style: .extraLight)
-        visualEffectView = UIVisualEffectView(effect: blurEffect)
-        visualEffectView.backgroundColor = .white
-        visualEffectView.alpha = 0.8
-        addSubview(visualEffectView)
+    /// Sets up the cancel button
+    private func setUpCancelButton() {
+       cancelButton.tintColor = Style.label
+       addSubview(cancelButton)
     }
     
     /// Puts data in views

@@ -40,13 +40,15 @@ extension PlaceTypeCell {
     
     /// Sets up the views
     private func setUpViews() {
-        setUpImageView()
+        setUpButton()
         setUpTitleLabel()
         constrainViews()
     }
     
     /// Sets up the image view
-    private func setUpImageView() {
+    private func setUpButton() {
+        imageButton.tintColor = Style.label
+        imageButton.contentEdgeInsets = UIEdgeInsets(top: 7, left: 2.5, bottom: 0, right: 2.5)
         imageButton.clipsToBounds = true
         contentView.addSubview(imageButton)
     }
@@ -55,6 +57,7 @@ extension PlaceTypeCell {
     private func setUpTitleLabel() {
         titleLabel.numberOfLines = 0
         titleLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+        titleLabel.textColor = Style.secondarylabel
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.textAlignment = .center
@@ -66,10 +69,9 @@ extension PlaceTypeCell {
         super.layoutSubviews()
         imageButton.layoutIfNeeded()
         imageButton.layer.masksToBounds = true
-        imageButton.layer.cornerRadius = imageButton.frame.width * 0.5
-        imageButton.layer.borderColor = UIColor.black.cgColor
         imageButton.layer.borderWidth = 1
-        imageButton.contentEdgeInsets = UIEdgeInsets(top: 7, left: 2.5, bottom: 0, right: 2.5)
+        imageButton.layer.borderColor = Style.label.cgColor
+        imageButton.layer.cornerRadius = imageButton.frame.width * 0.5
     }
     
     /// Configures the cell with data
@@ -77,7 +79,6 @@ extension PlaceTypeCell {
         guard let placeType = placeType else { return }
         let imageSelected = UIImage(named: placeType.imageSelectedName)
         imageButton.setImage(imageSelected, for: .selected)
-        imageButton.setImage(imageSelected, for: .highlighted)
         imageButton.setImage(UIImage(named: placeType.imageName), for: .normal)
         imageButton.setTitle(placeType.title, for: .normal)
         titleLabel.text = placeType.title
@@ -89,12 +90,12 @@ extension PlaceTypeCell {
     
     /// Contrains the views
     private func constrainViews() {
-        constrainImageView()
+        constrainButton()
         constrainTitleLabel()
     }
     
     /// Contrains the image view
-    private func constrainImageView() {
+    private func constrainButton() {
         imageButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imageButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),

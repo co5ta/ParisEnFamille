@@ -25,8 +25,8 @@ extension TableViewDelegate: UITableViewDataSource {
     
     /// Asks the data source for a cell to insert in a particular location of the table view
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PlaceTableViewCell.identifier,
-                                                      for: indexPath) as? PlaceTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PlaceCell.identifier,
+                                                      for: indexPath) as? PlaceCell
             else { return UITableViewCell() }
         
         let place = listVC?.places[indexPath.row]
@@ -40,7 +40,7 @@ extension TableViewDelegate: UITableViewDelegate {
     
     /// Tells the delegate that the specified row is now selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? PlaceTableViewCell,
+        guard let cell = tableView.cellForRow(at: indexPath) as? PlaceCell,
             let mapVC = listVC?.mapVC
             else { return }
         

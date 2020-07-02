@@ -44,7 +44,7 @@ extension FieldView {
     
     /// Sets up separator view
     private func setUpSeparatorView() {
-        separatorView.backgroundColor = Config.appGray
+        separatorView.backgroundColor = Style.separator
         addSubview(separatorView)
     }
     
@@ -52,13 +52,14 @@ extension FieldView {
     private func setUpTitleLabel() {
         titleLabel.font = .preferredFont(forTextStyle: .subheadline)
         titleLabel.adjustsFontForContentSizeCategory = true
-        titleLabel.textColor = .systemGray
+        titleLabel.textColor = Style.secondarylabel
         addSubview(titleLabel)
     }
     
     /// Sets up the value label
     private func setUpValueTextView() {
         valueTextView.font = .preferredFont(forTextStyle: .callout)
+        valueTextView.textColor = Style.label
         valueTextView.adjustsFontForContentSizeCategory = true
         valueTextView.numberOfLines = 0
         addSubview(valueTextView)

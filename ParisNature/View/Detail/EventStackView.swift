@@ -73,34 +73,34 @@ extension EventStackView {
     
     /// Sets up description label
     private func setUpDescriptionLabel() {
-        addArrangedSubview(descriptionTextView)
         descriptionTextView.isScrollEnabled = false
         descriptionTextView.isEditable = false
         descriptionTextView.isSelectable = false
         descriptionTextView.textContainer.lineFragmentPadding = 0
         descriptionTextView.backgroundColor = .clear
+        addArrangedSubview(descriptionTextView)
     }
     
     /// Sets up price detail
     private func setUpPriceDetailLabel() {
-        addArrangedSubview(priceDetailLabel)
         setCustomSpacing(10, after: priceDetailLabel)
         priceDetailLabel.font = .preferredFont(forTextStyle: .callout)
         priceDetailLabel.adjustsFontForContentSizeCategory = true
         priceDetailLabel.numberOfLines = 0
+        addArrangedSubview(priceDetailLabel)
     }
     
     /// Sets up the contact stack view
     private func setUpContactStackView() {
-        addArrangedSubview(contactStackView)
         setCustomSpacing(10, after: contactFieldView)
         contactStackView.spacing = 10
         contactStackView.distribution = .fillEqually
+        addArrangedSubview(contactStackView)
     }
     
     /// Sets up a contact button
     private func setUpContactButton(button: UIButton, imageName: String) {
-        button.backgroundColor = Config.appGray
+        button.backgroundColor = Style.systemFill
         button.setImage(UIImage(named: imageName), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
         button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)

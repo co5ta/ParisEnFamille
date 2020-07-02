@@ -40,6 +40,7 @@ extension ErrorView {
 
     /// Sets up the views
     private func setUpViews() {
+        clipsToBounds = true
         setUpStackView()
         setUpImageView()
         setUpMessageLabel()
@@ -56,12 +57,14 @@ extension ErrorView {
     
     /// Sets up the image view
     private func setUpImageView() {
+        imageView.tintColor = Style.label
         stackView.addArrangedSubview(imageView)
     }
     
     /// Sets up the message label
     private func setUpMessageLabel() {
         messageLabel.font = .preferredFont(forTextStyle: .headline)
+        messageLabel.textColor = Style.label
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
         messageLabel.adjustsFontForContentSizeCategory = true
