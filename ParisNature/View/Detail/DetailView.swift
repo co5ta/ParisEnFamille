@@ -74,7 +74,7 @@ extension DetailView {
             eventStackView.place = place
             toggleDetails(of: place)
         default:
-            break
+            print(#function, "The data type is not configured")
         }
     }
     

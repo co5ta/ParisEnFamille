@@ -25,6 +25,8 @@
 		225628132472A07B00DDEAAB /* PlaceTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225628122472A07B00DDEAAB /* PlaceTypeCell.swift */; };
 		225628152474067E00DDEAAB /* ListPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225628142474067E00DDEAAB /* ListPanelLayout.swift */; };
 		225628192474F04700DDEAAB /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225628182474F04700DDEAAB /* Place.swift */; };
+		22562CF424AF526B00420A29 /* UIAlertController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22562CF324AF526B00420A29 /* UIAlertController+Alert.swift */; };
+		22562CF624AFACCA00420A29 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22562CF524AFACCA00420A29 /* Strings.swift */; };
 		2256484A249957530085B99A /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22564849249957530085B99A /* CancelButton.swift */; };
 		225745B4246705190040BBC8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225745B3246705190040BBC8 /* MapViewController.swift */; };
 		225745BA246746400040BBC8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225745B9246746400040BBC8 /* NetworkService.swift */; };
@@ -83,6 +85,8 @@
 		225628122472A07B00DDEAAB /* PlaceTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTypeCell.swift; sourceTree = "<group>"; };
 		225628142474067E00DDEAAB /* ListPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPanelLayout.swift; sourceTree = "<group>"; };
 		225628182474F04700DDEAAB /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		22562CF324AF526B00420A29 /* UIAlertController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Alert.swift"; sourceTree = "<group>"; };
+		22562CF524AFACCA00420A29 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		22564849249957530085B99A /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		225745B3246705190040BBC8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		225745B9246746400040BBC8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 			children = (
 				22F14728248C23CA00523A64 /* Config.swift */,
 				225600F924ACFEFA00BDAA71 /* Style.swift */,
+				22562CF524AFACCA00420A29 /* Strings.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 			children = (
 				2260CD3B24A7A40700A10E8F /* UIFont+Traits.swift */,
 				2260CD3924A7A3EC00A10E8F /* String+Html.swift */,
+				22562CF324AF526B00420A29 /* UIAlertController+Alert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -531,9 +537,11 @@
 				2259AD0F249230BA00018DC3 /* ListView.swift in Sources */,
 				2255ABC92487A366008F33EC /* TopStackView.swift in Sources */,
 				2254269024916EBA00C217F1 /* PlaceTypeCollectionViewDelegate.swift in Sources */,
+				22562CF424AF526B00420A29 /* UIAlertController+Alert.swift in Sources */,
 				2258813124AE51FB00F46154 /* BlurView.swift in Sources */,
 				2256484A249957530085B99A /* CancelButton.swift in Sources */,
 				225628192474F04700DDEAAB /* Place.swift in Sources */,
+				22562CF624AFACCA00420A29 /* Strings.swift in Sources */,
 				225600FA24ACFEFA00BDAA71 /* Style.swift in Sources */,
 				225FC20924797BB0004E7D56 /* Event.swift in Sources */,
 				2257B0FD249B8DAC00B639A6 /* SubTypeCollectionViewDelegate.swift in Sources */,

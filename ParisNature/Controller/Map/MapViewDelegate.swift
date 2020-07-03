@@ -49,7 +49,7 @@ extension MapViewDelegate {
         case is EventsResult:
             if let data = data as? EventsResult { addPlaces(data.list) }
         default:
-            break
+            print(#function, "The data type is not configured")
         }
     }
     
@@ -163,7 +163,6 @@ extension MapViewDelegate {
                 result.append(cluster)
             }
         }
-        print(#function, result.count)
         return result.isEmpty ? nil : result
     }
     

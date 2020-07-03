@@ -80,10 +80,8 @@ extension NetworkService {
                 let result = self.handleResult(data, response, error, T.self)
                 switch result {
                 case .failure(let error):
-                    print(#function, error)
                     completionHandler(.failure(error))
                 case .success(let data):
-                    print(#function, "success")
                     completionHandler(.success(data))
                 }
             }

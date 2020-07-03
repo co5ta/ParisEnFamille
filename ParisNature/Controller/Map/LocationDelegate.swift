@@ -22,12 +22,14 @@ extension LocationDelegate {
     
     /// Checks if the location services are enabled
     func checkLocationServices() {
+        guard let mapVC = mapVC else { return }
         if CLLocationManager.locationServicesEnabled() {
-            mapVC?.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            mapVC.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
             checkLocationAuthorization()
         } else {
-            // Ask user to enable location service
-            print("Location service disabled")
+            let alert = UIAlertController.settingsAlert(title: Strings.locationDisabled.title,
+                                                      message: Strings.locationDisabled.message)
+            mapVC.present(alert, animated: true)
         }
     }
     
@@ -37,16 +39,18 @@ extension LocationDelegate {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse, .authorizedAlways:
             mapVC.mapView.showsUserLocation = true
-        case .denied:
-            // Ask user to activate authorisation
-            break
         case .notDetermined:
             mapVC.locationManager.requestWhenInUseAuthorization()
+        case .denied:
+            let alert = UIAlertController.settingsAlert(title: Strings.locationDenied.title,
+                                                      message: Strings.locationDenied.message)
+            mapVC.present(alert, animated: true)
         case .restricted:
             fallthrough
         @unknown default:
-            // Explain what's going on
-            break
+            let alert = UIAlertController.settingsAlert(title: Strings.locationUnavailable.title,
+                                                      message: Strings.locationUnavailable.message)
+            mapVC.present(alert, animated: true)
         }
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 
 extension String {
+    
     /// HTML content converted to NSMutableAttributedString
     var htmlToAttributedString: NSMutableAttributedString? {
         guard let data = data(using: .utf8),
