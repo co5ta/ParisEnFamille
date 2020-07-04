@@ -114,12 +114,17 @@ extension EventStackView {
         addressFieldView.setData(title: "Address", value: place.address, separatorHidden: true)
         dateFieldView.setData(title: "Date", value: place.dateDescription, isHTML: true)
         leadTextFieldView.setData(title: "Description", value: place.leadText)
-        let description = place.descriptionText + "<style>img {width: \(frame.width)px}</style>"
-        descriptionTextView.attributedText = description.htmlToAttributedString
+        descriptionTextView.attributedText = getAttributed(description: place.descriptionText)
         accessFieldView.setData(title: "Access", value: place.access.joined(separator: ", "))
         priceDetailLabel.text = place.priceDetail
         toggleFieldView(contactFieldView, title: "Contact", value: place.contactName)
         toggleContactButtons(place)
+    }
+    
+    private func getAttributed(description: String) -> NSMutableAttributedString? {
+        return (description + "<style>img {width: \(frame.width)px}</style>")
+            .replacingOccurrences(of: "<iframe.*</iframe>", with: "", options: .regularExpression)
+            .htmlToAttributedString
     }
     
     /// Toggles display of views
