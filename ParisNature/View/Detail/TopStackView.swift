@@ -51,7 +51,7 @@ extension TopStackView {
     
     /// Sets up the directions button
     private func setUpDirectionsButton() {
-        directionsButton.setTitle("Directions", for: .normal)
+        directionsButton.setTitle(Strings.directions, for: .normal)
         directionsButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline).bold()
         directionsButton.titleLabel?.adjustsFontForContentSizeCategory = true
         directionsButton.titleLabel?.adjustsFontSizeToFitWidth = true

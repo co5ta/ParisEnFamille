@@ -59,11 +59,11 @@ extension GreenSpaceStackView {
     /// Puts data in views
     private func setUpData(with place: Place?) {
         guard let place = place as? GreenSpace else { return }
-        addressFieldView.setData(title: "Address", value: place.address, separatorHidden: true)
-        surfaceFieldView.setData(title: "Surface", value: GreenSpace.getFormattedSurface(surface: place.surface))
-        surfaceHortiFieldView.setData(title: "Horticultural surface", value: GreenSpace.getFormattedSurface(surface: place.horticulture))
-        fenceFieldView.setData(title: "Fence", value: place.fence)
-        open24hFieldView.setData(title: "Open 24H a day", value: place.open24h)
-        anneeOuvertureFieldView.setData(title: "Opening year", value: place.openingYear)
+        addressFieldView.setData(title: Strings.address, value: place.address, separatorHidden: true)
+        surfaceFieldView.setData(title: Strings.surface, value: GreenSpace.getFormattedSurface(surface: place.surface))
+        surfaceHortiFieldView.setData(title: Strings.horticulturalSurface, value: GreenSpace.getFormattedSurface(surface: place.horticulture))
+        fenceFieldView.setData(title: Strings.fence, value: place.fence)
+        open24hFieldView.setData(title: Strings.open24H, value: place.open24h)
+        anneeOuvertureFieldView.setData(title: Strings.openingYear, value: place.openingYear)
     }
 }

@@ -57,27 +57,22 @@ class GreenSpace: NSObject, Place {
         horticulture = try fields.decodeIfPresent(Int.self, forKey: .surfaceHorticole)
         
         if let cloture = try fields.decodeIfPresent(String.self, forKey: .presenceCloture) {
-            fence = cloture == "Oui" ? "Yes" : "No"
+            fence = cloture == "Oui" ? Strings.yes : Strings.not
         } else {
-            fence = "Not disclosed"
+            fence = Strings.undisclosed
         }
         
         if let ouvertFerme = try fields.decodeIfPresent(String.self, forKey: .ouvertFerme) {
-            open24h = ouvertFerme == "Oui" ? "Yes" : "No"
+            open24h = ouvertFerme == "Oui" ? Strings.yes : Strings.not
         } else {
-            open24h = "Not disclosed"
+            open24h = Strings.undisclosed
         }
         
         if let anneeOuverture = try fields.decodeIfPresent(String.self, forKey: .anneeOuverture) {
             openingYear = anneeOuverture
         } else {
-            openingYear = "Not disclosed"
+            openingYear = Strings.undisclosed
         }
-//        if let surface = surface {
-//            subheading = GreenSpace.getFormattedSurface(surface: surface)
-//        } else {
-//            subheading = ""
-//        }
         subheading = "\(streetNumber) \(streetType) \(streetName)"
     }
 }
@@ -103,7 +98,7 @@ extension GreenSpace {
 
 extension GreenSpace {
     static func getFormattedSurface(surface: Int?) -> String {
-        guard let surface = surface else { return "Not available" }
+        guard let surface = surface else { return Strings.unavailable }
         let formatter = MKDistanceFormatter()
         formatter.units = .metric
         let surfaceFormatted = formatter.string(fromDistance: formatter.distance(from: "\(surface) m"))

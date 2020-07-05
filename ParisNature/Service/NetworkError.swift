@@ -27,18 +27,18 @@ extension NetworkError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .url:
-            return "The request URL couldn't be generate"
+            return Strings.url
         case .client(let error):
             return error.localizedDescription
         case .server(let response):
-            guard let response = response as? HTTPURLResponse else { return "Bad response"}
-            return "Bad response: error \(response.statusCode)"
+            guard let response = response as? HTTPURLResponse else { return Strings.server}
+            return "\(Strings.server): \(Strings.error) \(response.statusCode)"
         case .noData:
-            return "The request didn't return any data"
+            return Strings.noData
         case .decoding(let error):
-            return "The data decoding failed: \(error.localizedDescription)"
+            return "\(Strings.decoding): \(error.localizedDescription)"
         case .emptyData:
-            return "No place founded"
+            return Strings.emptyData
         }
     }
     

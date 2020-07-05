@@ -111,13 +111,13 @@ extension EventStackView {
     /// Sets up view with data
     private func setUpData(with place: Place?) {
         guard let place = place as? Event else { return }
-        addressFieldView.setData(title: "Address", value: place.address, separatorHidden: true)
-        dateFieldView.setData(title: "Date", value: place.dateDescription, isHTML: true)
-        leadTextFieldView.setData(title: "Description", value: place.leadText)
+        addressFieldView.setData(title: Strings.address, value: place.address, separatorHidden: true)
+        dateFieldView.setData(title: Strings.date, value: place.dateDescription, isHTML: true)
+        leadTextFieldView.setData(title: Strings.description, value: place.leadText)
         descriptionTextView.attributedText = getAttributed(description: place.descriptionText)
-        accessFieldView.setData(title: "Access", value: place.access.joined(separator: ", "))
+        accessFieldView.setData(title: Strings.access, value: place.access.joined(separator: ", "))
         priceDetailLabel.text = place.priceDetail
-        toggleFieldView(contactFieldView, title: "Contact", value: place.contactName)
+        toggleFieldView(contactFieldView, title: Strings.contact, value: place.contactName)
         toggleContactButtons(place)
     }
     

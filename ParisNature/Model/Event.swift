@@ -48,14 +48,15 @@ class Event: NSObject, Place {
     /// Distance between the event and the user location
     var distance: CLLocationDistance?
     /// List of access type
-    let accessList = ["gratuit": "Free", "payant": "Payable", "reservation": "on reservation"]
+    let accessList = ["gratuit": Strings.free,
+                      "payant": Strings.payable,
+                      "reservation": Strings.onReservation]
     
     /// Creates a new instance by decoding from the given decoder
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let fields = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .fields)
         title = try fields.decode(String.self, forKey: .title)
-//        let category = try fields.decode(String.self, forKey: .category)
         let addressName = try fields.decodeIfPresent(String.self, forKey: .addressName)
         let addressStreet = try fields.decode(String.self, forKey: .addressStreet)
         let addressZipcode = try fields.decode(String.self, forKey: .addressZipcode)

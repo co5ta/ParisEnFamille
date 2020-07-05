@@ -32,19 +32,13 @@ extension NetworkService {
                                  _ dataType: T.Type
     ) -> Result<T, NetworkError> where T: Decodable {
         /// Checks error
-        if let error = error {
-            return .failure(.client(error))
-        }
+        if let error = error { return .failure(.client(error)) }
         /// Checks response
         guard let httpResponse = response as? HTTPURLResponse,
             (200...299).contains(httpResponse.statusCode)
-            else {
-            return .failure(.server(response))
-        }
+            else { return .failure(.server(response)) }
         /// Checks data
-        guard let data = data else {
-            return .failure(.noData)
-        }
+        guard let data = data else { return .failure(.noData)}
         /// Converts data
         do {
             let decoder = JSONDecoder()
@@ -59,7 +53,9 @@ extension NetworkService {
     
     /// Converts the URL from String type to URL type
     private func getURL(for placeType: PlaceType) -> URL? {
-        guard let stringURL = placeType.apiURL, let url = URL(string: stringURL) else { return nil }
+        guard let stringURL = placeType.apiURL,
+            let url = URL(string: stringURL)
+            else { return nil }
         return url
     }
     

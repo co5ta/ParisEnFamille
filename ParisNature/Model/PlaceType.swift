@@ -49,32 +49,32 @@ enum PlaceType: String, CaseIterable {
     var title: String {
         switch self {
         // Animation
-        case .activity: return "Activity"
-        case .conference: return "Conference"
-        case .reading: return "Reading"
-        case .games: return "Games"
-        case .otherAnimation: return "Others"
+        case .activity: return Strings.activity
+        case .conference: return Strings.conference
+        case .reading: return Strings.reading
+        case .games: return Strings.games
+        case .otherAnimation: return Strings.otherAnimation
         // Education
-        case .education: return "Learning"
-        case .workshop: return "Workshop"
-        case .practicum: return "Practicum"
+        case .education: return Strings.education
+        case .workshop: return Strings.workshop
+        case .practicum: return Strings.practicum
         // Exhibit
-        case .exhibit: return "Exhibit"
-        case .contemporary: return "Contemporary art"
-        case .fineArts: return "Fine arts"
-        case .design: return "Design"
-        case .history: return "History"
-        case .illustration: return "Illustration"
-        case .photography: return "Photography"
-        case .science: return "Science"
-        case .streetArt: return "Street-art"
-        case .otherExhibit: return "Others"
+        case .exhibit: return Strings.exhibit
+        case .contemporary: return Strings.contemporary
+        case .fineArts: return Strings.fineArts
+        case .design: return Strings.design
+        case .history: return Strings.history
+        case .illustration: return Strings.illustration
+        case .photography: return Strings.photography
+        case .science: return Strings.science
+        case .streetArt: return Strings.streetArt
+        case .otherExhibit: return Strings.otherExhibit
         // Ramble
-        case .ramble: return "Ramble"
-        case .visit: return "Visit"
-        case .park: return "Park"
-        case .garden: return "Garden"
-        case .promenade: return "Promenade"
+        case .ramble: return Strings.ramble
+        case .visit: return Strings.visit
+        case .park: return Strings.park
+        case .garden: return Strings.garden
+        case .promenade: return Strings.promenade
         }
     }
 }
