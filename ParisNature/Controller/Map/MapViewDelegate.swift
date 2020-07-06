@@ -45,9 +45,9 @@ extension MapViewDelegate {
     private func handleResult<T>(_ data: T) {
         switch data {
         case is GreenSpacesResult:
-            if let data = data as? GreenSpacesResult { addPlaces(data.list) }
+            if let data = data as? GreenSpacesResult { addPlaces(data.records) }
         case is EventsResult:
-            if let data = data as? EventsResult { addPlaces(data.list) }
+            if let data = data as? EventsResult { addPlaces(data.records) }
         default:
             print(#function, "The data type is not configured")
         }

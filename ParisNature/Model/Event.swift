@@ -9,6 +9,12 @@
 import Foundation
 import MapKit
 
+/// The type containing the decoded response of events API
+struct EventsResult: Decodable {
+    let records: [Event]
+}
+
+/// The class representing an event
 class Event: NSObject, Place {
     
     /// Title of the event
@@ -48,11 +54,9 @@ class Event: NSObject, Place {
     /// Distance between the event and the user location
     var distance: CLLocationDistance?
     /// List of access type
-    let accessList = ["gratuit": Strings.free,
-                      "payant": Strings.payable,
-                      "reservation": Strings.onReservation]
+    let accessList = ["gratuit": Strings.free, "payant": Strings.payable, "reservation": Strings.onReservation]
     
-    /// Creates a new instance by decoding from the given decoder
+    /// Creates a new instance by decoding from the json
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let fields = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .fields)
@@ -83,14 +87,10 @@ class Event: NSObject, Place {
         contactPhone = try fields.decodeIfPresent(String.self, forKey: .contactPhone)?.replacingOccurrences(of: " ", with: "")
         subheading = addressStreet
     }
-}
-
-// MARK: - CodingKeys
-extension Event {
     
-    /// Keys to decode the json
+    /// Keys to decode from the json
     enum CodingKeys: String, CodingKey {
-        
+        // Keys used in the json
         case fields
         case title
         case category

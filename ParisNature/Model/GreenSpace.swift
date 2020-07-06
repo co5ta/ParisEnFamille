@@ -9,7 +9,13 @@
 import Foundation
 import MapKit
 
-/// The type representing a green area
+/// The type containing the decoded response of green spaces API
+struct GreenSpacesResult: Decodable {
+    /// List of green area founded by the request
+    let records: [GreenSpace]
+}
+
+/// The class representing a green area
 class GreenSpace: NSObject, Place {
     
     /// Name
@@ -23,7 +29,7 @@ class GreenSpace: NSObject, Place {
     /// Department
     let department: String
     /// GPS coordinate
-    var coordinate = CLLocationCoordinate2D()
+    var coordinate: CLLocationCoordinate2D
     /// Distance between the place and the user location
     var distance: CLLocationDistance?
     /// Surface in m2
@@ -50,37 +56,28 @@ class GreenSpace: NSObject, Place {
         let city = department == "75" ? "Paris": ""
         address = "\(streetNumber) \(streetType) \(streetName) \n\(zipCode) \(city) "
         geom = try fields.decode(Geom.self, forKey: .geom)
-        if let location = geom.location {
-            coordinate = location
-        }
+        coordinate = geom.location ?? CLLocationCoordinate2D()
         surface = try fields.decodeIfPresent(Int.self, forKey: .surfaceTotaleReelle)
         horticulture = try fields.decodeIfPresent(Int.self, forKey: .surfaceHorticole)
-        
-        if let cloture = try fields.decodeIfPresent(String.self, forKey: .presenceCloture) {
-            fence = cloture == "Oui" ? Strings.yes : Strings.not
-        } else {
-            fence = Strings.undisclosed
-        }
-        
-        if let ouvertFerme = try fields.decodeIfPresent(String.self, forKey: .ouvertFerme) {
-            open24h = ouvertFerme == "Oui" ? Strings.yes : Strings.not
-        } else {
-            open24h = Strings.undisclosed
-        }
-        
-        if let anneeOuverture = try fields.decodeIfPresent(String.self, forKey: .anneeOuverture) {
-            openingYear = anneeOuverture
-        } else {
-            openingYear = Strings.undisclosed
-        }
+        let presenceCloture = try fields.decodeIfPresent(String.self, forKey: .presenceCloture)
+        fence = presenceCloture == nil ? Strings.undisclosed : presenceCloture == "Oui" ? Strings.yes : Strings.not
+        let ouvertFerme = try fields.decodeIfPresent(String.self, forKey: .ouvertFerme)
+        open24h = ouvertFerme == nil ? Strings.undisclosed : ouvertFerme == "Oui" ? Strings.yes : Strings.not
+        openingYear = try fields.decodeIfPresent(String.self, forKey: .anneeOuverture) ?? Strings.undisclosed
         subheading = "\(streetNumber) \(streetType) \(streetName)"
     }
-}
-
-// MARK: - CodingKey
-extension GreenSpace {
-    /// Relations between properties and json keys
+    
+    /// Gives the surface of a green space in m²
+    static func getFormattedSurface(surface: Int?) -> String {
+        guard let surface = surface else { return Strings.unavailable }
+        let formatter = MKDistanceFormatter()
+        formatter.units = .metric
+        return formatter.string(fromDistance: formatter.distance(from: "\(surface) m²"))
+    }
+    
+    /// Keys to decode from the json
     enum CodingKeys: String, CodingKey {
+        // Keys used in the json
         case fields
         case nomEv
         case adresseNumero
@@ -93,15 +90,5 @@ extension GreenSpace {
         case surfaceTotaleReelle
         case surfaceHorticole
         case anneeOuverture
-    }
-}
-
-extension GreenSpace {
-    static func getFormattedSurface(surface: Int?) -> String {
-        guard let surface = surface else { return Strings.unavailable }
-        let formatter = MKDistanceFormatter()
-        formatter.units = .metric
-        let surfaceFormatted = formatter.string(fromDistance: formatter.distance(from: "\(surface) m"))
-        return "\(surfaceFormatted)²"
     }
 }
