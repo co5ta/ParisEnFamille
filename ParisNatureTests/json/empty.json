@@ -1,0 +1,69 @@
+{
+    "nhits": 36,
+    "parameters": {
+        "dataset": "espaces_verts",
+        "exclude": {
+            "categorie": [
+                "Archipel",
+                "Cimetière",
+                "Decoration",
+                "Espace Vert",
+                "Esplanade",
+                "Jardin",
+                "Jardin d'immeubles",
+                "Jardin partage",
+                "Jardinet",
+                "Jardiniere",
+                "Mail",
+                "Murs vegetalises",
+                "Plate-bande",
+                "Promenade",
+                "Square",
+                "Talus",
+                "Terrain de boules",
+                "Terre-plein"
+            ]
+        },
+        "timezone": "UTC",
+        "rows": 0,
+        "format": "json"
+    },
+    "records": [],
+    "facet_groups": [
+        {
+            "facets": [
+                {
+                    "count": 19,
+                    "path": "Parc",
+                    "state": "displayed",
+                    "name": "Parc"
+                },
+                {
+                    "count": 12,
+                    "path": "Pelouse",
+                    "state": "displayed",
+                    "name": "Pelouse"
+                },
+                {
+                    "count": 2,
+                    "path": "Bois",
+                    "state": "displayed",
+                    "name": "Bois"
+                },
+                {
+                    "count": 2,
+                    "path": "Ile",
+                    "state": "displayed",
+                    "name": "Ile"
+                },
+                {
+                    "count": 1,
+                    "path": "Arboretum",
+                    "state": "displayed",
+                    "name": "Arboretum"
+                }
+            ],
+            "name": "categorie"
+        }
+    ]
+}

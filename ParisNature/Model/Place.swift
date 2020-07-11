@@ -20,20 +20,6 @@ protocol Place: MKAnnotation, Decodable {
     var department: String { get }
     /// The  geographic coordinates
     var coordinate: CLLocationCoordinate2D { get }
-    /// The distance between the place and the user location
-    var distance: CLLocationDistance? { get set }
     /// Subheading of the place
     var subheading: String { get }
-    /// Calculates the distance between the place and the user
-    func calculateDistance(from location: CLLocation?)
-}
-
-// MARK: - Default behavior
-extension Place {
-    /// Calculates the distance between the place and the user
-    func calculateDistance(from location: CLLocation?) {
-        guard let location = location else { return }
-        let placeLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        distance = location.distance(from: placeLocation)
-    }
 }

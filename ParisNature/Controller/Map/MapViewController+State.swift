@@ -22,7 +22,7 @@ extension MapViewController {
         case message(_ error: NetworkError)
         
         /// Custom Equatable
-        static func == (lhs: MapViewController.State, rhs: MapViewController.State) -> Bool {
+        static func == (lhs: State, rhs: State) -> Bool {
             switch(lhs, rhs) {
             case (.neutral, .neutral): return true
             case (.loading, .loading): return true

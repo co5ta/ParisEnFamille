@@ -51,10 +51,8 @@ class Event: NSObject, Place {
     let department: String
     /// Coordinate of the place
     var coordinate = CLLocationCoordinate2D()
-    /// Distance between the event and the user location
-    var distance: CLLocationDistance?
     /// List of access type
-    let accessList = ["gratuit": Strings.free, "payant": Strings.payable, "reservation": Strings.onReservation]
+    static let accessList = ["gratuit": Strings.free, "payant": Strings.payable, "reservation": Strings.onReservation]
     
     /// Creates a new instance by decoding from the json
     required init(from decoder: Decoder) throws {
@@ -77,8 +75,8 @@ class Event: NSObject, Place {
         descriptionText = try fields.decode(String.self, forKey: .description)
         let accessType = try fields.decode(String.self, forKey: .accessType)
         let priceType = try fields.decode(String.self, forKey: .priceType)
-        if let priceText = accessList[priceType] { access.append(priceText) }
-        if let accessText = accessList[accessType] { access.append(accessText) }
+        if let priceText = Event.accessList[priceType] { access.append(priceText) }
+        if let accessText = Event.accessList[accessType] { access.append(accessText) }
         priceDetail = try fields.decodeIfPresent(String.self, forKey: .priceDetail)
         contactName = try fields.decodeIfPresent(String.self, forKey: .contactName)
         accessLink = try fields.decodeIfPresent(String.self, forKey: .accessLink)

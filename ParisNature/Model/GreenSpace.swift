@@ -30,8 +30,6 @@ class GreenSpace: NSObject, Place {
     let department: String
     /// GPS coordinate
     var coordinate: CLLocationCoordinate2D
-    /// Distance between the place and the user location
-    var distance: CLLocationDistance?
     /// Surface in m2
     let surface: Int?
     /// Horticultural surface in m2
@@ -54,7 +52,7 @@ class GreenSpace: NSObject, Place {
         let zipCode = try fields.decode(String.self, forKey: .adresseCodepostal)
         department = String(zipCode.prefix(2))
         let city = department == "75" ? "Paris": ""
-        address = "\(streetNumber) \(streetType) \(streetName) \n\(zipCode) \(city) "
+        address = "\(streetNumber) \(streetType) \(streetName) \n\(zipCode) \(city)"
         geom = try fields.decode(Geom.self, forKey: .geom)
         coordinate = geom.location ?? CLLocationCoordinate2D()
         surface = try fields.decodeIfPresent(Int.self, forKey: .surfaceTotaleReelle)

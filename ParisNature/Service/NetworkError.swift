@@ -16,8 +16,8 @@ enum NetworkError: Error {
     case client(Error)
     case server(URLResponse?)
     case noData
-    case decoding(Error)
-    case emptyData
+    case decoding(Error?)
+    case noResult
 }
 
 // MARK: - LocalizedError
@@ -36,18 +36,34 @@ extension NetworkError: LocalizedError {
         case .noData:
             return Strings.noData
         case .decoding(let error):
+            guard let error = error else { return Strings.decoding }
             return "\(Strings.decoding): \(error.localizedDescription)"
-        case .emptyData:
+        case .noResult:
             return Strings.emptyData
         }
     }
     
     var imageName: String {
         switch self {
-        case .emptyData:
+        case .noResult:
             return "empty"
         default:
             return "warning"
+        }
+    }
+}
+
+extension NetworkError: Equatable {
+    
+    static func == (lhs: NetworkError, rhs: NetworkError) -> Bool {
+        switch (lhs, rhs) {
+        case (.url, .url): return true
+        case (.client, .client): return true
+        case (.server, .server): return true
+        case (.noData, .noData): return true
+        case (.decoding, .decoding): return true
+        case (.noResult, .noResult): return true
+        default: return false
         }
     }
 }

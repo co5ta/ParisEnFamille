@@ -28,6 +28,8 @@
 		22562CF424AF526B00420A29 /* UIAlertController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22562CF324AF526B00420A29 /* UIAlertController+Alert.swift */; };
 		22562CF624AFACCA00420A29 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22562CF524AFACCA00420A29 /* Strings.swift */; };
 		2256484A249957530085B99A /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22564849249957530085B99A /* CancelButton.swift */; };
+		2256A27524B654E5007EA983 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2256A27424B654E5007EA983 /* MockURLProtocol.swift */; };
+		2256A7D424B8B79A002C9AD6 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 2256A7D324B8B79A002C9AD6 /* empty.json */; };
 		225745B4246705190040BBC8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225745B3246705190040BBC8 /* MapViewController.swift */; };
 		225745BA246746400040BBC8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225745B9246746400040BBC8 /* NetworkService.swift */; };
 		22576AAB24767F4600373476 /* PlaceAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22576AAA24767F4600373476 /* PlaceAnnotationView.swift */; };
@@ -45,6 +47,9 @@
 		225BED802465A28300A69076 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 225BED7F2465A28300A69076 /* Assets.xcassets */; };
 		225BED832465A28300A69076 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 225BED812465A28300A69076 /* LaunchScreen.storyboard */; };
 		225BED8E2465A28400A69076 /* ParisNatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225BED8D2465A28400A69076 /* ParisNatureTests.swift */; };
+		225CC61524B3A4EA00475320 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 225CC61424B3A4EA00475320 /* events.json */; };
+		225CC61724B3A55500475320 /* greenspaces.json in Resources */ = {isa = PBXBuildFile; fileRef = 225CC61624B3A55500475320 /* greenspaces.json */; };
+		225CC61924B3D63000475320 /* FakeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225CC61824B3D63000475320 /* FakeAPI.swift */; };
 		225FC20924797BB0004E7D56 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FC20724797BB0004E7D56 /* Event.swift */; };
 		2260CD3A24A7A3EC00A10E8F /* String+Html.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2260CD3924A7A3EC00A10E8F /* String+Html.swift */; };
 		2260CD3C24A7A40800A10E8F /* UIFont+Traits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2260CD3B24A7A40700A10E8F /* UIFont+Traits.swift */; };
@@ -86,6 +91,8 @@
 		22562CF324AF526B00420A29 /* UIAlertController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Alert.swift"; sourceTree = "<group>"; };
 		22562CF524AFACCA00420A29 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		22564849249957530085B99A /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
+		2256A27424B654E5007EA983 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		2256A7D324B8B79A002C9AD6 /* empty.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 		225745B3246705190040BBC8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		225745B9246746400040BBC8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		22576AAA24767F4600373476 /* PlaceAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAnnotationView.swift; sourceTree = "<group>"; };
@@ -107,6 +114,9 @@
 		225BED892465A28400A69076 /* ParisNatureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParisNatureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		225BED8D2465A28400A69076 /* ParisNatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParisNatureTests.swift; sourceTree = "<group>"; };
 		225BED8F2465A28400A69076 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		225CC61424B3A4EA00475320 /* events.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
+		225CC61624B3A55500475320 /* greenspaces.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = greenspaces.json; sourceTree = "<group>"; };
+		225CC61824B3D63000475320 /* FakeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAPI.swift; sourceTree = "<group>"; };
 		225FC20724797BB0004E7D56 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		2260CD3924A7A3EC00A10E8F /* String+Html.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Html.swift"; sourceTree = "<group>"; };
 		2260CD3B24A7A40700A10E8F /* UIFont+Traits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Traits.swift"; sourceTree = "<group>"; };
@@ -168,6 +178,16 @@
 				2258813024AE51FB00F46154 /* BlurView.swift */,
 			);
 			path = Reusable;
+			sourceTree = "<group>";
+		};
+		225704EB24B4C70E0081F22A /* json */ = {
+			isa = PBXGroup;
+			children = (
+				225CC61424B3A4EA00475320 /* events.json */,
+				225CC61624B3A55500475320 /* greenspaces.json */,
+				2256A7D324B8B79A002C9AD6 /* empty.json */,
+			);
+			path = json;
 			sourceTree = "<group>";
 		};
 		225745B524670A320040BBC8 /* Extensions */ = {
@@ -322,6 +342,9 @@
 			isa = PBXGroup;
 			children = (
 				225BED8D2465A28400A69076 /* ParisNatureTests.swift */,
+				2256A27424B654E5007EA983 /* MockURLProtocol.swift */,
+				225CC61824B3D63000475320 /* FakeAPI.swift */,
+				225704EB24B4C70E0081F22A /* json */,
 				225BED8F2465A28400A69076 /* Info.plist */,
 			);
 			path = ParisNatureTests;
@@ -330,11 +353,11 @@
 		22BB89E02465ACF9008740DA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				225BED842465A28300A69076 /* Info.plist */,
 				225BED762465A28100A69076 /* AppDelegate.swift */,
 				225BED782465A28100A69076 /* SceneDelegate.swift */,
 				225BED812465A28300A69076 /* LaunchScreen.storyboard */,
 				225BED7F2465A28300A69076 /* Assets.xcassets */,
+				225BED842465A28300A69076 /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -451,6 +474,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				225CC61524B3A4EA00475320 /* events.json in Resources */,
+				2256A7D424B8B79A002C9AD6 /* empty.json in Resources */,
+				225CC61724B3A55500475320 /* greenspaces.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +595,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				225BED8E2465A28400A69076 /* ParisNatureTests.swift in Sources */,
+				225CC61924B3D63000475320 /* FakeAPI.swift in Sources */,
+				2256A27524B654E5007EA983 /* MockURLProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -768,7 +796,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParisNature.app/ParisNature";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Paris Nature.app/Paris Nature";
 			};
 			name = Debug;
 		};
@@ -790,7 +818,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParisNature.app/ParisNature";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Paris Nature.app/Paris Nature";
 			};
 			name = Release;
 		};

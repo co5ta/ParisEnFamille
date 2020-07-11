@@ -56,7 +56,7 @@ extension MapViewDelegate {
     /// Adds places in the map and the table view
     private func addPlaces(_ places: [Place]) {
         guard let mapVC = mapVC else { return }
-        guard places.isEmpty == false else { mapVC.state = .message(.emptyData); return }
+        guard places.isEmpty == false else { mapVC.state = .message(.noResult); return }
         
         let calendar = Calendar.current
         let now = Date()
