@@ -46,6 +46,7 @@ extension TopStackView {
         addSubview(titleLabel)
         titleLabel.font = UIFont.preferredFont(forTextStyle: .title2).bold()
         titleLabel.adjustsFontForContentSizeCategory = true
+        titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.numberOfLines = 0
     }
     
@@ -82,6 +83,7 @@ extension TopStackView {
     private func constrainTitleLabel() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            titleLabel.heightAnchor.constraint(lessThanOrEqualToConstant: Config.screenSize.height * 0.25),
             titleLabel.topAnchor.constraint(equalTo: topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             trailingAnchor.constraint(equalToSystemSpacingAfter: titleLabel.trailingAnchor, multiplier: 4)
