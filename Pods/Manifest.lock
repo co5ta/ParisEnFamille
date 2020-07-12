@@ -1,5 +1,5 @@
 PODS:
-  - FloatingPanel (1.7.4)
+  - FloatingPanel (1.7.5)
   - SwiftLint (0.39.2)
 
 DEPENDENCIES:
@@ -12,7 +12,7 @@ SPEC REPOS:
     - SwiftLint
 
 SPEC CHECKSUMS:
-  FloatingPanel: 3c9d0e30fe350e1613157557769d2ec97f76b96b
+  FloatingPanel: bb17fd6fc7ae519f877f7bd30f4f6115a78acf07
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
 PODFILE CHECKSUM: 5e4cda6a97caf4bd20bd8a9d352dae56c0600cf6
