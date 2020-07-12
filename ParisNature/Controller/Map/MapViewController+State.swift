@@ -70,7 +70,6 @@ extension MapViewController {
         toggleViews(show: listVC.listView.tableView)
         listPanel.move(to: position, animated: true)
         detailPanel.move(to: .hidden, animated: true)
-        listPanel.contentMode = .fitToBounds
         panelDelegate.lastPanelPosition = nil
     }
     
@@ -85,7 +84,6 @@ extension MapViewController {
     /// Displays the detail of a place
     private func displayDetail(of place: Place?) {
         detailVC.place = place
-        listPanel.contentMode = .static
         listPanel.move(to: .hidden, animated: true)
         detailPanel.move(to: .half, animated: true)
         detailVC.detailView.scrollView.contentOffset = CGPoint.zero
