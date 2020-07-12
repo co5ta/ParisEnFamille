@@ -19,7 +19,12 @@ enum PlaceType: String, CaseIterable {
     case ramble, visit, park, garden, promenade
     
     /// List of parent place types
-    static let parents: [PlaceType] = [.education, .exhibit, .ramble, .activity]
+    static let parents: [PlaceType] = [
+        .activity,
+        .education,
+        .exhibit,
+        .ramble
+    ]
     
     /// List of chilf place types
     static let hierarchy: [PlaceType: [PlaceType]] = [

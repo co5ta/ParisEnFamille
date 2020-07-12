@@ -87,6 +87,18 @@ extension ListView {
         addSubview(underlineView)
     }
     
+    /// Sets up the collection view of categories
+    private func setUpSubTypeCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        subTypeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        subTypeCollectionView.backgroundColor = .clear
+        subTypeCollectionView.register(SubTypeCell.self, forCellWithReuseIdentifier: SubTypeCell.identifier)
+        subTypeCollectionView.showsHorizontalScrollIndicator = false
+        addSubview(subTypeCollectionView)
+    }
+    
     /// Sets up the table view
     private func setUpTableView() {
         addSubview(tableView)
@@ -113,22 +125,6 @@ extension ListView {
         cancelButton.isHidden = true
         cancelButton.tintColor = Style.label
         addSubview(cancelButton)
-    }
-    
-    /// Sets up the collection view of categories
-    private func setUpSubTypeCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        subTypeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        subTypeCollectionView.backgroundColor = .clear
-        subTypeCollectionView.register(SubTypeCell.self, forCellWithReuseIdentifier: SubTypeCell.identifier)
-        subTypeCollectionView.showsHorizontalScrollIndicator = false
-        addSubview(subTypeCollectionView)
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        subTypeCollectionView.collectionViewLayout.invalidateLayout()
     }
 }
 
@@ -191,14 +187,27 @@ extension ListView {
         ])
     }
     
+    /// Constrains the subtype collection view
+    private func constrainSubTypeCollectionView() {
+        subTypeCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        let height = Config.screenSize.width * 0.1
+        NSLayoutConstraint.activate([
+            subTypeCollectionView.heightAnchor.constraint(equalToConstant: height),
+            subTypeCollectionView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
+            subTypeCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            subTypeCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+    }
+    
     /// Constrains table view
     private func constrainTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
+            tableView.topAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: subTypeCollectionView.bottomAnchor, multiplier: 1),
+            tableView.topAnchor.constraint(equalTo: subTypeCollectionView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: subTypeCollectionView.topAnchor)
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
             
         ])
     }
@@ -230,18 +239,6 @@ extension ListView {
             cancelButton.heightAnchor.constraint(equalToConstant: 25),
             cancelButton.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 2),
             trailingAnchor.constraint(equalToSystemSpacingAfter: cancelButton.trailingAnchor, multiplier: 2)
-        ])
-    }
-        
-    /// Constrains the subtype collection view
-    private func constrainSubTypeCollectionView() {
-        subTypeCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        let height = Config.screenSize.height * 0.1
-        NSLayoutConstraint.activate([
-            subTypeCollectionView.heightAnchor.constraint(equalToConstant: height),
-            subTypeCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            subTypeCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            subTypeCollectionView.bottomAnchor.constraint(greaterThanOrEqualToSystemSpacingBelow: bottomAnchor, multiplier: 0)
         ])
     }
 }

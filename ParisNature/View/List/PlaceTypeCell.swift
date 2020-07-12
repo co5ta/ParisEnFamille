@@ -55,12 +55,10 @@ extension PlaceTypeCell {
     
     /// Styles the images button
     private func setUpTitleLabel() {
-        titleLabel.numberOfLines = 0
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+        titleLabel.font = .systemFont(ofSize: 15)
         titleLabel.textColor = Style.secondarylabel
-        titleLabel.adjustsFontForContentSizeCategory = true
-        titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 0
         contentView.addSubview(titleLabel)
     }
     

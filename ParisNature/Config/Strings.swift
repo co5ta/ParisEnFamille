@@ -36,17 +36,18 @@ enum Strings {
     static let unavailable = "Unavailable"
     
     // MARK: Placetype
-    static let activity = "Activity"
+    static let activity = "Leisure"
     static let conference = "Conference"
     static let reading = "Reading"
     static let games = "Games"
     static let otherAnimation = "Others"
-    static let education = "Learning"
+    
+    static let education = "Education"
     static let workshop = "Workshop"
     static let practicum = "Practicum"
     
-    static let exhibit = "Exhibit"
-    static let contemporary = "Contemporary art"
+    static let exhibit = "Exhibition"
+    static let contemporary = "Contemporary"
     static let fineArts = "Fine arts"
     static let design = "Design"
     static let history = "History"
