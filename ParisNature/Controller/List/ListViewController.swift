@@ -25,8 +25,6 @@ class ListViewController: UIViewController {
     var placeType: PlaceType? {
         didSet { subTypeCollectionViewDelegate.update() }
     }
-    /// Subtype place selected
-    var placeSubtype: PlaceType?
     /// List of places founded by the research
     var places = [Place]() {
         didSet { listView.tableView.reloadData() }

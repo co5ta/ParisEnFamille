@@ -13,8 +13,10 @@ class SubTypeCollectionViewDelegate: NSObject {
     
     /// View controller of the places list
     weak var listVC: ListViewController?
-    /// Subtypes place of the selected place type
-    var subTypes: [PlaceType]?
+    /// Subtypes available in the selected place type
+    var subTypesList: [PlaceType]?
+    /// SubType selected
+    var subType: PlaceType?
     /// List of all title buttons
     var titleButtons = [UIButton]()
 }
@@ -43,7 +45,7 @@ extension SubTypeCollectionViewDelegate: UICollectionViewDataSource {
     
     /// Asks your data source object for the number of items in the specified section
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return subTypes?.count ?? 0
+        return subTypesList?.count ?? 0
     }
     
     /// Asks your data source object for the cell that corresponds to the specified item in the collection view
@@ -51,8 +53,9 @@ extension SubTypeCollectionViewDelegate: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SubTypeCell.identifier,
                                                             for: indexPath) as? SubTypeCell
         else { return UICollectionViewCell() }
-        cell.subType = subTypes?[indexPath.row]
+        cell.subType = subTypesList?[indexPath.row]
         titleButtons.append(cell.titleButton)
+        setState(selected: (subType == cell.subType) ? true : false, on: cell.titleButton)
         cell.titleButton.addTarget(self, action: #selector(titleButtonTapped(button:)), for: .touchUpInside)
         return cell
     }
@@ -60,7 +63,7 @@ extension SubTypeCollectionViewDelegate: UICollectionViewDataSource {
     /// Reloads Data
     func update() {
         guard let placeType = listVC?.placeType else { return }
-        subTypes = PlaceType.hierarchy[placeType]
+        subTypesList = PlaceType.hierarchy[placeType]
         listVC?.listView.subTypeCollectionView.reloadData()
     }
 }
@@ -73,9 +76,8 @@ extension SubTypeCollectionViewDelegate {
     private func titleButtonTapped(button: UIButton) {
         guard button.isSelected == false, let listVC = listVC else { return }
         titleButtons.forEach { setState(selected: (button == $0) ? true: false, on: $0) }
-        guard let cell = button.superview as? SubTypeCell,
-            let subType = cell.subType
-            else { return }
+        guard let cell = button.superview as? SubTypeCell, let subType = cell.subType else { return }
+        self.subType = subType
         listVC.removePlaces()
         listVC.getPlaces(placeType: subType)
     }
