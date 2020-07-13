@@ -190,10 +190,10 @@ extension ListView {
     /// Constrains the subtype collection view
     private func constrainSubTypeCollectionView() {
         subTypeCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        let height = Config.screenSize.width * 0.1
+        let height = Config.screenSize.width * 0.12
         NSLayoutConstraint.activate([
             subTypeCollectionView.heightAnchor.constraint(equalToConstant: height),
-            subTypeCollectionView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
+            subTypeCollectionView.topAnchor.constraint(equalToSystemSpacingBelow: collectionView.bottomAnchor, multiplier: 0.5),
             subTypeCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             subTypeCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])

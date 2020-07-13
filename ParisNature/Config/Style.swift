@@ -65,7 +65,7 @@ enum Style {
         if #available(iOS 13.0, *) {
             return UIBlurEffect.Style.systemChromeMaterial
         } else {
-            return UIBlurEffect.Style.light
+            return UIBlurEffect.Style.extraLight
         }
     }
 }

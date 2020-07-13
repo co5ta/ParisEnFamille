@@ -66,7 +66,6 @@ extension CollectionViewDelegate {
     func imageButtonTapped(button: UIButton) {
         guard button.isSelected == false, let listVC = listVC else { return }
         placeTypeButtons.forEach { $0.isSelected = ($0 != button) ? false : true }
-        listVC.listView.subTypeCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
         listVC.subTypeCollectionViewDelegate.titleButtons.forEach {
             listVC.subTypeCollectionViewDelegate.setState(selected: false, on: $0)
         }
@@ -78,5 +77,6 @@ extension CollectionViewDelegate {
         listVC.placeType = placeType
         listVC.mapVC?.panelDelegate.lastPanelPosition = nil
         listVC.getPlaces(placeType: placeType)
+        listVC.listView.subTypeCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: false)
     }
 }
