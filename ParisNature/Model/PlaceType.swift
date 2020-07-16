@@ -36,6 +36,8 @@ enum PlaceType: String, CaseIterable {
     case park
     case garden
     case promenade
+    /// To display all subtypes of a place type
+    case all
     
     /// List of parent place types
     static let parents: [PlaceType] = [
@@ -49,11 +51,11 @@ enum PlaceType: String, CaseIterable {
     var children: [PlaceType] {
         switch self {
         case .activity:
-            return [.conference, .reading, .games, .otherAnimation]
+            return [.all, .conference, .reading, .games, .otherAnimation]
         case .education:
-            return [.workshop, .practicum]
+            return [.all, .workshop, .practicum]
         case .exhibit:
-            return [.contemporary, .fineArts, .design, .history, .illustration, .photography, .science, .streetArt, .otherExhibit]
+            return [.all, .contemporary, .fineArts, .design, .history, .illustration, .photography, .science, .streetArt, .otherExhibit]
         case .ramble:
             return [.visit, .park, .garden, .promenade]
         default:
@@ -107,6 +109,8 @@ enum PlaceType: String, CaseIterable {
         case .park: return Strings.park
         case .garden: return Strings.garden
         case .promenade: return Strings.promenade
+        // No filter
+        case .all: return "All"
         }
     }
 }

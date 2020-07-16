@@ -66,6 +66,7 @@ extension SubTypeCollectionViewDelegate: UICollectionViewDataSource {
         guard let placeType = listVC?.placeType else { return }
         subTypesList = placeType.children
         listVC?.listView.subTypeCollectionView.reloadData()
+        subType = (placeType == PlaceType.ramble) ? .visit : .all
     }
 }
 
@@ -84,7 +85,7 @@ extension SubTypeCollectionViewDelegate {
             listVC.getPlaces(placeType: subType)
         } else {
             guard let mapVC = listVC.mapVC else { return }
-            listVC.places = mapVC.places.filter { $0.placeType == subType }
+            listVC.places = (subType != PlaceType.all) ? mapVC.places.filter { $0.placeType == subType } : mapVC.places
             mapVC.mapView.removeAnnotations(mapVC.mapView.annotations)
             mapVC.mapView.addAnnotations(listVC.places)
             mapVC.state = .placesList
