@@ -10,13 +10,32 @@
 enum PlaceType: String, CaseIterable {
     
     /// Animation place type
-    case activity, conference, reading, games, otherAnimation
+    case activity
+    case conference = "Animations -> Conférence / Débat"
+    case reading = "Animations -> Lecture / Rencontre"
+    case games = "Animations -> Loisirs / Jeux"
+    case otherAnimation = "Animations -> Autre animation"
     /// Education place type
-    case education, workshop, practicum
+    case education
+    case workshop = "Animations -> Atelier / Cours"
+    case practicum = "Animations -> Stage"
     /// Exhibit place type
-    case exhibit, contemporary, fineArts, design, history, illustration, photography, science, streetArt, otherExhibit
-    /// Ramble place type
-    case ramble, visit, park, garden, promenade
+    case exhibit
+    case contemporary = "Expositions -> Art Contemporain"
+    case fineArts = "Expositions -> Beaux-Arts"
+    case design = "Expositions -> Design / Mode"
+    case history = "Expositions -> Histoire / Civilisations"
+    case illustration = "Expositions -> Illustration / BD"
+    case photography = "Expositions -> Photographie"
+    case science = "Expositions -> Sciences / Techniques"
+    case streetArt = "Expositions -> Street-art"
+    case otherExhibit = "Expositions -> Autre expo"
+    /// Visit place type
+    case ramble
+    case visit
+    case park
+    case garden
+    case promenade
     
     /// List of parent place types
     static let parents: [PlaceType] = [
@@ -27,12 +46,20 @@ enum PlaceType: String, CaseIterable {
     ]
     
     /// List of chilf place types
-    static let hierarchy: [PlaceType: [PlaceType]] = [
-        .activity: [.conference, .reading, .games, .otherAnimation],
-        .education: [.workshop, .practicum],
-        .exhibit: [.contemporary, .fineArts, .design, .history, .illustration, .photography, .science, .streetArt, .otherExhibit],
-        .ramble: [.visit, .park, .garden, .promenade]
-    ]
+    var children: [PlaceType] {
+        switch self {
+        case .activity:
+            return [.conference, .reading, .games, .otherAnimation]
+        case .education:
+            return [.workshop, .practicum]
+        case .exhibit:
+            return [.contemporary, .fineArts, .design, .history, .illustration, .photography, .science, .streetArt, .otherExhibit]
+        case .ramble:
+            return [.visit, .park, .garden, .promenade]
+        default:
+            return []
+        }
+    }
     
     /// Name of the associated image
     var imageName: String {
@@ -74,8 +101,8 @@ enum PlaceType: String, CaseIterable {
         case .science: return Strings.science
         case .streetArt: return Strings.streetArt
         case .otherExhibit: return Strings.otherExhibit
-        // Ramble
-        case .ramble: return Strings.ramble
+        // Visit
+        case .ramble : return Strings.ramble
         case .visit: return Strings.visit
         case .park: return Strings.park
         case .garden: return Strings.garden
@@ -86,84 +113,52 @@ enum PlaceType: String, CaseIterable {
 
 // MARK: - Endpoints
 extension PlaceType {
+    
+    var dataset: String {
+        switch self {
+        case .park, .garden, .promenade:
+            return "dataset=espaces_verts"
+        default:
+            return "dataset=que-faire-a-paris-&sort=date_end"
+        }
+    }
+    
     /// URL to search places from a place type
     var apiURL: String? {
-        var url = "https://opendata.paris.fr/api/records/1.0/search/?"
-        let greenspaceDataSet = "dataset=espaces_verts"
-        let eventDataSet = "dataset=que-faire-a-paris-&sort=date_end"
-        
+        var url = "https://opendata.paris.fr/api/records/1.0/search/?rows=600&" + dataset
         switch self {
         // Animation
         case .activity:
-            url += eventDataSet
             url += excludeCategories(from: PlaceType.eventCategories,
-                                     notIn: ["Animations -> Conférence / Débat",
-                                             "Animations -> Lecture / Rencontre",
-                                             "Animations -> Loisirs / Jeux",
-                                             "Animations -> Autre animation"])
-        case .conference:
-            url += eventDataSet + includeCategory("Animations -> Conférence / Débat")
-        case .reading:
-            url += eventDataSet + includeCategory("Animations -> Lecture / Rencontre")
-        case .games:
-            url += eventDataSet + includeCategory("Animations -> Loisirs / Jeux")
-        case .otherAnimation:
-            url += eventDataSet + includeCategory("Animations -> Autre animation")
-        
+                                     notIn: [PlaceType.conference.rawValue,
+                                             PlaceType.reading.rawValue,
+                                             PlaceType.games.rawValue,
+                                             PlaceType.otherAnimation.rawValue])
         // Education
         case .education:
-            url += eventDataSet
             url += excludeCategories(from: PlaceType.eventCategories,
-                                     notIn: ["Animations -> Atelier / Cours",
-                                             "Animations -> Stage"])
-        case .workshop:
-            url += eventDataSet + includeCategory("Animations -> Atelier / Cours")
-        case .practicum:
-            url += eventDataSet + includeCategory("Animations -> Stage")
-            
+                                     notIn: [PlaceType.workshop.rawValue,
+                                             PlaceType.practicum.rawValue])
         // Exhibit
         case .exhibit:
-            url += eventDataSet + includeCategory("Expositions+")
-        case .contemporary:
-            url += eventDataSet + includeCategory("Expositions -> Art Contemporain")
-        case .fineArts:
-            url += eventDataSet + includeCategory("Expositions -> Beaux-Arts")
-        case .design:
-            url += eventDataSet + includeCategory("Expositions -> Design / Mode")
-        case .history:
-            url += eventDataSet + includeCategory("Expositions -> Histoire / Civilisations")
-        case .illustration:
-            url += eventDataSet + includeCategory("Expositions -> Illustration / BD")
-        case .photography:
-            url += eventDataSet + includeCategory("Expositions -> Photographie")
-        case .science:
-            url += eventDataSet + includeCategory("Expositions -> Sciences / Techniques")
-        case .streetArt:
-            url += eventDataSet + includeCategory("Expositions -> Street-art")
-        case .otherExhibit:
-            url += eventDataSet + includeCategory("Expositions -> Autre expo")
+            url += includeCategory("Expositions+")
         
-        // Ramble
+        // Visit
         case .ramble, .visit:
-            url += eventDataSet
             url += excludeCategories(from: PlaceType.eventCategories,
-                                     notIn: ["Animations -> Balade",
-                                             "Animations -> Visite guidée"])
+                                     notIn: PlaceType.visitCategories )
         case .park:
-            url += greenspaceDataSet
             url += excludeCategories(from: PlaceType.greenspaceCategories,
                                      notIn: ["Parc", "Bois", "Pelouse", "Arboretum", "Ile"])
         case .garden:
-            url += greenspaceDataSet
             url += excludeCategories(from: PlaceType.greenspaceCategories,
                                      notIn: ["Jardin", "Jardin d'immeubles", "Archipel"])
         case .promenade:
-            url += greenspaceDataSet
             url += excludeCategories(from: PlaceType.greenspaceCategories,
                                      notIn: ["Esplanade", "Promenade"])
+        default:
+            return nil
         }
-        
-        url += "&rows=200"
         return url.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
     }
 }
@@ -183,28 +178,16 @@ extension PlaceType {
         return categories
     }
     
-    /// List of event categories
-    static let eventCategories = [
-        // Animations
-        "Animations -> Atelier / Cours",
-        "Animations -> Autre animation",
+    static var eventCategories: [String] {
+        PlaceType.allCases.map { $0.rawValue } + visitCategories + offTopicCategories
+    }
+    
+    static let visitCategories = [
         "Animations -> Balade",
-        "Animations -> Conférence / Débat",
-        "Animations -> Lecture / Rencontre",
-        "Animations -> Loisirs / Jeux",
-        "Animations -> Stage",
-        "Animations -> Visite guidée",
-        // Exhibit
-        "Expositions -> Art Contemporain",
-        "Expositions -> Autre expo",
-        "Expositions -> Beaux-Arts",
-        "Expositions -> Design / Mode",
-        "Expositions -> Histoire / Civilisations",
-        "Expositions -> Illustration / BD",
-        "Expositions -> Photographie",
-        "Expositions -> Sciences / Techniques",
-        "Expositions -> Street-art",
-        // Off topic
+        "Animations -> Visite guidée"
+    ]
+    
+    static let offTopicCategories = [
         "Concerts+",
         "Événements+",
         "Spectacles+"

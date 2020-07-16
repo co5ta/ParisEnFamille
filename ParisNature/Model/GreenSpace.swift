@@ -40,6 +40,8 @@ class GreenSpace: NSObject, Place {
     let open24h: String
     /// Opening year
     let openingYear: String
+    /// Place type
+    let placeType: PlaceType? = nil
     
     /// Initializes from json data
     required init(from decoder: Decoder) throws {

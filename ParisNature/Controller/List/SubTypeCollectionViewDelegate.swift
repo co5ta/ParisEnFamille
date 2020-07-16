@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 /// Delegate of the collection view  containing the list of place subtypes
 class SubTypeCollectionViewDelegate: NSObject {
@@ -63,7 +64,7 @@ extension SubTypeCollectionViewDelegate: UICollectionViewDataSource {
     /// Reloads Data
     func update() {
         guard let placeType = listVC?.placeType else { return }
-        subTypesList = PlaceType.hierarchy[placeType]
+        subTypesList = placeType.children
         listVC?.listView.subTypeCollectionView.reloadData()
     }
 }
@@ -78,8 +79,16 @@ extension SubTypeCollectionViewDelegate {
         titleButtons.forEach { setState(selected: (button == $0) ? true: false, on: $0) }
         guard let cell = button.superview as? SubTypeCell, let subType = cell.subType else { return }
         self.subType = subType
-        listVC.removePlaces()
-        listVC.getPlaces(placeType: subType)
+        if listVC.placeType == PlaceType.ramble {
+            listVC.removePlaces()
+            listVC.getPlaces(placeType: subType)
+        } else {
+            guard let mapVC = listVC.mapVC else { return }
+            listVC.places = mapVC.places.filter { $0.placeType == subType }
+            mapVC.mapView.removeAnnotations(mapVC.mapView.annotations)
+            mapVC.mapView.addAnnotations(listVC.places)
+            mapVC.state = .placesList
+        }
     }
     
     func setState(selected: Bool, on button: UIButton) {

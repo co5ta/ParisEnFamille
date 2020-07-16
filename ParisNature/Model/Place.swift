@@ -22,4 +22,6 @@ protocol Place: MKAnnotation, Decodable {
     var coordinate: CLLocationCoordinate2D { get }
     /// Subheading of the place
     var subheading: String { get }
+    /// Place type
+    var placeType: PlaceType? { get }
 }

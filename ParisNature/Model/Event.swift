@@ -51,6 +51,8 @@ class Event: NSObject, Place {
     let department: String
     /// Coordinate of the place
     var coordinate = CLLocationCoordinate2D()
+    /// Place type
+    let placeType: PlaceType?
     /// List of access type
     static let accessList = ["gratuit": Strings.free, "payant": Strings.payable, "reservation": Strings.onReservation]
     
@@ -83,7 +85,10 @@ class Event: NSObject, Place {
         accessLink = try fields.decodeIfPresent(String.self, forKey: .accessLink)
         contactUrl = try fields.decodeIfPresent(String.self, forKey: .contactUrl)
         contactMail = try fields.decodeIfPresent(String.self, forKey: .contactMail)
-        contactPhone = try fields.decodeIfPresent(String.self, forKey: .contactPhone)?.replacingOccurrences(of: " ", with: "")
+        let phone = try fields.decodeIfPresent(String.self, forKey: .contactPhone)
+        contactPhone = phone?.replacingOccurrences(of: " ", with: "")
+        let category = try fields.decode(String.self, forKey: .category)
+        placeType = PlaceType.init(rawValue: category)
         subheading = addressStreet
     }
     
