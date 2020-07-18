@@ -88,6 +88,7 @@ extension SubTypeCollectionViewDelegate {
             listVC.places = (subType != PlaceType.all) ? mapVC.places.filter { $0.placeType == subType } : mapVC.places
             mapVC.mapView.removeAnnotations(mapVC.mapView.annotations)
             mapVC.mapView.addAnnotations(listVC.places)
+            mapVC.mapViewDelegate.zoomIn(on: listVC.places)
             mapVC.state = .placesList
         }
     }

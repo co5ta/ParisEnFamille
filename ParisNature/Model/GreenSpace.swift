@@ -42,6 +42,8 @@ class GreenSpace: NSObject, Place {
     let openingYear: String
     /// Place type
     let placeType: PlaceType? = nil
+    /// Always true as the greenspace doesn't expire in time
+    let isInTimeInterval = true
     
     /// Initializes from json data
     required init(from decoder: Decoder) throws {

@@ -24,4 +24,6 @@ protocol Place: MKAnnotation, Decodable {
     var subheading: String { get }
     /// Place type
     var placeType: PlaceType? { get }
+    /// Returns true if the place is not too far in time to be display
+    var isInTimeInterval: Bool { get }
 }

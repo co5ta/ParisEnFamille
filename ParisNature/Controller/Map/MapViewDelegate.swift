@@ -45,42 +45,49 @@ extension MapViewDelegate {
     private func handleResult<T>(_ data: T) {
         switch data {
         case is GreenSpacesResult:
-            if let data = data as? GreenSpacesResult { addPlaces(data.records) }
+            if let data = data as? GreenSpacesResult { display(data.records) }
         case is EventsResult:
-            if let data = data as? EventsResult { addPlaces(data.records) }
+            if let data = data as? EventsResult { display(data.records) }
         default:
             print(#function, "The data type is not configured")
         }
     }
     
     /// Adds places in the map and the table view
-    private func addPlaces(_ places: [Place]) {
-        guard let mapVC = mapVC else { return }
-        guard places.isEmpty == false else { mapVC.state = .message(.noResult); return }
-        
-        let calendar = Calendar.current
-        let now = Date()
-        var list = [Place]()
-        var mapRect = MKMapRect.null
-        for place in places.reversed() {
-            guard place.coordinate.latitude != 0 else { continue }
-            guard Config.departments.contains(place.department) else { continue }
-            if let event = place as? Event {
-                let interval = calendar.dateComponents([.month], from: now, to: event.dateEnd)
-                if let month = interval.month, month > 0 { continue }
-            }
-            list.append(place)
-            mapVC.mapView.addAnnotation(place)
-            let point = MKMapPoint(place.coordinate)
-            let rect = MKMapRect(x: point.x, y: point.y, width: 1, height: 1)
-            mapRect = mapRect.union(rect)
-            guard let greenspace = place as? GreenSpace, let polygon = greenspace.geom.shapes else { continue }
-            mapVC.mapView.addOverlay(polygon)
+    private func display(_ list: [Place]) {
+        if list.isEmpty {
+            mapVC?.state = .message(.noResult)
+        } else {
+            let places = filter(list)
+            add(places)
+            zoomIn(on: places)
+            mapVC?.state = .placesList
         }
-        mapVC.places = list
-        mapVC.state = .placesList
+    }
+    
+    /// Filters the places which can be display
+    private func filter(_ places: [Place]) -> [Place] {
+        return places.filter {
+            $0.coordinate.latitude != 0 && Config.departments.contains($0.department) && $0.isInTimeInterval
+        }.reversed()
+    }
+    
+    /// Adds the places in the map and the table view
+    private func add(_ places: [Place]) {
+        mapVC?.places = places
+        for place in places {
+            mapVC?.mapView.addAnnotation(place)
+            guard let greenspace = place as? GreenSpace, let polygon = greenspace.geom.shapes else { continue }
+            mapVC?.mapView.addOverlay(polygon)
+        }
+    }
+    
+    /// Zooms in on the places displayed on the map
+    func zoomIn(on places: [Place]) {
+        var mapRect = MKMapRect.null
+        places.forEach { mapRect = mapRect.union(MKMapRect(origin: MKMapPoint($0.coordinate), size: MKMapSize(width: 1, height: 1))) }
         let edgeInsets = UIEdgeInsets(top: 30, left: 30, bottom: Config.screenSize.height * 0.4, right: 30)
-        mapVC.mapView.setVisibleMapRect(mapRect, edgePadding: edgeInsets, animated: true)
+        mapVC?.mapView.setVisibleMapRect(mapRect, edgePadding: edgeInsets, animated: true)
     }
 }
 
@@ -120,9 +127,7 @@ extension MapViewDelegate: MKMapViewDelegate {
             }
             mapView.removeAnnotations(annotations)
             mapVC.state = .cluster(places)
-
-            let title = places.count > 1 ? "places" : "place"
-            mapVC.listVC.listView.clusterTitleLabel.text = "\(places.count) \(title)"
+            mapVC.listVC.listView.clusterTitleLabel.text = "\(places.count) places"
             mapVC.listVC.listView.cancelButton.isHidden = false
             mapVC.listVC.listView.collectionView.isHidden = true
             mapVC.listVC.listView.subTypeCollectionView.isHidden = true

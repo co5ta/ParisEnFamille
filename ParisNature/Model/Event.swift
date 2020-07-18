@@ -56,6 +56,20 @@ class Event: NSObject, Place {
     /// List of access type
     static let accessList = ["gratuit": Strings.free, "payant": Strings.payable, "reservation": Strings.onReservation]
     
+    /// Return true if the event is not too far in time to be display
+    var isInTimeInterval: Bool {
+        let now = Date()
+        let calendar = Calendar.current
+        let startInterval = calendar.dateComponents([.month], from: now, to: dateStart)
+        let endInterval = calendar.dateComponents([.month, .minute], from: now, to: dateEnd)
+        guard let startMonth = startInterval.month,
+            let endMonth = endInterval.month,
+            let endMinute = endInterval.minute
+            else { return false }
+        guard endMinute > 1 && (startMonth < 1 || endMonth < 1) else { return false }
+        return true
+    }
+    
     /// Creates a new instance by decoding from the json
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
