@@ -62,6 +62,8 @@ enum Strings {
     static let park = "Park"
     static let garden = "Garden"
     static let promenade = "Promenade"
+    
+    static let all = "All"
 }
 
 // MARK: - Errors

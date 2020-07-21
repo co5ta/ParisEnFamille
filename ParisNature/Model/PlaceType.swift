@@ -11,7 +11,6 @@ enum PlaceType: String, CaseIterable {
     
     /// Animation place type
     case activity
-    case conference = "Animations -> Conférence / Débat"
     case reading = "Animations -> Lecture / Rencontre"
     case games = "Animations -> Loisirs / Jeux"
     case otherAnimation = "Animations -> Autre animation"
@@ -19,6 +18,7 @@ enum PlaceType: String, CaseIterable {
     case education
     case workshop = "Animations -> Atelier / Cours"
     case practicum = "Animations -> Stage"
+    case conference = "Animations -> Conférence / Débat"
     /// Exhibit place type
     case exhibit
     case contemporary = "Expositions -> Art Contemporain"
@@ -41,19 +41,16 @@ enum PlaceType: String, CaseIterable {
     
     /// List of parent place types
     static let parents: [PlaceType] = [
-        .activity,
-        .education,
-        .exhibit,
-        .ramble
+        .activity, .education, .exhibit, .ramble
     ]
     
     /// List of chilf place types
     var children: [PlaceType] {
         switch self {
         case .activity:
-            return [.all, .conference, .reading, .games, .otherAnimation]
+            return [.all, .reading, .games, .otherAnimation]
         case .education:
-            return [.all, .workshop, .practicum]
+            return [.all, .workshop, .practicum, .conference]
         case .exhibit:
             return [.all, .contemporary, .fineArts, .design, .history, .illustration, .photography, .science, .streetArt, .otherExhibit]
         case .ramble:
@@ -84,7 +81,6 @@ enum PlaceType: String, CaseIterable {
         switch self {
         // Animation
         case .activity: return Strings.activity
-        case .conference: return Strings.conference
         case .reading: return Strings.reading
         case .games: return Strings.games
         case .otherAnimation: return Strings.otherAnimation
@@ -92,6 +88,7 @@ enum PlaceType: String, CaseIterable {
         case .education: return Strings.education
         case .workshop: return Strings.workshop
         case .practicum: return Strings.practicum
+        case .conference: return Strings.conference
         // Exhibit
         case .exhibit: return Strings.exhibit
         case .contemporary: return Strings.contemporary
@@ -110,7 +107,7 @@ enum PlaceType: String, CaseIterable {
         case .garden: return Strings.garden
         case .promenade: return Strings.promenade
         // No filter
-        case .all: return "All"
+        case .all: return Strings.all
         }
     }
 }
@@ -132,21 +129,9 @@ extension PlaceType {
         var url = "https://opendata.paris.fr/api/records/1.0/search/?rows=600&" + dataset
         switch self {
         // Animation
-        case .activity:
+        case .activity, .education, .exhibit:
             url += excludeCategories(from: PlaceType.eventCategories,
-                                     notIn: [PlaceType.conference.rawValue,
-                                             PlaceType.reading.rawValue,
-                                             PlaceType.games.rawValue,
-                                             PlaceType.otherAnimation.rawValue])
-        // Education
-        case .education:
-            url += excludeCategories(from: PlaceType.eventCategories,
-                                     notIn: [PlaceType.workshop.rawValue,
-                                             PlaceType.practicum.rawValue])
-        // Exhibit
-        case .exhibit:
-            url += includeCategory("Expositions+")
-        
+                                     notIn: self.children.map { $0.rawValue })
         // Visit
         case .ramble, .visit:
             url += excludeCategories(from: PlaceType.eventCategories,
@@ -178,7 +163,7 @@ extension PlaceType {
     /// The categories to exclude from the search
     private func excludeCategories(from list: [String], notIn categoriesToKeep: [String]) -> String {
         let keyword = (list == PlaceType.eventCategories) ? "category" : "categorie"
-        let categories = list.map { categoriesToKeep.contains($0) == false ? "&exclude.\(keyword)=\($0)" : ""}.joined()
+        let categories = list.map { categoriesToKeep.contains($0) ? "" : "&exclude.\(keyword)=\($0)" }.joined()
         return categories
     }
     
