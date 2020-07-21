@@ -105,8 +105,8 @@ extension MapViewDelegate: MKMapViewDelegate {
         guard let overlay = overlay as? MKPolygon else { return MKOverlayRenderer() }
         let renderer = MKPolygonRenderer(polygon: overlay)
         renderer.lineWidth = 2
-        renderer.fillColor = .systemRed
         renderer.alpha = 0.5
+        renderer.fillColor = .systemRed
         renderer.strokeColor = .systemRed
         return renderer
     }
@@ -162,24 +162,8 @@ extension MapViewDelegate: MKMapViewDelegate {
 // MARK: - Annotations selection
 extension MapViewDelegate {
     
-    private func getCluster(annotation: MKAnnotation) -> [MKClusterAnnotation]? {
-        guard let clusters = mapVC?.mapView.annotations.filter({ $0 is MKClusterAnnotation }) as? [MKClusterAnnotation]
-            else { return nil }
-        var result = [MKClusterAnnotation]()
-        for cluster in clusters {
-            if (cluster.memberAnnotations.first(where: { $0 === annotation }) != nil) {
-                result.append(cluster)
-            }
-        }
-        return result.isEmpty ? nil : result
-    }
-    
-    private func getAnnotation(from place: Place) -> MKAnnotation? {
-        let annotation = mapVC?.mapView.annotations.first(where: { $0.title == place.title })
-        return annotation
-    }
-    
-    func selectAnnotation(of place: Place?) {
+    /// Select a place on the map without touching it
+    func selectAnnotation(_ place: Place?) {
         guard let place = place, let mapView = mapVC?.mapView else { return }
         mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotation(place)
