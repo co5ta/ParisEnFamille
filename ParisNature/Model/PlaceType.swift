@@ -156,7 +156,7 @@ extension PlaceType {
                                      notIn: ["Parc", "Bois", "Pelouse", "Arboretum", "Ile"])
         case .garden:
             url += excludeCategories(from: PlaceType.greenspaceCategories,
-                                     notIn: ["Jardin", "Jardin d'immeubles", "Archipel"])
+                                     notIn: ["Square", "Jardin", "Jardin d'immeubles", "Archipel"])
         case .promenade:
             url += excludeCategories(from: PlaceType.greenspaceCategories,
                                      notIn: ["Esplanade", "Promenade"])
