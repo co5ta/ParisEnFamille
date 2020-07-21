@@ -53,22 +53,6 @@ class Event: NSObject, Place {
     var coordinate = CLLocationCoordinate2D()
     /// Place type
     let placeType: PlaceType?
-    /// List of access type
-    static let accessList = ["gratuit": Strings.free, "payant": Strings.payable, "reservation": Strings.onReservation]
-    
-    /// Return true if the event is not too far in time to be display
-    var isInTimeInterval: Bool {
-        let now = Date()
-        let calendar = Calendar.current
-        let startInterval = calendar.dateComponents([.month], from: now, to: dateStart)
-        let endInterval = calendar.dateComponents([.month, .minute], from: now, to: dateEnd)
-        guard let startMonth = startInterval.month,
-            let endMonth = endInterval.month,
-            let endMinute = endInterval.minute
-            else { return false }
-        guard endMinute > 1 && (startMonth < 1 || endMonth < 1) else { return false }
-        return true
-    }
     
     /// Creates a new instance by decoding from the json
     required init(from decoder: Decoder) throws {
@@ -103,8 +87,37 @@ class Event: NSObject, Place {
         contactPhone = phone?.replacingOccurrences(of: " ", with: "")
         let category = try fields.decode(String.self, forKey: .category)
         placeType = PlaceType.init(rawValue: category)
-        subheading = addressStreet
+        subheading = Event.getLocalizedDate(dateStart, dateEnd)
     }
+    
+    /// Return true if the event is not too far in time to be display
+    var isInTimeInterval: Bool {
+        let now = Date()
+        let calendar = Calendar.current
+        let startInterval = calendar.dateComponents([.month], from: now, to: dateStart)
+        let endInterval = calendar.dateComponents([.month, .minute], from: now, to: dateEnd)
+        guard let startMonth = startInterval.month,
+            let endMonth = endInterval.month,
+            let endMinute = endInterval.minute
+            else { return false }
+        guard endMinute > 1 && (startMonth < 1 || endMonth < 1) else { return false }
+        return true
+    }
+    
+    static func getLocalizedDate(_ dateStart: Date, _ dateEnd: Date) -> String {
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .long
+        let start = dateformatter.string(from: dateStart)
+        let end = dateformatter.string(from: dateEnd)
+        return start != end ? "From \(start) to \(end)" : start
+    }
+    
+    /// List of access type
+    static let accessList = [
+        "gratuit": Strings.free,
+        "payant": Strings.payable,
+        "reservation": Strings.onReservation
+    ]
     
     /// Keys to decode from the json
     enum CodingKeys: String, CodingKey {
