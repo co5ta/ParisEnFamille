@@ -115,6 +115,7 @@ enum PlaceType: String, CaseIterable {
 // MARK: - Endpoints
 extension PlaceType {
     
+    /// Datasets used by the application
     var dataset: String {
         switch self {
         case .park, .garden, .promenade:
@@ -138,26 +139,17 @@ extension PlaceType {
                                      notIn: PlaceType.visitCategories )
         case .park:
             url += excludeCategories(from: PlaceType.greenspaceCategories,
-                                     notIn: ["Parc", "Bois", "Pelouse", "Arboretum", "Ile"])
+                                     notIn: PlaceType.parkCategories)
         case .garden:
             url += excludeCategories(from: PlaceType.greenspaceCategories,
-                                     notIn: ["Square", "Jardin", "Jardin d'immeubles", "Archipel"])
+                                     notIn: PlaceType.gardenCategories)
         case .promenade:
             url += excludeCategories(from: PlaceType.greenspaceCategories,
-                                     notIn: ["Esplanade", "Promenade"])
+                                     notIn: PlaceType.promenadeCategories)
         default:
             return nil
         }
         return url.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
-    }
-}
-
-// MARK: - API Categories
-extension PlaceType {
-    
-    /// The category to include in the search
-    private func includeCategory(_ categorie: String) -> String {
-        return "&refine.category=\(categorie)"
     }
     
     /// The categories to exclude from the search
@@ -166,46 +158,54 @@ extension PlaceType {
         let categories = list.map { categoriesToKeep.contains($0) ? "" : "&exclude.\(keyword)=\($0)" }.joined()
         return categories
     }
+}
+ 
+// MARK: - API Events
+extension PlaceType {
     
+    /// List of Event categories available in the API
     static var eventCategories: [String] {
-        PlaceType.allCases.map { $0.rawValue } + visitCategories + offTopicCategories
+        PlaceType.allCases.map { $0.rawValue } + visitCategories + excludedEvents
     }
     
+    /// Categories corresponding to the visit PlaceType
     static let visitCategories = [
         "Animations -> Balade",
         "Animations -> Visite guidée"
     ]
     
-    static let offTopicCategories = [
-        "Concerts+",
-        "Événements+",
-        "Spectacles+"
+    /// Event categories not used in the application
+    static let excludedEvents = [
+        "Concerts+", "Événements+", "Spectacles+"
     ]
+}
+
+// MARK: - API Greenspaces
+extension PlaceType {
     
     /// List of green space categories
-    static let greenspaceCategories = [
-        "Arboretum",
-        "Archipel",
-        "Bois",
-        "Cimetière",
-        "Decoration",
-        "Espace Vert",
-        "Esplanade",
-        "Ile",
-        "Jardin",
-        "Jardin d'immeubles",
-        "Jardin partage",
-        "Jardinet",
-        "Jardiniere",
-        "Mail",
-        "Murs vegetalises",
-        "Parc",
-        "Pelouse",
-        "Plate-bande",
-        "Promenade",
-        "Square",
-        "Talus",
-        "Terrain de boules",
-        "Terre-plein"
+    static var greenspaceCategories: [String] {
+        parkCategories + gardenCategories + promenadeCategories + excludedGreenspaces
+    }
+    
+    /// Categories corresponding to the park PlaceType
+    static let parkCategories = [
+        "Parc", "Bois", "Pelouse", "Arboretum", "Ile"
+    ]
+    
+    /// Categories corresponding to the garden PlaceType
+    static let gardenCategories = [
+        "Square", "Jardin", "Jardin d'immeubles", "Archipel"
+    ]
+    
+    /// Categories corresponding to the promenade PlaceType
+    static let promenadeCategories = [
+        "Esplanade", "Promenade"
+    ]
+    
+    /// Greenspace categories not used in the application
+    static let excludedGreenspaces = [
+        "Cimetière", "Decoration", "Espace Vert", "Jardin partage", "Jardinet", "Jardiniere",
+        "Mail", "Murs vegetalises", "Plate-bande", "Talus", "Terrain de boules", "Terre-plein"
     ]
 }
