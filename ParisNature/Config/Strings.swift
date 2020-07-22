@@ -46,7 +46,7 @@ enum Strings {
     static let workshop = "Workshop"
     static let practicum = "Practicum"
     
-    static let exhibit = "Exhibition"
+    static let exhibit = "Exhibit"
     static let contemporary = "Contemporary"
     static let fineArts = "Fine arts"
     static let design = "Design"

@@ -48,14 +48,14 @@ extension PlaceTypeCell {
     /// Sets up the image view
     private func setUpButton() {
         imageButton.tintColor = Style.label
-        imageButton.contentEdgeInsets = UIEdgeInsets(top: 7, left: 2.5, bottom: 0, right: 2.5)
+        imageButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 4, bottom: 0, right: 4)
         imageButton.clipsToBounds = true
         contentView.addSubview(imageButton)
     }
     
     /// Styles the images button
     private func setUpTitleLabel() {
-        titleLabel.font = .systemFont(ofSize: 15)
+        titleLabel.font = .systemFont(ofSize: 14)
         titleLabel.textColor = Style.label
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 0

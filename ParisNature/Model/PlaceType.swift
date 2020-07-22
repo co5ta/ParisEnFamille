@@ -48,7 +48,7 @@ enum PlaceType: String, CaseIterable {
     var children: [PlaceType] {
         switch self {
         case .activity:
-            return [.all, .reading, .games, .otherAnimation]
+            return [.all, .games, .reading, .otherAnimation]
         case .education:
             return [.all, .workshop, .practicum, .conference]
         case .exhibit:
@@ -63,7 +63,7 @@ enum PlaceType: String, CaseIterable {
     /// Name of the associated image
     var imageName: String {
         switch self {
-        case .activity: return "event"
+        case .activity: return "leisure"
         case .education: return "teach"
         case .exhibit: return "museum"
         case .ramble: return "backpacker"
