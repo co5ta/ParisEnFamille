@@ -19,7 +19,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		04A8FBAC2A21CC5C6BFF045F54B3C7AD /* Pods-ParisNature-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E8E3221D7A231AAD62E5AE2D993022 /* Pods-ParisNature-dummy.m */; };
 		071D52F82B602FB85E35CA8583EEF456 /* FloatingPanelSurfaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B455BC99212271CC052541F06F99004 /* FloatingPanelSurfaceView.swift */; };
 		2C000FFD2D40FD9F728E1F83134FDB1B /* FloatingPanel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 82C726E29E620EC628D611832177558E /* FloatingPanel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3D408305B29250792B2CDDC90990ECAC /* FloatingPanelCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DE43A0E5A6F35C1E520C76EE1AAD33 /* FloatingPanelCore.swift */; };
@@ -31,23 +30,24 @@
 		A696FE118006841FB09A5E76C11B8978 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998BD95C56F067F00EACA58E48E5333A /* Logger.swift */; };
 		A6DB10D310FD18E8B6C25EA33D81DF4E /* FloatingPanel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4515620B0A7B7D877ACC28D1E629C9FF /* FloatingPanel-dummy.m */; };
 		AAE1B9134D32C7B612C5CEAE638F0D9B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
-		B8BB2968D765B211AEB09A2AB44928D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
-		BDE12A6B7FE6B7408736645B4C23549E /* Pods-ParisNature-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 843C63CD26643B9E44A8AC3D022553CD /* Pods-ParisNature-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BCF4594C7C063C5C183B86FA756D2C3E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
 		C17DD90FDB535CC886156FEA4A17B02C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312B988EF117AE4DE76A268D970131FE /* UIKit.framework */; };
+		C54A5EEC2BEBA586E43D121B80C830E5 /* Pods-ParisEnFamille-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F35A3B68569BA397BF7D07B80A400EB2 /* Pods-ParisEnFamille-dummy.m */; };
 		CF925E8C4C99A77E1C9FE0049826FCE4 /* FloatingPanelBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4280651B16216EC6FCD44F53B06E2261 /* FloatingPanelBehavior.swift */; };
 		D13AC4B3EDF1F6A5973A039FCE488B92 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34916603801D9F0766F5E5E1B7A40CB5 /* UIExtensions.swift */; };
 		E62E543CA9182791942A0DE76D3E6C6C /* FloatingPanelTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A67653B1B2CFF2431E345CCE47946A /* FloatingPanelTransitioning.swift */; };
+		E922872E5CA43059A24C1161FEE9BEE6 /* Pods-ParisEnFamille-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 181A3B61B666D55817B70FFCFF64EC7F /* Pods-ParisEnFamille-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		015A048C4E148AAD772F7604F28B3A20 /* PBXContainerItemProxy */ = {
+		9749C3C18E35F0957D318D6ABDE14D16 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 52B60EC2A583F24ACBB69C113F5488B9;
 			remoteInfo = SwiftLint;
 		};
-		5E6259D1C897D2E9D445CD4FD895A865 /* PBXContainerItemProxy */ = {
+		9BFD8655C21BAB960FD201A1E81DC29B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -58,7 +58,7 @@
 
 /* Begin PBXFileReference section */
 		07D3F8D873A91B664A44B819E6921814 /* FloatingPanel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FloatingPanel.modulemap; sourceTree = "<group>"; };
-		17E8E3221D7A231AAD62E5AE2D993022 /* Pods-ParisNature-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ParisNature-dummy.m"; sourceTree = "<group>"; };
+		181A3B61B666D55817B70FFCFF64EC7F /* Pods-ParisEnFamille-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ParisEnFamille-umbrella.h"; sourceTree = "<group>"; };
 		2B455BC99212271CC052541F06F99004 /* FloatingPanelSurfaceView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FloatingPanelSurfaceView.swift; path = Framework/Sources/FloatingPanelSurfaceView.swift; sourceTree = "<group>"; };
 		2E473A3F5967EC3349A3B44C6E6BBC48 /* SwiftLint.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.release.xcconfig; sourceTree = "<group>"; };
 		312B988EF117AE4DE76A268D970131FE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -69,28 +69,28 @@
 		48A67653B1B2CFF2431E345CCE47946A /* FloatingPanelTransitioning.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FloatingPanelTransitioning.swift; path = Framework/Sources/FloatingPanelTransitioning.swift; sourceTree = "<group>"; };
 		4A403EA9FE8D54461362716478FC5F8D /* FloatingPanelView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FloatingPanelView.swift; path = Framework/Sources/FloatingPanelView.swift; sourceTree = "<group>"; };
 		4CB1AF35969DC06A97777DBABA194BBC /* FloatingPanelController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FloatingPanelController.swift; path = Framework/Sources/FloatingPanelController.swift; sourceTree = "<group>"; };
-		4DE49913C1E581273D0D689D43078FE2 /* Pods-ParisNature-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ParisNature-acknowledgements.markdown"; sourceTree = "<group>"; };
+		4F716F7594F4A160C8179E42D179A86A /* Pods-ParisEnFamille-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ParisEnFamille-Info.plist"; sourceTree = "<group>"; };
+		5AFB27E5F3AB86E1F3BF3386825F4F03 /* Pods-ParisEnFamille-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ParisEnFamille-acknowledgements.plist"; sourceTree = "<group>"; };
 		5FFDE39084C2FEFED83899F908FE481D /* FloatingPanel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FloatingPanel.release.xcconfig; sourceTree = "<group>"; };
 		6FAAB7D3DE9B2564509ABD18687E938E /* FloatingPanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FloatingPanel.framework; path = FloatingPanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		713AB16DF1C948B897C4BCF5E9065312 /* SwiftLint.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.debug.xcconfig; sourceTree = "<group>"; };
 		74F58B5E77633C432FFA8DC32F9E17BA /* FloatingPanelLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FloatingPanelLayout.swift; path = Framework/Sources/FloatingPanelLayout.swift; sourceTree = "<group>"; };
 		75EF11643C0C3811C3F4BA6D4ACA5A56 /* GrabberHandleView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GrabberHandleView.swift; path = Framework/Sources/GrabberHandleView.swift; sourceTree = "<group>"; };
-		7AC2506E64A1E1AD0EF84D0DB9BE6C67 /* Pods-ParisNature.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ParisNature.debug.xcconfig"; sourceTree = "<group>"; };
-		818183D6E26286AADC496C48D78DE67A /* Pods-ParisNature-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ParisNature-Info.plist"; sourceTree = "<group>"; };
 		82C726E29E620EC628D611832177558E /* FloatingPanel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FloatingPanel-umbrella.h"; sourceTree = "<group>"; };
-		843C63CD26643B9E44A8AC3D022553CD /* Pods-ParisNature-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ParisNature-umbrella.h"; sourceTree = "<group>"; };
 		89B5280FAB9568916DCA32E965C02514 /* FloatingPanelBackdropView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FloatingPanelBackdropView.swift; path = Framework/Sources/FloatingPanelBackdropView.swift; sourceTree = "<group>"; };
-		8AF72D9F34B999F90650D4BC1F02D933 /* Pods-ParisNature.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ParisNature.release.xcconfig"; sourceTree = "<group>"; };
+		89D7E6C1E13C61B17DA2918DD61D17DC /* Pods-ParisEnFamille-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ParisEnFamille-frameworks.sh"; sourceTree = "<group>"; };
+		8F2A6A4BF56E162C353616B0AC682583 /* Pods-ParisEnFamille.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ParisEnFamille.release.xcconfig"; sourceTree = "<group>"; };
 		998BD95C56F067F00EACA58E48E5333A /* Logger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Logger.swift; path = Framework/Sources/Logger.swift; sourceTree = "<group>"; };
+		99C34BA2C71348B57D108EB70BAF9C92 /* Pods_ParisEnFamille.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ParisEnFamille.framework; path = "Pods-ParisEnFamille.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		B1D2075A67AD1DE2EE006C9800284162 /* Pods-ParisNature.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ParisNature.modulemap"; sourceTree = "<group>"; };
 		B5DE43A0E5A6F35C1E520C76EE1AAD33 /* FloatingPanelCore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FloatingPanelCore.swift; path = Framework/Sources/FloatingPanelCore.swift; sourceTree = "<group>"; };
-		BA656E09BAAD7515FD69DC9F210624BD /* Pods-ParisNature-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ParisNature-frameworks.sh"; sourceTree = "<group>"; };
 		BB1F7E9061F63573BDA5F659DD29BFDE /* FloatingPanel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FloatingPanel-prefix.pch"; sourceTree = "<group>"; };
 		BE35FA3276F6B77C0F35D40ACE48E5B2 /* FloatingPanel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FloatingPanel.debug.xcconfig; sourceTree = "<group>"; };
 		DA7CC444E10F8F9B5E393E593DBA982D /* FloatingPanel-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FloatingPanel-Info.plist"; sourceTree = "<group>"; };
-		E7AFD28241B0A4178A4F11FDCE916610 /* Pods-ParisNature-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ParisNature-acknowledgements.plist"; sourceTree = "<group>"; };
-		FE97C22BBB3960F67E34CB41F484710B /* Pods_ParisNature.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ParisNature.framework; path = "Pods-ParisNature.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E97FC89F1E243B24AE1B0F532FA74FCE /* Pods-ParisEnFamille.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ParisEnFamille.debug.xcconfig"; sourceTree = "<group>"; };
+		ED9C8D7D065597218C34764199E2B92E /* Pods-ParisEnFamille-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ParisEnFamille-acknowledgements.markdown"; sourceTree = "<group>"; };
+		EFA474AD50B93E75E6DAF92450ABE3F0 /* Pods-ParisEnFamille.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ParisEnFamille.modulemap"; sourceTree = "<group>"; };
+		F35A3B68569BA397BF7D07B80A400EB2 /* Pods-ParisEnFamille-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ParisEnFamille-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,11 +103,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0FA15526E8E0E1ED3225CB89FA38EB1C /* Frameworks */ = {
+		EC8946E801B6261EF1FDA70A9DECDFEC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8BB2968D765B211AEB09A2AB44928D0 /* Foundation.framework in Frameworks */,
+				BCF4594C7C063C5C183B86FA756D2C3E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,12 +122,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1879C43E1BAB237FD7C21B4E258994A8 /* Targets Support Files */ = {
+		1A0A5CD4622A9BB3E216E0AC71824341 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8B6AE841850879E0D3E405795CBED8CC /* Pods-ParisNature */,
+				6FAAB7D3DE9B2564509ABD18687E938E /* FloatingPanel.framework */,
+				99C34BA2C71348B57D108EB70BAF9C92 /* Pods_ParisEnFamille.framework */,
 			);
-			name = "Targets Support Files";
+			name = Products;
+			sourceTree = "<group>";
+		};
+		42BFA19C979E137AFE0A22DAC4941D45 /* Pods-ParisEnFamille */ = {
+			isa = PBXGroup;
+			children = (
+				EFA474AD50B93E75E6DAF92450ABE3F0 /* Pods-ParisEnFamille.modulemap */,
+				ED9C8D7D065597218C34764199E2B92E /* Pods-ParisEnFamille-acknowledgements.markdown */,
+				5AFB27E5F3AB86E1F3BF3386825F4F03 /* Pods-ParisEnFamille-acknowledgements.plist */,
+				F35A3B68569BA397BF7D07B80A400EB2 /* Pods-ParisEnFamille-dummy.m */,
+				89D7E6C1E13C61B17DA2918DD61D17DC /* Pods-ParisEnFamille-frameworks.sh */,
+				4F716F7594F4A160C8179E42D179A86A /* Pods-ParisEnFamille-Info.plist */,
+				181A3B61B666D55817B70FFCFF64EC7F /* Pods-ParisEnFamille-umbrella.h */,
+				E97FC89F1E243B24AE1B0F532FA74FCE /* Pods-ParisEnFamille.debug.xcconfig */,
+				8F2A6A4BF56E162C353616B0AC682583 /* Pods-ParisEnFamille.release.xcconfig */,
+			);
+			name = "Pods-ParisEnFamille";
+			path = "Target Support Files/Pods-ParisEnFamille";
 			sourceTree = "<group>";
 		};
 		696DC4251574D64F7FD3A84E2BAA06F8 /* FloatingPanel */ = {
@@ -150,6 +168,14 @@
 			path = FloatingPanel;
 			sourceTree = "<group>";
 		};
+		704FF2E341E6CC2AC0363335C8DC9068 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				42BFA19C979E137AFE0A22DAC4941D45 /* Pods-ParisEnFamille */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
 		81126C5B809F2ACE6D71225ADD2C339B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,23 +184,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/SwiftLint";
-			sourceTree = "<group>";
-		};
-		8B6AE841850879E0D3E405795CBED8CC /* Pods-ParisNature */ = {
-			isa = PBXGroup;
-			children = (
-				B1D2075A67AD1DE2EE006C9800284162 /* Pods-ParisNature.modulemap */,
-				4DE49913C1E581273D0D689D43078FE2 /* Pods-ParisNature-acknowledgements.markdown */,
-				E7AFD28241B0A4178A4F11FDCE916610 /* Pods-ParisNature-acknowledgements.plist */,
-				17E8E3221D7A231AAD62E5AE2D993022 /* Pods-ParisNature-dummy.m */,
-				BA656E09BAAD7515FD69DC9F210624BD /* Pods-ParisNature-frameworks.sh */,
-				818183D6E26286AADC496C48D78DE67A /* Pods-ParisNature-Info.plist */,
-				843C63CD26643B9E44A8AC3D022553CD /* Pods-ParisNature-umbrella.h */,
-				7AC2506E64A1E1AD0EF84D0DB9BE6C67 /* Pods-ParisNature.debug.xcconfig */,
-				8AF72D9F34B999F90650D4BC1F02D933 /* Pods-ParisNature.release.xcconfig */,
-			);
-			name = "Pods-ParisNature";
-			path = "Target Support Files/Pods-ParisNature";
 			sourceTree = "<group>";
 		};
 		8F2561BB55C97486D9E177CB71E15F2B /* Pods */ = {
@@ -216,18 +225,9 @@
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
 				8F2561BB55C97486D9E177CB71E15F2B /* Pods */,
-				E0DF644893557F0E9B50F6F86FDAB3CF /* Products */,
-				1879C43E1BAB237FD7C21B4E258994A8 /* Targets Support Files */,
+				1A0A5CD4622A9BB3E216E0AC71824341 /* Products */,
+				704FF2E341E6CC2AC0363335C8DC9068 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		E0DF644893557F0E9B50F6F86FDAB3CF /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6FAAB7D3DE9B2564509ABD18687E938E /* FloatingPanel.framework */,
-				FE97C22BBB3960F67E34CB41F484710B /* Pods_ParisNature.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		E2983683FD097A93297E2F5D4E382B36 /* iOS */ = {
@@ -242,14 +242,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		235D44B9B552171CF908DB1918818256 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BDE12A6B7FE6B7408736645B4C23549E /* Pods-ParisNature-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		762B49C0AF1BD4B956053A6E4C37A52C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -258,29 +250,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA59175864CEB96A11CFBB9EC3BC6130 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E922872E5CA43059A24C1161FEE9BEE6 /* Pods-ParisEnFamille-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		01A331B2BA29682D6153DCB2C73B516A /* Pods-ParisNature */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F5E9497C146CF2E70691E8C5B28640B2 /* Build configuration list for PBXNativeTarget "Pods-ParisNature" */;
-			buildPhases = (
-				235D44B9B552171CF908DB1918818256 /* Headers */,
-				0260B69EB2AA46BBED4A761126AB7FEA /* Sources */,
-				0FA15526E8E0E1ED3225CB89FA38EB1C /* Frameworks */,
-				596F479BC76962FBC2EE9E99B80EBA7D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F13DB565DDA8E1D52CF8401F78750161 /* PBXTargetDependency */,
-				77B5D74A30397E7CE5CD16FFDF38D3DA /* PBXTargetDependency */,
-			);
-			name = "Pods-ParisNature";
-			productName = "Pods-ParisNature";
-			productReference = FE97C22BBB3960F67E34CB41F484710B /* Pods_ParisNature.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		4874E7E655CEB4C01E4572AD903AEA21 /* FloatingPanel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6044DE3C7C1CBDBFC5A9C046CA3BD8D7 /* Build configuration list for PBXNativeTarget "FloatingPanel" */;
@@ -297,6 +277,26 @@
 			name = FloatingPanel;
 			productName = FloatingPanel;
 			productReference = 6FAAB7D3DE9B2564509ABD18687E938E /* FloatingPanel.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5B010F839C6096B456822312251F7187 /* Pods-ParisEnFamille */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6080D20E96B9A9E38E09A27356055A17 /* Build configuration list for PBXNativeTarget "Pods-ParisEnFamille" */;
+			buildPhases = (
+				FA59175864CEB96A11CFBB9EC3BC6130 /* Headers */,
+				B9B129B1833238BE744342506DE8335A /* Sources */,
+				EC8946E801B6261EF1FDA70A9DECDFEC /* Frameworks */,
+				56D727159CAF365EBD239E2A181D0688 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A5E49B4C280A8ED554BD24E5BBAE28EC /* PBXTargetDependency */,
+				61B32C31882D860EE02B3D89FE22C930 /* PBXTargetDependency */,
+			);
+			name = "Pods-ParisEnFamille";
+			productName = "Pods-ParisEnFamille";
+			productReference = 99C34BA2C71348B57D108EB70BAF9C92 /* Pods_ParisEnFamille.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -317,19 +317,19 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = E0DF644893557F0E9B50F6F86FDAB3CF /* Products */;
+			productRefGroup = 1A0A5CD4622A9BB3E216E0AC71824341 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				4874E7E655CEB4C01E4572AD903AEA21 /* FloatingPanel */,
-				01A331B2BA29682D6153DCB2C73B516A /* Pods-ParisNature */,
+				5B010F839C6096B456822312251F7187 /* Pods-ParisEnFamille */,
 				52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		596F479BC76962FBC2EE9E99B80EBA7D /* Resources */ = {
+		56D727159CAF365EBD239E2A181D0688 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -346,14 +346,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0260B69EB2AA46BBED4A761126AB7FEA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				04A8FBAC2A21CC5C6BFF045F54B3C7AD /* Pods-ParisNature-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AAD82367C4E6F146582EDE6D9A440D57 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -373,27 +365,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B9B129B1833238BE744342506DE8335A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C54A5EEC2BEBA586E43D121B80C830E5 /* Pods-ParisEnFamille-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		77B5D74A30397E7CE5CD16FFDF38D3DA /* PBXTargetDependency */ = {
+		61B32C31882D860EE02B3D89FE22C930 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftLint;
 			target = 52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */;
-			targetProxy = 015A048C4E148AAD772F7604F28B3A20 /* PBXContainerItemProxy */;
+			targetProxy = 9749C3C18E35F0957D318D6ABDE14D16 /* PBXContainerItemProxy */;
 		};
-		F13DB565DDA8E1D52CF8401F78750161 /* PBXTargetDependency */ = {
+		A5E49B4C280A8ED554BD24E5BBAE28EC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FloatingPanel;
 			target = 4874E7E655CEB4C01E4572AD903AEA21 /* FloatingPanel */;
-			targetProxy = 5E6259D1C897D2E9D445CD4FD895A865 /* PBXContainerItemProxy */;
+			targetProxy = 9BFD8655C21BAB960FD201A1E81DC29B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		053695AB61E810418D42CBD90550CCD7 /* Debug */ = {
+		0A9249B1577725DDB3ED295BE5951FF2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AC2506E64A1E1AD0EF84D0DB9BE6C67 /* Pods-ParisNature.debug.xcconfig */;
+			baseConfigurationReference = 8F2A6A4BF56E162C353616B0AC682583 /* Pods-ParisEnFamille.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -406,7 +406,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-ParisNature/Pods-ParisNature-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-ParisEnFamille/Pods-ParisEnFamille-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -415,7 +415,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ParisNature/Pods-ParisNature.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-ParisEnFamille/Pods-ParisEnFamille.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -424,10 +424,11 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		131356BE54884448CA49C07BEDF4BB2A /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -526,6 +527,44 @@
 			};
 			name = Release;
 		};
+		5A501885A1699CAC9F5A17CD61194A78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E97FC89F1E243B24AE1B0F532FA74FCE /* Pods-ParisEnFamille.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-ParisEnFamille/Pods-ParisEnFamille-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ParisEnFamille/Pods-ParisEnFamille.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		8C99E11C628E1D571F2070B959E5AB79 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5FFDE39084C2FEFED83899F908FE481D /* FloatingPanel.release.xcconfig */;
@@ -598,45 +637,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		EF0AB4B8F75C3F3EE9B73EA1D621839D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8AF72D9F34B999F90650D4BC1F02D933 /* Pods-ParisNature.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-ParisNature/Pods-ParisNature-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ParisNature/Pods-ParisNature.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		F090CD07A80273D5A73C8EA19224ADDB /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -719,20 +719,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		6080D20E96B9A9E38E09A27356055A17 /* Build configuration list for PBXNativeTarget "Pods-ParisEnFamille" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A501885A1699CAC9F5A17CD61194A78 /* Debug */,
+				0A9249B1577725DDB3ED295BE5951FF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AE7B4FB01588B9E6DF09CB79FC7CE7BD /* Build configuration list for PBXAggregateTarget "SwiftLint" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				46EECD2DED30D7C5FE141C0B267C2D3F /* Debug */,
 				55DD740115BE746C8DBB7753806D85D5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F5E9497C146CF2E70691E8C5B28640B2 /* Build configuration list for PBXNativeTarget "Pods-ParisNature" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				053695AB61E810418D42CBD90550CCD7 /* Debug */,
-				EF0AB4B8F75C3F3EE9B73EA1D621839D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

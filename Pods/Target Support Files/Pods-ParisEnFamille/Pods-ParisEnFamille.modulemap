@@ -1,0 +1,6 @@
+framework module Pods_ParisEnFamille {
+  umbrella header "Pods-ParisEnFamille-umbrella.h"
+
+  export *
+  module * { export * }
+}
