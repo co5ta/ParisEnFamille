@@ -78,25 +78,14 @@ extension Strings {
 
 // MARK: - Alerts
 extension Strings {
+    static let locationDisabled = "Location services disabled"
+    static let turnOnLocation = "Please turn on the Location Services to see your position on the map."
     
-    static var appName: String {
-        return Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? ""
-    }
+    static let locationDenied = "Location denied"
+    static let allowLocation = "Please allow \(Bundle.main.name) to access your location if you want to see your position on the map."
     
-    static let locationDisabled = (
-        title: "Location services disabled",
-        message: "Please turn on the Location Services to display your position on the map"
-    )
-    
-    static let locationDenied = (
-        title: "Location denied",
-        message: "Please allow '\(Strings.appName)' to access your location to display your position on the map"
-    )
-    
-    static let locationUnavailable = (
-        title: "Location unavailable",
-        message: "Please check in Settings, maybe your location is restricted"
-    )
+    static let locationUnavailable = "Location unavailable"
+    static let checkSettings = "Please check in your device settings if any restrictions are enabled."
     
     static let settings = "Settings"
     static let cancel = "Cancel"

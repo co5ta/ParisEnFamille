@@ -27,8 +27,8 @@ extension LocationDelegate {
             mapVC.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
             checkLocationAuthorization()
         } else {
-            let alert = UIAlertController.settingsAlert(title: Strings.locationDisabled.title,
-                                                      message: Strings.locationDisabled.message)
+            let alert = UIAlertController.settingsAlert(title: Strings.locationDisabled,
+                                                      message: Strings.turnOnLocation)
             mapVC.present(alert, animated: true)
         }
     }
@@ -42,14 +42,14 @@ extension LocationDelegate {
         case .notDetermined:
             mapVC.locationManager.requestWhenInUseAuthorization()
         case .denied:
-            let alert = UIAlertController.settingsAlert(title: Strings.locationDenied.title,
-                                                      message: Strings.locationDenied.message)
+            let alert = UIAlertController.settingsAlert(title: Strings.locationDenied,
+                                                      message: Strings.allowLocation)
             mapVC.present(alert, animated: true)
         case .restricted:
             fallthrough
         @unknown default:
-            let alert = UIAlertController.settingsAlert(title: Strings.locationUnavailable.title,
-                                                      message: Strings.locationUnavailable.message)
+            let alert = UIAlertController.settingsAlert(title: Strings.locationUnavailable,
+                                                      message: Strings.checkSettings)
             mapVC.present(alert, animated: true)
         }
     }
