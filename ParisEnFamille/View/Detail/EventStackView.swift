@@ -75,7 +75,6 @@ extension EventStackView {
     private func setUpDescriptionLabel() {
         descriptionTextView.isScrollEnabled = false
         descriptionTextView.isEditable = false
-        descriptionTextView.isSelectable = false
         descriptionTextView.textContainer.lineFragmentPadding = 0
         descriptionTextView.backgroundColor = .clear
         addArrangedSubview(descriptionTextView)
