@@ -12,81 +12,86 @@ import Foundation
 enum Strings {
     
     // MARK: Place
-    static let directions = "Directions"
-    static let address = "Address"
-    static let free = "Free"
-    static let payable = "Payable"
-    static let onReservation = "on reservation"
+    static let directions = "Itinéraire"
+    static let address = "Adresse"
+    static let free = "Gratuit"
+    static let payable = "Payant"
+    static let onReservation = "sur réservation"
     
     // MARK: Event
     static let date = "Date"
+    static let from = "Du"
+    static let to = "au"
     static let description = "Description"
-    static let access = "Access"
+    static let access = "Accès"
     static let contact = "Contact"
     
     // MARK: Greenspace
     static let surface = "Surface"
-    static let horticulturalSurface = "Horticultural surface"
-    static let fence = "Fence"
-    static let open24H = "Open 24H a day"
-    static let yes = "Yes"
-    static let not = "No"
-    static let openingYear = "Opening year"
-    static let undisclosed = "Undisclosed"
-    static let unavailable = "Unavailable"
+    static let horticulturalSurface = "Surface horticole"
+    static let fence = "Cloture"
+    static let open24H = "Ouvert 24h/24"
+    static let yes = "Oui"
+    static let not = "Non"
+    static let openingYear = "Année d'ouverture"
+    static let undisclosed = "Indisponible"
+    static let unavailable = "Indisponible"
     
     // MARK: Placetype
-    static let activity = "Leisure"
-    static let conference = "Conference"
-    static let reading = "Reading"
-    static let games = "Games"
-    static let otherAnimation = "Others"
+    static let activity = "Animation"
+    static let conference = "Conférence"
+    static let reading = "Lecture"
+    static let games = "Jeux"
+    static let otherAnimation = "Autres"
     
     static let education = "Education"
-    static let workshop = "Workshop"
-    static let practicum = "Practicum"
+    static let workshop = "Atelier"
+    static let practicum = "Stage"
     
-    static let exhibit = "Exhibit"
-    static let contemporary = "Contemporary"
-    static let fineArts = "Fine arts"
-    static let design = "Design"
-    static let history = "History"
+    static let exhibit = "Exposition"
+    static let contemporary = "Art Contemporain"
+    static let fineArts = "Beaux-Arts"
+    static let design = "Design / Mode"
+    static let history = "Histoire"
     static let illustration = "Illustration"
-    static let photography = "Photography"
-    static let science = "Science"
+    static let photography = "Photographie"
+    static let science = "Sciences"
     static let streetArt = "Street-art"
-    static let otherExhibit = "Others"
+    static let otherExhibit = "Autres"
     
-    static let ramble = "Ramble"
-    static let visit = "Visit"
-    static let park = "Park"
-    static let garden = "Garden"
+    static let ramble = "Randonnée"
+    static let visit = "Visite"
+    static let park = "Parc"
+    static let garden = "Jardin"
     static let promenade = "Promenade"
     
-    static let all = "All"
+    static let all = "Tous"
+    
+    // MARK: Cluster
+    static let places = "lieux"
 }
 
 // MARK: - Errors
 extension Strings {
-    static let url = "The request URL couldn't be generate"
-    static let server = "Bad response"
-    static let error = "error"
-    static let noData = "The request didn't return any data"
-    static let decoding = "The data decoding failed"
-    static let emptyData = "No place founded"
+    static let url = "L'URL de la requête n'a pas pu être générée"
+    static let server = "Mauvaise réponse"
+    static let error = "erreur"
+    static let noData = "La requête n'a renvoyé aucune donnée"
+    static let decoding = "Le décodage des données a échoué"
+    static let emptyData = "Aucun lieu trouvé"
 }
 
 // MARK: - Alerts
 extension Strings {
-    static let locationDisabled = "Location services disabled"
-    static let turnOnLocation = "Please turn on the Location Services to see your position on the map."
+    static let locationDisabled = "Services de localisation désactivés"
+    static let turnOnLocation = "Veuillez activer les services de localisation pour voir votre position sur la carte."
     
-    static let locationDenied = "Location denied"
-    static let allowLocation = "Please allow \(Bundle.main.name) to access your location if you want to see your position on the map."
+    static let locationDenied = "Localisation non permise"
+    static let allowLocation = "Veuillez autoriser \(Bundle.main.name) à accéder à votre position si vous souhaitez voir votre position sur la carte."
     
-    static let locationUnavailable = "Location unavailable"
-    static let checkSettings = "Please check in your device settings if any restrictions are enabled."
+    static let locationUnavailable = "Localisation indisponible"
+    static let checkSettings = "Veuillez vérifier les paramètres de votre appareil si des restrictions sont activées."
     
-    static let settings = "Settings"
-    static let cancel = "Cancel"
+    static let settings = "Paramètres"
+    static let cancel = "Annuler"
 }

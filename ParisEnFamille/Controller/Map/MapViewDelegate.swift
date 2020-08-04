@@ -127,7 +127,7 @@ extension MapViewDelegate: MKMapViewDelegate {
             }
             mapView.removeAnnotations(annotations)
             mapVC.state = .cluster(places)
-            mapVC.listVC.listView.clusterTitleLabel.text = "\(places.count) places"
+            mapVC.listVC.listView.clusterTitleLabel.text = "\(places.count) \(Strings.places)"
             mapVC.listVC.listView.cancelButton.isHidden = false
             mapVC.listVC.listView.collectionView.isHidden = true
             mapVC.listVC.listView.subTypeCollectionView.isHidden = true

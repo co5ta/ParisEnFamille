@@ -22,7 +22,6 @@ class PanelDelegate: NSObject {
 extension PanelDelegate: FloatingPanelControllerDelegate {
     
     /// Defines which floating panel to use
-    // swiftlint:disable identifier_name
     func floatingPanel(_ vc: FloatingPanelController,
                        layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
         
