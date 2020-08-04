@@ -217,7 +217,7 @@ extension ListView {
         loadingView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             loadingView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            loadingView.topAnchor.constraint(equalToSystemSpacingBelow: collectionView.bottomAnchor, multiplier: 5)
+            loadingView.topAnchor.constraint(equalToSystemSpacingBelow: subTypeCollectionView.bottomAnchor, multiplier: 3)
         ])
     }
     
