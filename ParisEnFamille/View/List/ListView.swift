@@ -225,10 +225,10 @@ extension ListView {
     private func constrainErrorView() {
         errorView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            errorView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
+            errorView.topAnchor.constraint(equalTo: subTypeCollectionView.bottomAnchor),
             errorView.leadingAnchor.constraint(equalTo: leadingAnchor),
             errorView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            errorView.bottomAnchor.constraint(equalTo: subTypeCollectionView.topAnchor)
+            errorView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
