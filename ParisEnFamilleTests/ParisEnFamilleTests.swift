@@ -10,19 +10,24 @@ import XCTest
 import MapKit
 @testable import Paris_Nature
 
+/// Tests of the Model and Service modules
 class ParisEnFamilleTests: XCTestCase {
     
+    /// Url session for testing
     var session: URLSession = {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [MockURLProtocol.self]
         return URLSession(configuration: configuration)
     }()
     
+    /// Response expectation
     let expectation = XCTestExpectation(description: "response")
 }
 
+// MARK: - Tests
 extension ParisEnFamilleTests {
     
+    /// Test bad response of the type from the API
     func testBadResponseType() {
         let response = FakeAPI.badResponseType
         let data = FakeAPI.getJson(name: "events")
@@ -41,6 +46,7 @@ extension ParisEnFamilleTests {
         wait(for: [expectation], timeout: 1)
     }
     
+    /// Test bad response of code returned by the API
     func testBadResponseCode() {
         let response = FakeAPI.responseCode500
         let data = FakeAPI.getJson(name: "events")
@@ -59,6 +65,7 @@ extension ParisEnFamilleTests {
         wait(for: [expectation], timeout: 1)
     }
 
+    /// Test bad data returned by the API
     func testBadData() {
         let response = FakeAPI.responseCode200
         MockURLProtocol.requestHandler = { request in
@@ -76,6 +83,7 @@ extension ParisEnFamilleTests {
         wait(for: [expectation], timeout: 1)
     }
     
+    /// Test empty data returned by the API
     func testNoResult() {
         let response = FakeAPI.responseCode200
         let data = FakeAPI.getJson(name: "empty")
@@ -94,6 +102,7 @@ extension ParisEnFamilleTests {
         wait(for: [expectation], timeout: 1)
     }
     
+    /// Test list of Events  returned by the API
     func testEvents() {
         let response = FakeAPI.responseCode200
         let json = "events"
@@ -130,6 +139,7 @@ extension ParisEnFamilleTests {
         wait(for: [expectation], timeout: 1)
     }
     
+    /// Test list of greenspaces returned by the API
     func testGreenSpaces() {
         let response = FakeAPI.responseCode200
         let data = FakeAPI.getJson(name: "greenspaces")

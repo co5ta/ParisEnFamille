@@ -8,19 +8,27 @@
 
 import UIKit
 
+/// Application main coordinator
 class MainCoordinator: Coordinator {
+    
+    /// Navigation controller
     var navigationController: UINavigationController
 
+    /// Initializes the class
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
 
+    /// Pushs the home screen
     func start() {
         navigationController.pushViewController(MapViewController(), animated: true)
     }
 }
 
+/// Coordinator protocol
 protocol Coordinator {
+    /// Navigation controller
     var navigationController: UINavigationController { get set }
+    /// Pushs the home screen
     func start()
 }

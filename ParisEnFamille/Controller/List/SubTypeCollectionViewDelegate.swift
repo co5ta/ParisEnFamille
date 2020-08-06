@@ -93,6 +93,7 @@ extension SubTypeCollectionViewDelegate {
         }
     }
     
+    /// Applies a state to a button
     func setState(selected: Bool, on button: UIButton) {
         button.isSelected = selected
         button.backgroundColor = selected ? .lightGray : .clear

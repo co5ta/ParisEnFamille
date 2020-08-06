@@ -8,13 +8,21 @@
 
 import Foundation
 
+/// A class to simulate the behavior of the API
 class FakeAPI {
+    
+    /// Fake url
     static let url = URL(string: "fakeapi")!
+    /// Bad response type
     static let badResponseType = URLResponse()
+    /// Good response
     static let responseCode200 = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+    /// Bad response
     static let responseCode500 = HTTPURLResponse(url: url, statusCode: 500, httpVersion: nil, headerFields: nil)!
+    /// Bad data
     static let badData = "".data(using: .utf8)!
     
+    /// Get data from a test json
     static func getJson(name: String) -> Data {
         guard let json = Bundle(for: FakeAPI.self).url(forResource: name, withExtension: "json"),
             let data = try? Data(contentsOf: json) else { return Data() }

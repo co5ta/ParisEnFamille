@@ -74,6 +74,7 @@ extension ListViewController {
         }
     }
     
+    /// Gets Places by  PlaceType
     func getPlaces(placeType: PlaceType) {
         switch placeType {
         case .park, .garden, .promenade:

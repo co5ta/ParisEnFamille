@@ -89,6 +89,7 @@ extension MapViewController {
         detailVC.detailView.scrollView.contentOffset = CGPoint.zero
     }
     
+    /// Displays error message
     private func displayMessage(_ error: NetworkError) {
         listVC.listView.errorView.error = error
         toggleViews(show: listVC.listView.errorView)

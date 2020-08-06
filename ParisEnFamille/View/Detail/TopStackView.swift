@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+/// StackView of the top content
 class TopStackView: UIView {
 
     /// Place data

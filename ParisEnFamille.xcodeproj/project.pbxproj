@@ -332,10 +332,10 @@
 			isa = PBXGroup;
 			children = (
 				22BB89E12465AE68008740DA /* MainCoordinator.swift */,
+				225745B82467461E0040BBC8 /* Service */,
 				22579D692467F8A2007470F4 /* Model */,
 				22575C24247150A000794EB3 /* Controller */,
 				22575C232471508D00794EB3 /* View */,
-				225745B82467461E0040BBC8 /* Service */,
 				225745B524670A320040BBC8 /* Extensions */,
 				225210542477CCC70089A9CF /* Config */,
 				22BB89E02465ACF9008740DA /* Supporting Files */,

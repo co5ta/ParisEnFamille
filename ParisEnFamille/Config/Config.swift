@@ -8,8 +8,11 @@
 
 import UIKit
 
+/// App Configuration
 enum Config {
     
+    /// Screen size
     static let screenSize = UIScreen.main.bounds.size
+    /// Departments to consider
     static let departments = ["75", "92", "93", "94"]
 }

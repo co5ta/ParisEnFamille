@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Service which fetchs the data
 class NetworkService {
 
     /// Network session

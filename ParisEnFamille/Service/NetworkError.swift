@@ -43,6 +43,7 @@ extension NetworkError: LocalizedError {
         }
     }
     
+    /// Image name associated to each error
     var imageName: String {
         switch self {
         case .noResult:
@@ -53,8 +54,10 @@ extension NetworkError: LocalizedError {
     }
 }
 
+// MARK: - Equatable
 extension NetworkError: Equatable {
     
+    /// Defines the equality between 2 NetworkErrors
     static func == (lhs: NetworkError, rhs: NetworkError) -> Bool {
         switch (lhs, rhs) {
         case (.url, .url): return true

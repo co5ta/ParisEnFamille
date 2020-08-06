@@ -82,12 +82,14 @@ extension ErrorView {
 // MARK: - Constraints
 extension ErrorView {
     
+    /// Constrains views
     private func constrainViews() {
         constrainStackView()
         constrainImageView()
         constrainImageLabel()
     }
     
+    /// Constrains stackView
     private func constrainStackView() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -97,6 +99,7 @@ extension ErrorView {
         ])
     }
     
+    /// Constrains imageView
     private func constrainImageView() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -106,6 +109,7 @@ extension ErrorView {
         ])
     }
     
+    /// Constrains imageLabel
     private func constrainImageLabel() {
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

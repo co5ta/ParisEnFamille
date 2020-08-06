@@ -118,6 +118,7 @@ extension MapViewDelegate: MKMapViewDelegate {
         mapVC?.mapView.setRegion(region, animated: true)
     }
     
+    /// Tells the delegate that one of its annotation views was selected.
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard let mapVC = mapVC else { return }
         if let cluster = view.annotation as? MKClusterAnnotation,
@@ -138,6 +139,7 @@ extension MapViewDelegate: MKMapViewDelegate {
         }
     }
     
+    /// Tells the delegate that one of its annotation views was deselected.
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         guard let mapVC = mapVC else { return }
         if let cluster = view.annotation as? MKClusterAnnotation,
@@ -162,7 +164,7 @@ extension MapViewDelegate: MKMapViewDelegate {
 // MARK: - Annotations selection
 extension MapViewDelegate {
     
-    /// Select a place on the map without touching it
+    /// Selects a place on the map without touching it
     func selectAnnotation(_ place: Place?) {
         guard let place = place, let mapView = mapVC?.mapView else { return }
         mapView.removeAnnotations(mapView.annotations)
