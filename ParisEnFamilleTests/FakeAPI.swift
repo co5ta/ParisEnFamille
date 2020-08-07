@@ -24,8 +24,9 @@ class FakeAPI {
     
     /// Get data from a test json
     static func getJson(name: String) -> Data {
-        guard let json = Bundle(for: FakeAPI.self).url(forResource: name, withExtension: "json"),
-            let data = try? Data(contentsOf: json) else { return Data() }
+        let json = Bundle(for: FakeAPI.self).url(forResource: name, withExtension: "json")!
+        // swiftlint:disable force_try
+        let data = try! Data(contentsOf: json)
         return data
     }
 }
