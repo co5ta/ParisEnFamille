@@ -107,7 +107,7 @@ class Event: NSObject, Place {
     static func getLocalizedDate(_ dateStart: Date, _ dateEnd: Date) -> String {
         let dateformatter = DateFormatter()
         dateformatter.dateStyle = .long
-        dateformatter.locale = Locale(identifier: "fr_FR")
+        dateformatter.locale = .current
         let start = dateformatter.string(from: dateStart)
         let end = dateformatter.string(from: dateEnd)
         return start != end ? "\(Strings.from) \(start) \(Strings.to) \(end)" : start
