@@ -34,7 +34,7 @@ extension NetworkService {
             completionHandler(.failure(NetworkError.url))
             return
         }
-        print(url)
+//        print(url)
         task?.cancel()
         task = session.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
