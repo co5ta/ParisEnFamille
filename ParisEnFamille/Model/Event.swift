@@ -61,8 +61,8 @@ class Event: NSObject, Place {
         title = try fields.decode(String.self, forKey: .title)
         var addressName = try fields.decodeIfPresent(String.self, forKey: .addressName)
         addressName = addressName == nil ? addressName : addressName! + "\n"
-        let addressStreet = try fields.decode(String.self, forKey: .addressStreet)
-        let addressZipcode = try fields.decode(String.self, forKey: .addressZipcode)
+        let addressStreet = try fields.decodeIfPresent(String.self, forKey: .addressStreet) ?? ""
+        let addressZipcode = try fields.decodeIfPresent(String.self, forKey: .addressZipcode) ?? ""
         department = String(addressZipcode.prefix(2))
         let addressCity = try fields.decodeIfPresent(String.self, forKey: .addressCity)
         address = "\(addressName ?? "")\(addressStreet) \n\(addressZipcode) \(addressCity ?? "")"
@@ -72,12 +72,16 @@ class Event: NSObject, Place {
         dateStart = try fields.decode(Date.self, forKey: .dateStart)
         dateEnd = try fields.decode(Date.self, forKey: .dateEnd)
         dateDescription = try fields.decode(String.self, forKey: .dateDescription)
-        leadText = try fields.decode(String.self, forKey: .leadText)
-        descriptionText = try fields.decode(String.self, forKey: .description)
-        let accessType = try fields.decode(String.self, forKey: .accessType)
-        let priceType = try fields.decode(String.self, forKey: .priceType)
-        if let priceText = Event.accessList[priceType] { access.append(priceText) }
-        if let accessText = Event.accessList[accessType] { access.append(accessText) }
+        leadText = try fields.decodeIfPresent(String.self, forKey: .leadText) ?? ""
+        descriptionText = try fields.decodeIfPresent(String.self, forKey: .description) ?? ""
+        if let accessType = try fields.decodeIfPresent(String.self, forKey: .accessType),
+           let accessText = Event.accessList[accessType] {
+            access.append(accessText)
+        }
+        if let priceType = try fields.decodeIfPresent(String.self, forKey: .priceType),
+           let priceText = Event.accessList[priceType] {
+            access.append(priceText)
+        }
         priceDetail = try fields.decodeIfPresent(String.self, forKey: .priceDetail)
         contactName = try fields.decodeIfPresent(String.self, forKey: .contactName)
         accessLink = try fields.decodeIfPresent(String.self, forKey: .accessLink)
@@ -85,8 +89,7 @@ class Event: NSObject, Place {
         contactMail = try fields.decodeIfPresent(String.self, forKey: .contactMail)
         let phone = try fields.decodeIfPresent(String.self, forKey: .contactPhone)
         contactPhone = phone?.replacingOccurrences(of: " ", with: "")
-        let category = try fields.decode(String.self, forKey: .category)
-        placeType = PlaceType.init(rawValue: category)
+        placeType = .activity // temporary
         subheading = Event.getLocalizedDate(dateStart, dateEnd)
     }
     
@@ -125,7 +128,6 @@ class Event: NSObject, Place {
         // Keys used in the json
         case fields
         case title
-        case category
         case addressName
         case addressStreet
         case addressZipcode
