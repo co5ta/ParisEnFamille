@@ -58,6 +58,18 @@
 		228C8065248AB256002AB3DE /* EventStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228C8064248AB256002AB3DE /* EventStackView.swift */; };
 		22BB89E22465AE68008740DA /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB89E12465AE68008740DA /* MainCoordinator.swift */; };
 		22F14729248C23CA00523A64 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F14728248C23CA00523A64 /* Config.swift */; };
+		3E86944327D54CCD0058EDD6 /* ListEvents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E86944227D54CCD0058EDD6 /* ListEvents.storyboard */; };
+		3E8AFD6827CAC69800584B66 /* AnyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8AFD6727CAC69800584B66 /* AnyItem.swift */; };
+		3E8AFD6A27CACE0300584B66 /* EventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8AFD6927CACE0300584B66 /* EventItem.swift */; };
+		3E8AFD6F27CAD25300584B66 /* ListEventsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8AFD6E27CAD25300584B66 /* ListEventsInteractor.swift */; };
+		3E8C7E8D27D1700000103CCC /* ListEventsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C7E8C27D1700000103CCC /* ListEventsModels.swift */; };
+		3E9A2A2127DA8E0400CDC2CE /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A2A1F27DA8E0400CDC2CE /* EventCollectionViewCell.swift */; };
+		3E9A2A2227DA8E0400CDC2CE /* EventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A2A2027DA8E0400CDC2CE /* EventCollectionViewCell.xib */; };
+		3E9A2A2427DAA40000CDC2CE /* EventSampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A2A2327DAA40000CDC2CE /* EventSampleView.swift */; };
+		3E9A2A2827DAA5C900CDC2CE /* EventSampleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A2A2727DAA5C900CDC2CE /* EventSampleView.xib */; };
+		3E9CB93327CBF5C70087F959 /* ListEventsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9CB93227CBF5C70087F959 /* ListEventsWorker.swift */; };
+		3E9CB93527CBFB210087F959 /* ListEventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9CB93427CBFB210087F959 /* ListEventsPresenter.swift */; };
+		3E9CB93727CBFB360087F959 /* ListEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9CB93627CBFB360087F959 /* ListEventsViewController.swift */; };
 		E6FA38084A532E69DA490D4B /* Pods_ParisEnFamille.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD700FC1285C5209E8D5DF7 /* Pods_ParisEnFamille.framework */; };
 /* End PBXBuildFile section */
 
@@ -129,6 +141,18 @@
 		228C8064248AB256002AB3DE /* EventStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStackView.swift; sourceTree = "<group>"; };
 		22BB89E12465AE68008740DA /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		22F14728248C23CA00523A64 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		3E86944227D54CCD0058EDD6 /* ListEvents.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListEvents.storyboard; sourceTree = "<group>"; };
+		3E8AFD6727CAC69800584B66 /* AnyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyItem.swift; sourceTree = "<group>"; };
+		3E8AFD6927CACE0300584B66 /* EventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItem.swift; sourceTree = "<group>"; };
+		3E8AFD6E27CAD25300584B66 /* ListEventsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventsInteractor.swift; sourceTree = "<group>"; };
+		3E8C7E8C27D1700000103CCC /* ListEventsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventsModels.swift; sourceTree = "<group>"; };
+		3E9A2A1F27DA8E0400CDC2CE /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
+		3E9A2A2027DA8E0400CDC2CE /* EventCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCollectionViewCell.xib; sourceTree = "<group>"; };
+		3E9A2A2327DAA40000CDC2CE /* EventSampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSampleView.swift; sourceTree = "<group>"; };
+		3E9A2A2727DAA5C900CDC2CE /* EventSampleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSampleView.xib; sourceTree = "<group>"; };
+		3E9CB93227CBF5C70087F959 /* ListEventsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventsWorker.swift; sourceTree = "<group>"; };
+		3E9CB93427CBFB210087F959 /* ListEventsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventsPresenter.swift; sourceTree = "<group>"; };
+		3E9CB93627CBFB360087F959 /* ListEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventsViewController.swift; sourceTree = "<group>"; };
 		547414CDF45259B63D919074 /* Pods-ParisNatureTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParisNatureTests.debug.xcconfig"; path = "Target Support Files/Pods-ParisNatureTests/Pods-ParisNatureTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6AE33546440FEC82DEBA7A44 /* Pods-ParisNature.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParisNature.debug.xcconfig"; path = "Target Support Files/Pods-ParisNature/Pods-ParisNature.debug.xcconfig"; sourceTree = "<group>"; };
 		76F9A0FF988CE777FDDF34D9 /* Pods-ParisNatureTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParisNatureTests.release.xcconfig"; path = "Target Support Files/Pods-ParisNatureTests/Pods-ParisNatureTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -348,7 +372,10 @@
 		225BED752465A28100A69076 /* ParisEnFamille */ = {
 			isa = PBXGroup;
 			children = (
-				22BB89E12465AE68008740DA /* MainCoordinator.swift */,
+				3E8AFD6627CAC5E100584B66 /* Entities */,
+				3E8AFD6D27CAD0A600584B66 /* Scenes */,
+				3E9A562027DE2B950061288A /* Components */,
+				3E9A562127DE2C420061288A /* Coordinators */,
 				225745B82467461E0040BBC8 /* Service */,
 				22579D692467F8A2007470F4 /* Model */,
 				22575C24247150A000794EB3 /* Controller */,
@@ -378,6 +405,55 @@
 				EDD700FC1285C5209E8D5DF7 /* Pods_ParisEnFamille.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E8AFD6627CAC5E100584B66 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				3E8AFD6727CAC69800584B66 /* AnyItem.swift */,
+				3E8AFD6927CACE0300584B66 /* EventItem.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		3E8AFD6D27CAD0A600584B66 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				3E9CB93127CBE5010087F959 /* ListEvents */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		3E9A562027DE2B950061288A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3E9A2A2027DA8E0400CDC2CE /* EventCollectionViewCell.xib */,
+				3E9A2A1F27DA8E0400CDC2CE /* EventCollectionViewCell.swift */,
+				3E9A2A2727DAA5C900CDC2CE /* EventSampleView.xib */,
+				3E9A2A2327DAA40000CDC2CE /* EventSampleView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		3E9A562127DE2C420061288A /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				22BB89E12465AE68008740DA /* MainCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		3E9CB93127CBE5010087F959 /* ListEvents */ = {
+			isa = PBXGroup;
+			children = (
+				3E86944227D54CCD0058EDD6 /* ListEvents.storyboard */,
+				3E9CB93627CBFB360087F959 /* ListEventsViewController.swift */,
+				3E8AFD6E27CAD25300584B66 /* ListEventsInteractor.swift */,
+				3E9CB93227CBF5C70087F959 /* ListEventsWorker.swift */,
+				3E9CB93427CBFB210087F959 /* ListEventsPresenter.swift */,
+				3E8C7E8C27D1700000103CCC /* ListEventsModels.swift */,
+			);
+			path = ListEvents;
 			sourceTree = "<group>";
 		};
 		ADE83D4B4374541456828D70 /* Pods */ = {
@@ -489,8 +565,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				225BED832465A28300A69076 /* LaunchScreen.storyboard in Resources */,
+				3E86944327D54CCD0058EDD6 /* ListEvents.storyboard in Resources */,
 				2253B38F24E0B1D40058DA3D /* Localizable.strings in Resources */,
+				3E9A2A2827DAA5C900CDC2CE /* EventSampleView.xib in Resources */,
 				225BED802465A28300A69076 /* Assets.xcassets in Resources */,
+				3E9A2A2227DA8E0400CDC2CE /* EventCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,10 +654,13 @@
 				2260CD3A24A7A3EC00A10E8F /* String+Html.swift in Sources */,
 				22BB89E22465AE68008740DA /* MainCoordinator.swift in Sources */,
 				225628132472A07B00DDEAAB /* PlaceTypeCell.swift in Sources */,
+				3E9A2A2427DAA40000CDC2CE /* EventSampleView.swift in Sources */,
 				2254EB2A246FDFCA00BEA2AC /* ListViewController.swift in Sources */,
+				3E8AFD6827CAC69800584B66 /* AnyItem.swift in Sources */,
 				225BED772465A28100A69076 /* AppDelegate.swift in Sources */,
 				2259AD0F249230BA00018DC3 /* ListView.swift in Sources */,
 				2255ABC92487A366008F33EC /* TopStackView.swift in Sources */,
+				3E9CB93327CBF5C70087F959 /* ListEventsWorker.swift in Sources */,
 				2254269024916EBA00C217F1 /* PlaceTypeCollectionViewDelegate.swift in Sources */,
 				22562CF424AF526B00420A29 /* UIAlertController+Alert.swift in Sources */,
 				2258813124AE51FB00F46154 /* BlurView.swift in Sources */,
@@ -593,8 +675,10 @@
 				225745B4246705190040BBC8 /* MapViewController.swift in Sources */,
 				2252768A247FB38E00398B87 /* Geom.swift in Sources */,
 				2255DC55248FDDDE000D4D35 /* DetailView.swift in Sources */,
+				3E9CB93727CBFB360087F959 /* ListEventsViewController.swift in Sources */,
 				22F14729248C23CA00523A64 /* Config.swift in Sources */,
 				226891B024CB0E52007D5D09 /* Bundle+AppName.swift in Sources */,
+				3E8C7E8D27D1700000103CCC /* ListEventsModels.swift in Sources */,
 				22579D6B2467F8B0007470F4 /* GreenSpace.swift in Sources */,
 				225BED792465A28100A69076 /* SceneDelegate.swift in Sources */,
 				22579D6D2467FDE4007470F4 /* NetworkError.swift in Sources */,
@@ -605,13 +689,17 @@
 				2259FD392493BE3D0088444C /* LocationDelegate.swift in Sources */,
 				2257B0FF249BE1C600B639A6 /* SubTypeCell.swift in Sources */,
 				2255DC572490069D000D4D35 /* ErrorView.swift in Sources */,
+				3E8AFD6F27CAD25300584B66 /* ListEventsInteractor.swift in Sources */,
 				2254268E24915FCA00C217F1 /* TableViewDelegate.swift in Sources */,
+				3E9A2A2127DA8E0400CDC2CE /* EventCollectionViewCell.swift in Sources */,
 				2255ABCF2487F065008F33EC /* FieldView.swift in Sources */,
 				22562811247275EC00DDEAAB /* PlaceType.swift in Sources */,
 				2259FD372493BDBD0088444C /* DetailPanelLayout.swift in Sources */,
 				2260CD3C24A7A40800A10E8F /* UIFont+Traits.swift in Sources */,
 				22576AAB24767F4600373476 /* PlaceAnnotationView.swift in Sources */,
 				225745BA246746400040BBC8 /* NetworkService.swift in Sources */,
+				3E8AFD6A27CACE0300584B66 /* EventItem.swift in Sources */,
+				3E9CB93527CBFB210087F959 /* ListEventsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,7 +742,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PQ32JTG8M8;
 				INFOPLIST_FILE = ParisEnFamilleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -675,7 +763,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PQ32JTG8M8;
 				INFOPLIST_FILE = ParisEnFamilleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -740,7 +828,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -796,7 +884,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -815,6 +903,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PQ32JTG8M8;
 				INFOPLIST_FILE = "ParisEnFamille/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -834,6 +923,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PQ32JTG8M8;
 				INFOPLIST_FILE = "ParisEnFamille/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

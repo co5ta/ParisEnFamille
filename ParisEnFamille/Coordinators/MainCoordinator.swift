@@ -21,7 +21,8 @@ class MainCoordinator: Coordinator {
 
     /// Pushs the home screen
     func start() {
-        navigationController.pushViewController(MapViewController(), animated: true)
+        let viewController = UIStoryboard.init(name: "ListEvents", bundle: nil).instantiateInitialViewController()
+        navigationController.pushViewController(viewController!, animated: true)
     }
 }
 

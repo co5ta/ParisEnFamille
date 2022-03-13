@@ -127,7 +127,7 @@ extension PlaceType {
     
     /// URL to search places from a place type
     var apiURL: String? {
-        var url = "https://opendata.paris.fr/api/records/1.0/search/?rows=600&" + dataset
+        var url = "https://opendata.paris.fr/api/records/1.0/search/?rows=20&" + dataset
         switch self {
         // Animation
         case .activity, .education, .exhibit:
