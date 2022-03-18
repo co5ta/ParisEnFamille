@@ -53,6 +53,8 @@ class Event: NSObject, Place {
     var coordinate = CLLocationCoordinate2D()
     /// Place type
     let placeType: PlaceType?
+    /// Cover url
+    let coverUrl: String
     
     /// Creates a new instance by decoding from the json
     required init(from decoder: Decoder) throws {
@@ -91,6 +93,7 @@ class Event: NSObject, Place {
         contactPhone = phone?.replacingOccurrences(of: " ", with: "")
         placeType = .activity // temporary
         subheading = Event.getLocalizedDate(dateStart, dateEnd)
+        coverUrl = try fields.decode(String.self, forKey: .coverUrl)
     }
     
     /// Return true if the event is not too far in time to be display
@@ -146,5 +149,6 @@ class Event: NSObject, Place {
         case contactUrl
         case contactPhone
         case contactMail
+        case coverUrl
     }
 }

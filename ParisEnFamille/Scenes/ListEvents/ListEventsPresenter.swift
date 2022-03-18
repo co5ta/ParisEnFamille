@@ -20,7 +20,8 @@ class ListEventsPresenter: ListEventsPresentationLogic {
                 uuid: UUID(),
                 title: $0.title ?? "",
                 intro: $0.leadText,
-                descriptionText: $0.descriptionText)
+                descriptionText: $0.descriptionText,
+                coverUrl: $0.coverUrl)
             }
         let viewModel = ListEvents.FetchEvents.ViewModel(events: formattedEvents)
         viewController?.displayEvents(viewModel: viewModel)

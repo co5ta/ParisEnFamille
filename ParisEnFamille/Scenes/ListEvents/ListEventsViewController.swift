@@ -37,6 +37,7 @@ class ListEventsViewController: UIViewController, ListEventsDisplayLogic {
 
     override func viewDidLoad() {
         collectionView.register(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EventCell")
+        collectionView.collectionViewLayout = createCompositionalLayout()
         fetchEvents()
     }
 
@@ -76,5 +77,18 @@ extension ListEventsViewController {
         snapshot.appendSections([.main])
         snapshot.appendItems(events)
         dataSource?.apply(snapshot, animatingDifferences: animate)
+    }
+
+    func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
+      let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0))
+      let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0))
+      let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+      let section = NSCollectionLayoutSection(group: group)
+
+      let layout = UICollectionViewCompositionalLayout(section: section)
+      return layout
     }
 }

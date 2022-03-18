@@ -22,6 +22,7 @@ enum ListEvents {
                 let title: String
                 let intro: String
                 let descriptionText: String
+                let coverUrl: String
             }
         }
     }
