@@ -1,5 +1,8 @@
-## User settings
+# User settings
 xcuserdata/
 
-## System files
+# System files
 .DS_Store
+
+# CocoaPods
+Pods/
