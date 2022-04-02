@@ -7,7 +7,8 @@
 //
 
 protocol ListEventsBusinessLogic {
-    func fetchEvents()
+//    func fetchEvents()
+    func fetchEventItems()
 }
 
 protocol ListEventsDataDource {
@@ -18,16 +19,15 @@ class ListEventsInteractor: ListEventsBusinessLogic, ListEventsDataDource {
     var presenter: ListEventsPresenter?
     var worker: ListEventsWorker = ListEventsWorker(manager: NetworkService())
     var events: [Event] = []
-
-    func fetchEvents() {
-        worker.fetchEvents(completionHandler: { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case let .success(events):
-                let response = ListEvents.FetchEvents.Response(events: events)
-                self.presenter?.present(response: response)
+    
+    func fetchEventItems() {
+        Task {
+            do {
+                let events = try await worker.fetchEvents()
+                await presenter?.present(response: ListEvents.FetchEvents.Response(eventItems: events))
+            } catch {
+                print("🔴", error)
             }
-        })
+        }
     }
 }

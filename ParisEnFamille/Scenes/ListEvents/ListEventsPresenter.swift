@@ -8,19 +8,20 @@
 import Foundation
 
 protocol ListEventsPresentationLogic {
-    func present(response: ListEvents.FetchEvents.Response)
+    func present(response: ListEvents.FetchEvents.Response) async
 }
 
+@MainActor
 class ListEventsPresenter: ListEventsPresentationLogic {
     var viewController: ListEventsDisplayLogic?
 
-    func present(response: ListEvents.FetchEvents.Response) {
-        let formattedEvents = response.events.map {
-            ListEvents.FetchEvents.ViewModel.Event(
+    func present(response: ListEvents.FetchEvents.Response) async {
+        let formattedEvents = response.eventItems.map {
+            ListEvents.FetchEvents.ViewModel.EventItem(
                 uuid: UUID(),
-                title: $0.title ?? "",
-                intro: $0.leadText,
-                descriptionText: $0.descriptionText,
+                title: $0.title,
+                intro: $0.subtitle,
+                descriptionText: $0.description,
                 coverUrl: $0.coverUrl)
             }
         let viewModel = ListEvents.FetchEvents.ViewModel(events: formattedEvents)

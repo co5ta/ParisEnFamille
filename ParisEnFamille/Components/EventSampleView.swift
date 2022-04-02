@@ -14,7 +14,7 @@ class EventSampleView: UIView {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var introLabel: UILabel!
 
-    func configure(with event: ListEvents.FetchEvents.ViewModel.Event, imageLoader: AnyImageLoader) {
+    func configure(with event: ListEvents.FetchEvents.ViewModel.EventItem, imageLoader: AnyImageLoader) {
         imageLoader.load(image: event.coverUrl, into: imageView)
         titleLabel.text = event.title
         titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)

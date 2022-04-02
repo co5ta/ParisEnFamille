@@ -15,14 +15,8 @@ class ListEventsWorker {
         self.manager = manager
     }
     
-    func fetchEvents(completionHandler: @escaping(Result<[Event], NetworkError>) -> Void) {
-        manager.getPlaces(placeType: .activity, dataType: EventsResult.self) { result in
-            switch result {
-            case .failure(let error):
-                completionHandler(.failure(error))
-            case .success(let eventsData):
-                completionHandler(.success(eventsData.records))
-            }
-        }
+    func fetchEvents() async throws -> [EventItem] {
+        let eventItems = try await manager.fetchItems(of: EventItems.self)
+        return eventItems.records
     }
 }

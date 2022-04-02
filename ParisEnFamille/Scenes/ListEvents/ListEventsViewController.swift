@@ -14,7 +14,7 @@ protocol ListEventsDisplayLogic {
 
 class ListEventsViewController: UIViewController, ListEventsDisplayLogic {
     var interactor: ListEventsInteractor?
-    var events: [ListEvents.FetchEvents.ViewModel.Event] = []
+    var events: [ListEvents.FetchEvents.ViewModel.EventItem] = []
     var dataSource: DataSource?
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -42,7 +42,7 @@ class ListEventsViewController: UIViewController, ListEventsDisplayLogic {
     }
 
     private func fetchEvents() {
-        interactor?.fetchEvents()
+        interactor?.fetchEventItems()
     }
 
     func displayEvents(viewModel: ListEvents.FetchEvents.ViewModel) {
@@ -52,12 +52,11 @@ class ListEventsViewController: UIViewController, ListEventsDisplayLogic {
     }
 }
 
-
 // MARK: - UICollectionViewDiffableDataSource
 
 extension ListEventsViewController {
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, ListEvents.FetchEvents.ViewModel.Event>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, ListEvents.FetchEvents.ViewModel.Event>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, ListEvents.FetchEvents.ViewModel.EventItem>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, ListEvents.FetchEvents.ViewModel.EventItem>
 
     enum Section {
         case main
@@ -80,15 +79,16 @@ extension ListEventsViewController {
     }
 
     func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
-      let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0))
-      let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0))
-      let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-
-      let section = NSCollectionLayoutSection(group: group)
-
-      let layout = UICollectionViewCompositionalLayout(section: section)
-      return layout
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(1.0))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
 }

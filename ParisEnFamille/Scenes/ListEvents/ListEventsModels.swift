@@ -13,11 +13,11 @@ enum ListEvents {
     enum FetchEvents {
         struct Request {}
         struct Response {
-            var events: [Event]
+            var eventItems: [EventItem] = []
         }
         struct ViewModel {
-            var events: [ViewModel.Event] = []
-            struct Event: Hashable {
+            var events: [ViewModel.EventItem] = []
+            struct EventItem: Hashable {
                 let uuid: UUID
                 let title: String
                 let intro: String

@@ -6,7 +6,7 @@
 //  Copyright © 2022 Co5ta. All rights reserved.
 //
 
-protocol AnyItem {
+protocol AnyItem: Decodable {
     var title: String { get }
     var subtitle: String { get }
     var description: String { get }
