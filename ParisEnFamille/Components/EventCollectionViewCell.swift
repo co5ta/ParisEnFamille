@@ -16,7 +16,6 @@ class EventCollectionViewCell: UICollectionViewCell {
     func configure(with event: ListEvents.FetchEvents.ViewModel.EventItem) {
         guard let eventSampleView = EventSampleView.fromNib else { return }
         eventSampleView.configure(with: event, imageLoader: ImageLoader())
-        contentView.addSubview(eventSampleView)
-        eventSampleView.frame = contentView.frame
+        contentView.addConstrained(subview: eventSampleView)
     }
 }

@@ -22,8 +22,10 @@ class ListEventsPresenter: ListEventsPresentationLogic {
                 title: $0.title,
                 intro: $0.subtitle,
                 descriptionText: $0.description,
-                coverUrl: $0.coverUrl)
-            }
+                coverUrl: $0.coverUrl,
+                tags: $0.tags.split(separator: ";").map {String($0)}
+            )
+        }
         let viewModel = ListEvents.FetchEvents.ViewModel(events: formattedEvents)
         viewController?.displayEvents(viewModel: viewModel)
     }

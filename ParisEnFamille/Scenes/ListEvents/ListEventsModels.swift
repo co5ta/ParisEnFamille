@@ -10,20 +10,23 @@ import Foundation
 import MapKit
 
 enum ListEvents {
-    enum FetchEvents {
-        struct Request {}
-        struct Response {
-            var eventItems: [EventItem] = []
-        }
-        struct ViewModel {
-            var events: [ViewModel.EventItem] = []
-            struct EventItem: Hashable {
-                let uuid: UUID
-                let title: String
-                let intro: String
-                let descriptionText: String
-                let coverUrl: String
-            }
+    enum FetchEvents {}
+}
+
+extension ListEvents.FetchEvents {
+    struct Request {}
+    struct Response {
+        var eventItems: [EventItem] = []
+    }
+    struct ViewModel {
+        var events: [ViewModel.EventItem] = []
+        struct EventItem: Hashable {
+            let uuid: UUID
+            let title: String
+            let intro: String
+            let descriptionText: String
+            let coverUrl: String
+            let tags: [String]
         }
     }
 }
