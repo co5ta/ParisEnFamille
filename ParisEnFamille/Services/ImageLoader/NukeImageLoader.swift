@@ -5,6 +5,9 @@
 //  Created by Costa Monzili on 13/03/2022.
 //  Copyright © 2022 Co5ta. All rights reserved.
 //
+
+import Foundation
+import UIKit
 import Nuke
 
 class NukeImageLoader: AnyImageLoader {

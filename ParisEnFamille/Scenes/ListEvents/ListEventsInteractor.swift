@@ -12,18 +12,18 @@ protocol ListEventsBusinessLogic {
 }
 
 protocol ListEventsDataDource {
-    var events: [Event] { get }
+    var events: [EventItem] { get }
 }
 
 class ListEventsInteractor: ListEventsBusinessLogic, ListEventsDataDource {
     var presenter: ListEventsPresenter?
     var worker: ListEventsWorker = ListEventsWorker(manager: NetworkService())
-    var events: [Event] = []
+    var events: [EventItem] = []
     
     func fetchEventItems() {
         Task {
             do {
-                let events = try await worker.fetchEvents()
+                events = try await worker.fetchEvents()
                 await presenter?.present(response: ListEvents.FetchEvents.Response(eventItems: events))
             } catch {
                 print("🔴", error)

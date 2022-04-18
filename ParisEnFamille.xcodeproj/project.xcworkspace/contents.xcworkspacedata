@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/abusakina/OpenClassrooms/Paris Nature/ParisNature.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
