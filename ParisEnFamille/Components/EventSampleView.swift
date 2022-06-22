@@ -9,10 +9,10 @@
 import UIKit
 
 class EventSampleView: UIView {
-    @IBOutlet private weak var imageView: UIImageView!
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var introLabel: UILabel!
-    @IBOutlet private weak var tagsStackView: UIStackView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var introLabel: UILabel!
+    @IBOutlet weak var tagsStackView: UIStackView!
     
     /// Configures the view with the event data
     /// - Parameters:

@@ -24,7 +24,6 @@ extension ListEvents.FetchEvents {
             let uuid: UUID
             let title: String
             let intro: String
-            let descriptionText: String
             let coverUrl: String
             let tags: [String]
         }

@@ -13,8 +13,8 @@ protocol ListEventsDisplayLogic {
 }
 
 class ListEventsViewController: UIViewController, ListEventsDisplayLogic {
-    var interactor: ListEventsInteractor?
-    private var events: [ListEvents.FetchEvents.ViewModel.EventItem] = []
+    var interactor: ListEventsBusinessLogic?
+    var events: [ListEvents.FetchEvents.ViewModel.EventItem] = []
     private var dataSource: DataSource?
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -30,14 +30,20 @@ class ListEventsViewController: UIViewController, ListEventsDisplayLogic {
     }
 
     private func setup() {
-        self.interactor = ListEventsInteractor()
-        self.interactor?.presenter = ListEventsPresenter()
-        self.interactor?.presenter?.viewController = self
+        let viewController = self
+        let interactor = ListEventsInteractor()
+        let presenter = ListEventsPresenter()
+        viewController.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
     }
 
     override func viewDidLoad() {
         collectionView.register(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EventCell")
         collectionView.collectionViewLayout = createCompositionalLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         fetchEvents()
     }
 
