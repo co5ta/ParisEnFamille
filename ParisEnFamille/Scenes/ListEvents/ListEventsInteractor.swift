@@ -16,7 +16,7 @@ protocol ListEventsDataDource {
 }
 
 class ListEventsInteractor: ListEventsBusinessLogic, ListEventsDataDource {
-    var presenter: ListEventsPresenter?
+    var presenter: ListEventsPresentationLogic?
     var worker: ListEventsWorker = ListEventsWorker(manager: NetworkService())
     var events: [EventItem] = []
     
